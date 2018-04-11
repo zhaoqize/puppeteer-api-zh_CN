@@ -59,7 +59,7 @@ puppeteer.launch().then(async browser => {
 
 > **NOTE** Puppeteer 也可以用来控制 Chrome 浏览器， 但它与绑定的 Chromium 版本在一起使用效果最好。不能保证它可以与任何其他版本一起使用。谨慎地使用`executablePath`选项。
 >
-> 如果 Google Chrome（而不是Chromium）是首选，一个 Chrome Canary](https://www.google.com/chrome/browser/canary.html) 或 [Dev Channel](https://www.chromium.org/getting-involved/dev-channel) 版本是建议的。
+> 如果 Google Chrome（而不是Chromium）是首选，一个 [Chrome Canary](https://www.google.com/chrome/browser/canary.html) 或 [Dev Channel](https://www.chromium.org/getting-involved/dev-channel) 版本是建议的。
 >
 > 在上面的 [puppeteer.launch([options])](＃puppeteerlaunchoptions) 中，任何提及的 Chromium 同样也适用于 Chrome。
 >
