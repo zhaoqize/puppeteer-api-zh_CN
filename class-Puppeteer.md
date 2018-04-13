@@ -1,4 +1,9 @@
 
+#### page.evaluateOnNewDocument(pageFunction, ...args)
+- `pageFunction` <[function]|[string]> Function to be evaluated in browser context
+- `...args` <...[Serializable]> Arguments to pass to `pageFunction`
+- returns: <[Promise]>
+
 ### class: Puppeteer
 
 Puppeteer 模块提供了一种启动 Chromium 实例的方法。
