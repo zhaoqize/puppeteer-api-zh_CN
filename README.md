@@ -271,3 +271,6 @@ Puppeteer 寻找某些环境变量来帮助其操作。 如果 puppeteer 在环�
 - `PUPPETEER_SKIP_CHROMIUM_DOWNLOAD` - 请勿在安装步骤中下载绑定的Chromium。
 - `PUPPETEER_DOWNLOAD_HOST` - 覆盖用于下载Chromium的URL的主机部分。
 - `PUPPETEER_CHROMIUM_REVISION` - 在安装步骤中指定一个你喜欢puppeteer使用的特定版本的chrome。
+
+### 贡献
+欢迎大家积极参与 Puppeteer 中文文档的翻译。[如何贡献](./CONTRIBUTING.md)
