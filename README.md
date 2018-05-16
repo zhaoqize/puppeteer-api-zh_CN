@@ -27,7 +27,7 @@ Puppeteer 寻找某些环境变量来帮助其操作。 如果 puppeteer 在环�
 
 ### 翻译进展
 - class: Puppeteer <span style="color:green">【已完成】</span>
-- class: BrowserFetcher 【待领取】
+- class: BrowserFetcher 【已被 @15vTechAdmin 领取】
 - class: Browser 【待领取】
 - class: BrowserContext 【待领取】
 - class: Page 【待领取】
