@@ -1,4 +1,5 @@
 # Puppeteer API v<!-- GEN:version -->1.4.0
+> v1.4.0正式版 6月7号发布
 
 ### 介绍
 
@@ -25,9 +26,10 @@ Puppeteer 寻找某些环境变量来帮助其操作。 如果 puppeteer 在环�
 - `PUPPETEER_CHROMIUM_REVISION` - 在安装步骤中指定一个你喜欢puppeteer使用的特定版本的chrome。
 
 ### 翻译进展
-- class: Puppeteer 【已完成】
+- class: Puppeteer <span style="color:green">【已完成】</span>
 - class: BrowserFetcher 【待领取】
 - class: Browser 【待领取】
+- class: BrowserContext 【待领取】
 - class: Page 【待领取】
 - class: Keyboard 【待领取】
 - class: Mouse 【待领取】
