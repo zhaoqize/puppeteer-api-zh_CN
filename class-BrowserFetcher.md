@@ -39,7 +39,7 @@ const browser = await puppeteer.launch({executablePath: revisionInfo.executableP
 - returns <[Promise]<[boolean]>> return `true` 如果该修订版本可以从主机被下载
 
 The method initiates a HEAD request to check if the revision is available.
-该方法发起一个 HEAD 请求
+该方法发起一个 HEAD 请求来检查该修订版本是否有效.
 
 #### browserFetcher.download(revision[, progressCallback])
 - `revision` <[string]> a revision to download.
@@ -52,8 +52,16 @@ The method initiates a HEAD request to check if the revision is available.
   - `executablePath` <[string]> path to the revision executable
   - `url` <[string]> URL this revision can be downloaded from
   - `local` <[boolean]> whether the revision is locally available on disk
+ 
+- `revision` <[string]> 下载的修订版本
+ - `progressCallback` <[function]([number], [number])> 一个函数, 调用时将会传入两个参数:
+ - `downloadedBytes` <[number]> 多少字节已经被下载
+ - `totalBytes` <number> 下载全部的字节数(译者注: 也就是需要下载的文件大小)
+- return: <[Promise<Object>]> 当该修订版本已经下载完成并解压完成, resolve 该 Promise并传入该修订版本信息
+ - `revision` <[string]> 
 
 The method initiates a GET request to download the revision from the host.
+该方法发起一个 GET 请求来从主机下载该修订版本.
 
 #### browserFetcher.localRevisions()
 - returns: <[Promise]<[Array]<[string]>>> A list of all revisions available locally on disk.
