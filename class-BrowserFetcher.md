@@ -8,17 +8,11 @@
 
 ### class: BrowserFetcher
 
-BrowserFetcher can download and manage different versions of Chromium.
 BrowserFetcher 用来下载和管理 Chromium 的不同版本.
 
-BrowserFetcher operates on revision strings that specify a precise version of Chromium, e.g. `"533271"`. Revision strings can be obtained from [omahaproxy.appspot.com](http://omahaproxy.appspot.com/).
-
-BrowserFetcher 接受一个修订版本字符串, 修订版本字符串指定一个 Chromium 的确切版本, 例如 `"533271"`. 修订版本字符串可以从 [omahaproxy.appspot.com](http://omahaproxy.appspot.com/) 获取 
+BrowserFetcher 操作一个修订版本字符串, 修订版本字符串指定一个 Chromium 的确切版本, 例如 `"533271"`. 修订版本字符串可以从 [omahaproxy.appspot.com](http://omahaproxy.appspot.com/) 获取 
 
 如何使用 BrowserFetcher 下载一个指定版本的 Chromium 并且 Puppeteer 使用其运行的例子:
-
-Example on how to use BrowserFetcher to download a specific version of Chromium and run
-Puppeteer against it:
 
 ```js
 const browserFetcher = puppeteer.createBrowserFetcher();
@@ -26,33 +20,15 @@ const revisionInfo = await browserFetcher.download('533271');
 const browser = await puppeteer.launch({executablePath: revisionInfo.executablePath})
 ```
 
-> **NOTE** BrowserFetcher is not designed to work concurrently with other
-> instances of BrowserFetcher that share the same downloads directory.
-
 > **注意** BrowserFetcher 不适用于与共享下载目录的其他实例同时运行.
 
 #### browserFetcher.canDownload(revision)
-- `revision` <[string]> a revision to check availability.
-- returns: <[Promise]<[boolean]>>  returns `true` if the revision could be downloaded from the host.
-
 - `revision` <[string]> 修订版本号, 检查其可用性
-- returns <[Promise]<[boolean]>> 返回 `true` 如果该修订版本可以从主机被下载
+- returns: <[Promise]<[boolean]>> 返回 `true` 如果该修订版本可以从主机下载
 
-The method initiates a HEAD request to check if the revision is available.
 该方法发起一个 HEAD 请求来检查该修订版本是否有效.
 
 #### browserFetcher.download(revision[, progressCallback])
-- `revision` <[string]> a revision to download.
-- `progressCallback` <[function]([number], [number])> A function that will be called with two arguments:
-  - `downloadedBytes` <[number]> how many bytes have been downloaded
-  - `totalBytes` <[number]> how large is the total download.
-- returns: <[Promise]<[Object]>> Resolves with revision information when the revision is downloaded and extracted
-  - `revision` <[string]> the revision the info was created from
-  - `folderPath` <[string]> path to the extracted revision folder
-  - `executablePath` <[string]> path to the revision executable
-  - `url` <[string]> URL this revision can be downloaded from
-  - `local` <[boolean]> whether the revision is locally available on disk
- 
 - `revision` <[string]> 下载的修订版本
   - `progressCallback` <[function]([number], [number])> 一个函数, 调用时将会传入两个参数:
   - `downloadedBytes` <[number]> 多少字节已经被下载
@@ -64,35 +40,21 @@ The method initiates a HEAD request to check if the revision is available.
   - `url` <[string]> URL 该修订版本的下载路径
   - `local` <[boolean]> 该修订版本是否是在本地的磁盘上可用的
 
-The method initiates a GET request to download the revision from the host.
 该方法发起一个 GET 请求来从主机下载该修订版本.
 
 #### browserFetcher.localRevisions()
-- returns: <[Promise]<[Array]<[string]>>> A list of all revisions available locally on disk.
 - returns: <[Promise]<[Array]<[string]>>> 一个列表, 包含所有的在本地磁盘可用的修订版本
 
 #### browserFetcher.platform()
-- returns: <[string]> Returns one of `mac`, `linux`, `win32` or `win64`.
 - returns: <[string]> 返回 `mac`, `linux`, `win32` 或 `win64` 之一.
 
 #### browserFetcher.remove(revision)
-- `revision` <[string]> a revision to remove. The method will throw if the revision has not been downloaded.
-- returns: <[Promise]> Resolves when the revision has been removed.
-
-- `revision` <[string]> 想要移除的修订版本, 如果该修订版本还没有被下载, 该方法将抛出一个错误
+- `revision` <[string]> 想要移除的修订版本, 如果指定的修订版本还没有被下载, 该方法将抛出一个错误
 - returns: <[Promise]> 当该修订版本被移除的时候, resolve 该 Promise
 
 #### browserFetcher.revisionInfo(revision)
-- `revision` <[string]> a revision to get info for.
-- returns: <[Object]>
-  - `revision` <[string]> the revision the info was created from
-  - `folderPath` <[string]> path to the extracted revision folder
-  - `executablePath` <[string]> path to the revision executable
-  - `url` <[string]> URL this revision can be downloaded from
-  - `local` <[boolean]> whether the revision is locally available on disk
-
 - `revision` <[string]> 想要获取信息的修订版本
-- retuens: <[Object]>
+- returns: <[Object]>
   - `revision` <[string]> 该修订版本被创建时的信息
   - `folderPath` <[string]> 解压该修订版本的路径
   - `executablePath` <[string]> 该修订版本的可执行文件的路径
