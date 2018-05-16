@@ -1,8 +1,9 @@
-
-#### page.evaluateOnNewDocument(pageFunction, ...args)
-- `pageFunction` <[function]|[string]> Function to be evaluated in browser context
-- `...args` <...[Serializable]> Arguments to pass to `pageFunction`
-- returns: <[Promise]>
+- [class: Puppeteer](#class-puppeteer)
+  * [puppeteer.connect(options)](#puppeteerconnectoptions)
+  * [puppeteer.createBrowserFetcher([options])](#puppeteercreatebrowserfetcheroptions)
+  * [puppeteer.defaultArgs()](#puppeteerdefaultargs)
+  * [puppeteer.executablePath()](#puppeteerexecutablepath)
+  * [puppeteer.launch([options])](#puppeteerlaunchoptions)
 
 ### class: Puppeteer
 
