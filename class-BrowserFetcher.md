@@ -13,9 +13,9 @@ BrowserFetcher 用来下载和管理 Chromium 的不同版本.
 
 BrowserFetcher operates on revision strings that specify a precise version of Chromium, e.g. `"533271"`. Revision strings can be obtained from [omahaproxy.appspot.com](http://omahaproxy.appspot.com/).
 
-BrowserFetcher 接受一个修订字符串, 修订字符串指定一个 Chromium 的确切版本, 例如 `"533271"`. 修订字符串可以从 [omahaproxy.appspot.com](http://omahaproxy.appspot.com/) 获取 
+BrowserFetcher 接受一个修订版本字符串, 修订版本字符串指定一个 Chromium 的确切版本, 例如 `"533271"`. 修订版本字符串可以从 [omahaproxy.appspot.com](http://omahaproxy.appspot.com/) 获取 
 
-例子, 如何使用 BrowserFetcher 下载一个指定版本的 Chromium 并且 Puppeteer 依赖其启动:
+如何使用 BrowserFetcher 下载一个指定版本的 Chromium 并且 Puppeteer 使用其运行的例子:
 
 Example on how to use BrowserFetcher to download a specific version of Chromium and run
 Puppeteer against it:
@@ -35,8 +35,8 @@ const browser = await puppeteer.launch({executablePath: revisionInfo.executableP
 - `revision` <[string]> a revision to check availability.
 - returns: <[Promise]<[boolean]>>  returns `true` if the revision could be downloaded from the host.
 
-- `revision` <[string]> 修订版本, 检查其可用性
-- returns <[Promise]<[boolean]>> return `true` 如果该修订版本可以从主机被下载
+- `revision` <[string]> 修订版本号, 检查其可用性
+- returns <[Promise]<[boolean]>> 返回 `true` 如果该修订版本可以从主机被下载
 
 The method initiates a HEAD request to check if the revision is available.
 该方法发起一个 HEAD 请求来检查该修订版本是否有效.
@@ -54,15 +54,15 @@ The method initiates a HEAD request to check if the revision is available.
   - `local` <[boolean]> whether the revision is locally available on disk
  
 - `revision` <[string]> 下载的修订版本
- - `progressCallback` <[function]([number], [number])> 一个函数, 调用时将会传入两个参数:
- - `downloadedBytes` <[number]> 多少字节已经被下载
- - `totalBytes` <number> 下载全部的字节数(译者注: 也就是需要下载的文件大小)
-- return: <[Promise<Object>]> 当该修订版本已经下载完成并解压完成, resolve 该 Promise 并传入该修订版本的信息
- - `revision` <[string]> 该修订版本被创建时的信息
- - `folderPath` <[string]> 解压该修订版本的路径
- - `executablePath` <[string]> 该修订版本的可执行文件的路径
- - `url` <[string]> URL 该修订版本的下载路径
- - `local` <[boolean]> 该修订版本是否是在本地的磁盘上可用的
+  - `progressCallback` <[function]([number], [number])> 一个函数, 调用时将会传入两个参数:
+  - `downloadedBytes` <[number]> 多少字节已经被下载
+  - `totalBytes` <number> 下载全部的字节数(译者注: 也就是需要下载的文件大小)
+- returns: <[Promise]<Object>> 当该修订版本已经下载完成并解压完成, resolve 该 Promise 并传入该修订版本的信息
+  - `revision` <[string]> 该修订版本被创建时的信息
+  - `folderPath` <[string]> 解压该修订版本的路径
+  - `executablePath` <[string]> 该修订版本的可执行文件的路径
+  - `url` <[string]> URL 该修订版本的下载路径
+  - `local` <[boolean]> 该修订版本是否是在本地的磁盘上可用的
 
 The method initiates a GET request to download the revision from the host.
 该方法发起一个 GET 请求来从主机下载该修订版本.
@@ -91,4 +91,10 @@ The method initiates a GET request to download the revision from the host.
   - `url` <[string]> URL this revision can be downloaded from
   - `local` <[boolean]> whether the revision is locally available on disk
 
-- `revision` <[string]> 想要获取
+- `revision` <[string]> 想要获取信息的修订版本
+- retuens: <[Object]>
+  - `revision` <[string]> 该修订版本被创建时的信息
+  - `folderPath` <[string]> 解压该修订版本的路径
+  - `executablePath` <[string]> 该修订版本的可执行文件的路径
+  - `url` <[string]> URL 该修订版本的下载路径
+  - `local` <[boolean]> 该修订版本是否是在本地的磁盘上可用的
