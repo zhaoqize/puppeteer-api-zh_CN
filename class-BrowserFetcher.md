@@ -57,21 +57,30 @@ The method initiates a HEAD request to check if the revision is available.
  - `progressCallback` <[function]([number], [number])> 一个函数, 调用时将会传入两个参数:
  - `downloadedBytes` <[number]> 多少字节已经被下载
  - `totalBytes` <number> 下载全部的字节数(译者注: 也就是需要下载的文件大小)
-- return: <[Promise<Object>]> 当该修订版本已经下载完成并解压完成, resolve 该 Promise并传入该修订版本信息
- - `revision` <[string]> 
+- return: <[Promise<Object>]> 当该修订版本已经下载完成并解压完成, resolve 该 Promise 并传入该修订版本的信息
+ - `revision` <[string]> 该修订版本被创建时的信息
+ - `folderPath` <[string]> 解压该修订版本的路径
+ - `executablePath` <[string]> 该修订版本的可执行文件的路径
+ - `url` <[string]> URL 该修订版本的下载路径
+ - `local` <[boolean]> 该修订版本是否是在本地的磁盘上可用的
 
 The method initiates a GET request to download the revision from the host.
 该方法发起一个 GET 请求来从主机下载该修订版本.
 
 #### browserFetcher.localRevisions()
 - returns: <[Promise]<[Array]<[string]>>> A list of all revisions available locally on disk.
+- returns: <[Promise]<[Array]<[string]>>> 一个列表, 包含所有的在本地磁盘可用的修订版本
 
 #### browserFetcher.platform()
 - returns: <[string]> Returns one of `mac`, `linux`, `win32` or `win64`.
+- returns: <[string]> 返回 `mac`, `linux`, `win32` 或 `win64` 之一.
 
 #### browserFetcher.remove(revision)
 - `revision` <[string]> a revision to remove. The method will throw if the revision has not been downloaded.
 - returns: <[Promise]> Resolves when the revision has been removed.
+
+- `revision` <[string]> 想要移除的修订版本, 如果该修订版本还没有被下载, 该方法将抛出一个错误
+- returns: <[Promise]> 当该修订版本被移除的时候, resolve 该 Promise
 
 #### browserFetcher.revisionInfo(revision)
 - `revision` <[string]> a revision to get info for.
@@ -81,3 +90,5 @@ The method initiates a GET request to download the revision from the host.
   - `executablePath` <[string]> path to the revision executable
   - `url` <[string]> URL this revision can be downloaded from
   - `local` <[boolean]> whether the revision is locally available on disk
+
+- `revision` <[string]> 想要获取
