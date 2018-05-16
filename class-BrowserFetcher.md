@@ -9,8 +9,13 @@
 ### class: BrowserFetcher
 
 BrowserFetcher can download and manage different versions of Chromium.
+BrowserFetcher 用来下载和管理 Chromium 的不同版本.
 
 BrowserFetcher operates on revision strings that specify a precise version of Chromium, e.g. `"533271"`. Revision strings can be obtained from [omahaproxy.appspot.com](http://omahaproxy.appspot.com/).
+
+BrowserFetcher 接受一个修订字符串, 修订字符串指定一个 Chromium 的确切版本, 例如 `"533271"`. 修订字符串可以从 [omahaproxy.appspot.com](http://omahaproxy.appspot.com/) 获取 
+
+例子, 如何使用 BrowserFetcher 下载一个指定版本的 Chromium 并且 Puppeteer 依赖其启动:
 
 Example on how to use BrowserFetcher to download a specific version of Chromium and run
 Puppeteer against it:
@@ -24,11 +29,17 @@ const browser = await puppeteer.launch({executablePath: revisionInfo.executableP
 > **NOTE** BrowserFetcher is not designed to work concurrently with other
 > instances of BrowserFetcher that share the same downloads directory.
 
+> **注意** BrowserFetcher 不适用于与共享下载目录的其他实例同时运行.
+
 #### browserFetcher.canDownload(revision)
 - `revision` <[string]> a revision to check availability.
 - returns: <[Promise]<[boolean]>>  returns `true` if the revision could be downloaded from the host.
 
+- `revision` <[string]> 修订版本, 检查其可用性
+- returns <[Promise]<[boolean]>> return `true` 如果该修订版本可以从主机被下载
+
 The method initiates a HEAD request to check if the revision is available.
+该方法发起一个 HEAD 请求
 
 #### browserFetcher.download(revision[, progressCallback])
 - `revision` <[string]> a revision to download.
