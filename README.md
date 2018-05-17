@@ -1,3 +1,34 @@
+
+### 翻译进展
+- class: Puppeteer <span style="color:green">【已完成】</span>
+- class: BrowserFetcher 【待领取】
+- class: Browser 【待领取】
+- class: BrowserContext 【待领取】
+- class: Page 【待领取】
+- class: Keyboard 【待领取】
+- class: Mouse 【待领取】
+- class: Touchscreen 【待领取】
+- class: Tracing 【待领取】
+- class: Dialog 【待领取】
+- class: ConsoleMessage 【待领取】
+- class: Frame 【待领取】
+- class: ExecutionContext 【待领取】
+- class: JSHandle 【待领取】
+- class: ElementHandle 【待领取】
+- class: Request 【待领取】
+- class: Response 【待领取】
+- class: SecurityDetails 【待领取】
+- class: Target 【待领取】
+- class: CDPSession 【待领取】
+- class: Coverage 【待领取】
+
+### 交流群
+<img src="./img/pu.png" height="300">
+
+
+### 贡献
+欢迎大家积极参与 Puppeteer 中文文档的翻译。[如何贡献](./CONTRIBUTING.md)
+
 # Puppeteer API v<!-- GEN:version -->1.4.0
 > v1.4.0正式版 6月7号发布
 
@@ -24,29 +55,3 @@ Puppeteer 寻找某些环境变量来帮助其操作。 如果 puppeteer 在环�
 - `PUPPETEER_SKIP_CHROMIUM_DOWNLOAD` - 请勿在安装步骤中下载绑定的Chromium。
 - `PUPPETEER_DOWNLOAD_HOST` - 覆盖用于下载Chromium的URL的主机部分。
 - `PUPPETEER_CHROMIUM_REVISION` - 在安装步骤中指定一个你喜欢puppeteer使用的特定版本的chrome。
-
-### 翻译进展
-- class: Puppeteer <span style="color:green">【已完成】</span>
-- class: BrowserFetcher 【待领取】
-- class: Browser 【待领取】
-- class: BrowserContext 【待领取】
-- class: Page 【待领取】
-- class: Keyboard 【待领取】
-- class: Mouse 【待领取】
-- class: Touchscreen 【待领取】
-- class: Tracing 【待领取】
-- class: Dialog 【待领取】
-- class: ConsoleMessage 【待领取】
-- class: Frame 【待领取】
-- class: ExecutionContext 【待领取】
-- class: JSHandle 【待领取】
-- class: ElementHandle 【待领取】
-- class: Request 【待领取】
-- class: Response 【待领取】
-- class: SecurityDetails 【待领取】
-- class: Target 【待领取】
-- class: CDPSession 【待领取】
-- class: Coverage 【待领取】
-
-### 贡献
-欢迎大家积极参与 Puppeteer 中文文档的翻译。[如何贡献](./CONTRIBUTING.md)
