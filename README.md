@@ -2,7 +2,7 @@
 ### 翻译进展
 - class: Puppeteer <span style="color:green">【已完成】</span>
 - class: BrowserFetcher 【已被 [15vTechAdmin](https://github.com/15vTechAdmin) 领取】
-- class: Browser 【待领取】
+- class: Browser 已被 [jiangyx3915](https://github.com/jiangyx3915) 领取】
 - class: BrowserContext 【待领取】
 - class: Page 【已被 [ilaipi](https://github.com/ilaipi) 领取】
 - class: Keyboard 【待领取】
