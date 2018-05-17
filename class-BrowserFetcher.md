@@ -59,4 +59,5 @@ const browser = await puppeteer.launch({executablePath: revisionInfo.executableP
   - `folderPath` <[string]> 解压该修订版本的路径
   - `executablePath` <[string]> 该修订版本的可执行文件的路径
   - `url` <[string]> URL 该修订版本的下载路径
-  - `local` <[boolean]> 该修订版本是否是在本地的磁盘上是可用的
+  - `local` <[boolean]> 该修订版本是否是在本地的磁盘上是可用的
+  
