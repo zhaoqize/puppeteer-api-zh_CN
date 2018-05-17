@@ -41,7 +41,7 @@ Puppeteer 寻找某些环境变量来帮助其操作。 如果 puppeteer 在环�
 - class: ExecutionContext 【待领取】
 - class: JSHandle 【待领取】
 - class: ElementHandle 【待领取】
-- class: Request 【待领取】
+- class: Request 【已被 [Gavin-Gong](https://github.com/Gavin-Gong) 领取】
 - class: Response 【待领取】
 - class: SecurityDetails 【待领取】
 - class: Target 【待领取】
