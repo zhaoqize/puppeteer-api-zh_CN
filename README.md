@@ -1,10 +1,10 @@
 
 ### 翻译进展
 - class: Puppeteer <span style="color:green">【已完成】</span>
-- class: BrowserFetcher 【待领取】
+- class: BrowserFetcher 【已被 [15vTechAdmin](https://github.com/15vTechAdmin) 领取】
 - class: Browser 【待领取】
 - class: BrowserContext 【待领取】
-- class: Page 【待领取】
+- class: Page 【已被 [ilaipi](https://github.com/ilaipi) 领取】
 - class: Keyboard 【待领取】
 - class: Mouse 【待领取】
 - class: Touchscreen 【待领取】
@@ -15,7 +15,7 @@
 - class: ExecutionContext 【待领取】
 - class: JSHandle 【待领取】
 - class: ElementHandle 【待领取】
-- class: Request 【待领取】
+- class: Request 【已被 [Gavin-Gong](https://github.com/Gavin-Gong) 领取】
 - class: Response 【待领取】
 - class: SecurityDetails 【待领取】
 - class: Target 【待领取】
