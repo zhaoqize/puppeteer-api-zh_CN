@@ -14,51 +14,55 @@
 
 ### class: Request
 
-每当页面发送一个请求, 以下事件会被 puppeteer 页面触发
-- ['request'](#event-request) 当请求发起时页面会触发这个事件.
-- ['response'](#event-response) 请求收到响应的时候触发.
-- ['requestfinished'](#event-requestfinished) 请求完成并且响应体下载完成时触发
+Whenever the page sends a request, the following events are emitted by puppeteer's page:
+- ['request'](#event-request) emitted when the request is issued by the page.
+- ['response'](#event-response) emitted when/if the response is received for the request.
+- ['requestfinished'](#event-requestfinished) emitted when the response body is downloaded and the request is complete.
 
+If request fails at some point, then instead of 'requestfinished' event (and possibly instead of 'response' event), the  ['requestfailed'](#event-requestfailed) event is emitted.
 
-如果在某些某些时候请求失败, 后续不会触发 'requestfinished' 事件(可能也不会触发 'response' 事件), 而是触发 ['requestfailed'](#event-requestfailed)事件
-
-如果请求得到一个重定向的响应, 请求会成功地触发 'requestfinished' 事件, 并且对重定向的`url`发起一个新的请求
+If request gets a 'redirect' response, the request is successfully finished with the 'requestfinished' event, and a new request is  issued to a redirected url.
 
 #### request.abort([errorCode])
-- `errorCode` <[string]> 可选的错误码. 默认为`failed`, 可以是以下值:
-  - `aborted` - 操作被取消 (因为用户的操作)
-  - `accessdenied` - 访问资源(非网络原因)被拒绝
-  - `addressunreachable` - 找不到IP地址 这通常意味着没有路由通向指定主机或者网络
-  - `connectionaborted` - 未收到数据发送的ACK信号导致的连接超时
-  - `connectionclosed` - 由于 TCP 连接完成导致的 连接关闭
-  - `connectionfailed` - 尝试连接失败.
-  - `connectionrefused` - 尝试连接拒绝.
-  - `connectionreset` - 连接被重置 (由于TCP RST信号).
-  - `internetdisconnected` - 网络连接丢失.
-  - `namenotresolved` - 主机名字无法被解析.
-  - `timedout` - 操作超时.
-  - `failed` - 发生通用错误.
+- `errorCode` <[string]> Optional error code. Defaults to `failed`, could be
+  one of the following:
+  - `aborted` - An operation was aborted (due to user action)
+  - `accessdenied` - Permission to access a resource, other than the network, was denied
+  - `addressunreachable` - The IP address is unreachable. This usually means
+    that there is no route to the specified host or network.
+  - `connectionaborted` - A connection timed out as a result of not receiving an ACK for data sent.
+  - `connectionclosed` - A connection was closed (corresponding to a TCP FIN).
+  - `connectionfailed` - A connection attempt failed.
+  - `connectionrefused` - A connection attempt was refused.
+  - `connectionreset` - A connection was reset (corresponding to a TCP RST).
+  - `internetdisconnected` - The Internet connection has been lost.
+  - `namenotresolved` - The host name could not be resolved.
+  - `timedout` - An operation timed out.
+  - `failed` - A generic failure occurred.
 - returns: <[Promise]>
 
-想要中断请求, 应该使用 `page.setRequestInterception` 来开启请求拦截, 如果请求拦截没有开启会立即跑出异常
+Aborts request. To use this, request interception should be enabled with `page.setRequestInterception`.
+Exception is immediately thrown if the request interception is not enabled.
 
 #### request.continue([overrides])
-- `overrides` <[Object]> 可选的请求覆写选项, 可以是以下值中的一个:
-  - `url` <[string]> 如果设置的话, 请求url将会改变
-  - `method` <[string]> 如果这样设置 会改变请求方法 (例如. `GET` or `POST`)
-  - `postData` <[string]> 如果这样设置 会改变请求要提交的数据
-  - `headers` <[Object]> 如果这样设置 改变http请求头
+- `overrides` <[Object]> Optional request overwrites, which can be one of the following:
+  - `url` <[string]> If set, the request url will be changed
+  - `method` <[string]> If set changes the request method (e.g. `GET` or `POST`)
+  - `postData` <[string]> If set changes the post data of request
+  - `headers` <[Object]> If set changes the request HTTP headers
 - returns: <[Promise]>
 
-想要用可选的请求覆写选项继续请求, 应该使用 `page.setRequestInterception` 来开启请求拦截, 如果请求拦截没有开启会立即抛出异常
+Continues request with optional request overrides. To use this, request interception should be enabled with `page.setRequestInterception`.
+Exception is immediately thrown if the request interception is not enabled.
 
 #### request.failure()
-- returns: <?[Object]> 描述请求失败的对象, 如果有的话
-  - `errorText` <[string]> 人类可读的错误信息, 例如. `'net::ERR_FAILED'`.
+- returns: <?[Object]> Object describing request failure, if any
+  - `errorText` <[string]> Human-readable error message, e.g. `'net::ERR_FAILED'`.
 
-`requestfailed` 事件触发后, 在请求失败的情况下, 这个方法会返回 `null`
+The method returns `null` unless this request was failed, as reported by
+`requestfailed` event.
 
-输出所有失败请求示例::
+输出所有失败请求示例:
 
 ```js
 page.on('requestfailed', request => {
@@ -67,21 +71,20 @@ page.on('requestfailed', request => {
 ```
 
 #### request.frame()
-- returns: <?[Frame]> 一个匹配的 [Frame] 对象, 如果导航到错误页面的话, 则是'null'
+- returns: <?[Frame]> A matching [Frame] object, or `null` if navigating to error pages.
 
 #### request.headers()
-- returns: <[Object]> 该请求的 http 头对象. 所有头都采用小写的命名方式
+- returns: <[Object]> An object with HTTP headers associated with the request. All header names are lower-case.
 
 #### request.method()
-- returns: <[string]> 请求方法 (GET, POST, 等.)
+- returns: <[string]> Request's method (GET, POST, etc.)
 
 #### request.postData()
-- returns: <[string]> 请求提交的数据, 如果有的话.
+- returns: <[string]> Request's post body, if any.
 
 #### request.redirectChain()
 - returns: <[Array]<[Request]>>
 
-A `redirectChain` is a chain of requests initiated to fetch a resource.
 A `redirectChain` is a chain of requests initiated to fetch a resource.
 - If there are no redirects and the request was successful, the chain will be empty.
 - If a server responds with at least a single redirect, then the chain will
