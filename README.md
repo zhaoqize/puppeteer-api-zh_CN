@@ -30,7 +30,7 @@ Puppeteer 寻找某些环境变量来帮助其操作。 如果 puppeteer 在环�
 - class: BrowserFetcher 【已被 [15vTechAdmin](https://github.com/15vTechAdmin) 领取】
 - class: Browser 【待领取】
 - class: BrowserContext 【待领取】
-- class: Page 【待领取】
+- class: Page 【已被 [ilaipi](https://github.com/ilaipi) 领取】
 - class: Keyboard 【待领取】
 - class: Mouse 【待领取】
 - class: Touchscreen 【待领取】
