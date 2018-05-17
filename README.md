@@ -1,8 +1,11 @@
 
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)]()
+[![GitHub license](https://img.shields.io/github/license/zhaoqize/puppeteer-api-zh_CN.svg)](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/LICENSE)
+# Puppeteer 中文文档
 ### 翻译进展
-- class: Puppeteer <span style="color:green">【已完成】</span>
-- class: BrowserFetcher 【已被 [15vTechAdmin](https://github.com/15vTechAdmin) 领取】
-- class: Browser 已被 [jiangyx3915](https://github.com/jiangyx3915) 领取】
+- [class: Puppeteer](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Puppeteer.md)
+- [class: BrowserFetcher](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-BrowserFetcher.md)
+- class: Browser 【已被 [jiangyx3915](https://github.com/jiangyx3915) 领取】
 - class: BrowserContext 【待领取】
 - class: Page 【已被 [ilaipi](https://github.com/ilaipi) 领取】
 - class: Keyboard 【待领取】
