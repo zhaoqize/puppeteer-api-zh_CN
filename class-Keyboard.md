@@ -61,7 +61,7 @@ If `key` is a single character and no modifier keys besides `Shift` are being he
 如果 `key` 是一个修饰键, `Shift`, 'Meta', 'Control', 或者是 `Alt`, 随后的按键将与该修饰符一起发送. 要释放修饰键, 请使用 [`keyboard.up`](#keyboardupkey).
 If `key` is a modifier key, `Shift`, `Meta`, `Control`, or `Alt`, subsequent key presses will be sent with that modifier active. To release the modifier key, use [`keyboard.up`](#keyboardupkey).
 
-按下一个键后, 随后的调用 [`keyboard.down`](#keyboarddownkey-options) 的事件的 [repeat](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/repeat) 将被设置为 true. 要释放该键, 请使用 [`keyboard.up`](#keyboardupkey).
+在键被按下一次之后(译者注: 按下之后没有被释放, 一般会持续的触发该按键), 随后将持续调用 [`keyboard.down`](#keyboarddownkey-options), 事件对象的 [repeat](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/repeat) 将被设置为 true. 要释放该键, 请使用 [`keyboard.up`](#keyboardupkey).
 After the key is pressed once, subsequent calls to [`keyboard.down`](#keyboarddownkey-options) will have [repeat](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/repeat) set to true. To release the key, use [`keyboard.up`](#keyboardupkey).
 
 > **注意** 修饰键会影响 `keyboard.down`, 持续按下 `Shift` 键将已大写行书输入文本.
