@@ -58,7 +58,7 @@ Dispatches a `keydown` event.
 如果 `key` 是一个单独字符并且没有除了 `Shift` 的其他修饰符键正在被按下, 一个 `keypress`/`input` 事件也将被生成. 可以指定 `text` 选项来强制生成输入事件.
 If `key` is a single character and no modifier keys besides `Shift` are being held down, a `keypress`/`input` event will also generated. The `text` option can be specified to force an input event to be generated.
 
-如果 `key` 是一个修饰键, `Shift`, 'Meta', 'Control', 或者是 `Alt`, 随后的按键将与该修饰符一起发送. 要释放修饰键, 请使用 [`keyboard.up`](#keyboardupkey).
+如果 `key` 是一个修饰键, `Shift`, `Meta`, `Control`, 或者是 `Alt`, 随后的按键将与该修饰符一起发送. 要释放修饰键, 请使用 [`keyboard.up`](#keyboardupkey).
 If `key` is a modifier key, `Shift`, `Meta`, `Control`, or `Alt`, subsequent key presses will be sent with that modifier active. To release the modifier key, use [`keyboard.up`](#keyboardupkey).
 
 在键被按下一次之后(译者注: 按下之后没有被释放, 一般会持续的触发该按键), 随后将持续调用 [`keyboard.down`](#keyboarddownkey-options), 事件对象的 [repeat](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/repeat) 将被设置为 true. 要释放该键, 请使用 [`keyboard.up`](#keyboardupkey).
