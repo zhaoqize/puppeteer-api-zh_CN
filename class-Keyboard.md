@@ -9,8 +9,13 @@
 
 Keyboard provides an api for managing a virtual keyboard. The high level api is [`keyboard.type`](#keyboardtypetext-options), which takes raw characters and generates proper keydown, keypress/input, and keyup events on your page.
 
+Keyboard 提供一个接口来管理虚拟键盘. 高级接口为 [`keyboard.type`](#keyboardtypetext-options), 其接收原始字符, 然后在你的页面上生成对应的 keydown, keypress/input, 和  keyup 事件.
+
 For finer control, you can use [`keyboard.down`](#keyboarddownkey-options), [`keyboard.up`](#keyboardupkey), and [`keyboard.sendCharacter`](#keyboardsendcharacterchar) to manually fire events as if they were generated from a real keyboard.
 
+为了更精细的控制(虚拟键盘), 你可以使用 [`keyboard.down`](#keyboarddownkey-options), [`keyboard.up`](#keyboardupkey) 和 [`keyboard.sendCharacter`](#keyboardsendcharacterchar) 来手动触发事件, 就好像这些事件是由真实的键盘生成的.
+
+持续按住
 An example of holding down `Shift` in order to select and delete some text:
 ```js
 await page.keyboard.type('Hello World!');
