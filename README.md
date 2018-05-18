@@ -8,7 +8,7 @@
 - class: Browser 【已被 [jiangyx3915](https://github.com/jiangyx3915) 领取】
 - class: BrowserContext 【待领取】
 - class: Page 【已被 [ilaipi](https://github.com/ilaipi) 领取】
-- class: Keyboard 【待领取】
+- class: Keyboard 已被 [15vTechAdmin5](https://github.com/15vTechAdmin5) 领取】
 - class: Mouse 【待领取】
 - class: Touchscreen 【待领取】
 - class: Tracing 【待领取】
