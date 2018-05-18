@@ -15,7 +15,7 @@ For finer control, you can use [`keyboard.down`](#keyboarddownkey-options), [`ke
 
 为了更精细的控制(虚拟键盘), 你可以使用 [`keyboard.down`](#keyboarddownkey-options), [`keyboard.up`](#keyboardupkey) 和 [`keyboard.sendCharacter`](#keyboardsendcharacterchar) 来手动触发事件, 就好像这些事件是由真实的键盘生成的.
 
-持续按住
+持续按下 `Shift` 来选择一些字符串并且删除的例子:
 An example of holding down `Shift` in order to select and delete some text:
 ```js
 await page.keyboard.type('Hello World!');
@@ -27,6 +27,7 @@ for (let i = 0; i < ' World'.length; i++)
 await page.keyboard.up('Shift');
 
 await page.keyboard.press('Backspace');
+// 结果字符串最终为
 // Result text will end up saying 'Hello!'
 ```
 
