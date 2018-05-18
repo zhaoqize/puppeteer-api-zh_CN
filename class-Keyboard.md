@@ -27,10 +27,11 @@ for (let i = 0; i < ' World'.length; i++)
 await page.keyboard.up('Shift');
 
 await page.keyboard.press('Backspace');
-// 结果字符串最终为
+// 结果字符串最终为 'Hello!'
 // Result text will end up saying 'Hello!'
 ```
 
+按下
 An example of pressing `A`
 ```js
 await page.keyboard.down('Shift');
