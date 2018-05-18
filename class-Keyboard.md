@@ -31,7 +31,7 @@ await page.keyboard.press('Backspace');
 // Result text will end up saying 'Hello!'
 ```
 
-按下
+按下 `A` 的例子:
 An example of pressing `A`
 ```js
 await page.keyboard.down('Shift');
@@ -40,15 +40,22 @@ await page.keyboard.up('Shift');
 ```
 
 > **NOTE** On MacOS, keyboard shortcuts like `⌘ A` -> Select All do not work. See [#1313](https://github.com/GoogleChrome/puppeteer/issues/1313)
+> **注意** 在 MacOS 上, `⌘ A` -> 选择全部等键盘快捷键不工作. 另见 [#1313](https://github.com/GoogleChrome/puppeteer/issues/1313)
 
 #### keyboard.down(key[, options])
 - `key` <[string]> Name of key to press, such as `ArrowLeft`. See [USKeyboardLayout] for a list of all key names.
 - `options` <[Object]>
   - `text` <[string]> If specified, generates an input event with this text.
 - returns: <[Promise]>
+- `key` <[string]> 按下的键名, 比如 `ArrowLeft`. 一个包含所有键名的列表见 [USKeyboardLayout].
+- `options` <[Object]>
+  - `text` <[string]> 如果指定, 用该文字生成一个 input 事件.
+- returns: <[Promise]>
 
 Dispatches a `keydown` event.
+会分发一个 `keydown` 事件.
 
+如果 `key` 是一个单独
 If `key` is a single character and no modifier keys besides `Shift` are being held down, a `keypress`/`input` event will also generated. The `text` option can be specified to force an input event to be generated.
 
 If `key` is a modifier key, `Shift`, `Meta`, `Control`, or `Alt`, subsequent key presses will be sent with that modifier active. To release the modifier key, use [`keyboard.up`](#keyboardupkey).
