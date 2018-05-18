@@ -113,9 +113,10 @@ page.keyboard.sendCharacter('嗨');
   - `delay` <[number]> 按键间隔的时间, 以毫秒为单位. 默认为 0.
 - returns: <[Promise]>
 
-发送
+为文本中的每个字符发送一个`keydown`, `keypress`/`input` 和 `keyup` 事件.
 Sends a `keydown`, `keypress`/`input`, and `keyup` event for each character in the text.
 
+要按下一个特别的键, 像 `Control` 或 `ArrowDown`. 请使用[`keyboard.press`](#keyboardpresskey-options)
 To press a special key, like `Control` or `ArrowDown`, use [`keyboard.press`](#keyboardpresskey-options).
 
 ```js
@@ -123,10 +124,14 @@ page.keyboard.type('Hello'); // Types instantly
 page.keyboard.type('World', {delay: 100}); // Types slower, like a user
 ```
 
+> **注意** 修饰键不会影响 `keyboard.type`. 持续按下 `Shift` 键将不会已大写形式输入文本.
 > **NOTE** Modifier keys DO NOT effect `keyboard.type`. Holding down `Shift` will not type the text in upper case.
 
 #### keyboard.up(key)
 - `key` <[string]> Name of key to release, such as `ArrowLeft`. See [USKeyboardLayout] for a list of all key names.
 - returns: <[Promise]>
+- `key` <[string]> 要释放的键的键名, 例如 `ArrowLeft`. 一个包含所有键名的列表见 [USKeyboardLayout].
+- returns: <[Promise]>
 
+分发一个 `keyup` 事件.
 Dispatches a `keyup` event.
