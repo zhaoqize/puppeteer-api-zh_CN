@@ -11,7 +11,7 @@
 - class: Keyboard 已被 [15vTechAdmin5](https://github.com/15vTechAdmin5) 领取】
 - class: Mouse 【待领取】
 - class: Touchscreen 【待领取】
-- class: Tracing 【待领取】
+- [class: Tracing](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Tracing.md)
 - class: Dialog 【待领取】
 - class: ConsoleMessage 【待领取】
 - class: Frame 【待领取】
