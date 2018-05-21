@@ -32,8 +32,7 @@
 ### 贡献
 欢迎大家积极参与 Puppeteer 中文文档的翻译。[如何贡献](./CONTRIBUTING.md)
 
-# Puppeteer API v<!-- GEN:version -->1.4.0
-> v1.4.0正式版 6月7号发布
+# Puppeteer API v1.4.0
 
 ### 介绍
 
