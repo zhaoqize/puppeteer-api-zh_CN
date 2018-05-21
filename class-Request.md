@@ -15,48 +15,48 @@
 ### class: Request
 
 每当页面发送一个请求, 以下事件会被 puppeteer 页面触发
-- ['request'](#event-request) 当请求发起时页面会触发这个事件.
+- ['request'](#event-request) 当请求发起后页面会触发这个事件.
 - ['response'](#event-response) 请求收到响应的时候触发.
 - ['requestfinished'](#event-requestfinished) 请求完成并且响应体下载完成时触发
 
 
-如果在某些某些时候请求失败, 后续不会触发 'requestfinished' 事件(可能也不会触发 'response' 事件), 而是触发 ['requestfailed'](#event-requestfailed)事件
+如果某些时候请求失败, 后续不会触发 'requestfinished' 事件(可能也不会触发 'response' 事件), 而是触发 ['requestfailed'](#event-requestfailed)事件
 
 如果请求得到一个重定向的响应, 请求会成功地触发 'requestfinished' 事件, 并且对重定向的`url`发起一个新的请求
 
 #### request.abort([errorCode])
 - `errorCode` <[string]> 可选的错误码. 默认为`failed`, 可以是以下值:
-  - `aborted` - 操作被取消 (因为用户的操作)
-  - `accessdenied` - 访问资源(非网络原因)被拒绝
+  - `aborted` - 操作被取消 (因为用户的行为)
+  - `accessdenied` - 访问资源权限不足(非网络原因)
   - `addressunreachable` - 找不到IP地址 这通常意味着没有路由通向指定主机或者网络
   - `connectionaborted` - 未收到数据发送的ACK信号导致的连接超时
-  - `connectionclosed` - 由于 TCP 连接完成导致的 连接关闭
+  - `connectionclosed` - 连接关闭(对应 TCP FIN 包)
   - `connectionfailed` - 尝试连接失败.
   - `connectionrefused` - 尝试连接拒绝.
-  - `connectionreset` - 连接被重置 (由于TCP RST信号).
+  - `connectionreset` - 连接被重置 (对应 TCP RST 包).
   - `internetdisconnected` - 网络连接丢失.
   - `namenotresolved` - 主机名字无法被解析.
   - `timedout` - 操作超时.
   - `failed` - 发生通用错误.
 - returns: <[Promise]>
 
-想要中断请求, 应该使用 `page.setRequestInterception` 来开启请求拦截, 如果请求拦截没有开启会立即跑出异常
+想要中断请求, 应该使用 `page.setRequestInterception` 来开启请求拦截, 如果请求拦截没有开启会立即抛出异常.
 
 #### request.continue([overrides])
 - `overrides` <[Object]> 可选的请求覆写选项, 可以是以下值中的一个:
   - `url` <[string]> 如果设置的话, 请求url将会改变
-  - `method` <[string]> 如果这样设置 会改变请求方法 (例如. `GET` or `POST`)
-  - `postData` <[string]> 如果这样设置 会改变请求要提交的数据
-  - `headers` <[Object]> 如果这样设置 改变http请求头
+  - `method` <[string]> 如果设置的话, 会改变请求方法 (例如. `GET` 或者 `POST`)
+  - `postData` <[string]> 如果设置的话, 会改变请求要提交的数据
+  - `headers` <[Object]> 如果设置的话, 改变http请求头
 - returns: <[Promise]>
 
 想要用可选的请求覆写选项继续请求, 应该使用 `page.setRequestInterception` 来开启请求拦截, 如果请求拦截没有开启会立即抛出异常
 
 #### request.failure()
 - returns: <?[Object]> 描述请求失败的对象, 如果有的话
-  - `errorText` <[string]> 人类可读的错误信息, 例如. `'net::ERR_FAILED'`.
+  - `errorText` <[string]> 人类可读的错误信息, 例如, `'net::ERR_FAILED'`.
 
-`requestfailed` 事件触发后, 在请求失败的情况下, 这个方法会返回 `null`
+`requestfailed` 事件触发后, 在没有请求失败的情况下, 这个方法会返回 `null`.
 
 输出所有失败请求示例::
 
@@ -67,7 +67,7 @@ page.on('requestfailed', request => {
 ```
 
 #### request.frame()
-- returns: <?[Frame]> 一个匹配的 [Frame] 对象, 如果导航到错误页面的话, 则是'null'
+- returns: <?[Frame]> 一个相应的 [Frame] 对象, 如果导航到错误页面的话, 则是'null'
 
 #### request.headers()
 - returns: <[Object]> 该请求的 http 头对象. 所有头都采用小写的命名方式
