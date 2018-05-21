@@ -81,9 +81,9 @@ page.on('requestfailed', request => {
 #### request.redirectChain()
 - returns: <[Array]<[Request]>>
 
-`redirectChain` 是一一条获取资源的请求链
+`redirectChain` 是一条获取资源的请求链
 
-- 如股没有被重定向而且请求成功的话, 链将会被置空
+- 如果没有被重定向而且请求成功的话, 链将会被置空
 - 如果服务器至少响应了一次重定向, 那么这条链将会包含所有重定向请求
 
 `redirectChain` 会共享相同链上的所有请求.
@@ -120,10 +120,9 @@ console.log(chain.length); // 0
   - `body` <[Buffer]|[string]> 可选的响应体
 - returns: <[Promise]>
 
-完成请求后会返回一个响应. 可以通过开启 `page.setRequestInterception` 选项 来使用请求拦截 如果请求拦截没有开启则会抛出异常.
+完成请求后会返回一个响应. 可以通过开启 `page.setRequestInterception` 选项来使用请求拦截, 如果请求拦截没有开启则会抛出异常.
 
-下面例子中, 所有执行完成的请求都会返回 404响应体
-An example of fulfilling all requests with 404 responses:
+下面例子中, 所有执行完成的请求都会返回 404 响应体
 
 ```js
 await page.setRequestInterception(true);
@@ -140,7 +139,7 @@ page.on('request', request => {
 > 对 `dataURL`请求使用 `request.respond`并不会起任何作用.
 
 #### request.response()
-- returns: <?[Response]> Response 对象, 如果没有收到响应则是`null`
+- returns: <?[Response]> 相应的 Response 对象, 如果没有收到响应则是`null`.
 
 #### request.url()
 - returns: <[string]> 请求的 URL .
