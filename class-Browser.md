@@ -37,12 +37,12 @@ puppeteer.launch().then(async browser => {
 const puppeteer = require('puppeteer');
 
 puppeteer.launch().then(async browser => {
-  // 存储端点以便能重新连接到Chromium
+  // 存储节点以便能重新连接到Chromium
   const browserWSEndpoint = browser.wsEndpoint();
   // 从Chromium断开和puppeteer的连接
   browser.disconnect();
 
-  // 使用端点来重新建立连接
+  // 使用节点来重新建立连接
   const browser2 = await puppeteer.connect({browserWSEndpoint});
   // 关闭 Chromium
   await browser2.close();
@@ -89,7 +89,7 @@ puppeteer.launch().then(async browser => {
 #### browser.createIncognitoBrowserContext()
 - returns: <[Promise]<[BrowserContext]>>
 
-创建一个匿名的浏览器上下文。这将不会于其他浏览器上下文分享cookies/cache。
+创建一个匿名的浏览器上下文。这将不会与其他浏览器上下文分享cookies/cache。
 
 ```js
 const browser = await puppeteer.launch();
