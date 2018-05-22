@@ -10,28 +10,29 @@
 
 - returns: <[Browser]>
 
-Get the browser the target belongs to.
+获取目标所属的浏览器。
 
 #### target.browserContext()
 
 - returns: <[BrowserContext]>
 
-The browser context the target belongs to.
+目标所属的浏览器上下文。
 
 #### target.createCDPSession()
 - returns: <[Promise]<[CDPSession]>>
 
-Creates a Chrome Devtools Protocol session attached to the target.
+创建一个Chrome Devtools协议会话至目标。
 
 #### target.page()
 - returns: <[Promise]<?[Page]>>
 
-If the target is not of type `"page"`, returns `null`.
+如果目标不是`"页面"`类型，则返回`null`。
 
 #### target.type()
 - returns: <[string]>
 
 Identifies what kind of target this is. Can be `"page"`, `"service_worker"`, `"browser"` or `"other"`.
+确定目标是怎么样的类型。 可以是`"页面"`，`"service_worker"`，`"浏览器"`或`"其他"`。
 
 #### target.url()
 - returns: <[string]>

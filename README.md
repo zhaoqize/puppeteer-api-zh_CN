@@ -10,18 +10,18 @@
 - class: Page 【已被 [ilaipi](https://github.com/ilaipi) 领取】
 - class: Keyboard 已被 [15vTechAdmin5](https://github.com/15vTechAdmin5) 领取】
 - class: Mouse 【待领取】
-- class: Touchscreen 【待领取】
+- [class: Touchscreen](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Touchscreen.md)
 - [class: Tracing](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Tracing.md)
-- class: Dialog 【待领取】
-- class: ConsoleMessage 【待领取】
+- [class: Dialog](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Dialog.md)
+- [class: ConsoleMessage](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-ConsoleMessage.md)
 - class: Frame 【待领取】
 - class: ExecutionContext 【待领取】
 - class: JSHandle 【待领取】
 - class: ElementHandle 【待领取】
 - [class: Request](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Request.md)
 - class: Response 【待领取】
-- class: SecurityDetails 【待领取】
-- class: Target 【待领取】
+- [class: SecurityDetails](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-SecurityDetails.md)
+- [class: Target](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Target.md)
 - class: CDPSession 【待领取】
 - class: Coverage 【待领取】
 
