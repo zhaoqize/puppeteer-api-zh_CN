@@ -8,36 +8,37 @@
 
 ### class: JSHandle
 
-JSHandle represents an in-page JavaScript object. JSHandles can be created with the [page.evaluateHandle](#pageevaluatehandlepagefunction-args) method.
+JSHandle 表示一个页面内 JavaScript 对象。 JSHandles 可以使用 [page.evaluateHandle](＃pageevaluatehandlepagefunction-args) 方法创建。
 
 ```js
 const windowHandle = await page.evaluateHandle(() => window);
 // ...
 ```
 
-JSHandle prevents the referenced JavaScript object being garbage collected unless the handle is [disposed](#jshandledispose). JSHandles are auto-disposed when their origin frame gets navigated or the parent context gets destroyed.
+JSHandle 可防止引用的 JavaScript 对象被垃圾收集，除非是句柄 [disposed](＃jshandledispose)。 当原始框架被导航或父上下文被破坏时，JSHandles 会自动处理。
 
-JSHandle instances can be used as arguments in [`page.$eval()`](#pageevalselector-pagefunction-args), [`page.evaluate()`](#pageevaluatepagefunction-args) and [`page.evaluateHandle`](#pageevaluatehandlepagefunction-args) methods.
+JSHandle 实例可以使用在 [`page.$eval()`](＃pageevalselector-pagefunction-args)，[`page.evaluate()`](＃pageevaluatepagefunction-args) 和 [`page.evaluateHandle`](＃pageevaluatehandlepagefunction-args) 方法。
 
 #### jsHandle.asElement()
 - returns: <?[ElementHandle]>
 
 Returns either `null` or the object handle itself, if the object handle is an instance of [ElementHandle].
+如果对象句柄是 [ElementHandle] 的一个实例，则返回 `null` 或对象句柄本身。
 
 #### jsHandle.dispose()
-- returns: <[Promise]> Promise which resolves when the object handle is successfully disposed.
+- returns: <[Promise]> 当对象句柄被成功处理时承诺解决。(译者注：希望有更好的翻译)
 
-The `jsHandle.dispose` method stops referencing the element handle.
+`jsHandle.dispose` 方法停止引用元素句柄。
 
 #### jsHandle.executionContext()
 - returns: [ExecutionContext]
 
-Returns execution context the handle belongs to.
+返回句柄所属的执行上下文。
 
 #### jsHandle.getProperties()
 - returns: <[Promise]<[Map]<[string], [JSHandle]>>>
 
-The method returns a map with property names as keys and JSHandle instances for the property values.
+该方法返回一个包含属性名称作为键的映射和属性值的 JSHandle 实例。
 
 ```js
 const handle = await page.evaluateHandle(() => ({window, document}));
@@ -48,16 +49,15 @@ await handle.dispose();
 ```
 
 #### jsHandle.getProperty(propertyName)
-- `propertyName` <[string]> property to get
+- `propertyName` <[string]> 属性获取
 - returns: <[Promise]<[JSHandle]>>
 
-Fetches a single property from the referenced object.
+从引用的对象中获取单个属性。
 
 #### jsHandle.jsonValue()
 - returns: <[Promise]<[Object]>>
 
-Returns a JSON representation of the object. If the object has a
-[`toJSON`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#toJSON()_behavior)
-function, it **will not be called**.
+返回对象的 JSON 表示。如果对象又一个 [`toJSON`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#toJSON()_behavior)
+函数, 它 **将不会被调用**.
 
-> **NOTE** The method will return an empty JSON object if the referenced object is not stringifiable. It will throw an error if the object has circular references.
+> **注意** 如果引用的对象不可字符串化，该方法将返回一个空的 JSON 对象。 如果对象具有循环引用，它将引发一个错误。

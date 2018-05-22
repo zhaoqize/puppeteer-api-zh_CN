@@ -9,14 +9,14 @@
 - class: BrowserContext 【待领取】
 - class: Page 【已被 [ilaipi](https://github.com/ilaipi) 领取】
 - class: Keyboard 已被 [15vTechAdmin5](https://github.com/15vTechAdmin5) 领取】
-- class: Mouse 【待领取】
+- [class: Mouse](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Mouse.md)
 - [class: Touchscreen](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Touchscreen.md)
 - [class: Tracing](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Tracing.md)
 - [class: Dialog](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Dialog.md)
 - [class: ConsoleMessage](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-ConsoleMessage.md)
 - class: Frame 【待领取】
 - class: ExecutionContext 【待领取】
-- class: JSHandle 【待领取】
+- [class: JSHandle](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-JSHandle.md)
 - class: ElementHandle 【待领取】
 - [class: Request](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Request.md)
 - class: Response 【待领取】
