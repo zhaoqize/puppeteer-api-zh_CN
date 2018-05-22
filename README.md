@@ -18,7 +18,7 @@
 - class: ExecutionContext 【待领取】
 - class: JSHandle 【待领取】
 - class: ElementHandle 【待领取】
-- class: Request 【已被 [Gavin-Gong](https://github.com/Gavin-Gong) 领取】
+- [class: Request](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Request.md)
 - class: Response 【待领取】
 - class: SecurityDetails 【待领取】
 - class: Target 【待领取】
