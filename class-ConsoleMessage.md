@@ -5,7 +5,7 @@
 
 ### class: ConsoleMessage
 
-[ConsoleMessage]对象由页面通过['console']（＃event-console）事件分发。
+[ConsoleMessage] 对象由页面通过 ['console'](#event-console) 事件分发。
 
 #### consoleMessage.args()
 - returns: <[Array]<[JSHandle]>>

@@ -7,7 +7,7 @@
 
 ### class: Dialog
 
-[Dialog]对象通过['dialog']（＃event-dialog）事件的页面分发。
+[Dialog] 对象通过 ['dialog'](#event-dialog) 事件的页面分发。
 
 一个使用 `Dialog` 类的例子:
 ```js
