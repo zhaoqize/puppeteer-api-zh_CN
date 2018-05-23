@@ -6,27 +6,27 @@
 
 ### class: ExecutionContext
 
-The class represents a context for JavaScript execution. Examples of JavaScript contexts are:
-- each [frame](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe) has a separate execution context
-- all kind of [workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API) have their own contexts
+该类表示 JavaScript 执行的上下文。JavaScript 上下文的例子是：
+- 每个 [frame](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe) 都有一个单独的执行上下文
+- 所有 [workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API) 都有自己的上下文
 
 #### executionContext.evaluate(pageFunction, ...args)
 - `pageFunction` <[function]|[string]> Function to be evaluated in `executionContext`
 - `...args` <...[Serializable]|[JSHandle]> Arguments to pass to `pageFunction`
 - returns: <[Promise]<[Serializable]>> Promise which resolves to the return value of `pageFunction`
 
-If the function passed to the `executionContext.evaluate` returns a [Promise], then `executionContext.evaluate` would wait for the promise to resolve and return its value.
+如果传递给 `executionContext.evaluate` 的函数返回一个[Promise]，那么 `executionContext.evaluate` 将等待承诺解析并返回它的值。
 
 ```js
 const executionContext = await page.mainFrame().executionContext();
 const result = await executionContext.evaluate(() => Promise.resolve(8 * 7));
-console.log(result); // prints "56"
+console.log(result); // 输出 "56"
 ```
 
 A string can also be passed in instead of a function.
 
 ```js
-console.log(await executionContext.evaluate('1 + 2')); // prints "3"
+console.log(await executionContext.evaluate('1 + 2')); // 输出 "3"
 ```
 
 [JSHandle] instances can be passed as arguments to the `executionContext.evaluate`:

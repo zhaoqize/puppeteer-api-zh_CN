@@ -10,70 +10,68 @@
 
 ### class: BrowserContext
 
-* extends: [`EventEmitter`](https://nodejs.org/api/events.html#events_class_eventemitter)
+* 继承自: [`EventEmitter`](https://nodejs.org/api/events.html#events_class_eventemitter)
 
-BrowserContexts provide a way to operate multiple independent browser sessions. When a browser is launched, it has
-a single BrowserContext used by default. The method `browser.newPage()` creates a page in the default browser context.
+BrowserContexts 提供了一种操作多个独立浏览器会话的方法。 当浏览器启动时，它已经默认使用一个 BrowserContext。 `browser.newPage()` 方法在默认的浏览器上下文中创建一个页面。
 
-If a page opens another page, e.g. with a `window.open` call, the popup will belong to the parent page's browser
-context.
+如果一个页面打开另一个页面，例如通过 `window.open` 调用，弹出的窗口将属于父页面的浏览器上下文。
 
-Puppeteer allows creation of "incognito" browser contexts with `browser.createIncognitoBrowserContext()` method.
-"Incognito" browser contexts don't write any browsing data to disk.
+Puppeteer 允许使用 `browser.createIncognitoBrowserContext()` 方法创建"隐身"浏览器上下文。
+"隐身"浏览器上下文不会将任何浏览数据写入磁盘。
 
 ```js
-// Create a new incognito browser context
+// 创建一个新的隐身浏览器上下文
 const context = await browser.createIncognitoBrowserContext();
-// Create a new page inside context.
+// 在上下文中创建一个新页面
 const page = await context.newPage();
-// ... do stuff with page ...
+// ... 在页面上做一些操作 ...
 await page.goto('https://example.com');
-// Dispose context once it's no longer needed.
+// 不再需要时处理上下文
 await context.close();
 ```
 
 #### event: 'targetchanged'
 - <[Target]>
 
-Emitted when the url of a target inside the browser context changes.
+浏览器上下文中目标的 url 更改时触发。
 
 #### event: 'targetcreated'
 - <[Target]>
 
-Emitted when a new target is created inside the browser context, for example when a new page is opened by [`window.open`](https://developer.mozilla.org/en-US/docs/Web/API/Window/open) or [`browserContext.newPage`](#browsercontextnewpage).
+在浏览器上下文中创建新目标时触发，例如打开了一个新页面[`window.open`](https://developer.mozilla.org/en-US/docs/Web/API/Window/open) 或 [`browserContext.newPage`](#browsercontextnewpage)。
 
 #### event: 'targetdestroyed'
 - <[Target]>
 
-Emitted when a target inside the browser context is destroyed, for example when a page is closed.
+当浏览器上下文中的目标被销毁时，例如关闭页面时触发。
 
 #### browserContext.browser()
 - returns: <[Browser]>
 
-The browser this browser context belongs to.
+此浏览器上下文所属的浏览器。
 
 #### browserContext.close()
 - returns: <[Promise]>
 
-Closes the browser context. All the targets that belong to the browser context
-will be closed.
+关闭浏览器上下文。 所有属于浏览器上下文的目标将被关闭。
 
-> **NOTE** only incognito browser contexts can be closed.
+> **注意** 只有隐身浏览器上下文才能关闭。
 
 #### browserContext.isIncognito()
 - returns: <[boolean]>
 
-Returns whether BrowserContext is incognito. 
-The default browser context is the only non-incognito browser context.
+返回 BrowserContext 是否隐身。
+默认浏览器上下文是唯一的非隐身浏览器上下文。
 
-> **NOTE** the default browser context cannot be closed.
+> **注意** 默认浏览器上下文无法关闭。
 
 #### browserContext.newPage()
 - returns: <[Promise]<[Page]>>
 
-Creates a new page in the browser context.
+在浏览器上下文中创建一个新页面。
 
 #### browserContext.targets()
 - returns: <[Array]<[Target]>>
 
 An array of all active targets inside the browser context.
+浏览器上下文中所有活动目标的数组。
