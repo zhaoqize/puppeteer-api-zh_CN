@@ -19,11 +19,11 @@
 - [class: JSHandle](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-JSHandle.md)
 - class: ElementHandle 【待领取】
 - [class: Request](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Request.md)
-- class: Response 【待领取】
+- [class: Response](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Response.md)
 - [class: SecurityDetails](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-SecurityDetails.md)
 - [class: Target](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Target.md)
-- class: CDPSession 【待领取】
-- class: Coverage 【待领取】
+- [class: CDPSession](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-CDPSession.md)
+- [class: Coverage](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Coverage.md)
 
 ### 交流群
 <img src="./img/pu.png" height="300">
