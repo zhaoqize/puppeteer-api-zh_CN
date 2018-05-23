@@ -8,7 +8,7 @@
 - [class: Browser](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Browser.md)
 - class: BrowserContext 【待领取】
 - class: Page 【已被 [ilaipi](https://github.com/ilaipi) 领取】
-- class: Keyboard 已被 [15vTechAdmin5](https://github.com/15vTechAdmin5) 领取】
+- class: Keyboard 【已被 [15vTechAdmin5](https://github.com/15vTechAdmin5) 领取】
 - [class: Mouse](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Mouse.md)
 - [class: Touchscreen](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Touchscreen.md)
 - [class: Tracing](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Tracing.md)
