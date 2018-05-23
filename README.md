@@ -15,7 +15,7 @@
 - [class: Dialog](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Dialog.md)
 - [class: ConsoleMessage](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-ConsoleMessage.md)
 - class: Frame 【待领取】
-- class: ExecutionContext 【待领取】
+- [class: ExecutionContext](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-ExecutionContext.md)
 - [class: JSHandle](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-JSHandle.md)
 - class: ElementHandle 【待领取】
 - [class: Request](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Request.md)
