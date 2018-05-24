@@ -87,8 +87,8 @@ page.keyboard.sendCharacter('嗨');
 要按下一个特别的键, 像 `Control` 或 `ArrowDown`. 请使用[`keyboard.press`](#keyboardpresskey-options)
 
 ```js
-page.keyboard.type('Hello'); // Types instantly
-page.keyboard.type('World', {delay: 100}); // Types slower, like a user
+page.keyboard.type('Hello'); // Types instantly 立即输入
+page.keyboard.type('World', {delay: 100}); // 更缓慢的输入, 像一个用户
 ```
 
 > **注意** 修饰键不会影响 `keyboard.type`. 持续按下 `Shift` 键将不会已大写形式输入文本.
