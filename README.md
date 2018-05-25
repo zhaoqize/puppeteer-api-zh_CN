@@ -8,7 +8,7 @@
 - [class: Browser](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Browser.md)
 - [class: BrowserContext](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-BrowserContext.md)
 - class: Page 【已被 [ilaipi](https://github.com/ilaipi) 领取】
-- class: Keyboard 【已被 [15vTechAdmin5](https://github.com/15vTechAdmin5) 领取】
+- [class: Keyboard](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Keyboard.md)
 - [class: Mouse](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Mouse.md)
 - [class: Touchscreen](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Touchscreen.md)
 - [class: Tracing](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Tracing.md)
@@ -17,7 +17,7 @@
 - class: Frame 【待领取】
 - [class: ExecutionContext](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-ExecutionContext.md)
 - [class: JSHandle](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-JSHandle.md)
-- class: ElementHandle 【待领取】
+- [class: ElementHandle](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-ElementHandle.md)
 - [class: Request](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Request.md)
 - [class: Response](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Response.md)
 - [class: SecurityDetails](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-SecurityDetails.md)

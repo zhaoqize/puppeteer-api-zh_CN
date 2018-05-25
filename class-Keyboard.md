@@ -23,7 +23,6 @@ await page.keyboard.up('Shift');
 
 await page.keyboard.press('Backspace');
 // 结果字符串最终为 'Hello!'
-// Result text will end up saying 'Hello!'
 ```
 
 按下 `A` 的例子:
@@ -87,7 +86,7 @@ page.keyboard.sendCharacter('嗨');
 要按下一个特别的键, 像 `Control` 或 `ArrowDown`. 请使用[`keyboard.press`](#keyboardpresskey-options)
 
 ```js
-page.keyboard.type('Hello'); // Types instantly 立即输入
+page.keyboard.type('Hello'); // 立即输入
 page.keyboard.type('World', {delay: 100}); // 更缓慢的输入, 像一个用户
 ```
 
