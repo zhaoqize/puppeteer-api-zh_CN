@@ -73,5 +73,4 @@ await context.close();
 #### browserContext.targets()
 - returns: <[Array]<[Target]>>
 
-An array of all active targets inside the browser context.
 浏览器上下文中所有活动目标的数组。
