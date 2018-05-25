@@ -21,18 +21,17 @@
 #### target.createCDPSession()
 - returns: <[Promise]<[CDPSession]>>
 
-创建一个Chrome Devtools协议会话至目标。
+创建一个 Chrome Devtools 协议会话至目标。
 
 #### target.page()
 - returns: <[Promise]<?[Page]>>
 
-如果目标不是`"页面"`类型，则返回`null`。
+如果目标不是 `"页面"` 类型，则返回 `null`。
 
 #### target.type()
 - returns: <[string]>
 
-Identifies what kind of target this is. Can be `"page"`, `"service_worker"`, `"browser"` or `"other"`.
-确定目标是怎么样的类型。 可以是`"页面"`，`"service_worker"`，`"浏览器"`或`"其他"`。
+确定目标是怎么样的类型。 可以是 `"页面"`，`"service_worker"`，`"浏览器"` 或 `"其他"`。
 
 #### target.url()
 - returns: <[string]>

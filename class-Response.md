@@ -16,7 +16,7 @@
 [Response] 类表示页面接收的响应。
 
 #### response.buffer()
-- returns: <Promise<[Buffer]>> （意译：返回响应主体的缓冲区。）
+- returns: <Promise<[Buffer]>> Promise which resolves to a buffer with response body.
 
 #### response.fromCache()
 - returns: <[boolean]>
@@ -32,7 +32,7 @@
 - returns: <[Object]> 具有与响应关联的 HTTP 头对象。 所有标题名称都是小写。
 
 #### response.json()
-- returns: <Promise<[Object]>> （意译：返回解析为响应主体的 JSON 表示。）
+- returns: <Promise<[Object]>> Promise which resolves to a JSON representation of response body.
 
 如果响应主体不能通过 `JSON.parse` 解析，则此方法将抛出。
 
@@ -53,7 +53,7 @@
 包含响应的状态代码（例如，200成功）。
 
 #### response.text()
-- returns: <[Promise]<[string]>> （意译：返回响应主体的文本表示。）
+- returns: <[Promise]<[string]>> Promise which resolves to a text representation of response body.
 
 #### response.url()
 - returns: <[string]>

@@ -16,4 +16,4 @@
 #### consoleMessage.type()
 - returns: <[string]>
 
-以下值之一: `'log'`, `'debug'`, `'info'`, `'error'`, `'warning'`, `'dir'`, `'dirxml'`, `'table'`, `'trace'`, `'clear'`, `'startGroup'`, `'startGroupCollapsed'`, `'endGroup'`, `'assert'`, `'profile'`, `'profileEnd'`, `'count'`, `'timeEnd'`.
+以下值之一：`'log'` ， `'debug'` ， `'info'` ， `'error'` ， `'warning'` ， `'dir'` ， `'dirxml'` ， `'table'` ， `'trace'` ， `'clear'` ， `'startGroup'` ， `'startGroupCollapsed'` ， `'endGroup'` ， `'assert'` ， `'profile'` ， `'profileEnd'` ， `'count'` ， `'timeEnd'`。

@@ -22,4 +22,4 @@ await page.tracing.stop();
 每个浏览器一次只能激活一条跟踪。
 
 #### tracing.stop()
-- returns: <[Promise]<[Buffer]>> 承诺解决跟踪数据的缓冲区
+- returns: <[Promise]<[Buffer]>> Promise which resolves to buffer with trace data.

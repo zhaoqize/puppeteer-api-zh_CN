@@ -22,11 +22,10 @@ JSHandle 实例可以使用在 [`page.$eval()`](＃pageevalselector-pagefunction
 #### jsHandle.asElement()
 - returns: <?[ElementHandle]>
 
-Returns either `null` or the object handle itself, if the object handle is an instance of [ElementHandle].
 如果对象句柄是 [ElementHandle] 的一个实例，则返回 `null` 或对象句柄本身。
 
 #### jsHandle.dispose()
-- returns: <[Promise]> 当对象句柄被成功处理时承诺解决。(译者注：希望有更好的翻译)
+- returns: <[Promise]> Promise which resolves when the object handle is successfully disposed.
 
 `jsHandle.dispose` 方法停止引用元素句柄。
 
@@ -58,6 +57,6 @@ await handle.dispose();
 - returns: <[Promise]<[Object]>>
 
 返回对象的 JSON 表示。如果对象又一个 [`toJSON`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#toJSON()_behavior)
-函数, 它 **将不会被调用**.
+函数, 它 **将不会被调用**。
 
 > **注意** 如果引用的对象不可字符串化，该方法将返回一个空的 JSON 对象。 如果对象具有循环引用，它将引发一个错误。

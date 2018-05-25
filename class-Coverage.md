@@ -59,7 +59,7 @@ _使用 [Istanbul](https://github.com/istanbuljs) 输出一个覆盖率表格，
 > **注意** CSS Coverage 不包含没有 sourceURL 的动态注入式样式标签。
 
 #### coverage.stopJSCoverage()
-- returns: <[Promise]<[Array]<[Object]>>> （意译：返回所有非匿名脚本的覆盖报告数组）
+- returns: <[Promise]<[Array]<[Object]>>> Promise that resolves to the array of coverage reports for all non-anonymous scripts
   - `url` <[string]> 脚本 URL
   - `text` <[string]> 脚本内容
   - `ranges` <[Array]<[Object]>> 已执行的脚本范围。 范围已排序且不重叠。

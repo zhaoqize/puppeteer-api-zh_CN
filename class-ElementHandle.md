@@ -23,7 +23,7 @@
 
 ### class: ElementHandle
 
-> **注意** [ElementHandle] 类继承自 [JSHandle].
+> **注意** [ElementHandle] 类继承自 [JSHandle]。
 
 ElementHandle 表示一个页内的 DOM 元素。ElementHandles 可以通过 [page.$](#pageselector) 方法创建。
 
@@ -99,7 +99,7 @@ expect(await tweetHandle.$eval('.retweets', node => node.innerText)).toBe('10');
   - width <[number]> Element's width.
   - height <[number]> Element's height.
 
-改方法返回元素的盒模型，如果元素不可见，则返回 `null`。 盒模型被表示为一组点; 每个 Point 都是一个对象 `{x，y}`。 盒模型的点按顺时针排序。
+改方法返回元素的盒模型，如果元素不可见，则返回 `null`。 盒模型被表示为一组点；每个 Point 都是一个对象 `{x，y}`。 盒模型的点按顺时针排序。
 
 #### elementHandle.click([options])
 - `options` <[Object]>
