@@ -23,9 +23,9 @@
 
 ### class: ElementHandle
 
-> **NOTE** Class [ElementHandle] extends [JSHandle].
+> **注意** [ElementHandle] 类继承自 [JSHandle].
 
-ElementHandle represents an in-page DOM element. ElementHandles can be created with the [page.$](#pageselector) method.
+ElementHandle 表示一个页内的 DOM 元素。ElementHandles 可以通过 [page.$](#pageselector) 方法创建。
 
 ```js
 const puppeteer = require('puppeteer');
@@ -39,21 +39,21 @@ puppeteer.launch().then(async browser => {
 });
 ```
 
-ElementHandle prevents DOM element from garbage collection unless the handle is [disposed](#elementhandledispose). ElementHandles are auto-disposed when their origin frame gets navigated.
+除非句柄 [disposed](#elementhandledispose)，否则 ElementHandle 会阻止垃圾收集中的 DOM 元素。 ElementHandles 在其原始帧被导航时自动处理。
 
-ElementHandle instances can be used as arguments in [`page.$eval()`](#pageevalselector-pagefunction-args) and [`page.evaluate()`](#pageevaluatepagefunction-args) methods.
+ElementHandle 实例可以在 [`page.$eval()`](#pageevalselector-pagefunction-args) 和 [`page.evaluate()`](#pageevaluatepagefunction-args) 方法中作为参数。
 
 #### elementHandle.$(selector)
 - `selector` <[string]> A [selector] to query element for
 - returns: <[Promise]<?[ElementHandle]>>
 
-The method runs `element.querySelector` within the page. If no element matches the selector, the return value resolve to `null`.
+该方法在页面内运行 `element.querySelector`。 如果没有元素匹配选择器，则返回值为 `null`。
 
 #### elementHandle.$$(selector)
 - `selector` <[string]> A [selector] to query element for
 - returns: <[Promise]<[Array]<[ElementHandle]>>>
 
-The method runs `element.querySelectorAll` within the page. If no elements match the selector, the return value resolve to `[]`.
+该方法在页面内运行 `element.querySelectorAll`。 如果没有元素匹配选择器，则返回值为`[]`。
 
 #### elementHandle.$eval(selector, pageFunction, ...args)
 - `selector` <[string]> A [selector] to query page for
@@ -61,11 +61,11 @@ The method runs `element.querySelectorAll` within the page. If no elements match
 - `...args` <...[Serializable]|[JSHandle]> Arguments to pass to `pageFunction`
 - returns: <[Promise]<[Serializable]>> Promise which resolves to the return value of `pageFunction`
 
-This method runs `document.querySelector` within the element and passes it as the first argument to `pageFunction`. If there's no element matching `selector`, the method throws an error.
+这个方法在元素中运行 `document.querySelector` 并将它作为第一个参数传递给 `pageFunction`。 如果没有与 `selector` 匹配的元素，则该方法将抛出个错误。
 
-If `pageFunction` returns a [Promise], then `frame.$eval` would wait for the promise to resolve and return its value.
+如果 `pageFunction` 返回一个 [Promise]，那么 `frame.$eval` 将等待承诺解析并返回它的值。
 
-Examples:
+例子:
 ```js
 const tweetHandle = await page.$('.tweet');
 expect(await tweetHandle.$eval('.like', node => node.innerText)).toBe('100');
@@ -76,19 +76,19 @@ expect(await tweetHandle.$eval('.retweets', node => node.innerText)).toBe('10');
 - `expression` <[string]> Expression to [evaluate](https://developer.mozilla.org/en-US/docs/Web/API/Document/evaluate).
 - returns: <[Promise]<?[ElementHandle]>> Promise which resolves to ElementHandle pointing to the frame element.
 
-The method evaluates the XPath expression relative to the elementHandle. If there's no such element, the method will resolve to `null`.
+该方法计算相对于 elementHandle 的 XPath 表达式。 如果不存在这样的元素，该方法将解析为 `null`。
 
 #### elementHandle.asElement()
 - returns: <[elementhandle]>
 
 #### elementHandle.boundingBox()
 - returns: <[Promise]<?[Object]>>
-  - x <[number]> the x coordinate of the element in pixels.
-  - y <[number]> the y coordinate of the element in pixels.
-  - width <[number]> the width of the element in pixels.
-  - height <[number]> the height of the element in pixels.
+  - x <[number]> 元素的 x 坐标（以像素为单位）。
+  - y <[number]> 元素的 y 坐标（以像素为单位）。
+  - width <[number]> 元素的像素宽度。
+  - height <[number]> 元素的像素高度。
 
-This method returns the bounding box of the element (relative to the main frame), or `null` if the element is not visible.
+此方法返回元素的边界框（相对于主框架），如果元素不可见，则返回 `null`。
 
 #### elementHandle.boxModel()
 - returns: <[Promise]<?[Object]>>
@@ -99,25 +99,25 @@ This method returns the bounding box of the element (relative to the main frame)
   - width <[number]> Element's width.
   - height <[number]> Element's height.
 
-This method returns boxes of the element, or `null` if the element is not visible. Boxes are represented as an array of points; each Point is an object `{x, y}`. Box points are sorted clock-wise.
+改方法返回元素的盒模型，如果元素不可见，则返回 `null`。 盒模型被表示为一组点; 每个 Point 都是一个对象 `{x，y}`。 盒模型的点按顺时针排序。
 
 #### elementHandle.click([options])
 - `options` <[Object]>
-  - `button` <[string]> `left`, `right`, or `middle`, defaults to `left`.
-  - `clickCount` <[number]> defaults to 1. See [UIEvent.detail].
-  - `delay` <[number]> Time to wait between `mousedown` and `mouseup` in milliseconds. Defaults to 0.
+  - `button` <[string]> `left`, `right`, 或 `middle`, 默认是 `left`。
+  - `clickCount` <[number]> 默认是 1. 见 [UIEvent.detail].
+  - `delay` <[number]> `mousedown` 和 `mouseup` 之间等待的时间。 默认是 0。
 - returns: <[Promise]> Promise which resolves when the element is successfully clicked. Promise gets rejected if the element is detached from DOM.
 
-This method scrolls element into view if needed, and then uses [page.mouse](#pagemouse) to click in the center of the element.
-If the element is detached from DOM, the method throws an error.
+如果需要，此方法将元素滚动到视野中，然后使用 [page.mouse](#pagemouse) 单击元素的中心。
+如果该元素从 DOM 中分离，则该方法将引发错误。
 
 #### elementHandle.contentFrame()
-- returns: <[Promise]<?[Frame]>> Resolves to the content frame for element handles referencing iframe nodes, or null otherwise
+- returns: <[Promise]<?[Frame]>> 解析为引用 iframe 节点的元素句柄的内容框架，否则为空
 
 #### elementHandle.dispose()
 - returns: <[Promise]> Promise which resolves when the element handle is successfully disposed.
 
-The `elementHandle.dispose` method stops referencing the element handle.
+`elementHandle.dispose` 方法停止引用元素句柄。
 
 #### elementHandle.executionContext()
 - returns: [ExecutionContext]
@@ -125,12 +125,12 @@ The `elementHandle.dispose` method stops referencing the element handle.
 #### elementHandle.focus()
 - returns: <[Promise]>
 
-Calls [focus](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) on the element.
+在元素上调用 [focus](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus)。
 
 #### elementHandle.getProperties()
 - returns: <[Promise]<[Map]<[string], [JSHandle]>>>
 
-The method returns a map with property names as keys and JSHandle instances for the property values.
+该方法返回一个包含属性名称作为键的映射和属性值的 JSHandle 实例。
 
 ```js
 const listHandle = await page.evaluateHandle(() => document.body.children);
@@ -141,73 +141,73 @@ for (const property of properties.values()) {
   if (element)
     children.push(element);
 }
-children; // holds elementHandles to all children of document.body
+children; // body持有 elementHandles 给 document.body 的所有子项。
 ```
 
 #### elementHandle.getProperty(propertyName)
 - `propertyName` <[string]> property to get
 - returns: <[Promise]<[JSHandle]>>
 
-Fetches a single property from the objectHandle.
+从 objectHandle 中获取一个属性。
 
 #### elementHandle.hover()
 - returns: <[Promise]> Promise which resolves when the element is successfully hovered.
 
-This method scrolls element into view if needed, and then uses [page.mouse](#pagemouse) to hover over the center of the element.
-If the element is detached from DOM, the method throws an error.
+如果需要，此方法将元素滚动到视野中，然后使用 [page.mouse](#pagemouse) 将鼠标悬停在元素的中心。
+如果元素从 DOM 中分离，则该方法将抛出一个错误。
 
 #### elementHandle.jsonValue()
 - returns: <[Promise]<[Object]>>
 
-Returns a JSON representation of the object. The JSON is generated by running [`JSON.stringify`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify) on the object in page and consequent [`JSON.parse`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse) in puppeteer.
+返回对象的JSON表示。 JSON是通过对页面上的对象运行 [`JSON.stringify`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify) 生成的，因此 [`JSON.parse`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse) 在puppeteer中。
 
-> **NOTE** The method will throw if the referenced object is not stringifiable.
+> **注意** 如果引用的对象不可字符串化，该方法将抛出（一个错误）。
 
 #### elementHandle.press(key[, options])
-- `key` <[string]> Name of key to press, such as `ArrowLeft`. See [USKeyboardLayout] for a list of all key names.
+- `key` <[string]> 按键的名称，例如 `ArrowLeft`。 见 [USKeyboardLayout] 以获取所有键名称的列表。
 - `options` <[Object]>
-  - `text` <[string]> If specified, generates an input event with this text.
-  - `delay` <[number]> Time to wait between `keydown` and `keyup` in milliseconds. Defaults to 0.
+  - `text` <[string]> 如果指定，则使用此文本生成输入事件。
+  - `delay` <[number]> `keydown` 和 `keyup` 之间等待的时间。默认是 0。
 - returns: <[Promise]>
 
-Focuses the element, and then uses [`keyboard.down`](#keyboarddownkey-options) and [`keyboard.up`](#keyboardupkey).
+聚焦元素，然后使用 [`keyboard.down`](#keyboarddownkey-options) 和 [`keyboard.up`](#keyboardupkey)。
 
-If `key` is a single character and no modifier keys besides `Shift` are being held down, a `keypress`/`input` event will also be generated. The `text` option can be specified to force an input event to be generated.
+如果 `key` 是一个单独的字符，并且除了 `Shift` 之外没有（其他）修饰键被按下，`keypress` / `input` 事件也会被生成。 可以指定 `text` 选项来强制生成输入事件。
 
-> **NOTE** Modifier keys DO effect `elementHandle.press`. Holding down `Shift` will type the text in upper case.
+> **注意** 修饰键 DO 会影响 `elementHandle.press`。 按住 Shift 键将以大写形式输入文本。
 
 #### elementHandle.screenshot([options])
-- `options` <[Object]> Same options as in [page.screenshot](#pagescreenshotoptions).
+- `options` <[Object]> 与 [page.screenshot](#pagescreenshotoptions) 选项相同。
 - returns: <[Promise]<[Buffer]>> Promise which resolves to buffer with captured screenshot.
 
-This method scrolls element into view if needed, and then uses [page.screenshot](#pagescreenshotoptions) to take a screenshot of the element.
-If the element is detached from DOM, the method throws an error.
+如果需要，此方法将元素滚动到视图中，然后使用 [page.screenshot](#pagescreenshotoptions) 截取元素的屏幕截图。
+如果该元素从 DOM 中分离，则该方法将抛出一个错误。
 
 #### elementHandle.tap()
 - returns: <[Promise]> Promise which resolves when the element is successfully tapped. Promise gets rejected if the element is detached from DOM.
 
-This method scrolls element into view if needed, and then uses [touchscreen.tap](#touchscreentapx-y) to tap in the center of the element.
-If the element is detached from DOM, the method throws an error.
+如果需要，此方法将元素滚动到视野中，然后使用 [touchscreen.tap](#touchscreentapx-y) 在元素的中心点击。
+如果该元素从 DOM 中分离，则该方法将抛出一个错误。
 
 #### elementHandle.toString()
 - returns: <[string]>
 
 #### elementHandle.type(text[, options])
-- `text` <[string]> A text to type into a focused element.
+- `text` <[string]> 要输入到焦点元素中的文本。
 - `options` <[Object]>
-  - `delay` <[number]> Time to wait between key presses in milliseconds. Defaults to 0.
+  - `delay` <[number]> 按键之间的等待时间，默认是 0。
 - returns: <[Promise]>
 
-Focuses the element, and then sends a `keydown`, `keypress`/`input`, and `keyup` event for each character in the text.
+聚焦元素，然后为文本中的每个字符发送 `keydown`，`keypress` / `input` 和 `keyup` 事件。
 
-To press a special key, like `Control` or `ArrowDown`, use [`elementHandle.press`](#elementhandlepresskey-options).
+按一个特殊的键，像 `Control` 或 `ArrowDown`，使用 [`elementHandle.press`](#elementhandlepresskey-options)。
 
 ```js
-elementHandle.type('Hello'); // Types instantly
-elementHandle.type('World', {delay: 100}); // Types slower, like a user
+elementHandle.type('Hello'); // 立即输入
+elementHandle.type('World', {delay: 100}); // 慢点输入，像一个用户
 ```
 
-An example of typing into a text field and then submitting the form:
+键入文本字段然后提交表单的例子：
 ```js
 const elementHandle = await page.$('input');
 await elementHandle.type('some text');
@@ -215,7 +215,7 @@ await elementHandle.press('Enter');
 ```
 
 #### elementHandle.uploadFile(...filePaths)
-- `...filePaths` <...[string]> Sets the value of the file input these paths. If some of the  `filePaths` are relative paths, then they are resolved relative to [current working directory](https://nodejs.org/api/process.html#process_process_cwd).
+- `...filePaths` <...[string]> 设置输入这些路径的文件的值。如果某些 `filePaths` 是相对路径，那么它们将被解析为相对于 [当前工作目录](https://nodejs.org/api/process.html#process_process_cwd)。
 - returns: <[Promise]>
 
-This method expects `elementHandle` to point to an [input element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input).
+这个方法期望 `elementHandle` 指向一个 [输入元素](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input)。
