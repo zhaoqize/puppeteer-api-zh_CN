@@ -30,14 +30,17 @@
 
 ### class: Frame
 
-At every point of time, page exposes its current frame tree via the [page.mainFrame()](#pagemainframe) and [frame.childFrames()](#framechildframes) methods.
+在每一个时间点，页面通过 [page.mainFrame()](#pagemainframe) 和 [frame.childFrames()](#framechildframes) 方法暴露当前框架的细节。
 
-[Frame] object's lifecycle is controlled by three events, dispatched on the page object:
-- ['frameattached'](#event-frameattached) - fired when the frame gets attached to the page. A Frame can be attached to the page only once.
-- ['framenavigated'](#event-framenavigated) - fired when the frame commits navigation to a different URL.
-- ['framedetached'](#event-framedetached) - fired when the frame gets detached from the page.  A Frame can be detached from the page only once.
+[Frame]对象的生命周期由 3 个事件控制，通过 [page](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Page.md#event-frameattached) 对象监听：
 
-An example of dumping frame tree:
+- ['frameattached'](#event-frameattached) - 当框架被页面加载时触发。一个框架只会被加载一次。
+
+- ['framenavigated'](#event-framenavigated) - 当框架改变URL时触发。
+
+- ['framedetached'](#event-framedetached) - 当框架被页面分离时触发。一个框架只会被分离一次。
+
+一个获得框架树的例子
 
 ```js
 const puppeteer = require('puppeteer');
@@ -57,16 +60,18 @@ puppeteer.launch().then(async browser => {
 ```
 
 #### frame.$(selector)
+
 - `selector` <[string]> Selector to query page for
+
 - returns: <[Promise]<?[ElementHandle]>> Promise which resolves to ElementHandle pointing to the frame element.
 
-The method queries frame for the selector. If there's no such element within the frame, the method will resolve to `null`.
+这个方法在框架中查询指定的选择器。如果在框架中没有匹配的元素会返回null
 
 #### frame.$$(selector)
 - `selector` <[string]> Selector to query page for
 - returns: <[Promise]<[Array]<[ElementHandle]>>> Promise which resolves to ElementHandles pointing to the frame elements.
 
-The method runs `document.querySelectorAll` within the frame. If no elements match the selector, the return value resolve to `[]`.
+这个方法会在框架中执行`document.querySelectorAll`方法。如果没有元素匹配会返回`[]`
 
 #### frame.$$eval(selector, pageFunction[, ...args])
 - `selector` <[string]> A [selector] to query frame for
