@@ -75,13 +75,13 @@
   * [page.waitForSelector(selector[, options])](#pagewaitforselectorselector-options)
   * [page.waitForXPath(xpath[, options])](#pagewaitforxpathxpath-options)
 
-### class: Page
+### 类: Page
 
-* extends: [`EventEmitter`](https://nodejs.org/api/events.html#events_class_eventemitter)
+* 继承: [`EventEmitter`](https://nodejs.org/api/events.html#events_class_eventemitter)
 
-Page provides methods to interact with a single tab in Chromium. One [Browser] instance might have multiple [Page] instances.
+Page 提供操作一个tab页的方法。一个 [Browser] 实例可以有多个 [Page] 实例。
 
-This example creates a page, navigates it to a URL, and then saves a screenshot:
+下面的例子创建一个 Page实例，导航到一个url，然后保存截图：
 ```js
 const puppeteer = require('puppeteer');
 
@@ -92,65 +92,64 @@ puppeteer.launch().then(async browser => {
   await browser.close();
 });
 ```
+Page会触发多种事件（下面描述的），可以用`node` [原生的方法](https://nodejs.org/api/events.html#events_class_eventemitter)来捕获处理，比如`on`, `once` 或者 `removeListener`。
 
-The Page class emits various events (described below) which can be handled using any of Node's native [`EventEmitter`](https://nodejs.org/api/events.html#events_class_eventemitter) methods, such as `on`, `once` or `removeListener`.
-
-This example logs a message for a single page `load` event:
+下面的例子捕获了一个`page`实例的`load`事件，打印了一句话：
 ```js
 page.once('load', () => console.log('Page loaded!'));
 ```
 
-To unsubscribe from events use the `removeListener` method:
+可以用`removeListener`取消对事件的监听：
 
 ```js
 function logRequest(interceptedRequest) {
   console.log('A request was made:', interceptedRequest.url());
 }
 page.on('request', logRequest);
-// Sometime later...
+// 一段时间后...
 page.removeListener('request', logRequest);
 ```
 
-#### event: 'close'
+#### 事件: 'close'
 
-Emitted when the page closes.
+当页面关闭时触发。
 
-#### event: 'console'
+#### 事件: 'console'
 - <[ConsoleMessage]>
 
-Emitted when JavaScript within the page calls one of console API methods, e.g. `console.log` or `console.dir`. Also emitted if the page throws an error or a warning.
+当页面js代码调用了`console`的某个方法，比如`console.log`，或者`console.dir`的时候触发。（如果不监听这个事件，js源码的console语句不会输出）。当页面抛出一个错误或者经过的时候也会触发。
 
-The arguments passed into `console.log` appear as arguments on the event handler.
+js源码中传给`console.log`的参数，会传给`console`事件的监听器。
 
-An example of handling `console` event:
+一个监听`console`事件的例子：
 ```js
 page.on('console', msg => {
   for (let i = 0; i < msg.args().length; ++i)
-    console.log(`${i}: ${msg.args()[i]}`);
+    console.log(`${i}: ${msg.args()[i]}`); // 译者注：这句话的效果是打印到你的代码的控制台
 });
-page.evaluate(() => console.log('hello', 5, {foo: 'bar'}));
+page.evaluate(() => console.log('hello', 5, {foo: 'bar'})); // 这个代码表示在页面实例中执行了console.log。如果没有监听console事件，这里的输出不会出现在你的控制台
 ```
 
-#### event: 'dialog'
+#### 事件: 'dialog'
 - <[Dialog]>
 
-Emitted when a JavaScript dialog appears, such as `alert`, `prompt`, `confirm` or `beforeunload`. Puppeteer can respond to the dialog via [Dialog]'s [accept](#dialogacceptprompttext) or [dismiss](#dialogdismiss) methods.
+当js对话框出现的时候触发，比如`alert`, `prompt`, `confirm` 或者 `beforeunload`。Puppeteer可以通过[Dialog]'s [accept](#dialogacceptprompttext) 或者 [dismiss](#dialogdismiss)来响应弹窗。
 
-#### event: 'domcontentloaded'
+#### 事件: 'domcontentloaded'
 
-Emitted when the JavaScript [`DOMContentLoaded`](https://developer.mozilla.org/en-US/docs/Web/Events/DOMContentLoaded) event is dispatched.
+当页面的[`DOMContentLoaded`](https://developer.mozilla.org/en-US/docs/Web/Events/DOMContentLoaded)事件被触发时触发。
 
-#### event: 'error'
+#### 事件: 'error'
 - <[Error]>
 
-Emitted when the page crashes.
+当页面崩溃时触发。
 
-> **NOTE** `error` event has a special meaning in Node, see [error events](https://nodejs.org/api/events.html#events_error_events) for details.
+> **注意** `error` 在`node`中有特殊的意义, 点击 [error events](https://nodejs.org/api/events.html#events_error_events) 查看详情.
 
-#### event: 'frameattached'
+#### 事件: 'frameattached'
 - <[Frame]>
 
-Emitted when a frame is attached.
+当`iframe`加载的时候触发。（这个不是很明确）
 
 #### event: 'framedetached'
 - <[Frame]>
