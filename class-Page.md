@@ -148,173 +148,174 @@ page.evaluate(() => console.log('hello', 5, {foo: 'bar'})); // 这个代码表�
 
 #### 事件: 'frameattached'
 - <[Frame]>
+Tips：没用过`iframe`相关的api，直译的
 
-当`iframe`加载的时候触发。（这个不是很明确）
+当`iframe`加载的时候触发。
 
-#### event: 'framedetached'
+#### 事件: 'framedetached'
 - <[Frame]>
 
-Emitted when a frame is detached.
+当`iframe`从页面移除的时候触发。
 
-#### event: 'framenavigated'
+#### 事件: 'framenavigated'
 - <[Frame]>
 
-Emitted when a frame is navigated to a new url.
+当`iframe`导航到新的url时触发。
 
-#### event: 'load'
+#### 事件: 'load'
 
-Emitted when the JavaScript [`load`](https://developer.mozilla.org/en-US/docs/Web/Events/load) event is dispatched.
+当页面的 [`load`](https://developer.mozilla.org/en-US/docs/Web/Events/load) 事件被触发时触发。
 
-#### event: 'metrics'
+#### 事件: 'metrics'
 - <[Object]>
-  - `title` <[string]> The title passed to `console.timeStamp`.
-  - `metrics` <[Object]> Object containing metrics as key/value pairs. The values
-    of metrics are of <[number]> type.
+  - `title` <[string]> 传给 `console.timeStamp` 方法的title参数.
+  - `metrics` <[Object]> 包含度量对象的键值对，值是<[number]>类型
 
-Emitted when the JavaScript code makes a call to `console.timeStamp`. For the list
-of metrics see `page.metrics`.
+当页面js代码调用了`console.timeStamp`方法时触发。`page.metrics`章节有描述所有的metrics。
 
-#### event: 'pageerror'
-- <[Error]> The exception message
+#### 事件: 'pageerror'
+- <[Error]> 异常信息
 
-Emitted when an uncaught exception happens within the page.
+当发生页面js代码没有捕获的异常时触发。
 
-#### event: 'request'
+#### 事件: 'request'
 - <[Request]>
 
-Emitted when a page issues a request. The [request] object is read-only.
-In order to intercept and mutate requests, see `page.setRequestInterception`.
+当页面发送一个请求时触发。参数[request]对象是只读的。
+如果需要拦截并且改变请求，参考`page.setRequestInterception`章节。
 
-#### event: 'requestfailed'
+#### 事件: 'requestfailed'
 - <[Request]>
 
-Emitted when a request fails, for example by timing out.
+当页面的请求失败时触发。比如某个请求超时了。
 
-#### event: 'requestfinished'
+#### 事件: 'requestfinished'
 - <[Request]>
 
-Emitted when a request finishes successfully.
+当页面的某个请求成功完成时触发。
 
-#### event: 'response'
+#### 事件: 'response'
 - <[Response]>
 
-Emitted when a [response] is received.
+当页面的某个请求接收到对应的[response]时触发。
 
 #### page.$(selector)
-- `selector` <[string]> A [selector] to query page for
-- returns: <[Promise]<?[ElementHandle]>>
+- `selector` <[string]> 选择器
+- 返回: <[Promise]<?[ElementHandle]>>
 
-The method runs `document.querySelector` within the page. If no element matches the selector, the return value resolve to `null`.
+此方法在页面内执行`document.querySelector`。如果没有元素匹配指定选择器，返回值是`null`。
 
-Shortcut for [page.mainFrame().$(selector)](#frameselector).
+[page.mainFrame().$(selector)](#frameselector)的简写。
 
 #### page.$$(selector)
-- `selector` <[string]> A [selector] to query page for
-- returns: <[Promise]<[Array]<[ElementHandle]>>>
+- `selector` <[string]> 选择器
+- 返回: <[Promise]<[Array]<[ElementHandle]>>>
 
-The method runs `document.querySelectorAll` within the page. If no elements match the selector, the return value resolve to `[]`.
+此方法在页面内执行`document.querySelector`。如果没有元素匹配指定选择器，返回值是`[]`。
 
-Shortcut for [page.mainFrame().$$(selector)](#frameselector-1).
+[page.mainFrame().$$(selector)](#frameselector-1)的简写。
 
 #### page.$$eval(selector, pageFunction[, ...args])
-- `selector` <[string]> A [selector] to query frame for
-- `pageFunction` <[function]> Function to be evaluated in browser context
-- `...args` <...[Serializable]|[JSHandle]> Arguments to pass to `pageFunction`
-- returns: <[Promise]<[Serializable]>> Promise which resolves to the return value of `pageFunction`
+- `selector` <[string]> 选择器
+- `pageFunction` <[function]> 在浏览器实例上下文中要执行的方法
+- `...args` <...[Serializable]|[JSHandle]> 要传给`pageFunction`的参数。（比如你的代码里生成了一个变量，在页面中执行方法时需要用到，可以通过这个`args`传进去）
+- 返回: <[Promise]<[Serializable]>> Promise对象，完成后是`pageFunction`的返回值
 
-This method runs `document.querySelectorAll` within the page and passes it as the first argument to `pageFunction`.
+此方法在页面内执行`document.querySelectorAll`，然后把匹配到的元素数组作为第一个参数传给`pageFunction`。
 
-If `pageFunction` returns a [Promise], then `page.$$eval` would wait for the promise to resolve and return its value.
+如果`pageFunction`返回的是[Promise]，那么此方法会等promise完成后返回其返回值。
 
-Examples:
+示例:
 ```js
 const divsCounts = await page.$$eval('div', divs => divs.length);
 ```
 
 #### page.$eval(selector, pageFunction[, ...args])
-- `selector` <[string]> A [selector] to query page for
-- `pageFunction` <[function]> Function to be evaluated in browser context
-- `...args` <...[Serializable]|[JSHandle]> Arguments to pass to `pageFunction`
-- returns: <[Promise]<[Serializable]>> Promise which resolves to the return value of `pageFunction`
+- `selector` <[string]> 选择器
+- `pageFunction` <[function]> 在浏览器实例上下文中要执行的方法
+- `...args` <...[Serializable]|[JSHandle]> 要传给`pageFunction`的参数。（比如你的代码里生成了一个变量，在页面中执行方法时需要用到，可以通过这个`args`传进去）
+- 返回: <[Promise]<[Serializable]>> Promise对象，完成后是`pageFunction`的返回值
 
-This method runs `document.querySelector` within the page and passes it as the first argument to `pageFunction`. If there's no element matching `selector`, the method throws an error.
+此方法在页面内执行`document.querySelector`，然后把匹配到的元素作为第一个参数传给`pageFunction`。
 
-If `pageFunction` returns a [Promise], then `page.$eval` would wait for the promise to resolve and return its value.
+如果`pageFunction`返回的是[Promise]，那么此方法会等promise完成后返回其返回值。
 
-Examples:
+示例:
 ```js
 const searchValue = await page.$eval('#search', el => el.value);
 const preloadHref = await page.$eval('link[rel=preload]', el => el.href);
 const html = await page.$eval('.main-container', e => e.outerHTML);
 ```
 
-Shortcut for [page.mainFrame().$eval(selector, pageFunction)](#frameevalselector-pagefunction-args).
+[page.mainFrame().$eval(selector, pageFunction)](#frameevalselector-pagefunction-args)的简写。
 
 #### page.$x(expression)
-- `expression` <[string]> Expression to [evaluate](https://developer.mozilla.org/en-US/docs/Web/API/Document/evaluate).
-- returns: <[Promise]<[Array]<[ElementHandle]>>>
+- `expression` <[string]> XPath表达式，参考： [evaluate](https://developer.mozilla.org/en-US/docs/Web/API/Document/evaluate).
+- 返回: <[Promise]<[Array]<[ElementHandle]>>>
 
-The method evaluates the XPath expression.
+此方法解析指定的XPath表达式。
 
-Shortcut for [page.mainFrame().$x(expression)](#framexexpression)
+[page.mainFrame().$x(expression)](#framexexpression)的简写。
 
 #### page.addScriptTag(options)
 - `options` <[Object]>
-  - `url` <[string]> URL of a script to be added.
-  - `path` <[string]> Path to the JavaScript file to be injected into frame. If `path` is a relative path, then it is resolved relative to [current working directory](https://nodejs.org/api/process.html#process_process_cwd).
-  - `content` <[string]> Raw JavaScript content to be injected into frame.
-  - `type` <[string]> Script type. Use 'module' in order to load a Javascript ES6 module. See [script](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) for more details.
-- returns: <[Promise]<[ElementHandle]>> which resolves to the added tag when the script's onload fires or when the script content was injected into frame.
+  - `url` <[string]> 要添加的script的src
+  - `path` <[string]> 要注入frame的js文件路径. 如果`path` 是相对路径, 那么相对 [当前路径](https://nodejs.org/api/process.html#process_process_cwd)解析。
+  - `content` <[string]> 要注入页面的js代码（即<script>content</script>）
+  - `type` <[string]> 脚本类型。 如果要注入`ES6 module`，值为'module'。点击 [script](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) 查看详情。
+- 返回: <[Promise]<[ElementHandle]>> Promise对象，即注入完成的tag标签。当script的onload触发或者代码被注入到frame。
 
-Adds a `<script>` tag into the page with the desired url or content.
+注入一个指定src(url)或者代码(content)的`script`标签到当前页面。
 
-Shortcut for [page.mainFrame().addScriptTag(options)](#frameaddscripttagoptions).
+[page.mainFrame().addScriptTag(options)](#frameaddscripttagoptions)的简写。
 
 #### page.addStyleTag(options)
 - `options` <[Object]>
-  - `url` <[string]> URL of the `<link>` tag.
-  - `path` <[string]> Path to the CSS file to be injected into frame. If `path` is a relative path, then it is resolved relative to [current working directory](https://nodejs.org/api/process.html#process_process_cwd).
-  - `content` <[string]> Raw CSS content to be injected into frame.
-- returns: <[Promise]<[ElementHandle]>> which resolves to the added tag when the stylesheet's onload fires or when the CSS content was injected into frame.
+  - `url` <[string]> link标签的href属性值
+  - `path` <[string]> 样式文件的路径. 如果`path` 是相对路径,那么相对 [当前路径](https://nodejs.org/api/process.html#process_process_cwd)解析。
+  - `content` <[string]> css代码（即<style>content</style>）
+- 返回: <[Promise]<[ElementHandle]>> Promise对象，即注入完成的tag标签。当style的onload触发或者代码被注入到frame。
 
-Adds a `<link rel="stylesheet">` tag into the page with the desired url or a `<style type="text/css">` tag with the content.
+添加一个指定link(url)的`<link rel="stylesheet">`标签。
+或者添加一个指定代码(content)的`<style type="text/css">`标签。
 
-Shortcut for [page.mainFrame().addStyleTag(options)](#frameaddstyletagoptions).
+[page.mainFrame().addStyleTag(options)](#frameaddstyletagoptions)的简写。
 
 #### page.authenticate(credentials)
 - `credentials` <?[Object]>
   - `username` <[string]>
   - `password` <[string]>
-- returns: <[Promise]>
+- 返回: <[Promise]>
 
-Provide credentials for [http authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication).
+为[http authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication)提供认证凭据 。
 
-To disable authentication, pass `null`.
+传`null`禁用认证。
 
 #### page.bringToFront()
 
 - returns: <[Promise]>
 
-Brings page to front (activates tab).
+相当于多个tab时，切换到某个tab。
 
 #### page.browser()
 
-- returns: <[Browser]>
+- 返回: <[Browser]>
 
-Get the browser the page belongs to.
+得到当前page实例所属的browser实例。
 
 #### page.click(selector[, options])
-- `selector` <[string]> A [selector] to search for element to click. If there are multiple elements satisfying the selector, the first will be clicked.
+- `selector` <[string]> 要点击的元素的选择器。 如果有多个匹配的元素, 点击第一个。
 - `options` <[Object]>
-  - `button` <[string]> `left`, `right`, or `middle`, defaults to `left`.
-  - `clickCount` <[number]> defaults to 1. See [UIEvent.detail].
-  - `delay` <[number]> Time to wait between `mousedown` and `mouseup` in milliseconds. Defaults to 0.
-- returns: <[Promise]> Promise which resolves when the element matching `selector` is successfully clicked. The Promise will be rejected if there is no element matching `selector`.
+  - `button` <[string]> `left`, `right`, 或者 `middle`, 默认是 `left`.
+  - `clickCount` <[number]> 默认是 1. 查看 [UIEvent.detail].
+  - `delay` <[number]> `mousedown` 和 `mouseup` 之间停留的时间，单位是毫秒。默认是0
+- 返回: <[Promise]> Promise对象，匹配的元素被点击。 如果没有元素被点击，Promise对象将被rejected。
 
-This method fetches an element with `selector`, scrolls it into view if needed, and then uses [page.mouse](#pagemouse) to click in the center of the element.
-If there's no element matching `selector`, the method throws an error.
+此方法找到一个匹配`selector`选择器的元素，如果需要会把此元素滚动到可视，然后通过[page.mouse](#pagemouse)点击它。
+如果选择器没有匹配任何元素，此方法将会报错。
 
-Bear in mind that if `click()` triggers a navigation event and there's a separate `page.waitForNavigation()` promise to be resolved, you may end up with a race condition that yields unexpected results. The correct pattern for click and wait for navigation is the following:
+要注意如果`click()`触发了一个跳转，会有一个独立的`page.waitForNavigation()`Promise对象需要等待。
+正确的等待点击后的跳转是这样的：
 
 ```javascript
 const [response] = await Promise.all([
@@ -323,24 +324,22 @@ const [response] = await Promise.all([
 ]);
 ```
 
-Shortcut for [page.mainFrame().click(selector[, options])](#frameclickselector-options).
+[page.mainFrame().click(selector[, options])](#frameclickselector-options)的简写。
 
 #### page.close(options)
 - `options` <[Object]>
-  - `runBeforeUnload` <[boolean]> Defaults to `false`. Whether to run the
-    [before unload](https://developer.mozilla.org/en-US/docs/Web/Events/beforeunload)
-    page handlers.
-- returns: <[Promise]>
+  - `runBeforeUnload` <[boolean]> 默认 `false`. 是否执行 [before unload](https://developer.mozilla.org/en-US/docs/Web/Events/beforeunload)
+- 返回: <[Promise]>
 
-By default, `page.close()` **does not** run beforeunload handlers.
+`page.close()`默认不执行 before unload
 
-> **NOTE** if `runBeforeUnload` is passed as true, a `beforeunload` dialog might be summoned
-> and should be handled manually via page's ['dialog'](#event-dialog) event.
+> **注意** 如果`runBeforeUnload`设置为true，可能会弹出一个`beforeunload`对话框。
+> 这个对话框需要通过页面的['dialog'](#event-dialog)事件手动处理。
 
 #### page.content()
-- returns: <[Promise]<[String]>>
+- 返回: <[Promise]<[String]>>
 
-Gets the full HTML contents of the page, including the doctype.
+返回页面的完整html代码，包括doctype。
 
 #### page.cookies(...urls)
 - `...urls` <...[string]>
@@ -349,46 +348,46 @@ Gets the full HTML contents of the page, including the doctype.
   - `value` <[string]>
   - `domain` <[string]>
   - `path` <[string]>
-  - `expires` <[number]> Unix time in seconds.
+  - `expires` <[number]> Unix time, 单位是秒
   - `httpOnly` <[boolean]>
   - `secure` <[boolean]>
   - `session` <[boolean]>
-  - `sameSite` <[string]> `"Strict"` or `"Lax"`.
+  - `sameSite` <[string]> `"Strict"` 或者 `"Lax"`.
 
-If no URLs are specified, this method returns cookies for the current page URL.
-If URLs are specified, only cookies for those URLs are returned.
+如果不指定任何url，此方法返回当前页面域名的cookie。
+如果指定了url，只返回指定的url下的cookie。
 
 #### page.coverage
 
-- returns: <[Coverage]>
+- 返回: <[Coverage]>
 
 #### page.deleteCookie(...cookies)
 - `...cookies` <...[Object]>
-  - `name` <[string]> **required**
+  - `name` <[string]> **必须的参数**
   - `url` <[string]>
   - `domain` <[string]>
   - `path` <[string]>
   - `secure` <[boolean]>
-- returns: <[Promise]>
+- 返回: <[Promise]>
 
 #### page.emulate(options)
 - `options` <[Object]>
   - `viewport` <[Object]>
-    - `width` <[number]> page width in pixels.
-    - `height` <[number]> page height in pixels.
-    - `deviceScaleFactor` <[number]> Specify device scale factor (can be thought of as dpr). Defaults to `1`.
-    - `isMobile` <[boolean]> Whether the `meta viewport` tag is taken into account. Defaults to `false`.
-    - `hasTouch`<[boolean]> Specifies if viewport supports touch events. Defaults to `false`
-    - `isLandscape` <[boolean]> Specifies if viewport is in landscape mode. Defaults to `false`.
+    - `width` <[number]> 页面的宽度，单位像素.
+    - `height` <[number]> 页面的高度，单位像素.
+    - `deviceScaleFactor` <[number]> 定义设备缩放， (类似于 dpr). 默认 `1`.
+    - `isMobile` <[boolean]> 要不要包含`meta viewport` 标签. 默认 `false`.
+    - `hasTouch`<[boolean]> 指定终端是否支持触摸. 默认 `false`
+    - `isLandscape` <[boolean]> 指定终端是不是 landscape 模式. 默认 `false`.
   - `userAgent` <[string]>
-- returns: <[Promise]>
+- 返回: <[Promise]>
 
-Emulates given device metrics and user agent. This method is a shortcut for calling two methods:
+根据指定的参数和user agent生成模拟器。此方法是和下面两个方法效果相同：
 - [page.setUserAgent(userAgent)](#pagesetuseragentuseragent)
 - [page.setViewport(viewport)](#pagesetviewportviewport)
 
-To aid emulation, puppeteer provides a list of device descriptors which can be obtained via the `require('puppeteer/DeviceDescriptors')` command.
-Below is an example of emulating an iPhone 6 in puppeteer:
+为了辅助模拟器，puppeteer提供了一些设备的参数描述，可以通过`require('puppeteer/DeviceDescriptors')`命令引入。
+下面是通过puppeteer生成iPhone 6模拟器的例子：
 ```js
 const puppeteer = require('puppeteer');
 const devices = require('puppeteer/DeviceDescriptors');
@@ -403,44 +402,44 @@ puppeteer.launch().then(async browser => {
 });
 ```
 
-List of all available devices is available in the source code: [DeviceDescriptors.js](https://github.com/GoogleChrome/puppeteer/blob/master/DeviceDescriptors.js).
+可用的设备可以在这里找到： [DeviceDescriptors.js](https://github.com/GoogleChrome/puppeteer/blob/master/DeviceDescriptors.js).
 
 #### page.emulateMedia(mediaType)
-- `mediaType` <?[string]> Changes the CSS media type of the page. The only allowed values are `'screen'`, `'print'` and `null`. Passing `null` disables media emulation.
+- `mediaType` <?[string]> 改变页面的css媒体类型. 支持的值仅包括 `'screen'`, `'print'` 和 `null`. 传`null`禁用媒体模拟（译者注：不太懂，原文：disable media emulation）
 - returns: <[Promise]>
 
 #### page.evaluate(pageFunction, ...args)
-- `pageFunction` <[function]|[string]> Function to be evaluated in the page context
-- `...args` <...[Serializable]|[JSHandle]> Arguments to pass to `pageFunction`
-- returns: <[Promise]<[Serializable]>> Promise which resolves to the return value of `pageFunction`
+- `pageFunction` <[function]|[string]> 要在页面实例上下文中执行的方法
+- `...args` <...[Serializable]|[JSHandle]> 要传如 `pageFunction` 的参数
+- returns: <[Promise]<[Serializable]>> `pageFunction`执行的结果
 
-If the function passed to the `page.evaluate` returns a [Promise], then `page.evaluate` would wait for the promise to resolve and return its value.
+如果pageFunction返回的是[Promise]，`page.evaluate`将等待promise完成，并返回其返回值。
 
-If the function passed to the `page.evaluate` returns a non-[Serializable] value, then `page.evaluate` resolves to `undefined`.
+如果pageFunction返回的是不能序列化的值，将返回`undefined`
 
-Passing arguments to `pageFunction`:
+给`pageFunction`传参数示例：
 ```js
 const result = await page.evaluate(x => {
   return Promise.resolve(8 * x);
-}, 7);
+}, 7); // 译者注： 7 可以是你自己代码里任意方式得到的值
 console.log(result); // prints "56"
 ```
 
-A string can also be passed in instead of a function:
+也可以传一个字符串：
 ```js
 console.log(await page.evaluate('1 + 2')); // prints "3"
 const x = 10;
 console.log(await page.evaluate(`1 + ${x}`)); // prints "11"
 ```
 
-[ElementHandle] instances can be passed as arguments to the `page.evaluate`:
+[ElementHandle] 实例 可以作为参数传给 `page.evaluate`:
 ```js
 const bodyHandle = await page.$('body');
 const html = await page.evaluate(body => body.innerHTML, bodyHandle);
 await bodyHandle.dispose();
 ```
 
-Shortcut for [page.mainFrame().evaluate(pageFunction, ...args)](#frameevaluatepagefunction-args).
+[page.mainFrame().evaluate(pageFunction, ...args)](#frameevaluatepagefunction-args)的简写。
 
 #### page.evaluateHandle(pageFunction, ...args)
 - `pageFunction` <[function]|[string]> Function to be evaluated in the page context
