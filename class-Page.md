@@ -406,12 +406,12 @@ puppeteer.launch().then(async browser => {
 
 #### page.emulateMedia(mediaType)
 - `mediaType` <?[string]> 改变页面的css媒体类型. 支持的值仅包括 `'screen'`, `'print'` 和 `null`. 传`null`禁用媒体模拟（译者注：不太懂，原文：disable media emulation）
-- returns: <[Promise]>
+- 返回: <[Promise]>
 
 #### page.evaluate(pageFunction, ...args)
 - `pageFunction` <[function]|[string]> 要在页面实例上下文中执行的方法
-- `...args` <...[Serializable]|[JSHandle]> 要传如 `pageFunction` 的参数
-- returns: <[Promise]<[Serializable]>> `pageFunction`执行的结果
+- `...args` <...[Serializable]|[JSHandle]> 要传给 `pageFunction` 的参数
+- 返回: <[Promise]<[Serializable]>> `pageFunction`执行的结果
 
 如果pageFunction返回的是[Promise]，`page.evaluate`将等待promise完成，并返回其返回值。
 
@@ -442,20 +442,20 @@ await bodyHandle.dispose();
 [page.mainFrame().evaluate(pageFunction, ...args)](#frameevaluatepagefunction-args)的简写。
 
 #### page.evaluateHandle(pageFunction, ...args)
-- `pageFunction` <[function]|[string]> Function to be evaluated in the page context
-- `...args` <...[Serializable]|[JSHandle]> Arguments to pass to `pageFunction`
-- returns: <[Promise]<[JSHandle]>> Promise which resolves to the return value of `pageFunction` as in-page object (JSHandle)
+- `pageFunction` <[function]|[string]> 要在页面实例上下文中执行的方法
+- `...args` <...[Serializable]|[JSHandle]> 要传给 `pageFunction` 的参数
+- 返回: <[Promise]<[JSHandle]>> `pageFunction` 执行的结果 页内类型(JSHandle)
 
-The only difference between `page.evaluate` and `page.evaluateHandle` is that `page.evaluateHandle` returns in-page object (JSHandle).
+此方法和`page.evaluate`的唯一区别是此方法返回的是页内类型(JSHandle)
 
-If the function passed to the `page.evaluateHandle` returns a [Promise], then `page.evaluateHandle` would wait for the promise to resolve and return its value.
+如果传给此方法的方法（参数）返回的是Promise对象，将等待promise完成并返回其返回值
 
-A string can also be passed in instead of a function:
+也可以传一个字符串替代方法：
 ```js
-const aHandle = await page.evaluateHandle('document'); // Handle for the 'document'
+const aHandle = await page.evaluateHandle('document'); // 'document'对象
 ```
 
-[JSHandle] instances can be passed as arguments to the `page.evaluateHandle`:
+[JSHandle] 实例可以作为 `page.evaluateHandle`的参数:
 ```js
 const aHandle = await page.evaluateHandle(() => document.body);
 const resultHandle = await page.evaluateHandle(body => body.innerHTML, aHandle);
@@ -463,49 +463,50 @@ console.log(await resultHandle.jsonValue());
 await resultHandle.dispose();
 ```
 
-Shortcut for [page.mainFrame().executionContext().evaluateHandle(pageFunction, ...args)](#executioncontextevaluatehandlepagefunction-args).
+[page.mainFrame().executionContext().evaluateHandle(pageFunction, ...args)](#executioncontextevaluatehandlepagefunction-args)的简写。
 
 #### page.evaluateOnNewDocument(pageFunction, ...args)
-- `pageFunction` <[function]|[string]> Function to be evaluated in browser context
-- `...args` <...[Serializable]> Arguments to pass to `pageFunction`
-- returns: <[Promise]>
+- `pageFunction` <[function]|[string]> 要在页面实例上下文中执行的方法
+- `...args` <...[Serializable]> 要传给 `pageFunction` 的参数
+- 返回: <[Promise]>
 
-Adds a function which would be invoked in one of the following scenarios:
-- whenever the page is navigated
-- whenever the child frame is attached or navigated. In this case, the function is invoked in the context of the newly attached frame
+添加一个方法，在以下某个场景被调用：
+- 页面导航完成后
+- 页面的iframe加载或导航完成。这种场景，指定的函数被调用的上下文是新加载的iframe。
 
-The function is invoked after the document was created but before any of its scripts were run. This is useful to amend  the JavaScript environment, e.g. to seed `Math.random`.
+指定的函数在所属的页面被创建并且所属页面的任意script执行之前被调用。常用于修改页面js环境，比如给`Math.random`设定种子
 
-An example of overriding the navigator.languages property before the page loads:
+下面是在页面加载前重写`navigator.languages`属性的例子：
 
 ```js
 // preload.js
 
-// overwrite the `languages` property to use a custom getter
+// 重写 `languages` 属性，使其用一个新的get方法
 Object.defineProperty(navigator, "languages", {
   get: function() {
     return ["en-US", "en", "bn"];
   }
 });
 
-// In your puppeteer script, assuming the preload.js file is in same folder of our script
+// 假设 preload.js 和当前的代码在同一个目录
 const preloadFile = fs.readFileSync('./preload.js', 'utf8');
 await page.evaluateOnNewDocument(preloadFile);
 ```
 
 #### page.exposeFunction(name, puppeteerFunction)
-- `name` <[string]> Name of the function on the window object
-- `puppeteerFunction` <[function]> Callback function which will be called in Puppeteer's context.
-- returns: <[Promise]>
+- `name` <[string]> 挂载到window对象的方法名
+- `puppeteerFunction` <[function]> 调用name方法时实际执行的方法
+- 返回: <[Promise]>
 
-The method adds a function called `name` on the page's `window` object.
-When called, the function executes `puppeteerFunction` in node.js and returns a [Promise] which resolves to the return value of `puppeteerFunction`.
+此方法添加一个命名为`name`的方法到页面的`window`对象
+当调用`name`方法时，在`node.js`中执行`puppeteerFunction`，并且返回Promise对象，resolve后返回`puppeteerFunction`的返回值
 
-If the `puppeteerFunction` returns a [Promise], it will be awaited.
+如果`puppeteerFunction`返回的是Promise对象，此方法会等其resolve后再返回
 
-> **NOTE** Functions installed via `page.exposeFunction` survive navigations.
+> **注意** 通过`page.exposeFunction`挂载到页面的方法在多次跳转后扔有用（好像是这么个意思，下面一句是原文）
+(原文：> **NOTE** Functions installed via `page.exposeFunction` survive navigations.)
 
-An example of adding an `md5` function into the page:
+添加md5()到页面的例子：
 ```js
 const puppeteer = require('puppeteer');
 const crypto = require('crypto');
@@ -526,7 +527,7 @@ puppeteer.launch().then(async browser => {
 });
 ```
 
-An example of adding a `window.readfile` function into the page:
+添加readfile()到页面的例子：
 
 ```js
 const puppeteer = require('puppeteer');
@@ -556,99 +557,98 @@ puppeteer.launch().then(async browser => {
 ```
 
 #### page.focus(selector)
-- `selector` <[string]> A [selector] of an element to focus. If there are multiple elements satisfying the selector, the first will be focused.
-- returns: <[Promise]> Promise which resolves when the element matching `selector` is successfully focused. The promise will be rejected if there is no element matching `selector`.
+- `selector` <[string]> 要给焦点的元素的选择器[selector]. 如果有多个匹配的元素，焦点给第一个元素。
+- 返回: <[Promise]> Promise对象，当`selector`选择器匹配的元素获得焦点后resolve。如果没有元素匹配指定选择器，将会rejected。
 
-This method fetches an element with `selector` and focuses it.
-If there's no element matching `selector`, the method throws an error.
+此方法找到一个匹配`selector`的元素，并且把焦点给它。
+如果没有匹配的元素，此方法将报错。
 
-Shortcut for [page.mainFrame().focus(selector)](#framefocusselector).
+[page.mainFrame().focus(selector)](#framefocusselector)的简写。
 
 #### page.frames()
-- returns: <[Array]<[Frame]>> An array of all frames attached to the page.
+- 返回: <[Array]<[Frame]>> 加载到页面中的所有iframe标签
 
 #### page.goBack(options)
-- `options` <[Object]> Navigation parameters which might have the following properties:
-  - `timeout` <[number]> Maximum navigation time in milliseconds, defaults to 30 seconds, pass `0` to disable timeout. The default value can be changed by using the [page.setDefaultNavigationTimeout(timeout)](#pagesetdefaultnavigationtimeouttimeout) method.
-  - `waitUntil` <[string]|[Array]<[string]>> When to consider navigation succeeded, defaults to `load`. Given an array of event strings, navigation is considered to be successful after all events have been fired. Events can be either:
-    - `load` - consider navigation to be finished when the `load` event is fired.
-    - `domcontentloaded` - consider navigation to be finished when the `DOMContentLoaded` event is fired.
-    - `networkidle0` - consider navigation to be finished when there are no more than 0 network connections for at least `500` ms.
-    - `networkidle2` - consider navigation to be finished when there are no more than 2 network connections for at least `500` ms.
-- returns: <[Promise]<?[Response]>> Promise which resolves to the main resource response. In case of multiple redirects, the navigation will resolve with the response of the last redirect. If
-can not go back, resolves to `null`.
+- `options` <[Object]> 导航配置，可选值：
+  - `timeout` <[number]> 跳转等待时间，单位是毫秒, 默认是30秒, 传 `0` 表示无限等待. 可以通过[page.setDefaultNavigationTimeout(timeout)](#pagesetdefaultnavigationtimeouttimeout)方法修改默认值
+  - `waitUntil` <[string]|[Array]<[string]>> 满足什么条件认为页面跳转完成，默认是`load`事件触发时。指定事件数组，那么所有事件触发后才认为是跳转完成。事件包括：
+    - `load` - 页面的load事件触发时
+    - `domcontentloaded` - 页面的`DOMContentLoaded`事件触发时
+    - `networkidle0` - 不再有网络连接时触发（至少500毫秒后）
+    - `networkidle2` - 只有2个网络连接时触发（至少500毫秒后）
+- 返回: <[Promise]<?[Response]>> Promise对象resolve后是主要的请求的响应. 如果有多个跳转, resolve后是最后一次跳转的响应. 如果不能回退，resolve后是null
 
-Navigate to the previous page in history.
+导航到页面历史的前一个页面。
 
 #### page.goForward(options)
-- `options` <[Object]> Navigation parameters which might have the following properties:
-  - `timeout` <[number]> Maximum navigation time in milliseconds, defaults to 30 seconds, pass `0` to disable timeout. The default value can be changed by using the [page.setDefaultNavigationTimeout(timeout)](#pagesetdefaultnavigationtimeouttimeout) method.
-  - `waitUntil` <[string]|[Array]<[string]>> When to consider navigation succeeded, defaults to `load`. Given an array of event strings, navigation is considered to be successful after all events have been fired. Events can be either:
-    - `load` - consider navigation to be finished when the `load` event is fired.
-    - `domcontentloaded` - consider navigation to be finished when the `DOMContentLoaded` event is fired.
-    - `networkidle0` - consider navigation to be finished when there are no more than 0 network connections for at least `500` ms.
-    - `networkidle2` - consider navigation to be finished when there are no more than 2 network connections for at least `500` ms.
-- returns: <[Promise]<?[Response]>> Promise which resolves to the main resource response. In case of multiple redirects, the navigation will resolve with the response of the last redirect. If
-can not go back, resolves to `null`.
+- `options` <[Object]> 导航配置，可选值：
+  - `timeout` <[number]> 跳转等待时间，单位是毫秒, 默认是30秒, 传 `0` 表示无限等待. 可以通过[page.setDefaultNavigationTimeout(timeout)](#pagesetdefaultnavigationtimeouttimeout)方法修改默认值
+  - `waitUntil` <[string]|[Array]<[string]>> 满足什么条件认为页面跳转完成，默认是`load`事件触发时。指定事件数组，那么所有事件触发后才认为是跳转完成。事件包括：
+    - `load` - 页面的load事件触发时
+    - `domcontentloaded` - 页面的`DOMContentLoaded`事件触发时
+    - `networkidle0` - 不再有网络连接时触发（至少500毫秒后）
+    - `networkidle2` - 只有2个网络连接时触发（至少500毫秒后）
+- 返回: <[Promise]<?[Response]>> Promise对象resolve后是主要的请求的响应. 如果有多个跳转, resolve后是最后一次跳转的响应. 如果不能向前，resolve后是null
 
-Navigate to the next page in history.
+导航到页面历史的后一个页面。
 
 #### page.goto(url, options)
-- `url` <[string]> URL to navigate page to. The url should include scheme, e.g. `https://`.
-- `options` <[Object]> Navigation parameters which might have the following properties:
-  - `timeout` <[number]> Maximum navigation time in milliseconds, defaults to 30 seconds, pass `0` to disable timeout. The default value can be changed by using the [page.setDefaultNavigationTimeout(timeout)](#pagesetdefaultnavigationtimeouttimeout) method.
-  - `waitUntil` <[string]|[Array]<[string]>> When to consider navigation succeeded, defaults to `load`. Given an array of event strings, navigation is considered to be successful after all events have been fired. Events can be either:
-    - `load` - consider navigation to be finished when the `load` event is fired.
-    - `domcontentloaded` - consider navigation to be finished when the `DOMContentLoaded` event is fired.
-    - `networkidle0` - consider navigation to be finished when there are no more than 0 network connections for at least `500` ms.
-    - `networkidle2` - consider navigation to be finished when there are no more than 2 network connections for at least `500` ms.
-- returns: <[Promise]<?[Response]>> Promise which resolves to the main resource response. In case of multiple redirects, the navigation will resolve with the response of the last redirect.
+- `url` <[string]> 导航到的地址. 地址应该带有http协议, 比如 `https://`.
+- `options` <[Object]> 导航配置，可选值：
+  - `timeout` <[number]> 跳转等待时间，单位是毫秒, 默认是30秒, 传 `0` 表示无限等待. 可以通过[page.setDefaultNavigationTimeout(timeout)](#pagesetdefaultnavigationtimeouttimeout)方法修改默认值
+  - `waitUntil` <[string]|[Array]<[string]>> 满足什么条件认为页面跳转完成，默认是`load`事件触发时。指定事件数组，那么所有事件触发后才认为是跳转完成。事件包括：
+    - `load` - 页面的load事件触发时
+    - `domcontentloaded` - 页面的`DOMContentLoaded`事件触发时
+    - `networkidle0` - 不再有网络连接时触发（至少500毫秒后）
+    - `networkidle2` - 只有2个网络连接时触发（至少500毫秒后）
+- 返回: <[Promise]<?[Response]>> Promise对象resolve后是主要的请求的响应. 如果有多个跳转, resolve后是最后一次跳转的响应
 
-The `page.goto` will throw an error if:
-- there's an SSL error (e.g. in case of self-signed certificates).
-- target URL is invalid.
-- the `timeout` is exceeded during navigation.
+以下情况此方法将报错： 
+- 发生了 SSL 错误 (比如有些自签名的https证书).
+- 目标地址无效
+- 超时
+- 主页面不能加载
 - the main resource failed to load.
 
-> **NOTE** `page.goto` either throw or return a main resource response. The only exception is navigation to `about:blank`, which would succeed and return `null`.
+> **注意** `page.goto` 抛出或返回主页面的响应. 仅有的异常是导航到 `about:blank`, 将返回 `null`.
 
-> **NOTE** Headless mode doesn't support navigating to a PDF document. See the [upstream issue](https://bugs.chromium.org/p/chromium/issues/detail?id=761295).
+> **注意** 无头模式不支持打开pdf文件。查看[upstream issue](https://bugs.chromium.org/p/chromium/issues/detail?id=761295).
 
 #### page.hover(selector)
-- `selector` <[string]> A [selector] to search for element to hover. If there are multiple elements satisfying the selector, the first will be hovered.
-- returns: <[Promise]> Promise which resolves when the element matching `selector` is successfully hovered. Promise gets rejected if there's no element matching `selector`.
+- `selector` <[string]> 要hover的元素的选择器. 如果有多个匹配的元素，hover第一个。
+- 返回: <[Promise]> Promise对象，当匹配的元素成功被hover后resolve。如果没有匹配的元素，将会rejected。
 
-This method fetches an element with `selector`, scrolls it into view if needed, and then uses [page.mouse](#pagemouse) to hover over the center of the element.
-If there's no element matching `selector`, the method throws an error.
+此方法找到一个匹配的元素，如果需要会把此元素滚动到可视，然后通过[page.mouse](#pagemouse)来hover到元素的中间。
+如果没有匹配的元素，此方法将会报错。
 
-Shortcut for [page.mainFrame().hover(selector)](#framehoverselector).
+[page.mainFrame().hover(selector)](#framehoverselector)的简写。
 
 #### page.keyboard
 
-- returns: <[Keyboard]>
+- 返回: <[Keyboard]>
 
 #### page.mainFrame()
-- returns: <[Frame]> returns page's main frame.
+- 返回: <[Frame]> 返回页面的主frame
 
-Page is guaranteed to have a main frame which persists during navigations.
+保证页面一直有有一个主frame
 
 #### page.metrics()
-- returns: <[Promise]<[Object]>> Object containing metrics as key/value pairs.
-  - `Timestamp` <[number]> The timestamp when the metrics sample was taken.
-  - `Documents` <[number]> Number of documents in the page.
-  - `Frames` <[number]> Number of frames in the page.
-  - `JSEventListeners` <[number]> Number of events in the page.
-  - `Nodes` <[number]> Number of DOM nodes in the page.
-  - `LayoutCount` <[number]> Total number of full or partial page layout.
-  - `RecalcStyleCount` <[number]> Total number of page style recalculations.
-  - `LayoutDuration` <[number]> Combined durations of all page layouts.
-  - `RecalcStyleDuration` <[number]> Combined duration of all page style recalculations.
-  - `ScriptDuration` <[number]> Combined duration of JavaScript execution.
-  - `TaskDuration` <[number]> Combined duration of all tasks performed by the browser.
-  - `JSHeapUsedSize` <[number]> Used JavaScript heap size.
-  - `JSHeapTotalSize` <[number]> Total JavaScript heap size.
+- 返回: <[Promise]<[Object]>> 包含指标数据的键值对：
+  - `Timestamp` <[number]> 时间点(when the metrics sample was taken)
+  - `Documents` <[number]> 页面的documents数量.
+  - `Frames` <[number]> 页面的iframe数量.
+  - `JSEventListeners` <[number]> 页面的js事件数量.
+  - `Nodes` <[number]> 页面的dom节点数量.
+  - `LayoutCount` <[number]> 整页面或部分页面的布局数量.
+  - `RecalcStyleCount` <[number]> 页面样式重新计算数量.
+  - `LayoutDuration` <[number]> 页面布局总时间(Combined durations of all page layouts).
+  - `RecalcStyleDuration` <[number]> 页面样式重新计算总时间(Combined duration of all page style recalculations).
+  - `ScriptDuration` <[number]> 页面js代码执行总时间(Combined duration of JavaScript execution).
+  - `TaskDuration` <[number]> 页面任务执行总时间(Combined duration of all tasks performed by the browser).
+  - `JSHeapUsedSize` <[number]> 页面占用堆内存大小(Used JavaScript heap size).
+  - `JSHeapTotalSize` <[number]> 总的页面堆内存大小(Total JavaScript heap size).
 
-> **NOTE** All timestamps are in monotonic time: monotonically increasing time in seconds since an arbitrary point in the past.
+> **注意** All timestamps are in monotonic time: monotonically increasing time in seconds since an arbitrary point in the past.
 
 #### page.mouse
 
