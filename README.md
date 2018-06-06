@@ -14,7 +14,7 @@
 - [class: Tracing](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Tracing.md)
 - [class: Dialog](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Dialog.md)
 - [class: ConsoleMessage](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-ConsoleMessage.md)
-- class: Frame 【已被 [abcdGJJ](https://github.com/abcdGJJ) 领取】
+- [class: Frame](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Frame.md)
 - [class: ExecutionContext](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-ExecutionContext.md)
 - [class: JSHandle](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-JSHandle.md)
 - [class: ElementHandle](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-ElementHandle.md)

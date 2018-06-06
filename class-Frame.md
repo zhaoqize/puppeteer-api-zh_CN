@@ -30,14 +30,17 @@
 
 ### class: Frame
 
-At every point of time, page exposes its current frame tree via the [page.mainFrame()](#pagemainframe) and [frame.childFrames()](#framechildframes) methods.
+在每一个时间点，页面通过 [page.mainFrame()](#pagemainframe) 和 [frame.childFrames()](#framechildframes) 方法暴露当前框架的细节。
 
-[Frame] object's lifecycle is controlled by three events, dispatched on the page object:
-- ['frameattached'](#event-frameattached) - fired when the frame gets attached to the page. A Frame can be attached to the page only once.
-- ['framenavigated'](#event-framenavigated) - fired when the frame commits navigation to a different URL.
-- ['framedetached'](#event-framedetached) - fired when the frame gets detached from the page.  A Frame can be detached from the page only once.
+[Frame]对象的生命周期由 3 个事件控制，通过 [page](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Page.md#event-frameattached) 对象监听：
 
-An example of dumping frame tree:
+- ['frameattached'](#event-frameattached) - 当框架被页面加载时触发。一个框架只会被加载一次。
+
+- ['framenavigated'](#event-framenavigated) - 当框架改变URL时触发。
+
+- ['framedetached'](#event-framedetached) - 当框架被页面分离时触发。一个框架只会被分离一次。
+
+一个获得框架树的例子：
 
 ```js
 const puppeteer = require('puppeteer');
@@ -57,16 +60,18 @@ puppeteer.launch().then(async browser => {
 ```
 
 #### frame.$(selector)
+
 - `selector` <[string]> Selector to query page for
+
 - returns: <[Promise]<?[ElementHandle]>> Promise which resolves to ElementHandle pointing to the frame element.
 
-The method queries frame for the selector. If there's no such element within the frame, the method will resolve to `null`.
+这个方法在框架中查询指定的选择器。如果在框架中没有匹配的元素会返回null
 
 #### frame.$$(selector)
 - `selector` <[string]> Selector to query page for
 - returns: <[Promise]<[Array]<[ElementHandle]>>> Promise which resolves to ElementHandles pointing to the frame elements.
 
-The method runs `document.querySelectorAll` within the frame. If no elements match the selector, the return value resolve to `[]`.
+这个方法会在框架中执行`document.querySelectorAll`方法。如果没有元素匹配会返回`[]`
 
 #### frame.$$eval(selector, pageFunction[, ...args])
 - `selector` <[string]> A [selector] to query frame for
@@ -74,11 +79,12 @@ The method runs `document.querySelectorAll` within the frame. If no elements mat
 - `...args` <...[Serializable]|[JSHandle]> Arguments to pass to `pageFunction`
 - returns: <[Promise]<[Serializable]>> Promise which resolves to the return value of `pageFunction`
 
-This method runs `document.querySelectorAll` within the frame and passes it as the first argument to `pageFunction`.
+这个方法会在框架中执行`document.querySelectorAll`方法，然后将返回值传给`pageFunction`函数的第一个参数。
 
-If `pageFunction` returns a [Promise], then `frame.$$eval` would wait for the promise to resolve and return its value.
+如果`pageFunction`返回了一个[Promise],那么`frame.$$eval`将会等待Promise resolve之后返回它的值。
 
-Examples:
+例子：
+
 ```js
 const divsCounts = await frame.$$eval('div', divs => divs.length);
 ```
@@ -89,11 +95,12 @@ const divsCounts = await frame.$$eval('div', divs => divs.length);
 - `...args` <...[Serializable]|[JSHandle]> Arguments to pass to `pageFunction`
 - returns: <[Promise]<[Serializable]>> Promise which resolves to the return value of `pageFunction`
 
-This method runs `document.querySelector` within the frame and passes it as the first argument to `pageFunction`. If there's no element matching `selector`, the method throws an error.
+这个方法会在框架中执行`document.querySelector`方法，然后将返回值传给`pageFunction`函数的第一个参数。如果没有匹配到任何元素，则会抛出一个错误。
 
-If `pageFunction` returns a [Promise], then `frame.$eval` would wait for the promise to resolve and return its value.
+如果`pageFunction`返回了一个[Promise],那么`frame.$eval`将会等待 Promise  resolve 之后返回它的值。
 
-Examples:
+例如:
+
 ```js
 const searchValue = await frame.$eval('#search', el => el.value);
 const preloadHref = await frame.$eval('link[rel=preload]', el => el.href);
@@ -104,7 +111,7 @@ const html = await frame.$eval('.main-container', e => e.outerHTML);
 - `expression` <[string]> Expression to [evaluate](https://developer.mozilla.org/en-US/docs/Web/API/Document/evaluate).
 - returns: <[Promise]<[Array]<[ElementHandle]>>>
 
-The method evaluates the XPath expression.
+这个方法执行 XPath 表达式。
 
 #### frame.addScriptTag(options)
 - `options` <[Object]>
@@ -114,7 +121,8 @@ The method evaluates the XPath expression.
   - `type` <[string]> Script type. Use 'module' in order to load a Javascript ES6 module. See [script](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) for more details.
 - returns: <[Promise]<[ElementHandle]>> which resolves to the added tag when the script's onload fires or when the script content was injected into frame.
 
-Adds a `<script>` tag into the page with the desired url or content.
+将 url 或脚本内容添加到`<script>`标签中。
+
 
 #### frame.addStyleTag(options)
 - `options` <[Object]>
@@ -123,7 +131,7 @@ Adds a `<script>` tag into the page with the desired url or content.
   - `content` <[string]> Raw CSS content to be injected into frame.
 - returns: <[Promise]<[ElementHandle]>> which resolves to the added tag when the stylesheet's onload fires or when the CSS content was injected into frame.
 
-Adds a `<link rel="stylesheet">` tag into the page with the desired url or a `<style type="text/css">` tag with the content.
+根据样式路径或内容往页面中添加`<link rel="stylesheet">`或`<style type="text/css">`样式标签。
 
 #### frame.childFrames()
 - returns: <[Array]<[Frame]>>
@@ -136,10 +144,9 @@ Adds a `<link rel="stylesheet">` tag into the page with the desired url or a `<s
   - `delay` <[number]> Time to wait between `mousedown` and `mouseup` in milliseconds. Defaults to 0.
 - returns: <[Promise]> Promise which resolves when the element matching `selector` is successfully clicked. The Promise will be rejected if there is no element matching `selector`.
 
-This method fetches an element with `selector`, scrolls it into view if needed, and then uses [page.mouse](#pagemouse) to click in the center of the element.
-If there's no element matching `selector`, the method throws an error.
+这个方法选择传入的元素，如果必要的话会将元素滚动到可视区域，之后使用  [page.mouse](#pagemouse) 点击元素的内容。如果没有匹配到元素，会抛出异常。
 
-Bear in mind that if `click()` triggers a navigation event and there's a separate `page.waitForNavigation()` promise to be resolved, you may end up with a race condition that yields unexpected results. The correct pattern for click and wait for navigation is the following:
+注意：如果`click()`触发了导航事件，那么就会有一个由`page.waitForNavigation()`产生的 promise 要被 resolved ，你可能会得到一个promise竞争态。正确的处理 click 和 wait for navigation 的方式如下：
 
 ```javascript
 const [response] = await Promise.all([
@@ -151,16 +158,16 @@ const [response] = await Promise.all([
 #### frame.content()
 - returns: <[Promise]<[String]>>
 
-Gets the full HTML contents of the frame, including the doctype.
+获取框架完整的HTML内容，包括 doctype。
 
 #### frame.evaluate(pageFunction, ...args)
 - `pageFunction` <[function]|[string]> Function to be evaluated in browser context
 - `...args` <...[Serializable]|[JSHandle]> Arguments to pass to  `pageFunction`
 - returns: <[Promise]<[Serializable]>> Promise which resolves to the return value of `pageFunction`
 
-If the function passed to the `frame.evaluate` returns a [Promise], then `frame.evaluate` would wait for the promise to resolve and return its value.
+如果传给`frame.evaluate`的函数返回了一个 promise，那么`frame.evaluate`将会等到 promise resolve 时返回它的值。
 
-If the function passed to the `frame.evaluate` returns a non-[Serializable] value, then `frame.evaluate` resolves to `undefined`.
+如果传给`frame.evaluate`的函数返回了一个非序列化的值，那么`frame.evaluate`将返回`undefined`
 
 ```js
 const result = await frame.evaluate(() => {
@@ -169,13 +176,14 @@ const result = await frame.evaluate(() => {
 console.log(result); // prints "56"
 ```
 
-A string can also be passed in instead of a function.
+也可以给函数传递字符串。
 
 ```js
 console.log(await frame.evaluate('1 + 2')); // prints "3"
 ```
 
-[ElementHandle] instances can be passed as arguments to the `frame.evaluate`:
+[ElementHandle] 实例也可以作为`frame.evaluate`的参数：
+
 ```js
 const bodyHandle = await frame.$('body');
 const html = await frame.evaluate(body => body.innerHTML, bodyHandle);
@@ -187,22 +195,23 @@ await bodyHandle.dispose();
 - `...args` <...[Serializable]|[JSHandle]> Arguments to pass to `pageFunction`
 - returns: <[Promise]<[JSHandle]>> Promise which resolves to the return value of `pageFunction` as in-page object (JSHandle)
 
-The only difference between `frame.evaluate` and `frame.evaluateHandle` is that `frame.evaluateHandle` returns in-page object (JSHandle).
+`frame.evaluate`和`frame.evaluateHandle`唯一的不同是`frame.evaluateHandle`返回页面对象（JSHandle）。
 
-If the function, passed to the `frame.evaluateHandle`, returns a [Promise], then `frame.evaluateHandle` would wait for the promise to resolve and return its value.
+如果传给`frame.evaluateHandle`的函数返回了一个[Promise]，那么`frame.evaluateHandle`将会等到 promise resolve 时返回它的值。
 
 ```js
 const aWindowHandle = await frame.evaluateHandle(() => Promise.resolve(window));
 aWindowHandle; // Handle for the window object.
 ```
 
-A string can also be passed in instead of a function.
+也可以向函数传递字符串。
 
 ```js
 const aHandle = await frame.evaluateHandle('document'); // Handle for the 'document'.
 ```
 
-[JSHandle] instances can be passed as arguments to the `frame.evaluateHandle`:
+[JSHandle] 实例也可以作为`frame.evaluateHandle`的参数:
+
 ```js
 const aHandle = await frame.evaluateHandle(() => document.body);
 const resultHandle = await frame.evaluateHandle(body => body.innerHTML, aHandle);
@@ -218,29 +227,30 @@ await resultHandle.dispose();
 - `selector` <[string]> A [selector] of an element to focus. If there are multiple elements satisfying the selector, the first will be focused.
 - returns: <[Promise]> Promise which resolves when the element matching `selector` is successfully focused. The promise will be rejected if there is no element matching `selector`.
 
-This method fetches an element with `selector` and focuses it.
-If there's no element matching `selector`, the method throws an error.
+这个方法选择传入的元素并且使之获得焦点。如果没有匹配到元素，会抛出异常。
 
 #### frame.hover(selector)
 - `selector` <[string]> A [selector] to search for element to hover. If there are multiple elements satisfying the selector, the first will be hovered.
 - returns: <[Promise]> Promise which resolves when the element matching `selector` is successfully hovered. Promise gets rejected if there's no element matching `selector`.
 
-This method fetches an element with `selector`, scrolls it into view if needed, and then uses [page.mouse](#pagemouse) to hover over the center of the element.
-If there's no element matching `selector`, the method throws an error.
+这个方法选择传入的元素，如果必要的话会滚动到视野区域中，然后使用 [page.mouse](#pagemouse) 方法将鼠标悬浮在元素的中心。
+
+如果没有匹配到元素，会抛出异常。
 
 #### frame.isDetached()
 - returns: <[boolean]>
 
-Returns `true` if the frame has been detached, or `false` otherwise.
+如果框架不被加载了返回`true`，否则返回`false`。
+
 
 #### frame.name()
 - returns: <[string]>
 
-Returns frame's name attribute as specified in the tag.
+返回框架在标签中指定的 name 属性。
 
-If the name is empty, returns the id attribute instead.
+如果 name 为空，返回 id。
 
-> **NOTE** This value is calculated once when the frame is created, and will not update if the attribute is changed later.
+> **注意**  这个值在框架创建的时侯就就计算好了，如果之后修改属性的话不会更新。
 
 #### frame.parentFrame()
 - returns: <?[Frame]> Returns parent frame, if any. Detached frames and main frames return `null`.
@@ -250,12 +260,13 @@ If the name is empty, returns the id attribute instead.
 - `...values` <...[string]> Values of options to select. If the `<select>` has the `multiple` attribute, all values are considered, otherwise only the first one is taken into account.
 - returns: <[Promise]<[Array]<[string]>>> Returns an array of option values that have been successfully selected.
 
-Triggers a `change` and `input` event once all the provided options have been selected.
-If there's no `<select>` element matching `selector`, the method throws an error.
+下拉框一旦选择了所提供的选项，`change`和`input`事件将会被触发。
+
+如果没有匹配到下拉框，会抛出异常。
 
 ```js
-frame.select('select#colors', 'blue'); // single selection
-frame.select('select#colors', 'red', 'green', 'blue'); // multiple selections
+frame.select('select#colors', 'blue'); // 单选
+frame.select('select#colors', 'red', 'green', 'blue'); // 多选
 ```
 
 #### frame.setContent(html)
@@ -266,8 +277,9 @@ frame.select('select#colors', 'red', 'green', 'blue'); // multiple selections
 - `selector` <[string]> A [selector] to search for element to tap. If there are multiple elements satisfying the selector, the first will be tapped.
 - returns: <[Promise]>
 
-This method fetches an element with `selector`, scrolls it into view if needed, and then uses [page.touchscreen](#pagetouchscreen) to tap in the center of the element.
-If there's no element matching `selector`, the method throws an error.
+这个方法选择传入的元素，如果必要的话会滚动到视野区域中，然后使用 [page.touchscreen](#pagemouse) 方法单击元素中心。
+
+如果没有匹配到元素，会抛出异常。
 
 #### frame.title()
 - returns: <[Promise]<[string]>> Returns page's title.
@@ -279,19 +291,19 @@ If there's no element matching `selector`, the method throws an error.
   - `delay` <[number]> Time to wait between key presses in milliseconds. Defaults to 0.
 - returns: <[Promise]>
 
-Sends a `keydown`, `keypress`/`input`, and `keyup` event for each character in the text.
+对于每一个文本中的字符执行`keydown`、`keypress` / `input`, 和`keyup`事件
 
-To press a special key, like `Control` or `ArrowDown`, use [`keyboard.press`](#keyboardpresskey-options).
+如果要输入特殊按键，比如`Control`或者`ArrowDown`,使用[`keyboard.press`](#keyboardpresskey-options)。
 
 ```js
-frame.type('#mytextarea', 'Hello'); // Types instantly
-frame.type('#mytextarea', 'World', {delay: 100}); // Types slower, like a user
+frame.type('#mytextarea', 'Hello'); // 立即输入
+frame.type('#mytextarea', 'World', {delay: 100}); // 延迟输入, 操作更像用户
 ```
 
 #### frame.url()
 - returns: <[string]>
 
-Returns frame's url.
+返回框架的 url。
 
 #### frame.waitFor(selectorOrFunctionOrTimeout[, options[, ...args]])
 - `selectorOrFunctionOrTimeout` <[string]|[number]|[function]> A [selector], predicate or timeout to wait for
@@ -299,12 +311,15 @@ Returns frame's url.
 - `...args` <...[Serializable]|[JSHandle]> Arguments to pass to  `pageFunction`
 - returns: <[Promise]<[JSHandle]>> Promise which resolves to a JSHandle of the success value
 
-This method behaves differently with respect to the type of the first parameter:
-- if `selectorOrFunctionOrTimeout` is a `string`, then the first argument is treated as a [selector] or [xpath], depending on whether or not it starts with '//', and the method is a shortcut for
-  [frame.waitForSelector](#framewaitforselectorselector-options) or [frame.waitForXPath](#framewaitforxpathxpath-options)
-- if `selectorOrFunctionOrTimeout` is a `function`, then the first argument is treated as a predicate to wait for and the method is a shortcut for [frame.waitForFunction()](#framewaitforfunctionpagefunction-options-args).
-- if `selectorOrFunctionOrTimeout` is a `number`, then the first argument is treated as a timeout in milliseconds and the method returns a promise which resolves after the timeout
-- otherwise, an exception is thrown
+这个方法根据第一个参数类型的不同发挥不同的作用：
+
+- 如果`selectorOrFunctionOrTimeout`是`string`，那么第一个参数会被当作[selector] 或者 [xpath]，取决于是不是以`//`开头的，这是[frame.waitForSelector](#framewaitforselectorselector-options) 或  [frame.waitForXPath](#framewaitforxpathxpath-options) 的快捷方式。
+
+- 如果`selectorOrFunctionOrTimeout`是`function`，那么第一个参数会当作条件等待触发，这是 [frame.waitForFunction()](#framewaitforfunctionpagefunction-options-args) 的快捷方式。
+
+- 如果`selectorOrFunctionOrTimeout`是`number`，那么第一个参数会被当作毫秒为单位的时间，方法会在超时之后返回 promise。
+
+- 其他类型，将会抛出错误。
 
 #### frame.waitForFunction(pageFunction[, options[, ...args]])
 - `pageFunction` <[function]|[string]> Function to be evaluated in browser context
@@ -316,7 +331,8 @@ This method behaves differently with respect to the type of the first parameter:
 - `...args` <...[Serializable]|[JSHandle]> Arguments to pass to  `pageFunction`
 - returns: <[Promise]<[JSHandle]>> Promise which resolves when the `pageFunction` returns a truthy value. It resolves to a JSHandle of the truthy value.
 
-The `waitForFunction` can be used to observe viewport size change:
+`waitForFunction`可以用来观察可视区域大小是否改变。
+
 ```js
 const puppeteer = require('puppeteer');
 
@@ -337,11 +353,10 @@ puppeteer.launch().then(async browser => {
   - `timeout` <[number]> maximum time to wait for in milliseconds. Defaults to `30000` (30 seconds). Pass `0` to disable timeout.
 - returns: <[Promise]<[ElementHandle]>> Promise which resolves when element specified by selector string is added to DOM.
 
-Wait for the `selector` to appear in page. If at the moment of calling
-the method the `selector` already exists, the method will return
-immediately. If the selector doesn't appear after the `timeout` milliseconds of waiting, the function will throw.
+等待被选择等待元素出现在页面中。如果调用时选择的元素已存在，会立即返回。如果在设定的毫秒时间之后没有出现，则抛出异常。
 
-This method works across navigations:
+这个方法可以在切换导航时使用:
+
 ```js
 const puppeteer = require('puppeteer');
 
@@ -365,11 +380,10 @@ puppeteer.launch().then(async browser => {
   - `timeout` <[number]> maximum time to wait for in milliseconds. Defaults to `30000` (30 seconds). Pass `0` to disable timeout.
 - returns: <[Promise]<[ElementHandle]>> Promise which resolves when element specified by xpath string is added to DOM.
 
-Wait for the `xpath` to appear in page. If at the moment of calling
-the method the `xpath` already exists, the method will return
-immediately. If the xpath doesn't appear after the `timeout` milliseconds of waiting, the function will throw.
+等待`xpath`出现在页面中。如果在调用函数的时候`xpath`已经存在，会立即返回。如果在设定的毫秒时间之后没有出现，则抛出异常。
 
-This method works across navigations:
+这个方法可以在切换导航时使用:
+
 ```js
 const puppeteer = require('puppeteer');
 
