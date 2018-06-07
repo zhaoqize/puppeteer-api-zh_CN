@@ -652,57 +652,57 @@ puppeteer.launch().then(async browser => {
 
 #### page.mouse
 
-- returns: <[Mouse]>
+- 返回: <[Mouse]>
 
 #### page.pdf(options)
-- `options` <[Object]> Options object which might have the following properties:
-  - `path` <[string]> The file path to save the PDF to. If `path` is a relative path, then it is resolved relative to [current working directory](https://nodejs.org/api/process.html#process_process_cwd). If no path is provided, the PDF won't be saved to the disk.
-  - `scale` <[number]> Scale of the webpage rendering. Defaults to `1`.
-  - `displayHeaderFooter` <[boolean]> Display header and footer. Defaults to `false`.
-  - `headerTemplate` <[string]> HTML template for the print header. Should be valid HTML markup with following classes used to inject printing values into them:
-    - `date` formatted print date
-    - `title` document title
-    - `url` document location
-    - `pageNumber` current page number
-    - `totalPages` total pages in the document
-  - `footerTemplate` <[string]> HTML template for the print footer. Should use the same format as the `headerTemplate`.
-  - `printBackground` <[boolean]> Print background graphics. Defaults to `false`.
-  - `landscape` <[boolean]> Paper orientation. Defaults to `false`.
-  - `pageRanges` <[string]> Paper ranges to print, e.g., '1-5, 8, 11-13'. Defaults to the empty string, which means print all pages.
-  - `format` <[string]> Paper format. If set, takes priority over `width` or `height` options. Defaults to 'Letter'.
-  - `width` <[string]> Paper width, accepts values labeled with units.
-  - `height` <[string]> Paper height, accepts values labeled with units.
-  - `margin` <[Object]> Paper margins, defaults to none.
-    - `top` <[string]> Top margin, accepts values labeled with units.
-    - `right` <[string]> Right margin, accepts values labeled with units.
-    - `bottom` <[string]> Bottom margin, accepts values labeled with units.
-    - `left` <[string]> Left margin, accepts values labeled with units.
-- returns: <[Promise]<[Buffer]>> Promise which resolves with PDF buffer.
+- `options` <[Object]> 可以有以下配置项：
+  - `path` <[string]> pdf文件保存的路径。如果是相对路径，则相对[当前路径](https://nodejs.org/api/process.html#process_process_cwd)。如果不指定路径，将不保存到硬盘。
+  - `scale` <[number]> 页面渲染的缩放。默认是1
+  - `displayHeaderFooter` <[boolean]> 显示页眉和页脚。默认是不显示
+  - `headerTemplate` <[string]> 页眉的html模板，可以有这些变量：
+    - `date` 格式化的日期
+    - `title` 网页标题
+    - `url` 网页地址
+    - `pageNumber` 当前页码
+    - `totalPages` 总页数
+  - `footerTemplate` <[string]> 页脚的html模板。和页眉模板变量相同。
+  - `printBackground` <[boolean]> 是否打印背景图. 默认是 `false`.
+  - `landscape` <[boolean]> 页面横向(?Paper orientation). 默认为 `false`.
+  - `pageRanges` <[string]> 要输出的页码范围, 比如, '1-5, 8, 11-13'. 默认是空字符串，表示全部页码.
+  - `format` <[string]> 页面格式. 如果设置了，将覆盖 `width` 和 `height` 配置. 默认是 'Letter'.
+  - `width` <[string]> 页面宽度, 接受带单位的字符串.
+  - `height` <[string]> 页面高度, 接受带单位的字符串.
+  - `margin` <[Object]> 页面空白白边配置，默认是空
+    - `top` <[string]> 顶部的白边
+    - `right` <[string]> 右侧白边, 接受带单位的字符串
+    - `bottom` <[string]> 底部白边, 接受带单位的字符串
+    - `left` <[string]> 左侧白边, 接受带单位的字符串
+- 返回: <[Promise]<[Buffer]>> Promise对象，resolve后是pdf buffer.
 
-> **NOTE** Generating a pdf is currently only supported in Chrome headless.
+> **注意** 目前仅支持无头模式的Chrome
 
-`page.pdf()` generates a pdf of the page with `print` css media. To generate a pdf with `screen` media, call [page.emulateMedia('screen')](#pageemulatemediamediatype) before calling `page.pdf()`:
+`page.pdf()` 生成当前页面的pdf格式，带着`pring` css media。如果要生成带着`screen` media的pdf，在`page.pdf()`前面先调用[page.emulateMedia('screen')](#pageemulatemediamediatype)
 
 ```js
-// Generates a PDF with 'screen' media type.
+// 生成 'screen' media 格式的pdf.
 await page.emulateMedia('screen');
 await page.pdf({path: 'page.pdf'});
 ```
 
-The `width`, `height`, and `margin` options accept values labeled with units. Unlabeled values are treated as pixels.
+`width`, `height`, 和 `margin` 接受带单位的字符串. 不带单位的默认是像素(px)
 
-A few examples:
-- `page.pdf({width: 100})` - prints with width set to 100 pixels
-- `page.pdf({width: '100px'})` - prints with width set to 100 pixels
-- `page.pdf({width: '10cm'})` - prints with width set to 10 centimeters.
+几个例子:
+- `page.pdf({width: 100})` - pdf将是 100 pixels宽
+- `page.pdf({width: '100px'})` - pdf将是 100 pixels宽
+- `page.pdf({width: '10cm'})` - pdf将是 10 厘米宽.
 
-All possible units are:
-- `px` - pixel
-- `in` - inch
-- `cm` - centimeter
-- `mm` - millimeter
+支持的单位包括:
+- `px` - 像素
+- `in` - 英寸
+- `cm` - 厘米
+- `mm` - 毫米
 
-The `format` options are:
+`format` 可选值：
 - `Letter`: 8.5in x 11in
 - `Legal`: 8.5in x 14in
 - `Tabloid`: 11in x 17in
@@ -715,15 +715,15 @@ The `format` options are:
 - `A5`: 5.83in x 8.27in
 - `A6`: 4.13in x 5.83in
 
-> **NOTE** `headerTemplate` and `footerTemplate` markup have the following limitations:
-> 1. Script tags inside templates are not evaluated.
-> 2. Page styles are not visible inside templates.
+> **注意** `headerTemplate` 和 `footerTemplate` 有下面的限制：
+> 1. js脚本不会被执行
+> 2. 页面的样式对模板内无效
 
 #### page.queryObjects(prototypeHandle)
 - `prototypeHandle` <[JSHandle]> A handle to the object prototype.
 - returns: <[Promise]<[JSHandle]>> Promise which resolves to a handle to an array of objects with this prototype.
 
-The method iterates the JavaScript heap and finds all the objects with the given prototype.
+此方法遍历js堆栈，找到所有带有指定原型的对象
 
 ```js
 // Create a Map object
@@ -738,66 +738,65 @@ await mapInstances.dispose();
 await mapPrototype.dispose();
 ```
 
-Shortcut for [page.mainFrame().executionContext().queryObjects(prototypeHandle)](#executioncontextqueryobjectsprototypehandle).
+[page.mainFrame().executionContext().queryObjects(prototypeHandle)](#executioncontextqueryobjectsprototypehandle)的简写
 
 #### page.reload(options)
-- `options` <[Object]> Navigation parameters which might have the following properties:
-  - `timeout` <[number]> Maximum navigation time in milliseconds, defaults to 30 seconds, pass `0` to disable timeout. The default value can be changed by using the [page.setDefaultNavigationTimeout(timeout)](#pagesetdefaultnavigationtimeouttimeout) method.
-  - `waitUntil` <[string]|[Array]<[string]>> When to consider navigation succeeded, defaults to `load`. Given an array of event strings, navigation is considered to be successful after all events have been fired. Events can be either:
-    - `load` - consider navigation to be finished when the `load` event is fired.
-    - `domcontentloaded` - consider navigation to be finished when the `DOMContentLoaded` event is fired.
-    - `networkidle0` - consider navigation to be finished when there are no more than 0 network connections for at least `500` ms.
-    - `networkidle2` - consider navigation to be finished when there are no more than 2 network connections for at least `500` ms.
-- returns: <[Promise]<[Response]>> Promise which resolves to the main resource response. In case of multiple redirects, the navigation will resolve with the response of the last redirect.
+- `options` <[Object]> 导航配置，可选值：
+  - `timeout` <[number]> 跳转等待时间，单位是毫秒, 默认是30秒, 传 `0` 表示无限等待. 可以通过[page.setDefaultNavigationTimeout(timeout)](#pagesetdefaultnavigationtimeouttimeout)方法修改默认值
+  - `waitUntil` <[string]|[Array]<[string]>> 满足什么条件认为页面跳转完成，默认是`load`事件触发时。指定事件数组，那么所有事件触发后才认为是跳转完成。事件包括：
+    - `load` - 页面的load事件触发时
+    - `domcontentloaded` - 页面的`DOMContentLoaded`事件触发时
+    - `networkidle0` - 不再有网络连接时触发（至少500毫秒后）
+    - `networkidle2` - 只有2个网络连接时触发（至少500毫秒后）
+- 返回: <[Promise]<?[Response]>> Promise对象resolve后是主要的请求的响应. 如果有多个跳转, resolve后是最后一次跳转的响应
 
 #### page.screenshot([options])
-- `options` <[Object]> Options object which might have the following properties:
-  - `path` <[string]> The file path to save the image to. The screenshot type will be inferred from file extension. If `path` is a relative path, then it is resolved relative to [current working directory](https://nodejs.org/api/process.html#process_process_cwd). If no path is provided, the image won't be saved to the disk.
-  - `type` <[string]> Specify screenshot type, can be either `jpeg` or `png`. Defaults to 'png'.
-  - `quality` <[number]> The quality of the image, between 0-100. Not applicable to `png` images.
-  - `fullPage` <[boolean]> When true, takes a screenshot of the full scrollable page. Defaults to `false`.
-  - `clip` <[Object]> An object which specifies clipping region of the page. Should have the following fields:
-    - `x` <[number]> x-coordinate of top-left corner of clip area
-    - `y` <[number]> y-coordinate of top-left corner of clip area
-    - `width` <[number]> width of clipping area
-    - `height` <[number]> height of clipping area
-  - `omitBackground` <[boolean]> Hides default white background and allows capturing screenshots with transparency. Defaults to `false`.
-- returns: <[Promise]<[Buffer]>> Promise which resolves to buffer with captured screenshot
+- `options` <[Object]> 可选配置：
+  - `path` <[string]> 截图保存路径。截图图片类型将从文件扩展名推断出来。如果是相对路径，则从[当前路径](https://nodejs.org/api/process.html#process_process_cwd)解析。如果没有指定路径，图片将不会保存到硬盘。
+  - `type` <[string]> 指定截图类型, 可以是 `jpeg` 或者 `png`. 默认 'png'.
+  - `quality` <[number]> 图片质量, 可选值 0-100. `png` 类型不适用.
+  - `fullPage` <[boolean]> 如果设置为true，则对完整的页面（需要滚动的部分也包含在内）。默认是false
+  - `clip` <[Object]> 指定裁剪区域。需要配置：
+    - `x` <[number]> 裁剪区域相对于左上角（0， 0）的x坐标
+    - `y` <[number]> 裁剪区域相对于左上角（0， 0）的y坐标
+    - `width` <[number]> 裁剪的宽度
+    - `height` <[number]> 裁剪的高度
+  - `omitBackground` <[boolean]> 隐藏默认的白色背景，背景透明。默认不透明
+- 返回: <[Promise]<[Buffer]>> Promise对象，resolve后是截图的buffer
 
-> **NOTE** Screenshots take at least 1/6 second on OS X. See https://crbug.com/741689 for discussion.
+> **备注** 在OS X上 截图需要至少1/6秒。查看讨论：https://crbug.com/741689.
 
 #### page.select(selector, ...values)
-- `selector` <[string]> A [selector] to query page for
-- `...values` <...[string]> Values of options to select. If the `<select>` has the `multiple` attribute, all values are considered, otherwise only the first one is taken into account.
-- returns: <[Promise]<[Array]<[string]>>> Returns an array of option values that have been successfully selected.
+- `selector` <[string]> 要查找的选择器
+- `...values` <...[string]> 查找的配置项。如果选择器有多个属性，所有的值都会查找，否则只有第一个元素被找到。(翻译不一定准确，具体要实验)
+- 返回: <[Promise]<[Array]<[string]>>> 所有符合的元素
 
-Triggers a `change` and `input` event once all the provided options have been selected.
-If there's no `<select>` element matching `selector`, the method throws an error.
+当提供的选择器完成选中后，触发`change`和`input`事件
+如果没有元素匹配指定选择器，将报错。
 
 ```js
 page.select('select#colors', 'blue'); // single selection
 page.select('select#colors', 'red', 'green', 'blue'); // multiple selections
 ```
 
-Shortcut for [page.mainFrame().select()](#frameselectselector-values)
+[page.mainFrame().select()](#frameselectselector-values)的简写
 
 #### page.setBypassCSP(enabled)
-- `enabled` <[boolean]> sets bypassing of page's Content-Security-Policy.
-- returns: <[Promise]>
+- `enabled` <[boolean]> 设置绕过页面的安全政策
+- 返回: <[Promise]>
 
-Toggles bypassing page's Content-Security-Policy.
+设置绕过页面的安全政策
 
-> **NOTE** CSP bypassing happens at the moment of CSP initialization rather then evaluation. Usually this means
-that `page.setBypassCSP` should be called before navigating to the domain.
+> **注意** CSP 发生在 CSP 初始化而不是评估阶段. 也就是说应该在导航到这个域名前设置
 
 #### page.setCacheEnabled(enabled)
-- `enabled` <[boolean]> sets the `enabled` state of the cache.
-- returns: <[Promise]>
+- `enabled` <[boolean]> 设置缓存的 `enabled` 状态
+- 返回: <[Promise]>
 
-Toggles ignoring cache for each request based on the enabled state. By default, caching is enabled.
+设置每个请求忽略缓存。默认是启用缓存的。
 
 #### page.setContent(html)
-- `html` <[string]> HTML markup to assign to the page.
+- `html` <[string]> 设置页面源码
 - returns: <[Promise]>
 
 #### page.setCookie(...cookies)
@@ -811,12 +810,12 @@ Toggles ignoring cache for each request based on the enabled state. By default, 
   - `httpOnly` <[boolean]>
   - `secure` <[boolean]>
   - `sameSite` <[string]> `"Strict"` or `"Lax"`.
-- returns: <[Promise]>
+- 返回: <[Promise]>
 
 #### page.setDefaultNavigationTimeout(timeout)
-- `timeout` <[number]> Maximum navigation time in milliseconds
+- `timeout` <[number]> 最多等待时间，单位是毫秒
 
-This setting will change the default maximum navigation time of 30 seconds for the following methods:
+此方法会改变下面几个方法的默认30秒等待时间：
 - [page.goto(url, options)](#pagegotourl-options)
 - [page.goBack(options)](#pagegobackoptions)
 - [page.goForward(options)](#pagegoforwardoptions)
@@ -824,31 +823,30 @@ This setting will change the default maximum navigation time of 30 seconds for t
 - [page.waitForNavigation(options)](#pagewaitfornavigationoptions)
 
 #### page.setExtraHTTPHeaders(headers)
-- `headers` <[Object]> An object containing additional http headers to be sent with every request. All header values must be strings.
-- returns: <[Promise]>
+- `headers` <[Object]> 每个请求都会带上这些请求头。值必须是字符串
+- 返回: <[Promise]>
 
-The extra HTTP headers will be sent with every request the page initiates.
+当前页面发起的每个请求都会带上这些请求头
 
-> **NOTE** page.setExtraHTTPHeaders does not guarantee the order of headers in the outgoing requests.
+> **注意** 此方法不保证请求头的顺序
 
 #### page.setJavaScriptEnabled(enabled)
-- `enabled` <[boolean]> Whether or not to enable JavaScript on the page.
-- returns: <[Promise]>
+- `enabled` <[boolean]> 是否启用js
+- 返回: <[Promise]>
 
-> **NOTE** changing this value won't affect scripts that have already been run. It will take full effect on the next [navigation](#pagegotourl-options).
+> **注意** 改变这个值不会影响已经执行的js。下一个跳转会完全起作用。
 
 #### page.setOfflineMode(enabled)
-- `enabled` <[boolean]> When `true`, enables offline mode for the page.
-- returns: <[Promise]>
+- `enabled` <[boolean]> 设置 `true`, 启用离线模式.
+- 返回: <[Promise]>
 
 #### page.setRequestInterception(value)
-- `value` <[boolean]> Whether to enable request interception.
-- returns: <[Promise]>
+- `value` <[boolean]> 是否启用请求拦截器
+- 返回: <[Promise]>
 
-Activating request interception enables `request.abort`, `request.continue` and
-`request.respond` methods.
+启用请求拦截器，会激活`request.abort`, `request.continue` 和`request.respond`方法
 
-An example of a naïve request interceptor that aborts all image requests:
+通过请求拦截器取消所有图片请求：
 ```js
 const puppeteer = require('puppeteer');
 
@@ -866,7 +864,7 @@ puppeteer.launch().then(async browser => {
 });
 ```
 
-> **NOTE** Enabling request interception disables page caching.
+> **注意** 启用请求拦截器会禁用页面缓存。
 
 #### page.setUserAgent(userAgent)
 - `userAgent` <[string]> Specific user agent to use in this page
@@ -874,34 +872,34 @@ puppeteer.launch().then(async browser => {
 
 #### page.setViewport(viewport)
 - `viewport` <[Object]>
-  - `width` <[number]> page width in pixels.
-  - `height` <[number]> page height in pixels.
-  - `deviceScaleFactor` <[number]> Specify device scale factor (can be thought of as dpr). Defaults to `1`.
-  - `isMobile` <[boolean]> Whether the `meta viewport` tag is taken into account. Defaults to `false`.
-  - `hasTouch`<[boolean]> Specifies if viewport supports touch events. Defaults to `false`
-  - `isLandscape` <[boolean]> Specifies if viewport is in landscape mode. Defaults to `false`.
-- returns: <[Promise]>
+  - `width` <[number]> 宽度，单位是像素
+  - `height` <[number]> 高度，单位是像素
+  - `deviceScaleFactor` <[number]> 定义设备缩放， (类似于 dpr). 默认 `1`.
+  - `isMobile` <[boolean]> 要不要包含`meta viewport` 标签. 默认 `false`.
+  - `hasTouch`<[boolean]> 指定终端是否支持触摸. 默认 `false`
+  - `isLandscape` <[boolean]> 指定终端是不是 landscape 模式. 默认 `false`.
+- 返回: <[Promise]>
 
-> **NOTE** in certain cases, setting viewport will reload the page in order to set the `isMobile` or `hasTouch` properties.
+> **注意** 在大部分情况下，改变viewport会重新加载页面以设置`isMobile` 或者`hasTouch`
 
-In the case of multiple pages in a single browser, each page can have its own viewport size.
+如果是一个浏览器多个页面的情况，每个页面都可以有单独的viewport
 
 #### page.tap(selector)
-- `selector` <[string]> A [selector] to search for element to tap. If there are multiple elements satisfying the selector, the first will be tapped.
-- returns: <[Promise]>
+- `selector` <[string]> 要点击的元素的选择器。如果有多个匹配的元素，点击第一个
+- 返回: <[Promise]>
 
-This method fetches an element with `selector`, scrolls it into view if needed, and then uses [page.touchscreen](#pagetouchscreen) to tap in the center of the element.
-If there's no element matching `selector`, the method throws an error.
+此方法找到一个匹配的元素，如果需要会把此元素滚动到可视，然后通过[page.touchscreen](#pagetouchscreen)来点击元素的中间位置
+如果没有匹配的元素，此方法会报错
 
-Shortcut for [page.mainFrame().tap(selector)](#frametapselector).
+[page.mainFrame().tap(selector)](#frametapselector)的简写
 
 #### page.target()
-- returns: <[Target]> a target this page was created from.
+- 返回: <[Target]> a target this page was created from.
 
 #### page.title()
-- returns: <[Promise]<[string]>> Returns page's title.
+- returns: <[Promise]<[string]>> 页面标题.
 
-Shortcut for [page.mainFrame().title()](#frametitle).
+[page.mainFrame().title()](#frametitle)的简写
 
 #### page.touchscreen
 - returns: <[Touchscreen]>
@@ -910,63 +908,63 @@ Shortcut for [page.mainFrame().title()](#frametitle).
 - returns: <[Tracing]>
 
 #### page.type(selector, text[, options])
-- `selector` <[string]> A [selector] of an element to type into. If there are multiple elements satisfying the selector, the first will be used.
-- `text` <[string]> A text to type into a focused element.
+- `selector` <[string]> 要输入内容的元素选择器. 如果有多个匹配的元素，输入到第一个匹配的元素.
+- `text` <[string]> 要输入的内容
 - `options` <[Object]>
-  - `delay` <[number]> Time to wait between key presses in milliseconds. Defaults to 0.
-- returns: <[Promise]>
+  - `delay` <[number]> 每个字符输入的延迟，单位是毫秒. 默认是 0.
+- 返回: <[Promise]>
 
-Sends a `keydown`, `keypress`/`input`, and `keyup` event for each character in the text.
+每个字符输入后都会触发`keydown`, `keypress`/`input` 和 `keyup` 事件
 
-To press a special key, like `Control` or `ArrowDown`, use [`keyboard.press`](#keyboardpresskey-options).
+要点击特殊按键，比如`Control` 或 `ArrowDown`，用[`keyboard.press`](#keyboardpresskey-options)
 
 ```js
 page.type('#mytextarea', 'Hello'); // Types instantly
 page.type('#mytextarea', 'World', {delay: 100}); // Types slower, like a user
 ```
 
-Shortcut for [page.mainFrame().type(selector, text[, options])](#frametypeselector-text-options).
+[page.mainFrame().type(selector, text[, options])](#frametypeselector-text-options)的简写
 
 #### page.url()
-- returns: <[string]>
+- 返回: <[string]>
 
-This is a shortcut for [page.mainFrame().url()](#frameurl)
+[page.mainFrame().url()](#frameurl)的简写
 
 #### page.viewport()
-- returns: <[Object]>
-  - `width` <[number]> page width in pixels.
-  - `height` <[number]> page height in pixels.
-  - `deviceScaleFactor` <[number]> Specify device scale factor (can be though of as dpr). Defaults to `1`.
-  - `isMobile` <[boolean]> Whether the `meta viewport` tag is taken into account. Defaults to `false`.
-  - `hasTouch`<[boolean]> Specifies if viewport supports touch events. Defaults to `false`
-  - `isLandscape` <[boolean]> Specifies if viewport is in landscape mode. Defaults to `false`.
+- 返回: <[Object]>
+  - `width` <[number]> 宽度，单位是像素
+  - `height` <[number]> 高度，单位是像素
+  - `deviceScaleFactor` <[number]> 定义设备缩放， (类似于 dpr). 默认 `1`.
+  - `isMobile` <[boolean]> 要不要包含`meta viewport` 标签. 默认 `false`.
+  - `hasTouch`<[boolean]> 指定终端是否支持触摸. 默认 `false`
+  - `isLandscape` <[boolean]> 指定终端是不是 landscape 模式. 默认 `false`.
 
 #### page.waitFor(selectorOrFunctionOrTimeout[, options[, ...args]])
-- `selectorOrFunctionOrTimeout` <[string]|[number]|[function]> A [selector], predicate or timeout to wait for
-- `options` <[Object]> Optional waiting parameters
-- `...args` <...[Serializable]|[JSHandle]> Arguments to pass to  `pageFunction`
+- `selectorOrFunctionOrTimeout` <[string]|[number]|[function]> 选择器, 方法 或者 超时时间
+- `options` <[Object]> 可选的等待参数
+- `...args` <...[Serializable]|[JSHandle]> 传给  `pageFunction` 的参数
 - returns: <[Promise]<[JSHandle]>> Promise which resolves to a JSHandle of the success value
 
-This method behaves differently with respect to the type of the first parameter:
-- if `selectorOrFunctionOrTimeout` is a `string`, then the first argument is treated as a [selector] or [xpath], depending on whether or not it starts with '//', and the method is a shortcut for
-  [page.waitForSelector](#pagewaitforselectorselector-options) or [page.waitForXPath](#pagewaitforxpathxpath-options)
-- if `selectorOrFunctionOrTimeout` is a `function`, then the first argument is treated as a predicate to wait for and the method is a shortcut for [page.waitForFunction()](#pagewaitforfunctionpagefunction-options-args).
-- if `selectorOrFunctionOrTimeout` is a `number`, then the first argument is treated as a timeout in milliseconds and the method returns a promise which resolves after the timeout
-- otherwise, an exception is thrown
+此方法根据第一个参数的不同有不同的结果：
+- 如果 `selectorOrFunctionOrTimeout` 是 `string`, 那么认为是 css 选择器或者一个xpath, 根据是不是 '//'开头, 这时候此方法是
+  [page.waitForSelector](#pagewaitforselectorselector-options) 或 [page.waitForXPath](#pagewaitforxpathxpath-options)的简写
+- 如果 `selectorOrFunctionOrTimeout` 是 `function`, 那么认为是一个predicate，这时候此方法是[page.waitForFunction()](#pagewaitforfunctionpagefunction-options-args)的简写
+- 如果 `selectorOrFunctionOrTimeout` 是 `number`, 那么认为是超时时间，单位是毫秒，返回的是Promise对象,在指定时间后resolve
+- 否则会报错
 
-Shortcut for [page.mainFrame().waitFor(selectorOrFunctionOrTimeout[, options[, ...args]])](#framewaitforselectororfunctionortimeout-options-args).
+[page.mainFrame().waitFor(selectorOrFunctionOrTimeout[, options[, ...args]])](#framewaitforselectororfunctionortimeout-options-args)的简写
 
 #### page.waitForFunction(pageFunction[, options[, ...args]])
-- `pageFunction` <[function]|[string]> Function to be evaluated in browser context
-- `options` <[Object]> Optional waiting parameters
+- `pageFunction` <[function]|[string]> 要在浏览器实例上下文执行的方法
+- `options` <[Object]> 可选的等待参数：
   - `polling` <[string]|[number]> An interval at which the `pageFunction` is executed, defaults to `raf`. If `polling` is a number, then it is treated as an interval in milliseconds at which the function would be executed. If `polling` is a string, then it can be one of the following values:
     - `raf` - to constantly execute `pageFunction` in `requestAnimationFrame` callback. This is the tightest polling mode which is suitable to observe styling changes.
     - `mutation` - to execute `pageFunction` on every DOM mutation.
-  - `timeout` <[number]> maximum time to wait for in milliseconds. Defaults to `30000` (30 seconds). Pass `0` to disable timeout.
-- `...args` <...[Serializable]|[JSHandle]> Arguments to pass to  `pageFunction`
-- returns: <[Promise]<[JSHandle]>> Promise which resolves when the `pageFunction` returns a truthy value. It resolves to a JSHandle of the truthy value.
+  - `timeout` <[number]> 最长时间，单位是毫秒. 默认 `30000` (30 seconds). 传 `0` 表示不会超时.
+- `...args` <...[Serializable]|[JSHandle]> 传给  `pageFunction`的参数
+- returns: <[Promise]<[JSHandle]>> Promise 对象，当 `pageFunction` 返回等于true的结果时resolve, resolves 为结果的 JSHandle 类型
 
-The `waitForFunction` can be used to observe viewport size change:
+`waitForFunction` 可以用来监控页面的大小变化：
 ```js
 const puppeteer = require('puppeteer');
 
@@ -978,20 +976,20 @@ puppeteer.launch().then(async browser => {
   await browser.close();
 });
 ```
-Shortcut for [page.mainFrame().waitForFunction(pageFunction[, options[, ...args]])](#framewaitforfunctionpagefunction-options-args).
+[page.mainFrame().waitForFunction(pageFunction[, options[, ...args]])](#framewaitforfunctionpagefunction-options-args)的简写
 
 #### page.waitForNavigation(options)
-- `options` <[Object]> Navigation parameters which might have the following properties:
-  - `timeout` <[number]> Maximum navigation time in milliseconds, defaults to 30 seconds, pass `0` to disable timeout. The default value can be changed by using the [page.setDefaultNavigationTimeout(timeout)](#pagesetdefaultnavigationtimeouttimeout) method.
-  - `waitUntil` <[string]|[Array]<[string]>> When to consider navigation succeeded, defaults to `load`. Given an array of event strings, navigation is considered to be successful after all events have been fired. Events can be either:
-    - `load` - consider navigation to be finished when the `load` event is fired.
-    - `domcontentloaded` - consider navigation to be finished when the `DOMContentLoaded` event is fired.
-    - `networkidle0` - consider navigation to be finished when there are no more than 0 network connections for at least `500` ms.
-    - `networkidle2` - consider navigation to be finished when there are no more than 2 network connections for at least `500` ms.
-- returns: <[Promise]<[Response]>> Promise which resolves to the main resource response. In case of multiple redirects, the navigation will resolve with the response of the last redirect.
+- `options` <[Object]> 导航配置，可选值：
+  - `timeout` <[number]> 跳转等待时间，单位是毫秒, 默认是30秒, 传 `0` 表示无限等待. 可以通过[page.setDefaultNavigationTimeout(timeout)](#pagesetdefaultnavigationtimeouttimeout)方法修改默认值
+  - `waitUntil` <[string]|[Array]<[string]>> 满足什么条件认为页面跳转完成，默认是`load`事件触发时。指定事件数组，那么所有事件触发后才认为是跳转完成。事件包括：
+    - `load` - 页面的load事件触发时
+    - `domcontentloaded` - 页面的`DOMContentLoaded`事件触发时
+    - `networkidle0` - 不再有网络连接时触发（至少500毫秒后）
+    - `networkidle2` - 只有2个网络连接时触发（至少500毫秒后）
+- 返回: <[Promise]<?[Response]>> Promise对象resolve后是主要的请求的响应. 如果有多个跳转, resolve后是最后一次跳转的响应. 如果不能回退，resolve后是null
 
-This resolves when the page navigates to a new URL or reloads. It is useful for when you run code
-which will indirectly cause the page to navigate. Consider this example:
+此方法在页面跳转到一个新地址或重新加载时resolve，如果你的代码会间接引起页面跳转，这个方法比较有用：
+比如这个例子：
 
 ```js
 const navigationPromise = page.waitForNavigation();
@@ -999,21 +997,20 @@ await page.click('a.my-link'); // Clicking the link will indirectly cause a navi
 await navigationPromise; // The navigationPromise resolves after navigation has finished
 ```
 
-**NOTE** Usage of the [History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API) to change the URL is considered a navigation.
+**注意** 通过 [History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API) 改变地址会认为是一次跳转.
 
 #### page.waitForSelector(selector[, options])
-- `selector` <[string]> A [selector] of an element to wait for
-- `options` <[Object]> Optional waiting parameters
-  - `visible` <[boolean]> wait for element to be present in DOM and to be visible, i.e. to not have `display: none` or `visibility: hidden` CSS properties. Defaults to `false`.
-  - `hidden` <[boolean]> wait for element to not be found in the DOM or to be hidden, i.e. have `display: none` or `visibility: hidden` CSS properties. Defaults to `false`.
-  - `timeout` <[number]> maximum time to wait for in milliseconds. Defaults to `30000` (30 seconds). Pass `0` to disable timeout.
-- returns: <[Promise]<[ElementHandle]>> Promise which resolves when element specified by selector string is added to DOM.
+- `selector` <[string]> 要等待的元素选择器
+- `options` <[Object]> 可选参数：
+  - `visible` <[boolean]> 等元素出现在dom中并且可以看到, 比如. 没有 `display: none` 或者 `visibility: hidden` 样式. 默认是 `false`.
+  - `hidden` <[boolean]> 等元素在dom中消失或看不到, 比如. 有 `display: none` 或者 `visibility: hidden` 样式. 默认是 `false`.
+  - `timeout` <[number]> 最大等待时间，单位是毫秒，默认是`30000` (30 seconds)，传0表示不会超时
+- 返回: <[Promise]<[ElementHandle]>> Promise对象，当指定选择器匹配的元素添加到dom中时resolve
 
-Wait for the `selector` to appear in page. If at the moment of calling
-the method the `selector` already exists, the method will return
-immediately. If the selector doesn't appear after the `timeout` milliseconds of waiting, the function will throw.
+等待指定的选择器匹配的元素出现在页面中，如果调用此方法时已经有匹配的元素，那么此方法立即返回。
+如果指定的选择器在超时时间后扔不出现，此方法会报错。
 
-This method works across navigations:
+此方法在页面跳转时仍然有效：
 ```js
 const puppeteer = require('puppeteer');
 
@@ -1028,21 +1025,20 @@ puppeteer.launch().then(async browser => {
   await browser.close();
 });
 ```
-Shortcut for [page.mainFrame().waitForSelector(selector[, options])](#framewaitforselectorselector-options).
+[page.mainFrame().waitForSelector(selector[, options])](#framewaitforselectorselector-options)的简写
 
 #### page.waitForXPath(xpath[, options])
-- `xpath` <[string]> A [xpath] of an element to wait for
-- `options` <[Object]> Optional waiting parameters
-  - `visible` <[boolean]> wait for element to be present in DOM and to be visible, i.e. to not have `display: none` or `visibility: hidden` CSS properties. Defaults to `false`.
-  - `hidden` <[boolean]> wait for element to not be found in the DOM or to be hidden, i.e. have `display: none` or `visibility: hidden` CSS properties. Defaults to `false`.
-  - `timeout` <[number]> maximum time to wait for in milliseconds. Defaults to `30000` (30 seconds). Pass `0` to disable timeout.
-- returns: <[Promise]<[ElementHandle]>> Promise which resolves when element specified by xpath string is added to DOM.
+- `xpath` <[string]> 要等待的元素的xpath
+- `options` <[Object]> 可选参数：
+  - `visible` <[boolean]> 等元素出现在dom中并且可以看到, 比如. 没有 `display: none` 或者 `visibility: hidden` 样式. 默认是 `false`.
+  - `hidden` <[boolean]> 等元素在dom中消失或看不到, 比如. 有 `display: none` 或者 `visibility: hidden` 样式. 默认是 `false`.
+  - `timeout` <[number]> 最大等待时间，单位是毫秒，默认是`30000` (30 seconds)，传0表示不会超时
+- 返回: <[Promise]<[ElementHandle]>> Promise对象，当指定xpath匹配的元素添加到dom中时resolve
 
-Wait for the `xpath` to appear in page. If at the moment of calling
-the method the `xpath` already exists, the method will return
-immediately. If the xpath doesn't appear after the `timeout` milliseconds of waiting, the function will throw.
+等待指定的xpath匹配的元素出现在页面中，如果调用此方法时已经有匹配的元素，那么此方法立即返回。
+如果指定的xpath在超时时间后扔不出现，此方法会报错。
 
-This method works across navigations:
+此方法在页面跳转时仍然有效：
 ```js
 const puppeteer = require('puppeteer');
 
@@ -1057,4 +1053,4 @@ puppeteer.launch().then(async browser => {
   await browser.close();
 });
 ```
-Shortcut for [page.mainFrame().waitForXPath(xpath[, options])](#framewaitforxpathxpath-options).
+[page.mainFrame().waitForXPath(xpath[, options])](#framewaitforxpathxpath-options)的简写
