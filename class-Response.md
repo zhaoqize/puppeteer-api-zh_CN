@@ -13,7 +13,7 @@
 
 ### class: Response
 
-[Response] class represents responses which are received by page.
+[Response] 类表示页面接收的响应。
 
 #### response.buffer()
 - returns: <Promise<[Buffer]>> Promise which resolves to a buffer with response body.
@@ -21,36 +21,36 @@
 #### response.fromCache()
 - returns: <[boolean]>
 
-True if the response was served from either the browser's disk cache or memory cache.
+如果响应来自浏览器的磁盘缓存或内存缓存，则为 true。
 
 #### response.fromServiceWorker()
 - returns: <[boolean]>
 
-True if the response was served by a service worker.
+如果响应是由 service worker 提供的，则为 true。
 
 #### response.headers()
-- returns: <[Object]> An object with HTTP headers associated with the response. All header names are lower-case.
+- returns: <[Object]> 具有与响应关联的 HTTP 头对象。 所有标题名称都是小写。
 
 #### response.json()
 - returns: <Promise<[Object]>> Promise which resolves to a JSON representation of response body.
 
-This method will throw if the response body is not parsable via `JSON.parse`.
+如果响应主体不能通过 `JSON.parse` 解析，则此方法将抛出。
 
 #### response.ok()
 - returns: <[boolean]>
 
-Contains a boolean stating whether the response was successful (status in the range 200-299) or not.
+包含一个布尔值，说明响应是否成功（状态范围为200-299）。
 
 #### response.request()
-- returns: <[Request]> A matching [Request] object.
+- returns: <[Request]> 一个匹配的 [Request] 对象.
 
 #### response.securityDetails()
-- returns: <?[SecurityDetails]> Security details if the response was received over the secure connection, or `null` otherwise.
+- returns: <?[SecurityDetails]> 如果通过安全连接接收到响应，则为安全细节，否则为null。
 
 #### response.status()
 - returns: <[number]>
 
-Contains the status code of the response (e.g., 200 for a success).
+包含响应的状态代码（例如，200成功）。
 
 #### response.text()
 - returns: <[Promise]<[string]>> Promise which resolves to a text representation of response body.
@@ -58,4 +58,4 @@ Contains the status code of the response (e.g., 200 for a success).
 #### response.url()
 - returns: <[string]>
 
-Contains the URL of the response.
+包含响应的 URL。

@@ -8,4 +8,4 @@
 - `y` <[number]>
 - returns: <[Promise]>
 
-Dispatches a `touchstart` and `touchend` event.
+触发 `touchstart` 和 `touchend` 事件。

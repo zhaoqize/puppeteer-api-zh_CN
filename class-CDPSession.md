@@ -4,13 +4,13 @@
 
 ### class: CDPSession
 
-* extends: [`EventEmitter`](https://nodejs.org/api/events.html#events_class_eventemitter)
+* 继承自: [`EventEmitter`](https://nodejs.org/api/events.html#events_class_eventemitter)
 
-The `CDPSession` instances are used to talk raw Chrome Devtools Protocol:
-- protocol methods can be called with `session.send` method.
-- protocol events can be subscribed to with `session.on` method.
+`CDPSession` 实例用于与 Chrome Devtools 协议的原生沟通：
+- 协议方法可以用 `session.send` 方法调用。
+- 协议事件可以通过 `session.on` 方法订阅。
 
-Documentation on DevTools Protocol can be found here: [DevTools Protocol Viewer](https://chromedevtools.github.io/devtools-protocol/).
+DevTools Protocol 的文档具体见这里: [DevTools Protocol Viewer](https://chromedevtools.github.io/devtools-protocol/).
 
 ```js
 const client = await page.target().createCDPSession();
@@ -26,8 +26,7 @@ await client.send('Animation.setPlaybackRate', {
 #### cdpSession.detach()
 - returns: <[Promise]>
 
-Detaches the cdpSession from the target. Once detached, the cdpSession object won't emit any events and can't be used
-to send messages.
+从目标中分离 cdpSession。 一旦分离，cdpSession 对象将不会触发任何事件并且不能用于发送消息。
 
 #### cdpSession.send(method[, params])
 - `method` <[string]> protocol method name

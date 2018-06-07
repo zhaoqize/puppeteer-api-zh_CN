@@ -10,35 +10,35 @@
 - `x` <[number]>
 - `y` <[number]>
 - `options` <[Object]>
-  - `button` <[string]> `left`, `right`, or `middle`, defaults to `left`.
-  - `clickCount` <[number]> defaults to 1. See [UIEvent.detail].
-  - `delay` <[number]> Time to wait between `mousedown` and `mouseup` in milliseconds. Defaults to 0.
+  - `button` <[string]> `left` ，`right` 或 `middle`，默认是 `left`。
+  - `clickCount` <[number]> 默认是 1。见 [UIEvent.detail]。
+  - `delay` <[number]> 在毫秒内且在 `mousedown` 和 `mouseup` 之间等待的时间。 默认为0。
 - returns: <[Promise]>
 
-Shortcut for [`mouse.move`](#mousemovex-y-options), [`mouse.down`](#mousedownoptions) and [`mouse.up`](#mouseupoptions).
+[`mouse.move`](#mousemovex-y-options)，[`mouse.down`](#mousedownoptions) 和 [`mouse.up`](#mouseupoptions) 的快捷方式。
 
 #### mouse.down([options])
 - `options` <[Object]>
-  - `button` <[string]> `left`, `right`, or `middle`, defaults to `left`.
-  - `clickCount` <[number]> defaults to 1. See [UIEvent.detail].
+  - `button` <[string]> `left`，`right` 或 `middle`，默认是 `left`。
+  - `clickCount` <[number]> 默认是 1。见 [UIEvent.detail]。
 - returns: <[Promise]>
 
-Dispatches a `mousedown` event.
+触发一个 `mousedown` 事件。
 
 #### mouse.move(x, y, [options])
 - `x` <[number]>
 - `y` <[number]>
 - `options` <[Object]>
-  - `steps` <[number]> defaults to 1. Sends intermediate `mousemove` events.
+  - `steps` <[number]> 默认是 1。中间触发 `mousemove` 事件。
 - returns: <[Promise]>
 
-Dispatches a `mousemove` event.
+触发一个 `mousemove` 事件。
 
 #### mouse.up([options])
 - `options` <[Object]>
-  - `button` <[string]> `left`, `right`, or `middle`, defaults to `left`.
-  - `clickCount` <[number]> defaults to 1. See [UIEvent.detail].
+  - `button` <[string]> `left`，`right`，或 `middle`，默认是 `left`。
+  - `clickCount` <[number]> 默认是 1。见 [UIEvent.detail]。
 - returns: <[Promise]>
 
-Dispatches a `mouseup` event.
+触发一个 `mouseup` 事件。
 

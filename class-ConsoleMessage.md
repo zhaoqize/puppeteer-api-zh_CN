@@ -5,7 +5,7 @@
 
 ### class: ConsoleMessage
 
-[ConsoleMessage] objects are dispatched by page via the ['console'](#event-console) event.
+[ConsoleMessage] 对象由页面通过 ['console'](#event-console) 事件分发。
 
 #### consoleMessage.args()
 - returns: <[Array]<[JSHandle]>>
@@ -16,4 +16,4 @@
 #### consoleMessage.type()
 - returns: <[string]>
 
-One of the following values: `'log'`, `'debug'`, `'info'`, `'error'`, `'warning'`, `'dir'`, `'dirxml'`, `'table'`, `'trace'`, `'clear'`, `'startGroup'`, `'startGroupCollapsed'`, `'endGroup'`, `'assert'`, `'profile'`, `'profileEnd'`, `'count'`, `'timeEnd'`.
+以下值之一：`'log'` ， `'debug'` ， `'info'` ， `'error'` ， `'warning'` ， `'dir'` ， `'dirxml'` ， `'table'` ， `'trace'` ， `'clear'` ， `'startGroup'` ， `'startGroupCollapsed'` ， `'endGroup'` ， `'assert'` ， `'profile'` ， `'profileEnd'` ， `'count'` ， `'timeEnd'`。
