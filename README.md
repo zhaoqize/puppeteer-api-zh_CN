@@ -7,7 +7,7 @@
 - [class: BrowserFetcher](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-BrowserFetcher.md)
 - [class: Browser](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Browser.md)
 - [class: BrowserContext](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-BrowserContext.md)
-- class: Page 【已被 [ilaipi](https://github.com/ilaipi) 领取】
+- [class: Page](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Page.md)
 - [class: Keyboard](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Keyboard.md)
 - [class: Mouse](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Mouse.md)
 - [class: Touchscreen](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Touchscreen.md)
