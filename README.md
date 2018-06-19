@@ -24,8 +24,8 @@
 - [class: CDPSession](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-CDPSession.md)
 - [class: Coverage](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Coverage.md)
 
-### 交流群
-<img src="./img/t1.png" height="300">
+### 技术交流
+<img src="./img/t2.jpeg" height="300">
 
 
 ### 贡献
