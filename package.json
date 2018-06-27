@@ -1,0 +1,25 @@
+{
+  "name": "puppeteer-api-zh_cn",
+  "version": "1.0.0",
+  "description": "puppeteer api",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhaoqize/puppeteer-api-zh_CN.git"
+  },
+  "keywords": [
+    "puppeteer"
+  ],
+  "author": "zhaoqize",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zhaoqize/puppeteer-api-zh_CN/issues"
+  },
+  "homepage": "https://github.com/zhaoqize/puppeteer-api-zh_CN#readme"
+}

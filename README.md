@@ -25,7 +25,7 @@
 - [class: Coverage](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Coverage.md)
 
 ### 技术交流
-<img src="./img/t2.jpeg" height="300">
+<img src="./img/y1.png" height="300">
 
 
 ### 贡献
