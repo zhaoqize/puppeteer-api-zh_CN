@@ -1,6 +1,6 @@
 {
   "name": "puppeteer-api-zh_cn",
-  "version": "1.0.0",
+  "version": "1.4.0",
   "description": "puppeteer api",
   "main": "index.js",
   "directories": {
