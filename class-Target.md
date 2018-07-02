@@ -1,5 +1,6 @@
 - [class: Target](#class-target)
   * [target.createCDPSession()](#targetcreatecdpsession)
+  * [target.opener()](#targetopener)
   * [target.page()](#targetpage)
   * [target.type()](#targettype)
   * [target.url()](#targeturl)
@@ -23,15 +24,20 @@
 
 创建一个 Chrome Devtools 协议会话至目标。
 
+#### target.opener()
+- returns: <?[Target]>
+
+获取打开此目标的目标。 顶级目标返回`null`。
+
 #### target.page()
 - returns: <[Promise]<?[Page]>>
 
-如果目标不是 `"页面"` 类型，则返回 `null`。
+如果目标不是 `"page"` 或 `"background_page"` 类型，则返回 `null`。
 
 #### target.type()
 - returns: <[string]>
 
-确定目标是怎么样的类型。 可以是 `"页面"`，`"service_worker"`，`"浏览器"` 或 `"其他"`。
+确定目标是怎么样的类型。 可以是 `"page"`，[`"background_page"`](https://developer.chrome.com/extensions/background_pages)，`"service_worker"`，`"browser"` 或 `"其他"`。
 
 #### target.url()
 - returns: <[string]>

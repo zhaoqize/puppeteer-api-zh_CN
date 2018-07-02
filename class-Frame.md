@@ -71,7 +71,7 @@ puppeteer.launch().then(async browser => {
 - `selector` <[string]> Selector to query page for
 - returns: <[Promise]<[Array]<[ElementHandle]>>> Promise which resolves to ElementHandles pointing to the frame elements.
 
-这个方法会在框架中执行`document.querySelectorAll`方法。如果没有元素匹配会返回`[]`
+这个方法会在框架中执行 `document.querySelectorAll` 方法。如果没有元素匹配会返回 `[]`
 
 #### frame.$$eval(selector, pageFunction[, ...args])
 - `selector` <[string]> A [selector] to query frame for
@@ -79,9 +79,9 @@ puppeteer.launch().then(async browser => {
 - `...args` <...[Serializable]|[JSHandle]> Arguments to pass to `pageFunction`
 - returns: <[Promise]<[Serializable]>> Promise which resolves to the return value of `pageFunction`
 
-这个方法会在框架中执行`document.querySelectorAll`方法，然后将返回值传给`pageFunction`函数的第一个参数。
+这个方法会在框架中执行 `Array.from(document.querySelectorAll(selector))` 方法，然后将返回值传给 `pageFunction` 函数的第一个参数。
 
-如果`pageFunction`返回了一个[Promise],那么`frame.$$eval`将会等待Promise resolve之后返回它的值。
+如果 `pageFunction` 返回了一个[Promise],那么 `frame.$$eval` 将会等待Promise resolve之后返回它的值。
 
 例子：
 

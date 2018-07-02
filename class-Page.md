@@ -235,7 +235,7 @@ Tips：没用过`iframe`相关的api，直译的
 - `...args` <...[Serializable]|[JSHandle]> 要传给`pageFunction`的参数。（比如你的代码里生成了一个变量，在页面中执行方法时需要用到，可以通过这个`args`传进去）
 - 返回: <[Promise]<[Serializable]>> Promise对象，完成后是`pageFunction`的返回值
 
-此方法在页面内执行`document.querySelectorAll`，然后把匹配到的元素数组作为第一个参数传给`pageFunction`。
+此方法在页面内执行 `Array.from(document.querySelectorAll(selector))`，然后把匹配到的元素数组作为第一个参数传给`pageFunction`。
 
 如果`pageFunction`返回的是[Promise]，那么此方法会等promise完成后返回其返回值。
 
@@ -624,7 +624,7 @@ puppeteer.launch().then(async browser => {
 - 主页面不能加载
 - the main resource failed to load.
 
-> **注意** `page.goto` 抛出或返回主页面的响应. 仅有的异常是导航到 `about:blank`, 将返回 `null`.
+> **注意** `page.goto` 抛出或返回主页面的响应。唯一的例外是导航到 `about：blank` 或导航到具有不同散列的相同URL，这将成功并返回`null`。
 
 > **注意** 无头模式不支持打开pdf文件。查看[upstream issue](https://bugs.chromium.org/p/chromium/issues/detail?id=761295).
 
@@ -701,6 +701,8 @@ puppeteer.launch().then(async browser => {
 > **注意** 目前仅支持无头模式的Chrome
 
 `page.pdf()` 生成当前页面的pdf格式，带着`pring` css media。如果要生成带着`screen` media的pdf，在`page.pdf()`前面先调用[page.emulateMedia('screen')](#pageemulatemediamediatype)
+
+> **注意** 默认情况下，`page.pdf()` 生成一个带有修改颜色的 pdf 用于打印。 使用[`-webkit-print-color-adjust`]（https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-print-color-adjust）属性强制渲染精确的颜色。
 
 ```js
 // 生成 'screen' media 格式的pdf.
@@ -781,7 +783,8 @@ await mapPrototype.dispose();
     - `width` <[number]> 裁剪的宽度
     - `height` <[number]> 裁剪的高度
   - `omitBackground` <[boolean]> 隐藏默认的白色背景，背景透明。默认不透明
-- 返回: <[Promise]<[Buffer]>> Promise对象，resolve后是截图的buffer
+  - `encoding` <[string]> 图像的编码可以是 `base64` 或 `binary`。 默认为“二进制”。
+- 返回: <[Promise]<[Buffer|String]>> Promise对象，resolve后是截图的buffer
 
 > **备注** 在OS X上 截图需要至少1/6秒。查看讨论：https://crbug.com/741689.
 
@@ -863,7 +866,7 @@ page.select('select#colors', 'red', 'green', 'blue'); // multiple selections
 - `value` <[boolean]> 是否启用请求拦截器
 - 返回: <[Promise]>
 
-启用请求拦截器，会激活`request.abort`, `request.continue` 和`request.respond`方法
+启用请求拦截器，会激活`request.abort`, `request.continue` 和`request.respond`方法。这提供了修改页面发出的网络请求的功能。
 
 通过请求拦截器取消所有图片请求：
 ```js
@@ -1005,7 +1008,7 @@ puppeteer.launch().then(async browser => {
     - `domcontentloaded` - 页面的`DOMContentLoaded`事件触发时
     - `networkidle0` - 不再有网络连接时触发（至少500毫秒后）
     - `networkidle2` - 只有2个网络连接时触发（至少500毫秒后）
-- 返回: <[Promise]<?[Response]>> Promise对象resolve后是主要的请求的响应. 如果有多个跳转, resolve后是最后一次跳转的响应. 如果不能回退，resolve后是null
+- 返回: <[Promise]<[?Response]>> Promise对象resolve后是主要的请求的响应。如果有多个跳转, resolve后是最后一次跳转的响应。如果由于使用 History API 而导航到不同的锚点或导航，导航将以 `null` 解析。
 
 此方法在页面跳转到一个新地址或重新加载时resolve，如果你的代码会间接引起页面跳转，这个方法比较有用：
 比如这个例子：
@@ -1076,3 +1079,5 @@ puppeteer.launch().then(async browser => {
 
 #### page.workers()
 - returns: <Array<Worker>> 该方法返回所有与页面关联的 [WebWorkers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API)
+
+> **备注** 这不包含 ServiceWorkers

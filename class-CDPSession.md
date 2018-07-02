@@ -15,7 +15,7 @@ DevTools Protocol 的文档具体见这里: [DevTools Protocol Viewer](https://c
 ```js
 const client = await page.target().createCDPSession();
 await client.send('Animation.enable');
-await client.on('Animation.animationCreated', () => console.log('Animation created!'));
+client.on('Animation.animationCreated', () => console.log('Animation created!'));
 const response = await client.send('Animation.getPlaybackRate');
 console.log('playback rate is ' + response.playbackRate);
 await client.send('Animation.setPlaybackRate', {
