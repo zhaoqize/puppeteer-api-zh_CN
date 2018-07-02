@@ -1,7 +1,6 @@
-
+# Puppeteer 中文文档
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)]()
 [![GitHub license](https://img.shields.io/github/license/zhaoqize/puppeteer-api-zh_CN.svg)](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/LICENSE)
-# Puppeteer 中文文档
 - [class: Puppeteer](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Puppeteer.md)
 - [class: BrowserFetcher](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-BrowserFetcher.md)
 - [class: Browser](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Browser.md)
@@ -23,6 +22,7 @@
 - [class: Target](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Target.md)
 - [class: CDPSession](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-CDPSession.md)
 - [class: Coverage](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Coverage.md)
+- [class: Worker](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Worker.md)
 
 ### 技术交流
 <img src="./img/y1.png" height="300">
@@ -32,7 +32,7 @@
 欢迎大家积极参与 Puppeteer 中文文档的翻译。[如何贡献](./CONTRIBUTING.md)
 > [译文排版规则指北](https://github.com/xitu/gold-miner/wiki/%E8%AF%91%E6%96%87%E6%8E%92%E7%89%88%E8%A7%84%E5%88%99%E6%8C%87%E5%8C%97)
 
-# Puppeteer API v1.4.0
+# Puppeteer API v1.5.0
 
 ### 介绍
 

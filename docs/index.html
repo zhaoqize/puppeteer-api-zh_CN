@@ -12,11 +12,25 @@
   <div id="app"></div>
   <script>
     window.$docsify = {
-      name: 'Puppeteer',
+      search: 'auto', // 默认值
+      search : [
+        '/',            // => /README.md
+        '/class-Browser',       // => /guide.md
+      ],
+      search: {
+        maxAge: 86400000, // 过期时间，单位毫秒，默认一天
+        paths: [], // or 'auto'
+        placeholder: '搜索',
+        noData: '找不到结果！',
+        depth: 3 // 搜索标题的最大程级, 1 - 6
+      },
+      name: 'Puppeteer API v1.5.0',
       repo: 'https://github.com/zhaoqize/puppeteer-api-zh_CN',
       loadSidebar: true,
     }
   </script>
   <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+  <script src="//unpkg.com/docsify/lib/plugins/search.js"></script>
+  <script src="//unpkg.com/docsify-copy-code"></script>
 </body>
 </html>

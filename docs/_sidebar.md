@@ -22,3 +22,4 @@
 * [class-Target](class-Target.md)
 * [class-Touchscreen](class-Touchscreen.md)
 * [class-Tracing](class-Tracing.md)
+* [class-Worker](class-Worker.md)

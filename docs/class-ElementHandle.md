@@ -1,6 +1,8 @@
 - [class: ElementHandle](#class-elementhandle)
   * [elementHandle.$(selector)](#elementhandleselector)
   * [elementHandle.$$(selector)](#elementhandleselector)
+  * [elementHandle.$$eval(selector, pageFunction, ...args)](#elementhandleevalselector-pagefunction-args)
+  * [elementHandle.$eval(selector, pageFunction, ...args)](#elementhandleevalselector-pagefunction-args-1)
   * [elementHandle.$x(expression)](#elementhandlexexpression)
   * [elementHandle.asElement()](#elementhandleaselement)
   * [elementHandle.boundingBox()](#elementhandleboundingbox)
@@ -72,11 +74,33 @@ expect(await tweetHandle.$eval('.like', node => node.innerText)).toBe('100');
 expect(await tweetHandle.$eval('.retweets', node => node.innerText)).toBe('10');
 ```
 
+#### elementHandle.$$eval(selector, pageFunction, ...args)
+- `selector` <[string]> A [selector] to query page for
+- `pageFunction` <[function]> Function to be evaluated in browser context
+- `...args` <...[Serializable]|[JSHandle]> Arguments to pass to `pageFunction`
+- returns: <[Promise]<[Serializable]>> Promise which resolves to the return value of `pageFunction`
+
+该方法在元素内运行 `document.querySelectorAll`，并将其作为第一个参数传递给 `pageFunction`。 如果没有与 `selector` 匹配的元素，则该方法将抛出一个错误。
+
+如果 `pageFunction` 返回 [Promise]，那么`frame.$$eval` 将等待 promise 解析并返回其值。
+
+例子:
+```html
+<div class="feed">
+  <div class="tweet">Hello!</div>
+  <div class="tweet">Hi!</div>
+</div>
+```
+```js
+const feedHandle = await page.$('.feed');
+expect(await feedHandle.$$eval('.tweet', nodes => nodes.map(n => n.innerText)).toEqual(['Hello!', 'Hi!']);
+```
+
 #### elementHandle.$x(expression)
 - `expression` <[string]> Expression to [evaluate](https://developer.mozilla.org/en-US/docs/Web/API/Document/evaluate).
-- returns: <[Promise]<?[ElementHandle]>> Promise which resolves to ElementHandle pointing to the frame element.
+- returns: <[Promise]<[Array]<[ElementHandle]>>>
 
-该方法计算相对于 elementHandle 的 XPath 表达式。 如果不存在这样的元素，该方法将解析为 `null`。
+该方法计算相对于 elementHandle 的 XPath 表达式。 如果不存在这样的元素，该方法将解析为一个空的数组。
 
 #### elementHandle.asElement()
 - returns: <[elementhandle]>

@@ -4,6 +4,7 @@
   * [request.failure()](#requestfailure)
   * [request.frame()](#requestframe)
   * [request.headers()](#requestheaders)
+  * [request.isNavigationRequest()](#requestisnavigationrequest)
   * [request.method()](#requestmethod)
   * [request.postData()](#requestpostdata)
   * [request.redirectChain()](#requestredirectchain)
@@ -14,7 +15,7 @@
 
 ### class: Request
 
-每当页面发送一个请求, 以下事件会被 puppeteer 页面触发
+每当页面发送一个请求，例如网络请求，以下事件会被 puppeteer 页面触发：
 - ['request'](#event-request) 当请求发起后页面会触发这个事件。
 - ['response'](#event-response) 请求收到响应的时候触发。
 - ['requestfinished'](#event-requestfinished) 请求完成并且响应体下载完成时触发
@@ -29,6 +30,8 @@
   - `aborted` - 操作被取消 (因为用户的行为)
   - `accessdenied` - 访问资源权限不足(非网络原因)
   - `addressunreachable` - 找不到IP地址 这通常意味着没有路由通向指定主机或者网络
+  - `blockedbyclient` - 客户端选择阻止请求
+  - `blockedbyresponse` - 请求失败，因为响应是与未满足的要求一起传递出去的（例如，'X-Frame-Options' 和'Content-Security-Policy' 祖先检查）
   - `connectionaborted` - 未收到数据发送的ACK信号导致的连接超时
   - `connectionclosed` - 连接关闭(对应 TCP FIN 包)
   - `connectionfailed` - 尝试连接失败。
@@ -70,6 +73,11 @@ page.on('requestfailed', request => {
 
 #### request.headers()
 - returns: <[Object]> 该请求的 http 头对象. 所有头都采用小写的命名方式
+
+#### request.isNavigationRequest()
+- returns: <[boolean]>
+
+这个请求是否正在驱动框架的导航。
 
 #### request.method()
 - returns: <[string]> 请求方法 ( GET，POST，等。)

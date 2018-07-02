@@ -59,7 +59,7 @@ await page.keyboard.up('Shift');
 
 如果 `key` 是一个单独字符并且没有除了 `Shift` 的其他修饰符键正在被按下, 一个 `keypress`/`input` 事件也将被生成. 可以指定 `text` 选项来强制生成输入事件.
 
-> **注意** 修饰键会影响 `elementHandle.press`, 持续按下 `Shift` 键将已大写形式输入文本.
+> **注意** 修饰键会影响 `keyboard.press`, 持续按下 `Shift` 键将已大写形式输入文本.
 
 [`keyboard.down`](#keyboarddownkey-options) 和 [`keyboard.up`](#keyboardupkey) 的快捷方式.
 
