@@ -1,7 +1,8 @@
 
 # Puppeteer API v1.5.0
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)]()
+[![npm](https://img.shields.io/npm/v/puppeteer-api-zh_cn.svg?style=flat)](https://github.com/zhaoqize/generator-easy-npm-tpl)
 [![GitHub license](https://img.shields.io/github/license/zhaoqize/puppeteer-api-zh_CN.svg)](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)]()
 
 ### 介绍
 
