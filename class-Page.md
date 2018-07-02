@@ -14,6 +14,8 @@
   * [event: 'requestfailed'](#event-requestfailed)
   * [event: 'requestfinished'](#event-requestfinished)
   * [event: 'response'](#event-response)
+  * [event: 'workercreated'](#event-workercreated)
+  * [event: 'workerdestroyed'](#event-workerdestroyed)
   * [page.$(selector)](#pageselector)
   * [page.$$(selector)](#pageselector)
   * [page.$$eval(selector, pageFunction[, ...args])](#pageevalselector-pagefunction-args)
@@ -41,6 +43,7 @@
   * [page.goForward(options)](#pagegoforwardoptions)
   * [page.goto(url, options)](#pagegotourl-options)
   * [page.hover(selector)](#pagehoverselector)
+  * [page.isClosed()](#pageisclosed)
   * [page.keyboard](#pagekeyboard)
   * [page.mainFrame()](#pagemainframe)
   * [page.metrics()](#pagemetrics)
@@ -74,6 +77,7 @@
   * [page.waitForNavigation(options)](#pagewaitfornavigationoptions)
   * [page.waitForSelector(selector[, options])](#pagewaitforselectorselector-options)
   * [page.waitForXPath(xpath[, options])](#pagewaitforxpathxpath-options)
+  * [page.workers()](#pageworkers)
 
 ### 类: Page
 
@@ -198,6 +202,16 @@ Tips：没用过`iframe`相关的api，直译的
 - <[Response]>
 
 当页面的某个请求接收到对应的[response]时触发。
+
+#### 事件: 'workercreated'
+- <Worker>
+
+当页面生成专用的 [WebWorker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API) 时触发。
+
+#### 事件: 'workerdestroyed'
+- <Worker>
+
+当页面终止专用的 [WebWorker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API) 时触发。
 
 #### page.$(selector)
 - `selector` <[string]> 选择器
@@ -622,6 +636,11 @@ puppeteer.launch().then(async browser => {
 如果没有匹配的元素，此方法将会报错。
 
 [page.mainFrame().hover(selector)](#framehoverselector)的简写。
+
+#### page.isClosed()
+- returns: boolean
+
+指示页面是否被关闭。
 
 #### page.keyboard
 
@@ -1053,4 +1072,7 @@ puppeteer.launch().then(async browser => {
   await browser.close();
 });
 ```
-[page.mainFrame().waitForXPath(xpath[, options])](#framewaitforxpathxpath-options)的简写
+[page.mainFrame().waitForXPath(xpath[, options])](#framewaitforxpathxpath-options) 的简写
+
+#### page.workers()
+- returns: <Array<Worker>> 该方法返回所有与页面关联的 [WebWorkers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API)
