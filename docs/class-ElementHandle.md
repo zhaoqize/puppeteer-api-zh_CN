@@ -15,6 +15,7 @@
   * [elementHandle.getProperties()](#elementhandlegetproperties)
   * [elementHandle.getProperty(propertyName)](#elementhandlegetpropertypropertyname)
   * [elementHandle.hover()](#elementhandlehover)
+  * [elementHandle.isIntersectingViewport()](#elementhandleisintersectingviewport)
   * [elementHandle.jsonValue()](#elementhandlejsonvalue)
   * [elementHandle.press(key[, options])](#elementhandlepresskey-options)
   * [elementHandle.screenshot([options])](#elementhandlescreenshotoptions)
@@ -103,7 +104,7 @@ expect(await feedHandle.$$eval('.tweet', nodes => nodes.map(n => n.innerText)).t
 该方法计算相对于 elementHandle 的 XPath 表达式。 如果不存在这样的元素，该方法将解析为一个空的数组。
 
 #### elementHandle.asElement()
-- returns: <[elementhandle]>
+- returns: <[ElementHandle]>
 
 #### elementHandle.boundingBox()
 - returns: <[Promise]<?[Object]>>
@@ -179,6 +180,9 @@ children; // body持有 elementHandles 给 document.body 的所有子项。
 
 如果需要，此方法将元素滚动到视野中，然后使用 [page.mouse](#pagemouse) 将鼠标悬停在元素的中心。
 如果元素从 DOM 中分离，则该方法将抛出一个错误。
+
+#### elementHandle.isIntersectingViewport()
+- returns: <[Promise]<[boolean]>> Resolves to true if the element is visible in the current viewport.
 
 #### elementHandle.jsonValue()
 - returns: <[Promise]<[Object]>>

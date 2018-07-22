@@ -46,7 +46,10 @@ _使用 [Istanbul](https://github.com/istanbuljs) 输出一个覆盖率表格，
 #### coverage.startJSCoverage(options)
 - `options` <[Object]> 覆盖范围的配置项
   - `resetOnNavigation` <[boolean]> 是否重置每个导航的覆盖范围。默认是 `true`。
+  - `reportAnonymousScripts` <[boolean]> 是否应报告页面生成的匿名脚本。 默认为 `false`。
 - returns: <[Promise]> （意译：当覆盖开始的时候返回一个 Promise）
+
+> **注意** 匿名脚本指的是没有关联 URL 的脚本。 它们是使用 `eval` 或 `new Function` 在页面上动态创建的脚本。如果`reportAnonymousScripts` 设置为 `true`，匿名脚本将使用 `__puppeteer_evaluation_script__` 作为其URL。
 
 #### coverage.stopCSSCoverage()
 - returns: <[Promise]<[Array]<[Object]>>> （意译：所有样式表的覆盖率报告）
@@ -66,4 +69,4 @@ _使用 [Istanbul](https://github.com/istanbuljs) 输出一个覆盖率表格，
     - `start` <[number]> 包含文字的起始偏移量
     - `end` <[number]> 文本中的结尾偏移，独占
 
-> **注意** JavaScript Coverage 不包含匿名脚本。 但是，具有 sourceURL 的脚本将被上报。
+> **注意** JavaScript Coverage 默认情况下不包含匿名脚本。 但是，具有 sourceURL 的脚本将被上报。

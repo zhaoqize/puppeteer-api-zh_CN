@@ -1,6 +1,8 @@
 <!-- docs/_sidebar.md -->
 
 * [介绍](/)
+* [Environment Variables](Environment Variables.md)
+* [Working with Chrome Extensions](Working with Chrome Extensions.md)
 * [class-Browser](class-Browser.md)
 * [class-BrowserContext](class-BrowserContext.md)
 * [class-BrowserFetcher](class-BrowserFetcher.md)

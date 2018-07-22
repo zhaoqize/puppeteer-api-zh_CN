@@ -2,6 +2,8 @@
 [![npm](https://img.shields.io/npm/v/puppeteer-api-zh_cn.svg?style=flat)](https://github.com/zhaoqize/puppeteer-api-zh_CN)
 [![GitHub license](https://img.shields.io/github/license/zhaoqize/puppeteer-api-zh_CN.svg)](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)]()
+- [Environment Variables](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/Environment Variables.md)
+- [Working with Chrome Extensions](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/Working with Chrome Extensions.md)
 - [class: Puppeteer](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Puppeteer.md)
 - [class: BrowserFetcher](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-BrowserFetcher.md)
 - [class: Browser](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Browser.md)
@@ -33,7 +35,7 @@
 欢迎大家积极参与 Puppeteer 中文文档的翻译。[如何贡献](./CONTRIBUTING.md)
 > [译文排版规则指北](https://github.com/xitu/gold-miner/wiki/%E8%AF%91%E6%96%87%E6%8E%92%E7%89%88%E8%A7%84%E5%88%99%E6%8C%87%E5%8C%97)
 
-# Puppeteer API v1.5.0
+# Puppeteer API Tip-Of-Tree
 
 ### 介绍
 
@@ -53,12 +55,3 @@ Puppeteer API是分层次的，反映了浏览器结构。
 - [`Worker`](#class-worker) 具有单一执行上下文，并且便于与 [WebWorkers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API) 进行交互。
 
 (图例资源: [链接](https://docs.google.com/drawings/d/1Q_AM6KYs9kbyLZF-Lpp5mtpAWth73Cq8IKCsWYgi8MM/edit?usp=sharing))
-
-### 环境变量
-
-Puppeteer 寻找某些环境变量来帮助其操作。 如果 puppeteer 在环境中没有找到它们，这些变量的小写变体将从 [npm配置](https://docs.npmjs.com/cli/config) 中使用。
-
-- `HTTP_PROXY`, `HTTPS_PROXY`, `NO_PROXY` - 定义用于下载和运行Chromium的HTTP代理设置。
-- `PUPPETEER_SKIP_CHROMIUM_DOWNLOAD` - 请勿在安装步骤中下载绑定的Chromium。
-- `PUPPETEER_DOWNLOAD_HOST` - 覆盖用于下载Chromium的URL的主机部分。
-- `PUPPETEER_CHROMIUM_REVISION` - 在安装步骤中指定一个你喜欢puppeteer使用的特定版本的chrome。

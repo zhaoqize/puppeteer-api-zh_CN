@@ -61,14 +61,14 @@ puppeteer.launch().then(async browser => {
 
 #### frame.$(selector)
 
-- `selector` <[string]> Selector to query page for
+- `selector` <[string]> Selector to query frame for
 
 - returns: <[Promise]<?[ElementHandle]>> Promise which resolves to ElementHandle pointing to the frame element.
 
 这个方法在框架中查询指定的选择器。如果在框架中没有匹配的元素会返回null
 
 #### frame.$$(selector)
-- `selector` <[string]> Selector to query page for
+- `selector` <[string]> Selector to query frame for
 - returns: <[Promise]<[Array]<[ElementHandle]>>> Promise which resolves to ElementHandles pointing to the frame elements.
 
 这个方法会在框架中执行 `document.querySelectorAll` 方法。如果没有元素匹配会返回 `[]`

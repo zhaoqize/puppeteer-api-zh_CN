@@ -75,6 +75,8 @@
   * [page.waitFor(selectorOrFunctionOrTimeout[, options[, ...args]])](#pagewaitforselectororfunctionortimeout-options-args)
   * [page.waitForFunction(pageFunction[, options[, ...args]])](#pagewaitforfunctionpagefunction-options-args)
   * [page.waitForNavigation(options)](#pagewaitfornavigationoptions)
+  * [page.waitForRequest(urlOrPredicate, options)](#pagewaitforrequesturlorpredicate-options)
+  * [page.waitForResponse(urlOrPredicate, options)](#pagewaitforresponseurlorpredicate-options)
   * [page.waitForSelector(selector[, options])](#pagewaitforselectorselector-options)
   * [page.waitForXPath(xpath[, options])](#pagewaitforxpathxpath-options)
   * [page.workers()](#pageworkers)
@@ -83,7 +85,7 @@
 
 * 继承: [`EventEmitter`](https://nodejs.org/api/events.html#events_class_eventemitter)
 
-Page 提供操作一个tab页的方法。一个 [Browser] 实例可以有多个 [Page] 实例。
+Page 提供操作一个 tab 页或者 [extension background page](https://developer.chrome.com/extensions/background_pages) 的方法。一个 [Browser] 实例可以有多个 [Page] 实例。
 
 下面的例子创建一个 Page实例，导航到一个url，然后保存截图：
 ```js
@@ -225,12 +227,12 @@ Tips：没用过`iframe`相关的api，直译的
 - `selector` <[string]> 选择器
 - 返回: <[Promise]<[Array]<[ElementHandle]>>>
 
-此方法在页面内执行`document.querySelector`。如果没有元素匹配指定选择器，返回值是`[]`。
+此方法在页面内执行`document.querySelectorAll`。如果没有元素匹配指定选择器，返回值是`[]`。
 
 [page.mainFrame().$$(selector)](#frameselector-1)的简写。
 
 #### page.$$eval(selector, pageFunction[, ...args])
-- `selector` <[string]> 选择器
+- `selector` <[string]> 一个框架选择器
 - `pageFunction` <[function]> 在浏览器实例上下文中要执行的方法
 - `...args` <...[Serializable]|[JSHandle]> 要传给`pageFunction`的参数。（比如你的代码里生成了一个变量，在页面中执行方法时需要用到，可以通过这个`args`传进去）
 - 返回: <[Promise]<[Serializable]>> Promise对象，完成后是`pageFunction`的返回值
@@ -1020,6 +1022,30 @@ await navigationPromise; // The navigationPromise resolves after navigation has 
 ```
 
 **注意** 通过 [History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API) 改变地址会认为是一次跳转.
+
+#### page.waitForRequest(urlOrPredicate, options)
+- `urlOrPredicate` <[string]|[Function]> A URL or predicate to wait for.
+- `options` <[Object]> Optional waiting parameters
+  - `timeout` <[number]> Maximum wait time in milliseconds, defaults to 30 seconds, pass `0` to disable the timeout.
+- returns: <[Promise]<[Request]>> Promise which resolves to the matched request.
+
+```js
+const firstRequest = await page.waitForRequest('http://example.com/resource');
+const finalRequest = await page.waitForRequest(request => request.url() === 'http://example.com' && request.method() === 'GET');
+return firstRequest.url();
+```
+
+#### page.waitForResponse(urlOrPredicate, options)
+- `urlOrPredicate` <[string]|[Function]> A URL or predicate to wait for.
+- `options` <[Object]> Optional waiting parameters
+  - `timeout` <[number]> Maximum wait time in milliseconds, defaults to 30 seconds, pass `0` to disable the timeout.
+- returns: <[Promise]<[Response]>> Promise which resolves to the matched response.
+
+```js
+const firstResponse = await page.waitForResponse('https://example.com/resource');
+const finalResponse = await page.waitForResponse(response => response.url() === 'https://example.com' && response.status() === 200);
+return finalResponse.ok();
+```
 
 #### page.waitForSelector(selector[, options])
 - `selector` <[string]> 要等待的元素选择器
