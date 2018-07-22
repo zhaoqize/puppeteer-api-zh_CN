@@ -225,7 +225,7 @@ Tips：没用过`iframe`相关的api，直译的
 - `selector` <[string]> 选择器
 - 返回: <[Promise]<[Array]<[ElementHandle]>>>
 
-此方法在页面内执行`document.querySelector`。如果没有元素匹配指定选择器，返回值是`[]`。
+此方法在页面内执行`document.querySelectorAll`。如果没有元素匹配指定选择器，返回值是`[]`。
 
 [page.mainFrame().$$(selector)](#frameselector-1)的简写。
 
