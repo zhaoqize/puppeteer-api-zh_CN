@@ -42,7 +42,7 @@ puppeteer.launch().then(async browser => {
 });
 ```
 
-除非句柄 [disposed](#elementhandledispose)，否则 ElementHandle 会阻止垃圾收集中的 DOM 元素。 ElementHandles 在其原始帧被导航时自动处理。
+除非处理了句柄 [disposed](#elementhandledispose)，否则 ElementHandle 会阻止垃圾收集中的 DOM 元素。 ElementHandles 在其原始帧被导航时将会自动处理。
 
 ElementHandle 实例可以在 [`page.$eval()`](#pageevalselector-pagefunction-args) 和 [`page.evaluate()`](#pageevaluatepagefunction-args) 方法中作为参数。
 
@@ -56,7 +56,7 @@ ElementHandle 实例可以在 [`page.$eval()`](#pageevalselector-pagefunction-ar
 - `selector` <[string]> A [selector] to query element for
 - returns: <[Promise]<[Array]<[ElementHandle]>>>
 
-该方法在页面内运行 `element.querySelectorAll`。 如果没有元素匹配选择器，则返回值为`[]`。
+该方法在页面内运行 `element.querySelectorAll`。 如果没有元素匹配选择器，则返回值为 `[]`。
 
 #### elementHandle.$eval(selector, pageFunction, ...args)
 - `selector` <[string]> A [selector] to query page for
@@ -142,7 +142,7 @@ expect(await feedHandle.$$eval('.tweet', nodes => nodes.map(n => n.innerText)).t
 #### elementHandle.dispose()
 - returns: <[Promise]> Promise which resolves when the element handle is successfully disposed.
 
-`elementHandle.dispose` 方法停止引用元素句柄。
+`elementHandle.dispose` 方法用于停止引用元素的句柄。
 
 #### elementHandle.executionContext()
 - returns: [ExecutionContext]
@@ -179,7 +179,7 @@ children; // body持有 elementHandles 给 document.body 的所有子项。
 - returns: <[Promise]> Promise which resolves when the element is successfully hovered.
 
 如果需要，此方法将元素滚动到视野中，然后使用 [page.mouse](#pagemouse) 将鼠标悬停在元素的中心。
-如果元素从 DOM 中分离，则该方法将抛出一个错误。
+如果元素从 DOM 中分离（不存在），则该方法将抛出一个错误。
 
 #### elementHandle.isIntersectingViewport()
 - returns: <[Promise]<[boolean]>> Resolves to true if the element is visible in the current viewport.

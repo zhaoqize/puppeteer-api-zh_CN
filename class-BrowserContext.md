@@ -38,7 +38,7 @@ await context.close();
 #### event: 'targetcreated'
 - <[Target]>
 
-在浏览器上下文中创建新目标时触发，例如打开了一个新页面[`window.open`](https://developer.mozilla.org/en-US/docs/Web/API/Window/open) 或 [`browserContext.newPage`](#browsercontextnewpage)。
+在浏览器上下文中创建新目标时触发，例如打开了一个新页面 [`window.open`](https://developer.mozilla.org/en-US/docs/Web/API/Window/open) 或 [`browserContext.newPage`](#browsercontextnewpage)。
 
 #### event: 'targetdestroyed'
 - <[Target]>

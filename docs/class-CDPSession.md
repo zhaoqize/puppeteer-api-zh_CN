@@ -4,9 +4,9 @@
 
 ### class: CDPSession
 
-* 继承自: [`EventEmitter`](https://nodejs.org/api/events.html#events_class_eventemitter)
+* extends: [`EventEmitter`](https://nodejs.org/api/events.html#events_class_eventemitter)
 
-`CDPSession` 实例用于与 Chrome Devtools 协议的原生沟通：
+`CDPSession` 实例用于与 Chrome Devtools 协议的原生通信：
 - 协议方法可以用 `session.send` 方法调用。
 - 协议事件可以通过 `session.on` 方法订阅。
 

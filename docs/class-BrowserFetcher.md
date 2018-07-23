@@ -8,11 +8,11 @@
 
 ### class: BrowserFetcher
 
-BrowserFetcher 用来下载和管理 Chromium 的不同版本.
+BrowserFetcher 可以用来下载和管理不同版本的 Chromium。
 
-BrowserFetcher 操作一个修订版本字符串，修订版本字符串指定一个 Chromium 的确切版本，例如 `"533271"`。修订版本字符串可以从 [omahaproxy.appspot.com](http://omahaproxy.appspot.com/) 获取。
+BrowserFetcher 操作一个修订版本字符串，修订版本字符串指定了一个 Chromium 的确定版本，例如 `"533271"`。修订版本字符串可以从 [omahaproxy.appspot.com](http://omahaproxy.appspot.com/) 获取。
 
-如何使用 BrowserFetcher 下载一个指定版本的 Chromium 并且 Puppeteer 使用其运行的例子：
+见下面这个例子，告诉你如何使用 BrowserFetcher 下载一个指定版本的 Chromium：
 
 ```js
 const browserFetcher = puppeteer.createBrowserFetcher();
@@ -20,13 +20,13 @@ const revisionInfo = await browserFetcher.download('533271');
 const browser = await puppeteer.launch({executablePath: revisionInfo.executablePath})
 ```
 
-> **注意** BrowserFetcher 不适用于与共享下载目录的其他实例同时运行.
+> **注意** BrowserFetcher 不适用于与共享下载目录的其他实例同时运行。
 
 #### browserFetcher.canDownload(revision)
 - `revision` <[string]> 修订版本号, 检查其可用性
 - returns: <[Promise]<[boolean]>> 返回 `true` 如果该修订版本可以从主机下载
 
-该方法发起一个 HEAD 请求来检查该修订版本是否有效。
+该方法将会发起一个 HEAD 请求来检查该修订版本是否有效。
 
 #### browserFetcher.download(revision[, progressCallback])
 - `revision` <[string]> 下载的修订版本
@@ -40,7 +40,7 @@ const browser = await puppeteer.launch({executablePath: revisionInfo.executableP
   - `url` <[string]> URL 该修订版本的下载路径
   - `local` <[boolean]> 该修订版本是否是在本地的磁盘上是可用的
 
-该方法发起一个 GET 请求来从主机下载该修订版本.
+该方法将会发起一个 GET 请求来从主机下载该修订版本。
 
 #### browserFetcher.localRevisions()
 - returns: <[Promise]<[Array]<[string]>>> 一个列表, 包含所有的在本地磁盘可用的修订版本

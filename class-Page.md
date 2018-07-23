@@ -87,7 +87,7 @@
 
 Page 提供操作一个 tab 页或者 [extension background page](https://developer.chrome.com/extensions/background_pages) 的方法。一个 [Browser] 实例可以有多个 [Page] 实例。
 
-下面的例子创建一个 Page实例，导航到一个url，然后保存截图：
+下面的例子创建一个 Page 实例，导航到一个 url ，然后保存截图：
 ```js
 const puppeteer = require('puppeteer');
 
@@ -98,14 +98,14 @@ puppeteer.launch().then(async browser => {
   await browser.close();
 });
 ```
-Page会触发多种事件（下面描述的），可以用`node` [原生的方法](https://nodejs.org/api/events.html#events_class_eventemitter)来捕获处理，比如`on`, `once` 或者 `removeListener`。
+Page会触发多种事件（下面描述的），可以用 `node` [原生的方法](https://nodejs.org/api/events.html#events_class_eventemitter) 来捕获处理，比如 `on`,`once` 或者 `removeListener`。
 
-下面的例子捕获了一个`page`实例的`load`事件，打印了一句话：
+下面的例子捕获了一个 `page` 实例的 `load` 事件，打印了一句话：
 ```js
 page.once('load', () => console.log('Page loaded!'));
 ```
 
-可以用`removeListener`取消对事件的监听：
+可以用 `removeListener` 取消对事件的监听：
 
 ```js
 function logRequest(interceptedRequest) {
@@ -123,11 +123,11 @@ page.removeListener('request', logRequest);
 #### 事件: 'console'
 - <[ConsoleMessage]>
 
-当页面js代码调用了`console`的某个方法，比如`console.log`，或者`console.dir`的时候触发。（如果不监听这个事件，js源码的console语句不会输出）。当页面抛出一个错误或者经过的时候也会触发。
+当页面js代码调用了 `console` 的某个方法，比如 `console.log`，或者 `console.dir` 的时候触发。（如果不监听这个事件，js源码的console语句不会输出）。当页面抛出一个错误或者经过的时候也会触发。
 
-js源码中传给`console.log`的参数，会传给`console`事件的监听器。
+js源码中传给 `console.log` 的参数，会传给 `console` 事件的监听器。
 
-一个监听`console`事件的例子：
+一个监听 `console` 事件的例子：
 ```js
 page.on('console', msg => {
   for (let i = 0; i < msg.args().length; ++i)
@@ -143,30 +143,29 @@ page.evaluate(() => console.log('hello', 5, {foo: 'bar'})); // 这个代码表�
 
 #### 事件: 'domcontentloaded'
 
-当页面的[`DOMContentLoaded`](https://developer.mozilla.org/en-US/docs/Web/Events/DOMContentLoaded)事件被触发时触发。
+当页面的 [`DOMContentLoaded`](https://developer.mozilla.org/en-US/docs/Web/Events/DOMContentLoaded)事件被触发时触发。
 
 #### 事件: 'error'
 - <[Error]>
 
 当页面崩溃时触发。
 
-> **注意** `error` 在`node`中有特殊的意义, 点击 [error events](https://nodejs.org/api/events.html#events_error_events) 查看详情.
+> **注意** `error` 在 `node` 中有特殊的意义, 点击 [error events](https://nodejs.org/api/events.html#events_error_events) 查看详情。
 
 #### 事件: 'frameattached'
 - <[Frame]>
-Tips：没用过`iframe`相关的api，直译的
 
-当`iframe`加载的时候触发。
+当 `iframe` 加载的时候触发。
 
 #### 事件: 'framedetached'
 - <[Frame]>
 
-当`iframe`从页面移除的时候触发。
+当 `iframe` 从页面移除的时候触发。
 
 #### 事件: 'framenavigated'
 - <[Frame]>
 
-当`iframe`导航到新的url时触发。
+当 `iframe` 导航到新的 url 时触发。
 
 #### 事件: 'load'
 
@@ -174,10 +173,10 @@ Tips：没用过`iframe`相关的api，直译的
 
 #### 事件: 'metrics'
 - <[Object]>
-  - `title` <[string]> 传给 `console.timeStamp` 方法的title参数.
+  - `title` <[string]> 传给 `console.timeStamp` 方法的title参数。
   - `metrics` <[Object]> 包含度量对象的键值对，值是<[number]>类型
 
-当页面js代码调用了`console.timeStamp`方法时触发。`page.metrics`章节有描述所有的metrics。
+当页面js代码调用了 `console.timeStamp` 方法时触发。`page.metrics` 章节有描述所有的 metrics。
 
 #### 事件: 'pageerror'
 - <[Error]> 异常信息
@@ -187,8 +186,8 @@ Tips：没用过`iframe`相关的api，直译的
 #### 事件: 'request'
 - <[Request]>
 
-当页面发送一个请求时触发。参数[request]对象是只读的。
-如果需要拦截并且改变请求，参考`page.setRequestInterception`章节。
+当页面发送一个请求时触发。参数 [request] 对象是只读的。
+如果需要拦截并且改变请求，参考 `page.setRequestInterception` 章节。
 
 #### 事件: 'requestfailed'
 - <[Request]>
@@ -203,43 +202,43 @@ Tips：没用过`iframe`相关的api，直译的
 #### 事件: 'response'
 - <[Response]>
 
-当页面的某个请求接收到对应的[response]时触发。
+当页面的某个请求接收到对应的 [response] 时触发。
 
 #### 事件: 'workercreated'
 - <Worker>
 
-当页面生成专用的 [WebWorker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API) 时触发。
+当页面生成相应的 [WebWorker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API) 时触发。
 
 #### 事件: 'workerdestroyed'
 - <Worker>
 
-当页面终止专用的 [WebWorker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API) 时触发。
+当页面终止相应的 [WebWorker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API) 时触发。
 
 #### page.$(selector)
 - `selector` <[string]> 选择器
 - 返回: <[Promise]<?[ElementHandle]>>
 
-此方法在页面内执行`document.querySelector`。如果没有元素匹配指定选择器，返回值是`null`。
+此方法在页面内执行 `document.querySelector`。如果没有元素匹配指定选择器，返回值是 `null`。
 
-[page.mainFrame().$(selector)](#frameselector)的简写。
+[page.mainFrame().$(selector)](#frameselector) 的简写。
 
 #### page.$$(selector)
 - `selector` <[string]> 选择器
 - 返回: <[Promise]<[Array]<[ElementHandle]>>>
 
-此方法在页面内执行`document.querySelectorAll`。如果没有元素匹配指定选择器，返回值是`[]`。
+此方法在页面内执行 `document.querySelectorAll`。如果没有元素匹配指定选择器，返回值是 `[]`。
 
-[page.mainFrame().$$(selector)](#frameselector-1)的简写。
+[page.mainFrame().$$(selector)](#frameselector-1) 的简写。
 
 #### page.$$eval(selector, pageFunction[, ...args])
 - `selector` <[string]> 一个框架选择器
 - `pageFunction` <[function]> 在浏览器实例上下文中要执行的方法
-- `...args` <...[Serializable]|[JSHandle]> 要传给`pageFunction`的参数。（比如你的代码里生成了一个变量，在页面中执行方法时需要用到，可以通过这个`args`传进去）
-- 返回: <[Promise]<[Serializable]>> Promise对象，完成后是`pageFunction`的返回值
+- `...args` <...[Serializable]|[JSHandle]> 要传给 `pageFunction` 的参数。（比如你的代码里生成了一个变量，在页面中执行方法时需要用到，可以通过这个 `args` 传进去）
+- 返回: <[Promise]<[Serializable]>> Promise对象，完成后是 `pageFunction` 的返回值
 
-此方法在页面内执行 `Array.from(document.querySelectorAll(selector))`，然后把匹配到的元素数组作为第一个参数传给`pageFunction`。
+此方法在页面内执行 `Array.from(document.querySelectorAll(selector))`，然后把匹配到的元素数组作为第一个参数传给 `pageFunction`。
 
-如果`pageFunction`返回的是[Promise]，那么此方法会等promise完成后返回其返回值。
+如果 `pageFunction` 返回的是 [Promise]，那么此方法会等 promise 完成后返回其返回值。
 
 示例:
 ```js
@@ -249,12 +248,12 @@ const divsCounts = await page.$$eval('div', divs => divs.length);
 #### page.$eval(selector, pageFunction[, ...args])
 - `selector` <[string]> 选择器
 - `pageFunction` <[function]> 在浏览器实例上下文中要执行的方法
-- `...args` <...[Serializable]|[JSHandle]> 要传给`pageFunction`的参数。（比如你的代码里生成了一个变量，在页面中执行方法时需要用到，可以通过这个`args`传进去）
-- 返回: <[Promise]<[Serializable]>> Promise对象，完成后是`pageFunction`的返回值
+- `...args` <...[Serializable]|[JSHandle]> 要传给 `pageFunction` 的参数。（比如你的代码里生成了一个变量，在页面中执行方法时需要用到，可以通过这个 `args` 传进去）
+- 返回: <[Promise]<[Serializable]>> Promise对象，完成后是 `pageFunction` 的返回值
 
-此方法在页面内执行`document.querySelector`，然后把匹配到的元素作为第一个参数传给`pageFunction`。
+此方法在页面内执行 `document.querySelector`，然后把匹配到的元素作为第一个参数传给 `pageFunction`。
 
-如果`pageFunction`返回的是[Promise]，那么此方法会等promise完成后返回其返回值。
+如果 `pageFunction` 返回的是 [Promise]，那么此方法会等 promise 完成后返回其返回值。
 
 示例:
 ```js
@@ -263,7 +262,7 @@ const preloadHref = await page.$eval('link[rel=preload]', el => el.href);
 const html = await page.$eval('.main-container', e => e.outerHTML);
 ```
 
-[page.mainFrame().$eval(selector, pageFunction)](#frameevalselector-pagefunction-args)的简写。
+[page.mainFrame().$eval(selector, pageFunction)](#frameevalselector-pagefunction-args) 的简写。
 
 #### page.$x(expression)
 - `expression` <[string]> XPath表达式，参考： [evaluate](https://developer.mozilla.org/en-US/docs/Web/API/Document/evaluate).
@@ -271,19 +270,19 @@ const html = await page.$eval('.main-container', e => e.outerHTML);
 
 此方法解析指定的XPath表达式。
 
-[page.mainFrame().$x(expression)](#framexexpression)的简写。
+[page.mainFrame().$x(expression)](#framexexpression) 的简写。
 
 #### page.addScriptTag(options)
 - `options` <[Object]>
   - `url` <[string]> 要添加的script的src
-  - `path` <[string]> 要注入frame的js文件路径. 如果`path` 是相对路径, 那么相对 [当前路径](https://nodejs.org/api/process.html#process_process_cwd)解析。
+  - `path` <[string]> 要注入frame的js文件路径. 如果 `path` 是相对路径, 那么相对 [当前路径](https://nodejs.org/api/process.html#process_process_cwd) 解析。
   - `content` <[string]> 要注入页面的js代码（即<script>content</script>）
-  - `type` <[string]> 脚本类型。 如果要注入`ES6 module`，值为'module'。点击 [script](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) 查看详情。
-- 返回: <[Promise]<[ElementHandle]>> Promise对象，即注入完成的tag标签。当script的onload触发或者代码被注入到frame。
+  - `type` <[string]> 脚本类型。 如果要注入 `ES6 module`，值为'module'。点击 [script](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) 查看详情。
+- 返回: <[Promise]<[ElementHandle]>> Promise对象，即注入完成的tag标签。当 script 的 onload 触发或者代码被注入到 frame。
 
-注入一个指定src(url)或者代码(content)的`script`标签到当前页面。
+注入一个指定src(url)或者代码(content)的 `script` 标签到当前页面。
 
-[page.mainFrame().addScriptTag(options)](#frameaddscripttagoptions)的简写。
+[page.mainFrame().addScriptTag(options)](#frameaddscripttagoptions) 的简写。
 
 #### page.addStyleTag(options)
 - `options` <[Object]>
@@ -292,10 +291,10 @@ const html = await page.$eval('.main-container', e => e.outerHTML);
   - `content` <[string]> css代码（即<style>content</style>）
 - 返回: <[Promise]<[ElementHandle]>> Promise对象，即注入完成的tag标签。当style的onload触发或者代码被注入到frame。
 
-添加一个指定link(url)的`<link rel="stylesheet">`标签。
-或者添加一个指定代码(content)的`<style type="text/css">`标签。
+添加一个指定link(url)的 `<link rel="stylesheet">` 标签。
+或者添加一个指定代码(content)的 `<style type="text/css">` 标签。
 
-[page.mainFrame().addStyleTag(options)](#frameaddstyletagoptions)的简写。
+[page.mainFrame().addStyleTag(options)](#frameaddstyletagoptions) 的简写。
 
 #### page.authenticate(credentials)
 - `credentials` <?[Object]>
@@ -303,9 +302,9 @@ const html = await page.$eval('.main-container', e => e.outerHTML);
   - `password` <[string]>
 - 返回: <[Promise]>
 
-为[http authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication)提供认证凭据 。
+为[http authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication) 提供认证凭据 。
 
-传`null`禁用认证。
+传 `null` 禁用认证。
 
 #### page.bringToFront()
 
@@ -317,20 +316,20 @@ const html = await page.$eval('.main-container', e => e.outerHTML);
 
 - 返回: <[Browser]>
 
-得到当前page实例所属的browser实例。
+得到当前 page 实例所属的 browser 实例。
 
 #### page.click(selector[, options])
 - `selector` <[string]> 要点击的元素的选择器。 如果有多个匹配的元素, 点击第一个。
 - `options` <[Object]>
-  - `button` <[string]> `left`, `right`, 或者 `middle`, 默认是 `left`.
-  - `clickCount` <[number]> 默认是 1. 查看 [UIEvent.detail].
+  - `button` <[string]> `left`, `right`, 或者 `middle`, 默认是 `left`。
+  - `clickCount` <[number]> 默认是 1. 查看 [UIEvent.detail]。
   - `delay` <[number]> `mousedown` 和 `mouseup` 之间停留的时间，单位是毫秒。默认是0
 - 返回: <[Promise]> Promise对象，匹配的元素被点击。 如果没有元素被点击，Promise对象将被rejected。
 
-此方法找到一个匹配`selector`选择器的元素，如果需要会把此元素滚动到可视，然后通过[page.mouse](#pagemouse)点击它。
+此方法找到一个匹配 `selector` 选择器的元素，如果需要会把此元素滚动到可视，然后通过 [page.mouse](#pagemouse) 点击它。
 如果选择器没有匹配任何元素，此方法将会报错。
 
-要注意如果`click()`触发了一个跳转，会有一个独立的`page.waitForNavigation()`Promise对象需要等待。
+要注意如果 `click()` 触发了一个跳转，会有一个独立的 `page.waitForNavigation()` Promise对象需要等待。
 正确的等待点击后的跳转是这样的：
 
 ```javascript
@@ -340,22 +339,22 @@ const [response] = await Promise.all([
 ]);
 ```
 
-[page.mainFrame().click(selector[, options])](#frameclickselector-options)的简写。
+[page.mainFrame().click(selector[, options])](#frameclickselector-options) 的简写。
 
 #### page.close(options)
 - `options` <[Object]>
   - `runBeforeUnload` <[boolean]> 默认 `false`. 是否执行 [before unload](https://developer.mozilla.org/en-US/docs/Web/Events/beforeunload)
 - 返回: <[Promise]>
 
-`page.close()`默认不执行 before unload
+`page.close()` 在 beforeunload 处理之前默认不执行
 
-> **注意** 如果`runBeforeUnload`设置为true，可能会弹出一个`beforeunload`对话框。
-> 这个对话框需要通过页面的['dialog'](#event-dialog)事件手动处理。
+> **注意** 如果 `runBeforeUnload` 设置为true，可能会弹出一个 `beforeunload` 对话框。
+> 这个对话框需要通过页面的 ['dialog'](#event-dialog) 事件手动处理。
 
 #### page.content()
 - 返回: <[Promise]<[String]>>
 
-返回页面的完整html代码，包括doctype。
+返回页面的完整 html 代码，包括 doctype。
 
 #### page.cookies(...urls)
 - `...urls` <...[string]>
@@ -368,10 +367,10 @@ const [response] = await Promise.all([
   - `httpOnly` <[boolean]>
   - `secure` <[boolean]>
   - `session` <[boolean]>
-  - `sameSite` <[string]> `"Strict"` 或者 `"Lax"`.
+  - `sameSite` <[string]> `"Strict"` 或者 `"Lax"`。
 
-如果不指定任何url，此方法返回当前页面域名的cookie。
-如果指定了url，只返回指定的url下的cookie。
+如果不指定任何 url，此方法返回当前页面域名的 cookie。
+如果指定了 url，只返回指定的 url 下的 cookie。
 
 #### page.coverage
 
@@ -391,19 +390,19 @@ const [response] = await Promise.all([
   - `viewport` <[Object]>
     - `width` <[number]> 页面的宽度，单位像素.
     - `height` <[number]> 页面的高度，单位像素.
-    - `deviceScaleFactor` <[number]> 定义设备缩放， (类似于 dpr). 默认 `1`.
-    - `isMobile` <[boolean]> 要不要包含`meta viewport` 标签. 默认 `false`.
-    - `hasTouch`<[boolean]> 指定终端是否支持触摸. 默认 `false`
-    - `isLandscape` <[boolean]> 指定终端是不是 landscape 模式. 默认 `false`.
+    - `deviceScaleFactor` <[number]> 定义设备缩放， (类似于 dpr). 默认 `1`。
+    - `isMobile` <[boolean]> 要不要包含`meta viewport` 标签. 默认 `false`。
+    - `hasTouch`<[boolean]> 指定终端是否支持触摸。默认 `false`
+    - `isLandscape` <[boolean]> 指定终端是不是 landscape 模式. 默认 `false`。
   - `userAgent` <[string]>
 - 返回: <[Promise]>
 
-根据指定的参数和user agent生成模拟器。此方法是和下面两个方法效果相同：
+根据指定的参数和 user agent 生成模拟器。此方法是和下面两个方法效果相同：
 - [page.setUserAgent(userAgent)](#pagesetuseragentuseragent)
 - [page.setViewport(viewport)](#pagesetviewportviewport)
 
-为了辅助模拟器，puppeteer提供了一些设备的参数描述，可以通过`require('puppeteer/DeviceDescriptors')`命令引入。
-下面是通过puppeteer生成iPhone 6模拟器的例子：
+为了支持模拟器，puppeteer 提供了一些设备的参数选项，可以通过 `require('puppeteer/DeviceDescriptors')` 命令引入。
+下面是通过 puppeteer 生成 iPhone 6 模拟器的例子：
 ```js
 const puppeteer = require('puppeteer');
 const devices = require('puppeteer/DeviceDescriptors');
@@ -413,15 +412,15 @@ puppeteer.launch().then(async browser => {
   const page = await browser.newPage();
   await page.emulate(iPhone);
   await page.goto('https://www.google.com');
-  // other actions...
+  // 其他操作...
   await browser.close();
 });
 ```
 
-可用的设备可以在这里找到： [DeviceDescriptors.js](https://github.com/GoogleChrome/puppeteer/blob/master/DeviceDescriptors.js).
+支持的设备可以在这里找到： [DeviceDescriptors.js](https://github.com/GoogleChrome/puppeteer/blob/master/DeviceDescriptors.js)。
 
 #### page.emulateMedia(mediaType)
-- `mediaType` <?[string]> 改变页面的css媒体类型. 支持的值仅包括 `'screen'`, `'print'` 和 `null`. 传`null`禁用媒体模拟（译者注：不太懂，原文：disable media emulation）
+- `mediaType` <?[string]> 改变页面的css媒体类型。支持的值仅包括 `'screen'`, `'print'` 和 `null`。传 `null` 禁用媒体模拟
 - 返回: <[Promise]>
 
 #### page.evaluate(pageFunction, ...args)
@@ -437,15 +436,15 @@ puppeteer.launch().then(async browser => {
 ```js
 const result = await page.evaluate(x => {
   return Promise.resolve(8 * x);
-}, 7); // 译者注： 7 可以是你自己代码里任意方式得到的值
-console.log(result); // prints "56"
+}, 7); // （译者注： 7 可以是你自己代码里任意方式得到的值）
+console.log(result); // 输出 "56"
 ```
 
 也可以传一个字符串：
 ```js
-console.log(await page.evaluate('1 + 2')); // prints "3"
+console.log(await page.evaluate('1 + 2')); // 输出 "3"
 const x = 10;
-console.log(await page.evaluate(`1 + ${x}`)); // prints "11"
+console.log(await page.evaluate(`1 + ${x}`)); // 输出 "11"
 ```
 
 [ElementHandle] 实例 可以作为参数传给 `page.evaluate`:
@@ -455,14 +454,14 @@ const html = await page.evaluate(body => body.innerHTML, bodyHandle);
 await bodyHandle.dispose();
 ```
 
-[page.mainFrame().evaluate(pageFunction, ...args)](#frameevaluatepagefunction-args)的简写。
+[page.mainFrame().evaluate(pageFunction, ...args)](#frameevaluatepagefunction-args) 的简写。
 
 #### page.evaluateHandle(pageFunction, ...args)
 - `pageFunction` <[function]|[string]> 要在页面实例上下文中执行的方法
 - `...args` <...[Serializable]|[JSHandle]> 要传给 `pageFunction` 的参数
 - 返回: <[Promise]<[JSHandle]>> `pageFunction` 执行的结果 页内类型(JSHandle)
 
-此方法和`page.evaluate`的唯一区别是此方法返回的是页内类型(JSHandle)
+此方法和 `page.evaluate` 的唯一区别是此方法返回的是页内类型(JSHandle)
 
 如果传给此方法的方法（参数）返回的是Promise对象，将等待promise完成并返回其返回值
 
@@ -479,7 +478,7 @@ console.log(await resultHandle.jsonValue());
 await resultHandle.dispose();
 ```
 
-[page.mainFrame().executionContext().evaluateHandle(pageFunction, ...args)](#executioncontextevaluatehandlepagefunction-args)的简写。
+[page.mainFrame().executionContext().evaluateHandle(pageFunction, ...args)](#executioncontextevaluatehandlepagefunction-args) 的简写。
 
 #### page.evaluateOnNewDocument(pageFunction, ...args)
 - `pageFunction` <[function]|[string]> 要在页面实例上下文中执行的方法
@@ -490,9 +489,9 @@ await resultHandle.dispose();
 - 页面导航完成后
 - 页面的iframe加载或导航完成。这种场景，指定的函数被调用的上下文是新加载的iframe。
 
-指定的函数在所属的页面被创建并且所属页面的任意script执行之前被调用。常用于修改页面js环境，比如给`Math.random`设定种子
+指定的函数在所属的页面被创建并且所属页面的任意 script 执行之前被调用。常用于修改页面js环境，比如给 `Math.random` 设定种子
 
-下面是在页面加载前重写`navigator.languages`属性的例子：
+下面是在页面加载前重写 `navigator.languages` 属性的例子：
 
 ```js
 // preload.js
@@ -514,12 +513,12 @@ await page.evaluateOnNewDocument(preloadFile);
 - `puppeteerFunction` <[function]> 调用name方法时实际执行的方法
 - 返回: <[Promise]>
 
-此方法添加一个命名为`name`的方法到页面的`window`对象
-当调用`name`方法时，在`node.js`中执行`puppeteerFunction`，并且返回Promise对象，resolve后返回`puppeteerFunction`的返回值
+此方法添加一个命名为 `name` 的方法到页面的 `window` 对象
+当调用 `name` 方法时，在 `node.js` 中执行 `puppeteerFunction`，并且返回 Promise 对象，解析后返回 `puppeteerFunction` 的返回值
 
-如果`puppeteerFunction`返回的是Promise对象，此方法会等其resolve后再返回
+如果 `puppeteerFunction` 返回的是 Promise 对象，此方法会等其解析后再返回
 
-> **注意** 通过`page.exposeFunction`挂载到页面的方法在多次跳转后扔有用（好像是这么个意思，下面一句是原文）
+> **注意** 通过 `page.exposeFunction` 挂载到页面的方法在多次跳转后扔有用
 (原文：> **NOTE** Functions installed via `page.exposeFunction` survive navigations.)
 
 添加md5()到页面的例子：
@@ -534,7 +533,7 @@ puppeteer.launch().then(async browser => {
     crypto.createHash('md5').update(text).digest('hex')
   );
   await page.evaluate(async () => {
-    // use window.md5 to compute hashes
+    // 使用 window.md5 计算哈希
     const myString = 'PUPPETEER';
     const myHash = await window.md5(myString);
     console.log(`md5 of ${myString} is ${myHash}`);
@@ -543,7 +542,7 @@ puppeteer.launch().then(async browser => {
 });
 ```
 
-添加readfile()到页面的例子：
+添加 readfile() 到页面的例子：
 
 ```js
 const puppeteer = require('puppeteer');
@@ -563,7 +562,7 @@ puppeteer.launch().then(async browser => {
     });
   });
   await page.evaluate(async () => {
-    // use window.readfile to read contents of a file
+    // 使用 window.readfile 读取文件内容
     const content = await window.readfile('/etc/hosts');
     console.log(content);
   });
@@ -573,35 +572,35 @@ puppeteer.launch().then(async browser => {
 ```
 
 #### page.focus(selector)
-- `selector` <[string]> 要给焦点的元素的选择器[selector]. 如果有多个匹配的元素，焦点给第一个元素。
+- `selector` <[string]> 要给焦点的元素的选择器[selector]。如果有多个匹配的元素，焦点给第一个元素。
 - 返回: <[Promise]> Promise对象，当`selector`选择器匹配的元素获得焦点后resolve。如果没有元素匹配指定选择器，将会rejected。
 
 此方法找到一个匹配`selector`的元素，并且把焦点给它。
 如果没有匹配的元素，此方法将报错。
 
-[page.mainFrame().focus(selector)](#framefocusselector)的简写。
+[page.mainFrame().focus(selector)](#framefocusselector) 的简写。
 
 #### page.frames()
 - 返回: <[Array]<[Frame]>> 加载到页面中的所有iframe标签
 
 #### page.goBack(options)
 - `options` <[Object]> 导航配置，可选值：
-  - `timeout` <[number]> 跳转等待时间，单位是毫秒, 默认是30秒, 传 `0` 表示无限等待. 可以通过[page.setDefaultNavigationTimeout(timeout)](#pagesetdefaultnavigationtimeouttimeout)方法修改默认值
+  - `timeout` <[number]> 跳转等待时间，单位是毫秒, 默认是30秒, 传 `0` 表示无限等待。可以通过[page.setDefaultNavigationTimeout(timeout)](#pagesetdefaultnavigationtimeouttimeout)方法修改默认值
   - `waitUntil` <[string]|[Array]<[string]>> 满足什么条件认为页面跳转完成，默认是`load`事件触发时。指定事件数组，那么所有事件触发后才认为是跳转完成。事件包括：
     - `load` - 页面的load事件触发时
     - `domcontentloaded` - 页面的`DOMContentLoaded`事件触发时
     - `networkidle0` - 不再有网络连接时触发（至少500毫秒后）
     - `networkidle2` - 只有2个网络连接时触发（至少500毫秒后）
-- 返回: <[Promise]<?[Response]>> Promise对象resolve后是主要的请求的响应. 如果有多个跳转, resolve后是最后一次跳转的响应. 如果不能回退，resolve后是null
+- 返回: <[Promise]<?[Response]>> Promise对象resolve后是主要的请求的响应。如果有多个跳转, resolve后是最后一次跳转的响应. 如果不能回退，解析后是null
 
 导航到页面历史的前一个页面。
 
 #### page.goForward(options)
 - `options` <[Object]> 导航配置，可选值：
-  - `timeout` <[number]> 跳转等待时间，单位是毫秒, 默认是30秒, 传 `0` 表示无限等待. 可以通过[page.setDefaultNavigationTimeout(timeout)](#pagesetdefaultnavigationtimeouttimeout)方法修改默认值
-  - `waitUntil` <[string]|[Array]<[string]>> 满足什么条件认为页面跳转完成，默认是`load`事件触发时。指定事件数组，那么所有事件触发后才认为是跳转完成。事件包括：
+  - `timeout` <[number]> 跳转等待时间，单位是毫秒, 默认是30秒, 传 `0` 表示无限等待。可以通过[page.setDefaultNavigationTimeout(timeout)](#pagesetdefaultnavigationtimeouttimeout)方法修改默认值
+  - `waitUntil` <[string]|[Array]<[string]>> 满足什么条件认为页面跳转完成，默认是 `load` 事件触发时。指定事件数组，那么所有事件触发后才认为是跳转完成。事件包括：
     - `load` - 页面的load事件触发时
-    - `domcontentloaded` - 页面的`DOMContentLoaded`事件触发时
+    - `domcontentloaded` - 页面的 `DOMContentLoaded` 事件触发时
     - `networkidle0` - 不再有网络连接时触发（至少500毫秒后）
     - `networkidle2` - 只有2个网络连接时触发（至少500毫秒后）
 - 返回: <[Promise]<?[Response]>> Promise对象resolve后是主要的请求的响应. 如果有多个跳转, resolve后是最后一次跳转的响应. 如果不能向前，resolve后是null
@@ -611,13 +610,13 @@ puppeteer.launch().then(async browser => {
 #### page.goto(url, options)
 - `url` <[string]> 导航到的地址. 地址应该带有http协议, 比如 `https://`.
 - `options` <[Object]> 导航配置，可选值：
-  - `timeout` <[number]> 跳转等待时间，单位是毫秒, 默认是30秒, 传 `0` 表示无限等待. 可以通过[page.setDefaultNavigationTimeout(timeout)](#pagesetdefaultnavigationtimeouttimeout)方法修改默认值
-  - `waitUntil` <[string]|[Array]<[string]>> 满足什么条件认为页面跳转完成，默认是`load`事件触发时。指定事件数组，那么所有事件触发后才认为是跳转完成。事件包括：
+  - `timeout` <[number]> 跳转等待时间，单位是毫秒, 默认是30秒, 传 `0` 表示无限等待。可以通过[page.setDefaultNavigationTimeout(timeout)](#pagesetdefaultnavigationtimeouttimeout)方法修改默认值
+  - `waitUntil` <[string]|[Array]<[string]>> 满足什么条件认为页面跳转完成，默认是 `load` 事件触发时。指定事件数组，那么所有事件触发后才认为是跳转完成。事件包括：
     - `load` - 页面的load事件触发时
-    - `domcontentloaded` - 页面的`DOMContentLoaded`事件触发时
+    - `domcontentloaded` - 页面的 `DOMContentLoaded` 事件触发时
     - `networkidle0` - 不再有网络连接时触发（至少500毫秒后）
     - `networkidle2` - 只有2个网络连接时触发（至少500毫秒后）
-- 返回: <[Promise]<?[Response]>> Promise对象resolve后是主要的请求的响应. 如果有多个跳转, resolve后是最后一次跳转的响应
+- 返回: <[Promise]<?[Response]>> Promise对象resolve后是主要的请求的响应。如果有多个跳转, resolve后是最后一次跳转的响应
 
 以下情况此方法将报错： 
 - 发生了 SSL 错误 (比如有些自签名的https证书).
@@ -626,23 +625,23 @@ puppeteer.launch().then(async browser => {
 - 主页面不能加载
 - the main resource failed to load.
 
-> **注意** `page.goto` 抛出或返回主页面的响应。唯一的例外是导航到 `about：blank` 或导航到具有不同散列的相同URL，这将成功并返回`null`。
+> **注意** `page.goto` 抛出或返回主页面的响应。唯一的例外是导航到 `about：blank` 或导航到具有不同散列的相同URL，这将成功并返回 `null`。
 
-> **注意** 无头模式不支持打开pdf文件。查看[upstream issue](https://bugs.chromium.org/p/chromium/issues/detail?id=761295).
+> **注意** 无头模式不支持打开pdf文件。查看 [upstream issue](https://bugs.chromium.org/p/chromium/issues/detail?id=761295)。
 
 #### page.hover(selector)
-- `selector` <[string]> 要hover的元素的选择器. 如果有多个匹配的元素，hover第一个。
+- `selector` <[string]> 要hover的元素的选择器。如果有多个匹配的元素，hover第一个。
 - 返回: <[Promise]> Promise对象，当匹配的元素成功被hover后resolve。如果没有匹配的元素，将会rejected。
 
-此方法找到一个匹配的元素，如果需要会把此元素滚动到可视，然后通过[page.mouse](#pagemouse)来hover到元素的中间。
+此方法找到一个匹配的元素，如果需要会把此元素滚动到可视，然后通过 [page.mouse](#pagemouse) 来hover到元素的中间。
 如果没有匹配的元素，此方法将会报错。
 
-[page.mainFrame().hover(selector)](#framehoverselector)的简写。
+[page.mainFrame().hover(selector)](#framehoverselector) 的简写。
 
 #### page.isClosed()
 - returns: boolean
 
-指示页面是否被关闭。
+表示页面是否被关闭。
 
 #### page.keyboard
 
@@ -651,23 +650,23 @@ puppeteer.launch().then(async browser => {
 #### page.mainFrame()
 - 返回: <[Frame]> 返回页面的主frame
 
-保证页面一直有有一个主frame
+保证页面一直有有一个主 frame
 
 #### page.metrics()
 - 返回: <[Promise]<[Object]>> 包含指标数据的键值对：
   - `Timestamp` <[number]> 时间点(when the metrics sample was taken)
-  - `Documents` <[number]> 页面的documents数量.
-  - `Frames` <[number]> 页面的iframe数量.
-  - `JSEventListeners` <[number]> 页面的js事件数量.
-  - `Nodes` <[number]> 页面的dom节点数量.
-  - `LayoutCount` <[number]> 整页面或部分页面的布局数量.
-  - `RecalcStyleCount` <[number]> 页面样式重新计算数量.
-  - `LayoutDuration` <[number]> 页面布局总时间(Combined durations of all page layouts).
-  - `RecalcStyleDuration` <[number]> 页面样式重新计算总时间(Combined duration of all page style recalculations).
-  - `ScriptDuration` <[number]> 页面js代码执行总时间(Combined duration of JavaScript execution).
-  - `TaskDuration` <[number]> 页面任务执行总时间(Combined duration of all tasks performed by the browser).
-  - `JSHeapUsedSize` <[number]> 页面占用堆内存大小(Used JavaScript heap size).
-  - `JSHeapTotalSize` <[number]> 总的页面堆内存大小(Total JavaScript heap size).
+  - `Documents` <[number]> 页面的documents数量。
+  - `Frames` <[number]> 页面的iframe数量。
+  - `JSEventListeners` <[number]> 页面的js事件数量。
+  - `Nodes` <[number]> 页面的dom节点数量。
+  - `LayoutCount` <[number]> 整页面或部分页面的布局数量。
+  - `RecalcStyleCount` <[number]> 页面样式重新计算数量。
+  - `LayoutDuration` <[number]> 页面布局总时间。
+  - `RecalcStyleDuration` <[number]> 页面样式重新计算总时间。
+  - `ScriptDuration` <[number]> 页面js代码执行总时间。
+  - `TaskDuration` <[number]> 页面任务执行总时间。
+  - `JSHeapUsedSize` <[number]> 页面占用堆内存大小。
+  - `JSHeapTotalSize` <[number]> 总的页面堆内存大小。
 
 > **注意** All timestamps are in monotonic time: monotonically increasing time in seconds since an arbitrary point in the past.
 
@@ -687,22 +686,22 @@ puppeteer.launch().then(async browser => {
     - `pageNumber` 当前页码
     - `totalPages` 总页数
   - `footerTemplate` <[string]> 页脚的html模板。和页眉模板变量相同。
-  - `printBackground` <[boolean]> 是否打印背景图. 默认是 `false`.
+  - `printBackground` <[boolean]> 是否打印背景图. 默认是 `false`。
   - `landscape` <[boolean]> 页面横向(?Paper orientation). 默认为 `false`.
-  - `pageRanges` <[string]> 要输出的页码范围, 比如, '1-5, 8, 11-13'. 默认是空字符串，表示全部页码.
-  - `format` <[string]> 页面格式. 如果设置了，将覆盖 `width` 和 `height` 配置. 默认是 'Letter'.
-  - `width` <[string]> 页面宽度, 接受带单位的字符串.
-  - `height` <[string]> 页面高度, 接受带单位的字符串.
+  - `pageRanges` <[string]> 要输出的页码范围, 比如, '1-5, 8, 11-13'。默认是空字符串，表示全部页码。
+  - `format` <[string]> 页面格式。如果设置了，将覆盖 `width` 和 `height` 配置. 默认是 'Letter'。
+  - `width` <[string]> 页面宽度, 接受带单位的字符串。
+  - `height` <[string]> 页面高度, 接受带单位的字符串。
   - `margin` <[Object]> 页面空白白边配置，默认是空
     - `top` <[string]> 顶部的白边
     - `right` <[string]> 右侧白边, 接受带单位的字符串
     - `bottom` <[string]> 底部白边, 接受带单位的字符串
     - `left` <[string]> 左侧白边, 接受带单位的字符串
-- 返回: <[Promise]<[Buffer]>> Promise对象，resolve后是pdf buffer.
+- 返回: <[Promise]<[Buffer]>> Promise对象，resolve后是pdf buffer。
 
-> **注意** 目前仅支持无头模式的Chrome
+> **注意** 目前仅支持无头模式的 Chrome
 
-`page.pdf()` 生成当前页面的pdf格式，带着`pring` css media。如果要生成带着`screen` media的pdf，在`page.pdf()`前面先调用[page.emulateMedia('screen')](#pageemulatemediamediatype)
+`page.pdf()` 生成当前页面的pdf格式，带着 `pring` css media。如果要生成带着 `screen` media的pdf，在`page.pdf()` 前面先调用 [page.emulateMedia('screen')](#pageemulatemediamediatype)
 
 > **注意** 默认情况下，`page.pdf()` 生成一个带有修改颜色的 pdf 用于打印。 使用[`-webkit-print-color-adjust`]（https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-print-color-adjust）属性强制渲染精确的颜色。
 
@@ -749,35 +748,35 @@ await page.pdf({path: 'page.pdf'});
 此方法遍历js堆栈，找到所有带有指定原型的对象
 
 ```js
-// Create a Map object
+// 创建 Map 对象
 await page.evaluate(() => window.map = new Map());
-// Get a handle to the Map object prototype
+// 获取 Map 对象的原型
 const mapPrototype = await page.evaluateHandle(() => Map.prototype);
-// Query all map instances into an array
+// 查询所有的 map 实例，存储为一个数组
 const mapInstances = await page.queryObjects(mapPrototype);
-// Count amount of map objects in heap
+// 计算堆栈中 map 对象的数量
 const count = await page.evaluate(maps => maps.length, mapInstances);
 await mapInstances.dispose();
 await mapPrototype.dispose();
 ```
 
-[page.mainFrame().executionContext().queryObjects(prototypeHandle)](#executioncontextqueryobjectsprototypehandle)的简写
+[page.mainFrame().executionContext().queryObjects(prototypeHandle)](#executioncontextqueryobjectsprototypehandle) 的简写
 
 #### page.reload(options)
 - `options` <[Object]> 导航配置，可选值：
-  - `timeout` <[number]> 跳转等待时间，单位是毫秒, 默认是30秒, 传 `0` 表示无限等待. 可以通过[page.setDefaultNavigationTimeout(timeout)](#pagesetdefaultnavigationtimeouttimeout)方法修改默认值
-  - `waitUntil` <[string]|[Array]<[string]>> 满足什么条件认为页面跳转完成，默认是`load`事件触发时。指定事件数组，那么所有事件触发后才认为是跳转完成。事件包括：
+  - `timeout` <[number]> 跳转等待时间，单位是毫秒, 默认是30秒, 传 `0` 表示无限等待。可以通过[page.setDefaultNavigationTimeout(timeout)](#pagesetdefaultnavigationtimeouttimeout)方法修改默认值
+  - `waitUntil` <[string]|[Array]<[string]>> 满足什么条件认为页面跳转完成，默认是 `load` 事件触发时。指定事件数组，那么所有事件触发后才认为是跳转完成。事件包括：
     - `load` - 页面的load事件触发时
-    - `domcontentloaded` - 页面的`DOMContentLoaded`事件触发时
+    - `domcontentloaded` - 页面的 `DOMContentLoaded` 事件触发时
     - `networkidle0` - 不再有网络连接时触发（至少500毫秒后）
     - `networkidle2` - 只有2个网络连接时触发（至少500毫秒后）
-- 返回: <[Promise]<?[Response]>> Promise对象resolve后是主要的请求的响应. 如果有多个跳转, resolve后是最后一次跳转的响应
+- 返回: <[Promise]<?[Response]>> Promise对象解析后是主要的请求的响应. 如果有多个跳转, 解析后是最后一次跳转的响应
 
 #### page.screenshot([options])
 - `options` <[Object]> 可选配置：
   - `path` <[string]> 截图保存路径。截图图片类型将从文件扩展名推断出来。如果是相对路径，则从[当前路径](https://nodejs.org/api/process.html#process_process_cwd)解析。如果没有指定路径，图片将不会保存到硬盘。
-  - `type` <[string]> 指定截图类型, 可以是 `jpeg` 或者 `png`. 默认 'png'.
-  - `quality` <[number]> 图片质量, 可选值 0-100. `png` 类型不适用.
+  - `type` <[string]> 指定截图类型, 可以是 `jpeg` 或者 `png`。默认 'png'.
+  - `quality` <[number]> 图片质量, 可选值 0-100. `png` 类型不适用。
   - `fullPage` <[boolean]> 如果设置为true，则对完整的页面（需要滚动的部分也包含在内）。默认是false
   - `clip` <[Object]> 指定裁剪区域。需要配置：
     - `x` <[number]> 裁剪区域相对于左上角（0， 0）的x坐标
@@ -799,11 +798,11 @@ await mapPrototype.dispose();
 如果没有元素匹配指定选择器，将报错。
 
 ```js
-page.select('select#colors', 'blue'); // single selection
-page.select('select#colors', 'red', 'green', 'blue'); // multiple selections
+page.select('select#colors', 'blue'); // 单选择器
+page.select('select#colors', 'red', 'green', 'blue'); // 多选择器
 ```
 
-[page.mainFrame().select()](#frameselectselector-values)的简写
+[page.mainFrame().select()](#frameselectselector-values) 的简写
 
 #### page.setBypassCSP(enabled)
 - `enabled` <[boolean]> 设置绕过页面的安全政策
@@ -811,7 +810,7 @@ page.select('select#colors', 'red', 'green', 'blue'); // multiple selections
 
 设置绕过页面的安全政策
 
-> **注意** CSP 发生在 CSP 初始化而不是评估阶段. 也就是说应该在导航到这个域名前设置
+> **注意** CSP 发生在 CSP 初始化而不是评估阶段。也就是说应该在导航到这个域名前设置
 
 #### page.setCacheEnabled(enabled)
 - `enabled` <[boolean]> 设置缓存的 `enabled` 状态
@@ -833,7 +832,7 @@ page.select('select#colors', 'red', 'green', 'blue'); // multiple selections
   - `expires` <[number]> Unix time in seconds.
   - `httpOnly` <[boolean]>
   - `secure` <[boolean]>
-  - `sameSite` <[string]> `"Strict"` or `"Lax"`.
+  - `sameSite` <[string]> `"Strict"` 或 `"Lax"`。
 - 返回: <[Promise]>
 
 #### page.setDefaultNavigationTimeout(timeout)
@@ -861,14 +860,14 @@ page.select('select#colors', 'red', 'green', 'blue'); // multiple selections
 > **注意** 改变这个值不会影响已经执行的js。下一个跳转会完全起作用。
 
 #### page.setOfflineMode(enabled)
-- `enabled` <[boolean]> 设置 `true`, 启用离线模式.
+- `enabled` <[boolean]> 设置 `true`, 启用离线模式。
 - 返回: <[Promise]>
 
 #### page.setRequestInterception(value)
 - `value` <[boolean]> 是否启用请求拦截器
 - 返回: <[Promise]>
 
-启用请求拦截器，会激活`request.abort`, `request.continue` 和`request.respond`方法。这提供了修改页面发出的网络请求的功能。
+启用请求拦截器，会激活 `request.abort`, `request.continue` 和 `request.respond` 方法。这提供了修改页面发出的网络请求的功能。
 
 通过请求拦截器取消所有图片请求：
 ```js
@@ -898,13 +897,13 @@ puppeteer.launch().then(async browser => {
 - `viewport` <[Object]>
   - `width` <[number]> 宽度，单位是像素
   - `height` <[number]> 高度，单位是像素
-  - `deviceScaleFactor` <[number]> 定义设备缩放， (类似于 dpr). 默认 `1`.
-  - `isMobile` <[boolean]> 要不要包含`meta viewport` 标签. 默认 `false`.
-  - `hasTouch`<[boolean]> 指定终端是否支持触摸. 默认 `false`
-  - `isLandscape` <[boolean]> 指定终端是不是 landscape 模式. 默认 `false`.
+  - `deviceScaleFactor` <[number]> 定义设备缩放， (类似于 dpr)。 默认 `1`。
+  - `isMobile` <[boolean]> 要不要包含`meta viewport` 标签。 默认 `false`。
+  - `hasTouch`<[boolean]> 指定终端是否支持触摸。 默认 `false`
+  - `isLandscape` <[boolean]> 指定终端是不是 landscape 模式。 默认 `false`。
 - 返回: <[Promise]>
 
-> **注意** 在大部分情况下，改变viewport会重新加载页面以设置`isMobile` 或者`hasTouch`
+> **注意** 在大部分情况下，改变 viewport 会重新加载页面以设置 `isMobile` 或者 `hasTouch`
 
 如果是一个浏览器多个页面的情况，每个页面都可以有单独的viewport
 
@@ -912,10 +911,10 @@ puppeteer.launch().then(async browser => {
 - `selector` <[string]> 要点击的元素的选择器。如果有多个匹配的元素，点击第一个
 - 返回: <[Promise]>
 
-此方法找到一个匹配的元素，如果需要会把此元素滚动到可视，然后通过[page.touchscreen](#pagetouchscreen)来点击元素的中间位置
+此方法找到一个匹配的元素，如果需要会把此元素滚动到可视，然后通过 [page.touchscreen](#pagetouchscreen) 来点击元素的中间位置
 如果没有匹配的元素，此方法会报错
 
-[page.mainFrame().tap(selector)](#frametapselector)的简写
+[page.mainFrame().tap(selector)](#frametapselector) 的简写
 
 #### page.target()
 - 返回: <[Target]> a target this page was created from.
@@ -932,36 +931,36 @@ puppeteer.launch().then(async browser => {
 - returns: <[Tracing]>
 
 #### page.type(selector, text[, options])
-- `selector` <[string]> 要输入内容的元素选择器. 如果有多个匹配的元素，输入到第一个匹配的元素.
+- `selector` <[string]> 要输入内容的元素选择器。如果有多个匹配的元素，输入到第一个匹配的元素。
 - `text` <[string]> 要输入的内容
 - `options` <[Object]>
-  - `delay` <[number]> 每个字符输入的延迟，单位是毫秒. 默认是 0.
+  - `delay` <[number]> 每个字符输入的延迟，单位是毫秒。默认是 0。
 - 返回: <[Promise]>
 
-每个字符输入后都会触发`keydown`, `keypress`/`input` 和 `keyup` 事件
+每个字符输入后都会触发 `keydown`, `keypress`/`input` 和 `keyup` 事件
 
-要点击特殊按键，比如`Control` 或 `ArrowDown`，用[`keyboard.press`](#keyboardpresskey-options)
+要点击特殊按键，比如 `Control` 或 `ArrowDown`，用 [`keyboard.press`](#keyboardpresskey-options)
 
 ```js
-page.type('#mytextarea', 'Hello'); // Types instantly
-page.type('#mytextarea', 'World', {delay: 100}); // Types slower, like a user
+page.type('#mytextarea', 'Hello'); // 立即输入
+page.type('#mytextarea', 'World', {delay: 100}); // 输入变慢，像一个用户
 ```
 
-[page.mainFrame().type(selector, text[, options])](#frametypeselector-text-options)的简写
+[page.mainFrame().type(selector, text[, options])](#frametypeselector-text-options) 的简写
 
 #### page.url()
 - 返回: <[string]>
 
-[page.mainFrame().url()](#frameurl)的简写
+[page.mainFrame().url()](#frameurl) 的简写
 
 #### page.viewport()
 - 返回: <[Object]>
   - `width` <[number]> 宽度，单位是像素
   - `height` <[number]> 高度，单位是像素
-  - `deviceScaleFactor` <[number]> 定义设备缩放， (类似于 dpr). 默认 `1`.
-  - `isMobile` <[boolean]> 要不要包含`meta viewport` 标签. 默认 `false`.
-  - `hasTouch`<[boolean]> 指定终端是否支持触摸. 默认 `false`
-  - `isLandscape` <[boolean]> 指定终端是不是 landscape 模式. 默认 `false`.
+  - `deviceScaleFactor` <[number]> 定义设备缩放， (类似于 dpr)。 默认 `1`。
+  - `isMobile` <[boolean]> 要不要包含`meta viewport` 标签。 默认 `false`。
+  - `hasTouch`<[boolean]> 指定终端是否支持触摸。 默认 `false`
+  - `isLandscape` <[boolean]> 指定终端是不是 landscape 模式。 默认 `false`。
 
 #### page.waitFor(selectorOrFunctionOrTimeout[, options[, ...args]])
 - `selectorOrFunctionOrTimeout` <[string]|[number]|[function]> 选择器, 方法 或者 超时时间
@@ -970,7 +969,7 @@ page.type('#mytextarea', 'World', {delay: 100}); // Types slower, like a user
 - returns: <[Promise]<[JSHandle]>> Promise which resolves to a JSHandle of the success value
 
 此方法根据第一个参数的不同有不同的结果：
-- 如果 `selectorOrFunctionOrTimeout` 是 `string`, 那么认为是 css 选择器或者一个xpath, 根据是不是 '//'开头, 这时候此方法是
+- 如果 `selectorOrFunctionOrTimeout` 是 `string`, 那么认为是 css 选择器或者一个xpath, 根据是不是'//'开头, 这时候此方法是
   [page.waitForSelector](#pagewaitforselectorselector-options) 或 [page.waitForXPath](#pagewaitforxpathxpath-options)的简写
 - 如果 `selectorOrFunctionOrTimeout` 是 `function`, 那么认为是一个predicate，这时候此方法是[page.waitForFunction()](#pagewaitforfunctionpagefunction-options-args)的简写
 - 如果 `selectorOrFunctionOrTimeout` 是 `number`, 那么认为是超时时间，单位是毫秒，返回的是Promise对象,在指定时间后resolve
@@ -984,7 +983,7 @@ page.type('#mytextarea', 'World', {delay: 100}); // Types slower, like a user
   - `polling` <[string]|[number]> An interval at which the `pageFunction` is executed, defaults to `raf`. If `polling` is a number, then it is treated as an interval in milliseconds at which the function would be executed. If `polling` is a string, then it can be one of the following values:
     - `raf` - to constantly execute `pageFunction` in `requestAnimationFrame` callback. This is the tightest polling mode which is suitable to observe styling changes.
     - `mutation` - to execute `pageFunction` on every DOM mutation.
-  - `timeout` <[number]> 最长时间，单位是毫秒. 默认 `30000` (30 seconds). 传 `0` 表示不会超时.
+  - `timeout` <[number]> 最长时间，单位是毫秒. 默认 `30000` (30 seconds). 传 `0` 表示不会超时。
 - `...args` <...[Serializable]|[JSHandle]> 传给  `pageFunction`的参数
 - returns: <[Promise]<[JSHandle]>> Promise 对象，当 `pageFunction` 返回等于true的结果时resolve, resolves 为结果的 JSHandle 类型
 
@@ -1000,24 +999,24 @@ puppeteer.launch().then(async browser => {
   await browser.close();
 });
 ```
-[page.mainFrame().waitForFunction(pageFunction[, options[, ...args]])](#framewaitforfunctionpagefunction-options-args)的简写
+[page.mainFrame().waitForFunction(pageFunction[, options[, ...args]])](#framewaitforfunctionpagefunction-options-args) 的简写
 
 #### page.waitForNavigation(options)
 - `options` <[Object]> 导航配置，可选值：
   - `timeout` <[number]> 跳转等待时间，单位是毫秒, 默认是30秒, 传 `0` 表示无限等待. 可以通过[page.setDefaultNavigationTimeout(timeout)](#pagesetdefaultnavigationtimeouttimeout)方法修改默认值
-  - `waitUntil` <[string]|[Array]<[string]>> 满足什么条件认为页面跳转完成，默认是`load`事件触发时。指定事件数组，那么所有事件触发后才认为是跳转完成。事件包括：
+  - `waitUntil` <[string]|[Array]<[string]>> 满足什么条件认为页面跳转完成，默认是 `load` 事件触发时。指定事件数组，那么所有事件触发后才认为是跳转完成。事件包括：
     - `load` - 页面的load事件触发时
     - `domcontentloaded` - 页面的`DOMContentLoaded`事件触发时
     - `networkidle0` - 不再有网络连接时触发（至少500毫秒后）
     - `networkidle2` - 只有2个网络连接时触发（至少500毫秒后）
 - 返回: <[Promise]<[?Response]>> Promise对象resolve后是主要的请求的响应。如果有多个跳转, resolve后是最后一次跳转的响应。如果由于使用 History API 而导航到不同的锚点或导航，导航将以 `null` 解析。
 
-此方法在页面跳转到一个新地址或重新加载时resolve，如果你的代码会间接引起页面跳转，这个方法比较有用：
+此方法在页面跳转到一个新地址或重新加载时解析，如果你的代码会间接引起页面跳转，这个方法比较有用：
 比如这个例子：
 
 ```js
 const navigationPromise = page.waitForNavigation();
-await page.click('a.my-link'); // Clicking the link will indirectly cause a navigation
+await page.click('a.my-link'); // 单击该链接将间接导致导航
 await navigationPromise; // The navigationPromise resolves after navigation has finished
 ```
 
@@ -1050,8 +1049,8 @@ return finalResponse.ok();
 #### page.waitForSelector(selector[, options])
 - `selector` <[string]> 要等待的元素选择器
 - `options` <[Object]> 可选参数：
-  - `visible` <[boolean]> 等元素出现在dom中并且可以看到, 比如. 没有 `display: none` 或者 `visibility: hidden` 样式. 默认是 `false`.
-  - `hidden` <[boolean]> 等元素在dom中消失或看不到, 比如. 有 `display: none` 或者 `visibility: hidden` 样式. 默认是 `false`.
+  - `visible` <[boolean]> 等元素出现在dom中并且可以看到, 比如。 没有 `display: none` 或者 `visibility: hidden` 样式。 默认是 `false`。
+  - `hidden` <[boolean]> 等元素在dom中消失或看不到, 比如。 有 `display: none` 或者 `visibility: hidden` 样式。 默认是 `false`。
   - `timeout` <[number]> 最大等待时间，单位是毫秒，默认是`30000` (30 seconds)，传0表示不会超时
 - 返回: <[Promise]<[ElementHandle]>> Promise对象，当指定选择器匹配的元素添加到dom中时resolve
 
@@ -1073,7 +1072,7 @@ puppeteer.launch().then(async browser => {
   await browser.close();
 });
 ```
-[page.mainFrame().waitForSelector(selector[, options])](#framewaitforselectorselector-options)的简写
+[page.mainFrame().waitForSelector(selector[, options])](#framewaitforselectorselector-options) 的简写
 
 #### page.waitForXPath(xpath[, options])
 - `xpath` <[string]> 要等待的元素的xpath

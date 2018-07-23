@@ -23,7 +23,7 @@ const result = await executionContext.evaluate(() => Promise.resolve(8 * 7));
 console.log(result); // 输出 "56"
 ```
 
-一个字符串也可以被传入而不是一个函数。
+入参可以是一个字符串，但不能是函数。
 
 ```js
 console.log(await executionContext.evaluate('1 + 2')); // 输出 "3"
@@ -36,7 +36,7 @@ const twoHandle = await executionContext.evaluateHandle(() => 2);
 const result = await executionContext.evaluate((a, b) => a + b, oneHandle, twoHandle);
 await oneHandle.dispose();
 await twoHandle.dispose();
-console.log(result); // 输出 '3'.
+console.log(result); // 输出 '3'
 ```
 
 #### executionContext.evaluateHandle(pageFunction, ...args)
@@ -44,20 +44,20 @@ console.log(result); // 输出 '3'.
 - `...args` <...[Serializable]|[JSHandle]> 传递给 `pageFunction` 的参数
 - returns: <[Promise]<[JSHandle]>> Promise which resolves to the return value of `pageFunction` as in-page object (JSHandle)
 
-`executionContext.evaluate` 和 `executionContext.evaluateHandle` 唯一的区别在于`executionContext.evaluateHandle` 返回页内对象（JSHandle）。
+`executionContext.evaluate` 和 `executionContext.evaluateHandle` 唯一的区别在于`executionContext.evaluateHandle` 会返回页内对象（JSHandle）。
 
 如果传递给 `executionContext.evaluateHandle` 的函数返回一个 [Promise]，那么`executionContext.evaluateHandle`将等待承诺解析并返回它的值。
 
 ```js
 const context = await page.mainFrame().executionContext();
 const aHandle = await context.evaluateHandle(() => Promise.resolve(self));
-aHandle; // 处理全局对象。
+aHandle; // 处理全局对象
 ```
 
-一个字符串也可以被传入而不是一个函数。
+入参可以是一个字符串，但不能是函数。
 
 ```js
-const aHandle = await context.evaluateHandle('1 + 2'); // 处理'3'对象。
+const aHandle = await context.evaluateHandle('1 + 2'); // 处理'3'对象
 ```
 
 [JSHandle] 实例可以作为参数传递给 `executionContext.evaluateHandle`：
@@ -72,7 +72,7 @@ await resultHandle.dispose();
 #### executionContext.frame()
 - returns: <?[Frame]> 与此执行上下文相关的框架。
 
-> **注意** 并非每个执行的上下文都与一个框架相关联。 例如，workers 和扩展程序具有与框架无关的执行上下文。
+> **注意** 并非每个执行的上下文都与框架有关系。 例如，workers 和扩展程序具有与框架无关的执行上下文。
 
 #### executionContext.queryObjects(prototypeHandle)
 - `prototypeHandle` <[JSHandle]> 对象原型的句柄
