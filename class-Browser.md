@@ -3,7 +3,9 @@
   * [event: 'targetchanged'](#event-targetchanged)
   * [event: 'targetcreated'](#event-targetcreated)
   * [event: 'targetdestroyed'](#event-targetdestroyed)
+  * [browser.browserContexts()](#browserbrowsercontexts)
   * [browser.close()](#browserclose)
+  * [browser.createIncognitoBrowserContext()](#browsercreateincognitobrowsercontext)
   * [browser.disconnect()](#browserdisconnect)
   * [browser.newPage()](#browsernewpage)
   * [browser.pages()](#browserpages)
@@ -113,6 +115,7 @@ await page.goto('https://example.com');
 #### browser.pages()
 - returns: <[Promise]<[Array]<[Page]>>> 返回一个包含所有打开的页面的数组。页面不可见的，比如 `"background_page"` 将不会列在这。不过你可以通过 [target.page()](#targetpage) 找到它们。
 
+### browser.process()
 - returns: <?[ChildProcess]> 产生浏览器的进程。如果浏览器实例是由 [`puppeteer.connect`](#puppeteerconnectoptions) 方法创建的则返回null。
 
 #### browser.targets()

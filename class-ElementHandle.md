@@ -1,6 +1,6 @@
 - [class: ElementHandle](#class-elementhandle)
   * [elementHandle.$(selector)](#elementhandleselector)
-  * [elementHandle.$$(selector)](#elementhandleselector)
+  * [elementHandle.$$(selector)](#elementhandleselector-1)
   * [elementHandle.$$eval(selector, pageFunction, ...args)](#elementhandleevalselector-pagefunction-args)
   * [elementHandle.$eval(selector, pageFunction, ...args)](#elementhandleevalselector-pagefunction-args-1)
   * [elementHandle.$x(expression)](#elementhandlexexpression)
