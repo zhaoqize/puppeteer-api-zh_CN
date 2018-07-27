@@ -4,8 +4,6 @@
 [![GitHub license](https://img.shields.io/github/license/zhaoqize/puppeteer-api-zh_CN.svg)](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)]()
 
-### 介绍
-
 Puppeteer是一个Node库，它提供了一个高级API来通过DevTools协议控制Chromium或Chrome。
 
 Puppeteer API是分层次的，反映了浏览器结构。 

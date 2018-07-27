@@ -1,12 +1,4 @@
-- [class: JSHandle](#class-jshandle)
-  * [jsHandle.asElement()](#jshandleaselement)
-  * [jsHandle.dispose()](#jshandledispose)
-  * [jsHandle.executionContext()](#jshandleexecutioncontext)
-  * [jsHandle.getProperties()](#jshandlegetproperties)
-  * [jsHandle.getProperty(propertyName)](#jshandlegetpropertypropertyname)
-  * [jsHandle.jsonValue()](#jshandlejsonvalue)
-
-### class: JSHandle
+#### class: JSHandle
 
 JSHandle 表示页面内的 JavaScript 对象。 JSHandles 可以使用 [page.evaluateHandle](＃pageevaluatehandlepagefunction-args) 方法创建。
 

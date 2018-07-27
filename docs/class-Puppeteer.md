@@ -1,11 +1,4 @@
-- [class: Puppeteer](#class-puppeteer)
-  * [puppeteer.connect(options)](#puppeteerconnectoptions)
-  * [puppeteer.createBrowserFetcher([options])](#puppeteercreatebrowserfetcheroptions)
-  * [puppeteer.defaultArgs()](#puppeteerdefaultargs)
-  * [puppeteer.executablePath()](#puppeteerexecutablepath)
-  * [puppeteer.launch([options])](#puppeteerlaunchoptions)
-
-### class: Puppeteer
+#### class: Puppeteer
 
 Puppeteer 模块提供了一种启动 Chromium 实例的方法。
 下面就是使用 Puppeteer 进行自动化的一个典型示例：

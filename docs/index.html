@@ -14,8 +14,19 @@
     window.$docsify = {
       name: 'Puppeteer API v1.6.0',
       repo: 'https://github.com/zhaoqize/puppeteer-api-zh_CN',
-      loadSidebar: true,
       auto2top: true,
+      loadSidebar: true,
+      mergeNavbar: true,
+      maxLevel: 4,
+      subMaxLevel: 4,
+      search: {
+        maxAge: 86400000, // 过期时间，单位毫秒，默认一天
+        paths: 'auto', // or 'auto'
+        placeholder: '搜索...',
+        noData: '搜索无结果...',
+        depth: 4 // 搜索标题的最大程级, 1 - 6
+      },
+      formatUpdated: '{MM}/{DD} {HH}:{mm}',
       ga: 'UA-122080504-1'
     }
   </script>

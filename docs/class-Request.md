@@ -1,19 +1,4 @@
-- [class: Request](#class-request)
-  * [request.abort([errorCode])](#requestaborterrorcode)
-  * [request.continue([overrides])](#requestcontinueoverrides)
-  * [request.failure()](#requestfailure)
-  * [request.frame()](#requestframe)
-  * [request.headers()](#requestheaders)
-  * [request.isNavigationRequest()](#requestisnavigationrequest)
-  * [request.method()](#requestmethod)
-  * [request.postData()](#requestpostdata)
-  * [request.redirectChain()](#requestredirectchain)
-  * [request.resourceType()](#requestresourcetype)
-  * [request.respond(response)](#requestrespondresponse)
-  * [request.response()](#requestresponse)
-  * [request.url()](#requesturl)
-
-### class: Request
+#### class: Request
 
 每当页面发送一个请求，例如网络请求，以下事件会被 puppeteer 页面触发：
 - ['request'](#event-request) 当请求发起后页面会触发这个事件。

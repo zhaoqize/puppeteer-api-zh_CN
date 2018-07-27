@@ -1,10 +1,4 @@
-- [class: Mouse](#class-mouse)
-  * [mouse.click(x, y, [options])](#mouseclickx-y-options)
-  * [mouse.down([options])](#mousedownoptions)
-  * [mouse.move(x, y, [options])](#mousemovex-y-options)
-  * [mouse.up([options])](#mouseupoptions)
-
-### class: Mouse
+#### class: Mouse
 
 #### mouse.click(x, y, [options])
 - `x` <[number]>

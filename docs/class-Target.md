@@ -1,11 +1,4 @@
-- [class: Target](#class-target)
-  * [target.createCDPSession()](#targetcreatecdpsession)
-  * [target.opener()](#targetopener)
-  * [target.page()](#targetpage)
-  * [target.type()](#targettype)
-  * [target.url()](#targeturl)
-
-### class: Target
+#### class: Target
 
 #### target.browser()
 

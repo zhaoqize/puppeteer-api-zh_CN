@@ -1,34 +1,4 @@
-- [class: Frame](#class-frame)
-  * [frame.$(selector)](#frameselector)
-  * [frame.$$(selector)](#frameselector-1)
-  * [frame.$$eval(selector, pageFunction[, ...args])](#frameevalselector-pagefunction-args)
-  * [frame.$eval(selector, pageFunction[, ...args])](#frameevalselector-pagefunction-args-1)
-  * [frame.$x(expression)](#framexexpression)
-  * [frame.addScriptTag(options)](#frameaddscripttagoptions)
-  * [frame.addStyleTag(options)](#frameaddstyletagoptions)
-  * [frame.childFrames()](#framechildframes)
-  * [frame.click(selector[, options])](#frameclickselector-options)
-  * [frame.content()](#framecontent)
-  * [frame.evaluate(pageFunction, ...args)](#frameevaluatepagefunction-args)
-  * [frame.evaluateHandle(pageFunction, ...args)](#frameevaluatehandlepagefunction-args)
-  * [frame.executionContext()](#frameexecutioncontext)
-  * [frame.focus(selector)](#framefocusselector)
-  * [frame.hover(selector)](#framehoverselector)
-  * [frame.isDetached()](#frameisdetached)
-  * [frame.name()](#framename)
-  * [frame.parentFrame()](#frameparentframe)
-  * [frame.select(selector, ...values)](#frameselectselector-values)
-  * [frame.setContent(html)](#framesetcontenthtml)
-  * [frame.tap(selector)](#frametapselector)
-  * [frame.title()](#frametitle)
-  * [frame.type(selector, text[, options])](#frametypeselector-text-options)
-  * [frame.url()](#frameurl)
-  * [frame.waitFor(selectorOrFunctionOrTimeout[, options[, ...args]])](#framewaitforselectororfunctionortimeout-options-args)
-  * [frame.waitForFunction(pageFunction[, options[, ...args]])](#framewaitforfunctionpagefunction-options-args)
-  * [frame.waitForSelector(selector[, options])](#framewaitforselectorselector-options)
-  * [frame.waitForXPath(xpath[, options])](#framewaitforxpathxpath-options)
-
-### class: Frame
+#### class: Frame
 
 在每一个时间点，页面通过 [page.mainFrame()](#pagemainframe) 和 [frame.childFrames()](#framechildframes) 方法暴露当前框架的细节。
 

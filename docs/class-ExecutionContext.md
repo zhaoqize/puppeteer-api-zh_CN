@@ -1,10 +1,4 @@
-- [class: ExecutionContext](#class-executioncontext)
-  * [executionContext.evaluate(pageFunction, ...args)](#executioncontextevaluatepagefunction-args)
-  * [executionContext.evaluateHandle(pageFunction, ...args)](#executioncontextevaluatehandlepagefunction-args)
-  * [executionContext.frame()](#executioncontextframe)
-  * [executionContext.queryObjects(prototypeHandle)](#executioncontextqueryobjectsprototypehandle)
-
-### class: ExecutionContext
+#### class: ExecutionContext
 
 该类表示 JavaScript 执行的上下文。JavaScript 上下文的例子是：
 - 每个 [frame](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe) 都有一个单独的执行上下文

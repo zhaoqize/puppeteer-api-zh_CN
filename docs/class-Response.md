@@ -1,17 +1,4 @@
-- [class: Response](#class-response)
-  * [response.buffer()](#responsebuffer)
-  * [response.fromCache()](#responsefromcache)
-  * [response.fromServiceWorker()](#responsefromserviceworker)
-  * [response.headers()](#responseheaders)
-  * [response.json()](#responsejson)
-  * [response.ok()](#responseok)
-  * [response.request()](#responserequest)
-  * [response.securityDetails()](#responsesecuritydetails)
-  * [response.status()](#responsestatus)
-  * [response.text()](#responsetext)
-  * [response.url()](#responseurl)
-
-### class: Response
+#### class: Response
 
 [Response] 类表示页面接收的响应。
 

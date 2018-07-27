@@ -1,11 +1,4 @@
-- [class: Keyboard](#class-keyboard)
-  * [keyboard.down(key[, options])](#keyboarddownkey-options)
-  * [keyboard.press(key[, options])](#keyboardpresskey-options)
-  * [keyboard.sendCharacter(char)](#keyboardsendcharacterchar)
-  * [keyboard.type(text, options)](#keyboardtypetext-options)
-  * [keyboard.up(key)](#keyboardupkey)
-
-### class: Keyboard
+#### class: Keyboard
 
 Keyboard 提供一个接口来管理虚拟键盘. 高级接口为 [`keyboard.type`](#keyboardtypetext-options), 其接收原始字符, 然后在你的页面上生成对应的 keydown, keypress/input, 和  keyup 事件.
 

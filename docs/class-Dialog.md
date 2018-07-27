@@ -1,11 +1,4 @@
-- [class: Dialog](#class-dialog)
-  * [dialog.accept([promptText])](#dialogacceptprompttext)
-  * [dialog.defaultValue()](#dialogdefaultvalue)
-  * [dialog.dismiss()](#dialogdismiss)
-  * [dialog.message()](#dialogmessage)
-  * [dialog.type()](#dialogtype)
-
-### class: Dialog
+#### class: Dialog
 
 [Dialog] 对象通过 ['dialog'](#event-dialog) 事件的页面分发。
 

@@ -1,4 +1,4 @@
-### Working with Chrome Extensions
+** 使用 Chrome 扩展程序 **
 
 Puppeteer 可以用来测试 Chrome 扩展
 

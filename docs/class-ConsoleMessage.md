@@ -1,9 +1,4 @@
-- [class: ConsoleMessage](#class-consolemessage)
-  * [consoleMessage.args()](#consolemessageargs)
-  * [consoleMessage.text()](#consolemessagetext)
-  * [consoleMessage.type()](#consolemessagetype)
-
-### class: ConsoleMessage
+#### class: ConsoleMessage
 
 [ConsoleMessage] 对象由页面通过 ['console'](#event-console) 事件分发。
 

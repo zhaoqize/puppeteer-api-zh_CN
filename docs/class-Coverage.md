@@ -1,10 +1,4 @@
-- [class: Coverage](#class-coverage)
-  * [coverage.startCSSCoverage(options)](#coveragestartcsscoverageoptions)
-  * [coverage.startJSCoverage(options)](#coveragestartjscoverageoptions)
-  * [coverage.stopCSSCoverage()](#coveragestopcsscoverage)
-  * [coverage.stopJSCoverage()](#coveragestopjscoverage)
-
-### class: Coverage
+#### class: Coverage
 
 Coverage 收集相关页面使用的 JavaScript 和 CSS 部分的信息。
 

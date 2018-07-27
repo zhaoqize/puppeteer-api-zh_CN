@@ -1,8 +1,4 @@
-- [class: Tracing](#class-tracing)
-  * [tracing.start(options)](#tracingstartoptions)
-  * [tracing.stop()](#tracingstop)
-
-### class: Tracing
+#### class: Tracing
 
 你可以使用 [`tracing.start`](#tracingstartoptions) 和 [`tracing.stop`](#tracingstop) 创建一个可以在 Chrome DevTools or [timeline viewer](https://chromedevtools.github.io/timeline-viewer/) 中打开的跟踪文件。
 

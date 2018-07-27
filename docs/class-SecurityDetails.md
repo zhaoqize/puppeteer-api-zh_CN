@@ -1,11 +1,4 @@
-- [class: SecurityDetails](#class-securitydetails)
-  * [securityDetails.issuer()](#securitydetailsissuer)
-  * [securityDetails.protocol()](#securitydetailsprotocol)
-  * [securityDetails.subjectName()](#securitydetailssubjectname)
-  * [securityDetails.validFrom()](#securitydetailsvalidfrom)
-  * [securityDetails.validTo()](#securitydetailsvalidto)
-
-### class: SecurityDetails
+#### class: SecurityDetails
 
 [SecurityDetails] 类表示由页面接收的响应。
 

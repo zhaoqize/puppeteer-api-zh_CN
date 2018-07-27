@@ -1,14 +1,4 @@
-- [class: BrowserContext](#class-browsercontext)
-  * [event: 'targetchanged'](#event-targetchanged-1)
-  * [event: 'targetcreated'](#event-targetcreated-1)
-  * [event: 'targetdestroyed'](#event-targetdestroyed-1)
-  * [browserContext.browser()](#browsercontextbrowser)
-  * [browserContext.close()](#browsercontextclose)
-  * [browserContext.isIncognito()](#browsercontextisincognito)
-  * [browserContext.newPage()](#browsercontextnewpage)
-  * [browserContext.targets()](#browsercontexttargets)
-
-### class: BrowserContext
+#### class: BrowserContext
 
 * 继承自: [`EventEmitter`](https://nodejs.org/api/events.html#events_class_eventemitter)
 

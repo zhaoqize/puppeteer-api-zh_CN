@@ -1,8 +1,4 @@
-- [class: CDPSession](#class-cdpsession)
-  * [cdpSession.detach()](#cdpsessiondetach)
-  * [cdpSession.send(method[, params])](#cdpsessionsendmethod-params)
-
-### class: CDPSession
+#### class: CDPSession
 
 * extends: [`EventEmitter`](https://nodejs.org/api/events.html#events_class_eventemitter)
 

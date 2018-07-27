@@ -1,12 +1,4 @@
-- [class: BrowserFetcher](#class-browserfetcher)
-  * [browserFetcher.canDownload(revision)](#browserfetchercandownloadrevision)
-  * [browserFetcher.download(revision[, progressCallback])](#browserfetcherdownloadrevision-progresscallback)
-  * [browserFetcher.localRevisions()](#browserfetcherlocalrevisions)
-  * [browserFetcher.platform()](#browserfetcherplatform)
-  * [browserFetcher.remove(revision)](#browserfetcherremoverevision)
-  * [browserFetcher.revisionInfo(revision)](#browserfetcherrevisioninforevision)
-
-### class: BrowserFetcher
+#### class: BrowserFetcher
 
 BrowserFetcher 可以用来下载和管理不同版本的 Chromium。
 

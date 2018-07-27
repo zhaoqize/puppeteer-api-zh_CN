@@ -1,7 +1,4 @@
-- [class: Touchscreen](#class-touchscreen)
-  * [touchscreen.tap(x, y)](#touchscreentapx-y)
-
-### class: Touchscreen
+#### class: Touchscreen
 
 #### touchscreen.tap(x, y)
 - `x` <[number]>

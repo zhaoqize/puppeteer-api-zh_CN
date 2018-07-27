@@ -1,30 +1,4 @@
-- [class: ElementHandle](#class-elementhandle)
-  * [elementHandle.$(selector)](#elementhandleselector)
-  * [elementHandle.$$(selector)](#elementhandleselector-1)
-  * [elementHandle.$$eval(selector, pageFunction, ...args)](#elementhandleevalselector-pagefunction-args)
-  * [elementHandle.$eval(selector, pageFunction, ...args)](#elementhandleevalselector-pagefunction-args-1)
-  * [elementHandle.$x(expression)](#elementhandlexexpression)
-  * [elementHandle.asElement()](#elementhandleaselement)
-  * [elementHandle.boundingBox()](#elementhandleboundingbox)
-  * [elementHandle.boxModel()](#elementhandleboxmodel)
-  * [elementHandle.click([options])](#elementhandleclickoptions)
-  * [elementHandle.contentFrame()](#elementhandlecontentframe)
-  * [elementHandle.dispose()](#elementhandledispose)
-  * [elementHandle.executionContext()](#elementhandleexecutioncontext)
-  * [elementHandle.focus()](#elementhandlefocus)
-  * [elementHandle.getProperties()](#elementhandlegetproperties)
-  * [elementHandle.getProperty(propertyName)](#elementhandlegetpropertypropertyname)
-  * [elementHandle.hover()](#elementhandlehover)
-  * [elementHandle.isIntersectingViewport()](#elementhandleisintersectingviewport)
-  * [elementHandle.jsonValue()](#elementhandlejsonvalue)
-  * [elementHandle.press(key[, options])](#elementhandlepresskey-options)
-  * [elementHandle.screenshot([options])](#elementhandlescreenshotoptions)
-  * [elementHandle.tap()](#elementhandletap)
-  * [elementHandle.toString()](#elementhandletostring)
-  * [elementHandle.type(text[, options])](#elementhandletypetext-options)
-  * [elementHandle.uploadFile(...filePaths)](#elementhandleuploadfilefilepaths)
-
-### class: ElementHandle
+#### class: ElementHandle
 
 > **注意** [ElementHandle] 类继承自 [JSHandle]。
 
