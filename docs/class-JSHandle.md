@@ -1,3 +1,5 @@
+[📚 查看原文](//github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-jshandle)
+
 #### class: JSHandle
 
 JSHandle 表示页面内的 JavaScript 对象。 JSHandles 可以使用 [page.evaluateHandle](＃pageevaluatehandlepagefunction-args) 方法创建。

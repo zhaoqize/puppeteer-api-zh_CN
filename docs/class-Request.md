@@ -1,3 +1,5 @@
+[📚 查看原文](//github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-request)
+
 #### class: Request
 
 每当页面发送一个请求，例如网络请求，以下事件会被 puppeteer 页面触发：

@@ -1,3 +1,6 @@
+
+[📚 查看原文](//github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-coverage)
+
 #### class: Coverage
 
 Coverage 收集相关页面使用的 JavaScript 和 CSS 部分的信息。

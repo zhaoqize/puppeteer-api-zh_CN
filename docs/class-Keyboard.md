@@ -1,3 +1,5 @@
+[📚 查看原文](//github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-keyboard)
+
 #### class: Keyboard
 
 Keyboard 提供一个接口来管理虚拟键盘. 高级接口为 [`keyboard.type`](#keyboardtypetext-options), 其接收原始字符, 然后在你的页面上生成对应的 keydown, keypress/input, 和  keyup 事件.

@@ -1,3 +1,5 @@
+[📚 查看原文](//github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-consolemessage)
+
 #### class: ConsoleMessage
 
 [ConsoleMessage] 对象由页面通过 ['console'](#event-console) 事件分发。

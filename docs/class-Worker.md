@@ -1,3 +1,5 @@
+[📚 查看原文](//github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-worker)
+
 #### class: Worker
 
 Worker 类表示一个 [WebWorker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API)。在页面对象上 `workercreated` 和 `workerdestroyed` 事件被触发，以标识 worker 的生命周期。

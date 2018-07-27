@@ -1,3 +1,5 @@
+[📚 查看原文](//github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-securitydetails)
+
 #### class: SecurityDetails
 
 [SecurityDetails] 类表示由页面接收的响应。

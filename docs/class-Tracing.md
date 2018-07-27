@@ -1,3 +1,5 @@
+[📚 查看原文](//github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-tracing)
+
 #### class: Tracing
 
 你可以使用 [`tracing.start`](#tracingstartoptions) 和 [`tracing.stop`](#tracingstop) 创建一个可以在 Chrome DevTools or [timeline viewer](https://chromedevtools.github.io/timeline-viewer/) 中打开的跟踪文件。

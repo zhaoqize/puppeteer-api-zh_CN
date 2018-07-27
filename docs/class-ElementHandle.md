@@ -1,3 +1,5 @@
+[📚 查看原文](//github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-elementhandle)
+
 #### class: ElementHandle
 
 > **注意** [ElementHandle] 类继承自 [JSHandle]。

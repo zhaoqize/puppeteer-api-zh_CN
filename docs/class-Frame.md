@@ -1,3 +1,5 @@
+[📚 查看原文](//github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-frame)
+
 #### class: Frame
 
 在每一个时间点，页面通过 [page.mainFrame()](#pagemainframe) 和 [frame.childFrames()](#framechildframes) 方法暴露当前框架的细节。

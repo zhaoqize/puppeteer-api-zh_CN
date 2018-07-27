@@ -1,3 +1,5 @@
+[📚 查看原文](//github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-page)
+
 #### 类: Page
 
 * 继承: [`EventEmitter`](https://nodejs.org/api/events.html#events_class_eventemitter)

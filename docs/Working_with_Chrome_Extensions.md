@@ -1,3 +1,5 @@
+[📚 查看原文](//github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#working-with-chrome-extensions)
+
 ** 使用 Chrome 扩展程序 **
 
 Puppeteer 可以用来测试 Chrome 扩展

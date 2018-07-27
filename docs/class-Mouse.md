@@ -1,3 +1,5 @@
+[📚 查看原文](//github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-mouse)
+
 #### class: Mouse
 
 #### mouse.click(x, y, [options])

@@ -1,3 +1,5 @@
+[📚 查看原文](//github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-puppeteer)
+
 #### class: Puppeteer
 
 Puppeteer 模块提供了一种启动 Chromium 实例的方法。

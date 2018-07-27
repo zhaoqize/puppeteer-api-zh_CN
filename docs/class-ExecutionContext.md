@@ -1,3 +1,5 @@
+[📚 查看原文](//github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-executioncontext)
+
 #### class: ExecutionContext
 
 该类表示 JavaScript 执行的上下文。JavaScript 上下文的例子是：

@@ -1,3 +1,5 @@
+[📚 查看原文](//github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-dialog)
+
 #### class: Dialog
 
 [Dialog] 对象通过 ['dialog'](#event-dialog) 事件的页面分发。

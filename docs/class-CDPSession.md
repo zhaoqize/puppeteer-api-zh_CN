@@ -1,3 +1,5 @@
+[📚 查看原文](//github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-cdpsession)
+
 #### class: CDPSession
 
 * extends: [`EventEmitter`](https://nodejs.org/api/events.html#events_class_eventemitter)

@@ -1,3 +1,5 @@
+[📚 查看原文](//github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-response)
+
 #### class: Response
 
 [Response] 类表示页面接收的响应。

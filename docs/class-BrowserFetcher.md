@@ -1,3 +1,5 @@
+[📚 查看原文](//github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-browserfetcher)
+
 #### class: BrowserFetcher
 
 BrowserFetcher 可以用来下载和管理不同版本的 Chromium。
