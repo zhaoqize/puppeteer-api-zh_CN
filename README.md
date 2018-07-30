@@ -28,7 +28,7 @@
 - [class: Worker](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Worker.md)
 
 ### 技术交流
-<img src="./img/6.png" height="300">
+<img src="./img/a.jpeg" height="300">
 
 
 ### 贡献
