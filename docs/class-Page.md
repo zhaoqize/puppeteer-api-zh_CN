@@ -1,6 +1,6 @@
 [📚 查看原文](//github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-page)
 
-#### 类: Page
+#### class: Page
 
 * 继承: [`EventEmitter`](https://nodejs.org/api/events.html#events_class_eventemitter)
 
@@ -35,11 +35,11 @@ page.on('request', logRequest);
 page.removeListener('request', logRequest);
 ```
 
-#### 事件: 'close'
+#### event: 'close'
 
 当页面关闭时触发。
 
-#### 事件: 'console'
+#### event: 'console'
 - <[ConsoleMessage]>
 
 当页面js代码调用了 `console` 的某个方法，比如 `console.log`，或者 `console.dir` 的时候触发。（如果不监听这个事件，js源码的console语句不会输出）。当页面抛出一个错误或者经过的时候也会触发。
@@ -55,81 +55,81 @@ page.on('console', msg => {
 page.evaluate(() => console.log('hello', 5, {foo: 'bar'})); // 这个代码表示在页面实例中执行了console.log。如果没有监听console事件，这里的输出不会出现在你的控制台
 ```
 
-#### 事件: 'dialog'
+#### event: 'dialog'
 - <[Dialog]>
 
 当js对话框出现的时候触发，比如`alert`, `prompt`, `confirm` 或者 `beforeunload`。Puppeteer可以通过[Dialog]'s [accept](#dialogacceptprompttext) 或者 [dismiss](#dialogdismiss)来响应弹窗。
 
-#### 事件: 'domcontentloaded'
+#### event: 'domcontentloaded'
 
 当页面的 [`DOMContentLoaded`](https://developer.mozilla.org/en-US/docs/Web/Events/DOMContentLoaded)事件被触发时触发。
 
-#### 事件: 'error'
+#### event: 'error'
 - <[Error]>
 
 当页面崩溃时触发。
 
 > **注意** `error` 在 `node` 中有特殊的意义, 点击 [error events](https://nodejs.org/api/events.html#events_error_events) 查看详情。
 
-#### 事件: 'frameattached'
+#### event: 'frameattached'
 - <[Frame]>
 
 当 `iframe` 加载的时候触发。
 
-#### 事件: 'framedetached'
+#### event: 'framedetached'
 - <[Frame]>
 
 当 `iframe` 从页面移除的时候触发。
 
-#### 事件: 'framenavigated'
+#### event: 'framenavigated'
 - <[Frame]>
 
 当 `iframe` 导航到新的 url 时触发。
 
-#### 事件: 'load'
+#### event: 'load'
 
 当页面的 [`load`](https://developer.mozilla.org/en-US/docs/Web/Events/load) 事件被触发时触发。
 
-#### 事件: 'metrics'
+#### event: 'metrics'
 - <[Object]>
   - `title` <[string]> 传给 `console.timeStamp` 方法的title参数。
   - `metrics` <[Object]> 包含度量对象的键值对，值是<[number]>类型
 
 当页面js代码调用了 `console.timeStamp` 方法时触发。`page.metrics` 章节有描述所有的 metrics。
 
-#### 事件: 'pageerror'
+#### event: 'pageerror'
 - <[Error]> 异常信息
 
 当发生页面js代码没有捕获的异常时触发。
 
-#### 事件: 'request'
+#### event: 'request'
 - <[Request]>
 
 当页面发送一个请求时触发。参数 [request] 对象是只读的。
 如果需要拦截并且改变请求，参考 `page.setRequestInterception` 章节。
 
-#### 事件: 'requestfailed'
+#### event: 'requestfailed'
 - <[Request]>
 
 当页面的请求失败时触发。比如某个请求超时了。
 
-#### 事件: 'requestfinished'
+#### event: 'requestfinished'
 - <[Request]>
 
 当页面的某个请求成功完成时触发。
 
-#### 事件: 'response'
+#### event: 'response'
 - <[Response]>
 
 当页面的某个请求接收到对应的 [response] 时触发。
 
-#### 事件: 'workercreated'
-- <Worker>
+#### event: 'workercreated'
+- <[Worker]>
 
 当页面生成相应的 [WebWorker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API) 时触发。
 
-#### 事件: 'workerdestroyed'
-- <Worker>
+#### event: 'workerdestroyed'
+- <[Worker]>
 
 当页面终止相应的 [WebWorker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API) 时触发。
 
