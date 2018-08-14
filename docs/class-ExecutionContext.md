@@ -2,9 +2,11 @@
 
 #### class: ExecutionContext
 
-该类表示 JavaScript 执行的上下文。JavaScript 上下文的例子是：
-- 每个 [frame](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe) 都有一个单独的执行上下文
-- 所有 [workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API) 都有自己的上下文
+该类表示一个 JavaScript 执行的上下文。 [Page] 可能有许多执行上下文：
+- 每个 [frame](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe) 都有 "默认" 的执行上下文，它始终在将帧附加到 DOM 后创建。该上下文由 [`frame.executionContext()`](#frameexecutioncontext) 方法返回。
+- [Extensions](https://developer.chrome.com/extensions) 的内容脚本创建了其他执行上下文。
+
+除了页面，执行上下文可以在 [workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API) 中找到。
 
 #### executionContext.evaluate(pageFunction, ...args)
 - `pageFunction` <[function]|[string]> Function to be evaluated in `executionContext`

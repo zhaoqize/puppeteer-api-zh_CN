@@ -193,7 +193,9 @@ await resultHandle.dispose();
 
 
 #### frame.executionContext()
-- returns: <[Promise]<[ExecutionContext]>> Execution context associated with this frame.
+- returns: <[Promise]<[ExecutionContext]>>
+
+返回解析为框架的默认执行上下文的 promise。
 
 #### frame.focus(selector)
 - `selector` <[string]> A [selector] of an element to focus. If there are multiple elements satisfying the selector, the first will be focused.
@@ -286,12 +288,25 @@ frame.type('#mytextarea', 'World', {delay: 100}); // 延迟输入, 操作更像�
 这个方法根据第一个参数类型的不同起到不同的作用：
 
 - 如果 `selectorOrFunctionOrTimeout` 是 `string`，那么第一个参数会被当作 [selector] 或者 [xpath]，取决于是不是以`//`开头的，这是 [frame.waitForSelector](#framewaitforselectorselector-options) 或   [frame.waitForXPath](#framewaitforxpathxpath-options) 的快捷方式。
-
 - 如果 `selectorOrFunctionOrTimeout` 是 `function`，那么第一个参数会当作条件等待触发，这是 [frame.waitForFunction()](#framewaitforfunctionpagefunction-options-args) 的快捷方式。
-
 - 如果 `selectorOrFunctionOrTimeout` 是 `number`，那么第一个参数会被当作毫秒为单位的时间，方法会在超时之后返回 promise。
-
 - 其他类型，将会抛出错误。
+
+```js
+// wait for selector
+await page.waitFor('.foo');
+// wait for 1 second
+await page.waitFor(1000);
+// wait for predicate
+await page.waitFor(() => !!document.querySelector('.foo'));
+```
+
+将 node.js 中的参数传递给 `page.waitFor` 函数：
+
+```js
+const selector = '.foo';
+await page.waitFor(selector => !!document.querySelector(selector), {}, selector);
+```
 
 #### frame.waitForFunction(pageFunction[, options[, ...args]])
 - `pageFunction` <[function]|[string]> Function to be evaluated in browser context
@@ -315,6 +330,13 @@ puppeteer.launch().then(async browser => {
   await watchDog;
   await browser.close();
 });
+```
+
+将 node.js 中的参数传递给 `page.waitForFunction` 函数：
+
+```js
+const selector = '.foo';
+await page.waitForFunction(selector => !!document.querySelector(selector), {}, selector);
 ```
 
 #### frame.waitForSelector(selector[, options])

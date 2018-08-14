@@ -1,4 +1,4 @@
-[📚 查看原文](//github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-browsercontext)
+[📚 查看原文](//github.com/GoogleChrome/puppeteer/blob/v1.7.0/docs/api.md#class-browsercontext)
 
 #### class: BrowserContext
 
@@ -62,7 +62,12 @@ await context.close();
 
 在浏览器上下文中创建一个新页面。
 
-#### browserContext.targets()
+### browserContext.pages()
+- returns: <[Promise]<[Array]<[Page]>>> Promise which resolves to an array of all open pages. Non visible pages, such as `"background_page"`, will not be listed here. You can find them using [target.page()](#targetpage).
+
+包含浏览器上下文中所有页面的数组。
+
+### browserContext.targets()
 - returns: <[Array]<[Target]>>
 
 浏览器上下文中所有活动目标的数组。

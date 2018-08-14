@@ -3,6 +3,7 @@
 [![GitHub license](https://img.shields.io/github/license/zhaoqize/puppeteer-api-zh_CN.svg)](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)]()
 - [Environment Variables](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/Environment_Variables.md)
+- [Error_handling](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/Error_handling.md)
 - [Working with Chrome Extensions](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/Working_with_Chrome_Extensions.md)
 - [class: Puppeteer](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Puppeteer.md)
 - [class: BrowserFetcher](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-BrowserFetcher.md)
@@ -26,9 +27,10 @@
 - [class: CDPSession](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-CDPSession.md)
 - [class: Coverage](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Coverage.md)
 - [class: Worker](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-Worker.md)
+- [class: TimeoutError](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/class-TimeoutError.md)
 
 ### 技术交流
-<img src="./img/aa.jpeg" height="300">
+<img src="./img/a1.jpeg" height="300">
 
 
 ### 贡献

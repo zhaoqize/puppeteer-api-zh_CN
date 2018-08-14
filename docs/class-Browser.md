@@ -1,4 +1,4 @@
-[📚 查看原文](//github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-browser)
+[📚 查看原文](//github.com/GoogleChrome/puppeteer/blob/v1.7.0/docs/api.md#class-browser)
 
 #### class: Browser
 
@@ -99,6 +99,9 @@ await page.goto('https://example.com');
 
 #### browser.pages()
 - returns: <[Promise]<[Array]<[Page]>>> 返回一个包含所有打开的页面的数组。页面不可见的，比如 `"background_page"` 将不会列在这。不过你可以通过 [target.page()](#targetpage) 找到它们。
+
+返回一个浏览器中所有页面的数组。 在多个浏览器上下文的情况下，
+该方法将返回一个包含所有浏览器上下文中所有页面的数组。
 
 #### browser.process()
 - returns: <?[ChildProcess]> 产生浏览器的进程。如果浏览器实例是由 [`puppeteer.connect`](#puppeteerconnectoptions) 方法创建的则返回null。

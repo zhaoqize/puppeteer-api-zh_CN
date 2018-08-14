@@ -2,6 +2,7 @@
 
 * [概述](/)
 * [Environment Variables](Environment_Variables.md)
+* [Error handling](Error_handling.md)
 * [Working with Chrome Extensions](Working_with_Chrome_Extensions.md)
 * [Browser](class-Browser.md)
 * [BrowserContext](class-BrowserContext.md)
@@ -25,3 +26,4 @@
 * [Touchscreen](class-Touchscreen.md)
 * [Tracing](class-Tracing.md)
 * [Worker](class-Worker.md)
+* [TimeoutError](class-TimeoutError.md)

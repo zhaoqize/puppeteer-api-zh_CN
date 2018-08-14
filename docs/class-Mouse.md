@@ -2,6 +2,8 @@
 
 #### class: Mouse
 
+Mouse 类在相对于视口左上角的主框架 CSS 像素中运行。
+
 #### mouse.click(x, y, [options])
 - `x` <[number]>
 - `y` <[number]>

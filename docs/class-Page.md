@@ -616,6 +616,7 @@ puppeteer.launch().then(async browser => {
     - `right` <[string]> 右侧白边, 接受带单位的字符串
     - `bottom` <[string]> 底部白边, 接受带单位的字符串
     - `left` <[string]> 左侧白边, 接受带单位的字符串
+  - `preferCSSPageSize` <[boolean]> 给页面优先级声明的任何CSS `@page` 大小超过 `width` 和 `height` 或 `format` 选项中声明的大小。 默认为 `false`，它将缩放内容以适合纸张大小。
 - 返回: <[Promise]<[Buffer]>> Promise对象，resolve后是pdf buffer。
 
 > **注意** 目前仅支持无头模式的 Chrome
@@ -788,6 +789,7 @@ page.select('select#colors', 'red', 'green', 'blue'); // 多选择器
 
 启用请求拦截器，会激活 `request.abort`, `request.continue` 和 `request.respond` 方法。这提供了修改页面发出的网络请求的功能。
 
+一旦启用请求拦截，每个请求都将停止，除非它继续，响应或中止。
 通过请求拦截器取消所有图片请求：
 ```js
 const puppeteer = require('puppeteer');
@@ -873,7 +875,7 @@ page.type('#mytextarea', 'World', {delay: 100}); // 输入变慢，像一个用�
 [page.mainFrame().url()](#frameurl) 的简写
 
 #### page.viewport()
-- 返回: <[Object]>
+- 返回: <?[Object]>
   - `width` <[number]> 宽度，单位是像素
   - `height` <[number]> 高度，单位是像素
   - `deviceScaleFactor` <[number]> 定义设备缩放， (类似于 dpr)。 默认 `1`。
@@ -893,6 +895,22 @@ page.type('#mytextarea', 'World', {delay: 100}); // 输入变慢，像一个用�
 - 如果 `selectorOrFunctionOrTimeout` 是 `function`, 那么认为是一个predicate，这时候此方法是[page.waitForFunction()](#pagewaitforfunctionpagefunction-options-args)的简写
 - 如果 `selectorOrFunctionOrTimeout` 是 `number`, 那么认为是超时时间，单位是毫秒，返回的是Promise对象,在指定时间后resolve
 - 否则会报错
+
+```js
+// wait for selector
+await page.waitFor('.foo');
+// wait for 1 second
+await page.waitFor(1000);
+// wait for predicate
+await page.waitFor(() => !!document.querySelector('.foo'));
+```
+
+将 node.js 中的参数传递给 `page.waitFor` 函数：
+
+```js
+const selector = '.foo';
+await page.waitFor(selector => !!document.querySelector(selector), {}, selector);
+```
 
 [page.mainFrame().waitFor(selectorOrFunctionOrTimeout[, options[, ...args]])](#framewaitforselectororfunctionortimeout-options-args)的简写
 
@@ -918,6 +936,14 @@ puppeteer.launch().then(async browser => {
   await browser.close();
 });
 ```
+
+将 node.js 中的参数传递给 `page.waitForFunction` 函数：
+
+```js
+const selector = '.foo';
+await page.waitForFunction(selector => !!document.querySelector(selector), {}, selector);
+```
+
 [page.mainFrame().waitForFunction(pageFunction[, options[, ...args]])](#framewaitforfunctionpagefunction-options-args) 的简写
 
 #### page.waitForNavigation(options)
