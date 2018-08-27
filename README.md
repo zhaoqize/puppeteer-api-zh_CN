@@ -8,7 +8,7 @@
 - [API Doc 地址](./api.md)
 
 ### 技术交流
-<img src="./img/a1.jpeg" height="300">
+<img src="./img/a.jpeg" height="300">
 
 ### 贡献
 [如何贡献](./CONTRIBUTING.md)
