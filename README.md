@@ -3,9 +3,11 @@
 [![GitHub license](https://img.shields.io/github/license/zhaoqize/puppeteer-api-zh_CN.svg)](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)]()
 
-- [API Web Site 地址](https://zhaoqize.github.io/puppeteer-api-zh_CN/)
+- [中文API网站](https://zhaoqize.github.io/puppeteer-api-zh_CN/)
 
-- [API Doc 地址](./api.md)
+- [中文API地址](./api.md)
+
+- [官方API地址](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md)
 
 ### 技术交流
 <img src="./img/q.png" height="300">
