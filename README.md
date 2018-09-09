@@ -3,11 +3,11 @@
 [![GitHub license](https://img.shields.io/github/license/zhaoqize/puppeteer-api-zh_CN.svg)](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)]()
 
-- [中文API网站](https://zhaoqize.github.io/puppeteer-api-zh_CN/)
+- [Puppeteer中文社区](https://puppeteer-china.github.io/)
 
-- [中文API地址](./api.md)
+- [API中文网](https://zhaoqize.github.io/puppeteer-api-zh_CN/)
 
-- [官方API地址](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md)
+- [API官网](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md)
 
 ### 技术交流
 <img src="./img/q.png" height="300">
@@ -17,7 +17,7 @@
 > [译文排版规则指北](https://github.com/xitu/gold-miner/wiki/%E8%AF%91%E6%96%87%E6%8E%92%E7%89%88%E8%A7%84%E5%88%99%E6%8C%87%E5%8C%97)
 
 
-<h2 align="center">Maintainers</h2>
+<h2 align="center">贡献者</h2>
 
 <table>
   <tbody>
