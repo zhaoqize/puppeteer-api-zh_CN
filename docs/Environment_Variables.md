@@ -1,4 +1,4 @@
-[📚 查看原文](//github.com/GoogleChrome/puppeteer/blob/v1.7.0/docs/api.md#environment-variables)
+[📚 查看原文](//github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#environment-variables)
 
 ** 环境变量 **
 

@@ -1,5 +1,5 @@
 
-[📚 查看原文](//github.com/GoogleChrome/puppeteer/blob/v1.7.0/docs/api.md#class-coverage)
+[📚 查看原文](//github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-coverage)
 
 #### class: Coverage
 

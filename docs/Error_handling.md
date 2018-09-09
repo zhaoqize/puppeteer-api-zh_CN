@@ -1,4 +1,4 @@
-[📚 查看原文](//github.com/GoogleChrome/puppeteer/blob/v1.7.0/docs/api.md#error-handling)
+[📚 查看原文](//github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#error-handling)
 
 **错误处理**
 

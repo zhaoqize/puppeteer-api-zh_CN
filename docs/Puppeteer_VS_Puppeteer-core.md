@@ -1,3 +1,5 @@
+[📚 查看原文](//github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteer-vs-puppeteer-core)
+
 自 v1.7.0 以来的每个版本我们都发布了两个包:
 - [puppeteer](https://www.npmjs.com/package/puppeteer)
 - [puppeteer-core](https://www.npmjs.com/package/puppeteer-core)
