@@ -535,6 +535,7 @@ puppeteer.launch().then(async browser => {
     - `domcontentloaded` - 页面的 `DOMContentLoaded` 事件触发时
     - `networkidle0` - 不再有网络连接时触发（至少500毫秒后）
     - `networkidle2` - 只有2个网络连接时触发（至少500毫秒后）
+  - `referer` <[string]> Referer header value. If provided it will take preference over the referer header value set by [page.setExtraHTTPHeaders()](#pagesetextrahttpheadersheaders).
 - 返回: <[Promise]<?[Response]>> Promise对象resolve后是主要的请求的响应。如果有多个跳转, resolve后是最后一次跳转的响应
 
 以下情况此方法将报错： 
@@ -596,7 +597,7 @@ puppeteer.launch().then(async browser => {
 #### page.pdf(options)
 - `options` <[Object]> 可以有以下配置项：
   - `path` <[string]> pdf文件保存的路径。如果是相对路径，则相对[当前路径](https://nodejs.org/api/process.html#process_process_cwd)。如果不指定路径，将不保存到硬盘。
-  - `scale` <[number]> 页面渲染的缩放。默认是1
+  - `scale` <[number]> 页面渲染的缩放。默认是1。缩放值必须介于0.1到2之间。
   - `displayHeaderFooter` <[boolean]> 显示页眉和页脚。默认是不显示
   - `headerTemplate` <[string]> 页眉的html模板，可以有这些变量：
     - `date` 格式化的日期
@@ -772,6 +773,21 @@ page.select('select#colors', 'red', 'green', 'blue'); // 多选择器
 当前页面发起的每个请求都会带上这些请求头
 
 > **注意** 此方法不保证请求头的顺序
+
+#### page.setGeolocation(options)
+- `options`
+  - `latitude` <[number]> Latitude between -90 and 90.
+  - `longitude` <[number]> Longitude between -180 and 180.
+  - `accuracy` <[number]> Optional non-negative accuracy value.
+- returns: <[Promise]>
+
+Sets the page's geolocation.
+
+```js
+await page.setGeolocation({latitude: 59.95, longitude: 30.31667});
+```
+
+> **注意** 考虑使用 [browserContext.overridePermissions](#browsercontextoverridepermissionsorigin-permissions) 授予页面权限去读取地址位置。
 
 #### page.setJavaScriptEnabled(enabled)
 - `enabled` <[boolean]> 是否启用js

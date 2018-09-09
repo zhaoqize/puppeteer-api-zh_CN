@@ -88,6 +88,11 @@ const page = await context.newPage();
 await page.goto('https://example.com');
 ```
 
+#### browser.defaultBrowserContext()
+- returns: <[BrowserContext]>
+
+返回一个默认的浏览器上下文。这个上下文不能被关闭。
+
 #### browser.disconnect()
 
 断开 Puppeteer 和浏览器的连接，但 Chromium 进程仍然在运行。在调用 ```disconnect``` 之后，[Browser] 对象本身被认为是处理过的并不能再被使用。

@@ -30,6 +30,11 @@
 
 包含一个布尔值，说明响应是否成功（状态范围为200-299）。
 
+#### response.remoteAddress()
+- returns: <[Object]>
+  - `ip` <[string]> the IP address of the remote server
+  - `port` <[number]> the port used to connect to the remote server
+
 #### response.request()
 - returns: <[Request]> 一个匹配的 [Request] 对象.
 
@@ -40,6 +45,11 @@
 - returns: <[number]>
 
 包含响应的状态代码（例如，200成功）。
+
+#### response.statusText()
+- returns: <[string]>
+
+包含响应的状态文本（例如,通常成功的 "OK"）。
 
 #### response.text()
 - returns: <[Promise]<[string]>> Promise which resolves to a text representation of response body.

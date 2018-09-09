@@ -42,6 +42,18 @@ await context.close();
 
 此浏览器上下文所属的浏览器。
 
+#### browserContext.clearPermissionOverrides()
+- returns: <[Promise]>
+
+清除浏览器上下文的所有权限覆盖。
+
+```js
+const context = browser.defaultBrowserContext();
+context.overridePermissions('https://example.com', ['clipboard-read']);
+// 做些事 ..
+context.clearPermissionOverrides();
+```
+
 #### browserContext.close()
 - returns: <[Promise]>
 
@@ -61,6 +73,33 @@ await context.close();
 - returns: <[Promise]<[Page]>>
 
 在浏览器上下文中创建一个新页面。
+
+#### browserContext.overridePermissions(origin, permissions)
+- `origin` <[string]> The [origin] to grant permissions to, e.g. "https://example.com".
+- `permissions` <[Array]<[string]>> 授予的一组权限。未在这里列出的权限都将会被自动拒绝。权限可以是以下值之一:
+    - `'geolocation'`
+    - `'midi'`
+    - `'midi-sysex'` (system-exclusive midi)
+    - `'notifications'`
+    - `'push'`
+    - `'camera'`
+    - `'microphone'`
+    - `'background-sync'`
+    - `'ambient-light-sensor'`
+    - `'accelerometer'`
+    - `'gyroscope'`
+    - `'magnetometer'`
+    - `'accessibility-events'`
+    - `'clipboard-read'`
+    - `'clipboard-write'`
+    - `'payment-handler'`
+- returns: <[Promise]>
+
+
+```js
+const context = browser.defaultBrowserContext();
+await context.overridePermissions('https://html5demos.com', ['geolocation']);
+```
 
 ### browserContext.pages()
 - returns: <[Promise]<[Array]<[Page]>>> Promise which resolves to an array of all open pages. Non visible pages, such as `"background_page"`, will not be listed here. You can find them using [target.page()](#targetpage).

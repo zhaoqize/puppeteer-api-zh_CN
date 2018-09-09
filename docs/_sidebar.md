@@ -1,6 +1,7 @@
 <!-- docs/_sidebar.md -->
 
-* [概述](/)
+* [Overview](/?id=概述)
+* [Puppeteer_VS_Puppeteer-core](Puppeteer_VS_Puppeteer-core.md)
 * [Environment Variables](Environment_Variables.md)
 * [Error handling](Error_handling.md)
 * [Working with Chrome Extensions](Working_with_Chrome_Extensions.md)
