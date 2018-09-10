@@ -6,7 +6,7 @@ Puppeteer 可以用来测试 Chrome 扩展
 
 > **注意** Chrome / Chromium 扩展当前只能在非无头模式下使用。
 
-下面代码就是用来处理扩展的方法 [background page](https://developer.chrome.com/extensions/background_pages)，该扩展的代码在 `./my-extension`:
+下面的代码用来处理扩展的 [background page](https://developer.chrome.com/extensions/background_pages)，该扩展的代码在 `./my-extension`:
 
 ```js
 const puppeteer = require('puppeteer');
