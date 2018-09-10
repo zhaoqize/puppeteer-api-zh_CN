@@ -10,7 +10,11 @@
 - [API官网](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md)
 
 ### 技术交流
-<img src="./img/q.png" height="300">
+
+- [中文社区](https://github.com/orgs/puppeteer-china/teams/forum) (前提：先加入组织puppeteer-china)
+- [Gitter](https://gitter.im/puppeteer-China/Lobby)
+- [微信](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/img/wechat.jpeg)
+- [QQ](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/img/qq.jpeg)
 
 ### 贡献
 [如何贡献](./CONTRIBUTING.md)
