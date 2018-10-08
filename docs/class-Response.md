@@ -7,6 +7,9 @@
 #### response.buffer()
 - returns: <Promise<[Buffer]>> Promise which resolves to a buffer with response body.
 
+#### response.frame()
+- returns: <?[Frame]> 响应请求的 [Frame]，如果导航到错误页面，则为`null`。
+
 #### response.fromCache()
 - returns: <[boolean]>
 
@@ -23,7 +26,7 @@
 #### response.json()
 - returns: <Promise<[Object]>> Promise which resolves to a JSON representation of response body.
 
-如果响应主体不能通过 `JSON.parse` 解析，则此方法将抛出。
+如果响应主体无法进行 `JSON.parse` 解析，则此方法将抛出错误。
 
 #### response.ok()
 - returns: <[boolean]>
@@ -32,14 +35,14 @@
 
 #### response.remoteAddress()
 - returns: <[Object]>
-  - `ip` <[string]> the IP address of the remote server
-  - `port` <[number]> the port used to connect to the remote server
+  - `ip` <[string]> 远程服务的 IP 地址
+  - `port` <[number]> 连接远程服务的端口号
 
 #### response.request()
 - returns: <[Request]> 一个匹配的 [Request] 对象.
 
 #### response.securityDetails()
-- returns: <?[SecurityDetails]> 如果通过安全连接接收到响应，则为安全细节，否则为null。
+- returns: <?[SecurityDetails]> 如果通过安全连接接收到响应，则为安全细节，否则为`null`。
 
 #### response.status()
 - returns: <[number]>

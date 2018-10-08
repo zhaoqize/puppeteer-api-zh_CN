@@ -2,7 +2,7 @@
 
 #### class: SecurityDetails
 
-[SecurityDetails] 类表示由页面接收的响应。
+[SecurityDetails] 类表示通过安全连接收到响应时的安全性详细信息。
 
 #### securityDetails.issuer()
 - returns: <[string]> 具有证书颁发者名称的字符串。

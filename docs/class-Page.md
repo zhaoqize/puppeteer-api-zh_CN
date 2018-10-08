@@ -221,7 +221,7 @@ const html = await page.$eval('.main-container', e => e.outerHTML);
   - `password` <[string]>
 - 返回: <[Promise]>
 
-为[http authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication) 提供认证凭据 。
+为[HTTP authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication) 提供认证凭据 。
 
 传 `null` 禁用认证。
 
@@ -547,7 +547,9 @@ puppeteer.launch().then(async browser => {
 
 > **注意** `page.goto` 抛出或返回主页面的响应。唯一的例外是导航到 `about：blank` 或导航到具有不同散列的相同URL，这将成功并返回 `null`。
 
-> **注意** 无头模式不支持打开pdf文件。查看 [upstream issue](https://bugs.chromium.org/p/chromium/issues/detail?id=761295)。
+> **注意** 无头模式不支持打开 PDF 文件。查看 [upstream issue](https://bugs.chromium.org/p/chromium/issues/detail?id=761295)。
+
+快捷方式 [page.mainFrame().goto(url, options)](#framegotourl-options)
 
 #### page.hover(selector)
 - `selector` <[string]> 要hover的元素的选择器。如果有多个匹配的元素，hover第一个。
@@ -756,6 +758,10 @@ page.select('select#colors', 'red', 'green', 'blue'); // 多选择器
   - `sameSite` <[string]> `"Strict"` 或 `"Lax"`。
 - 返回: <[Promise]>
 
+```js
+await page.setCookie(cookieObject1, cookieObject2);
+```
+
 #### page.setDefaultNavigationTimeout(timeout)
 - `timeout` <[number]> 最多等待时间，单位是毫秒
 
@@ -767,7 +773,7 @@ page.select('select#colors', 'red', 'green', 'blue'); // 多选择器
 - [page.waitForNavigation(options)](#pagewaitfornavigationoptions)
 
 #### page.setExtraHTTPHeaders(headers)
-- `headers` <[Object]> 每个请求都会带上这些请求头。值必须是字符串
+- `headers` <[Object]> 每个 HTTP 请求都会带上这些请求头。值必须是字符串
 - 返回: <[Promise]>
 
 当前页面发起的每个请求都会带上这些请求头
@@ -976,12 +982,15 @@ await page.waitForFunction(selector => !!document.querySelector(selector), {}, s
 比如这个例子：
 
 ```js
-const navigationPromise = page.waitForNavigation();
-await page.click('a.my-link'); // 单击该链接将间接导致导航
-await navigationPromise; // The navigationPromise resolves after navigation has finished
+const [response] = await Promise.all([
+  page.waitForNavigation(), // The promise resolves after navigation has finished
+  page.click('a.my-link'), // 点击该链接将间接导致导航(跳转)
+]);
 ```
 
-**注意** 通过 [History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API) 改变地址会认为是一次跳转.
+**注意** 通过 [History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API) 改变地址会认为是一次跳转。
+
+快捷方式 [page.mainFrame().waitForNavigation(options)](#framewaitfornavigationoptions)。
 
 #### page.waitForRequest(urlOrPredicate, options)
 - `urlOrPredicate` <[string]|[Function]> A URL or predicate to wait for.

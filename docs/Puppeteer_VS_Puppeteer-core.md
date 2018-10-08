@@ -17,3 +17,9 @@
 然而, 如果是下面这些情况那你需要使用 `puppeteer-core`:
 - 你正在构建 DevTools 协议顶部的另一个最终用户产品或库。例如，可以使用 `puppeteer-core` 构建 PDF 生成器并编写下载 [`headless_shell`](https://chromium.googlesource.com/chromium/src/+/lkgr/headless/README.md) 的自定义`install.js`脚本而不是 Chromium 来节省磁盘空间。
 - 你正在打包 Puppeteer 用在 Chrome 扩展应用或浏览器中以使用 DevTools 协议，因为下载额外的 Chromium 二进制文件不是必须的。
+
+当使用 `puppeteer-core` 时，使用下面这行代替原来的使用方式：
+
+```js
+const puppeteer = require('puppeteer-core');
+```

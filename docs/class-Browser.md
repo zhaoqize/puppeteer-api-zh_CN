@@ -111,6 +111,11 @@ await page.goto('https://example.com');
 #### browser.process()
 - returns: <?[ChildProcess]> 产生浏览器的进程。如果浏览器实例是由 [`puppeteer.connect`](#puppeteerconnectoptions) 方法创建的则返回null。
 
+#### browser.target()
+- returns: <[Target]>
+
+返回浏览器相关的目标对象。
+
 #### browser.targets()
 - returns: <[Array]<[Target]>>
 

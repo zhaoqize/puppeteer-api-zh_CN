@@ -4,6 +4,19 @@
 
 Mouse 类在相对于视口左上角的主框架 CSS 像素中运行。
 
+每个 `page` 对象都有它自己的 Mouse 对象，使用见 [`page.mouse`](#pagemouse)。
+
+```js
+// 使用 ‘page.mouse’ 追踪 100x100 的矩形。
+await page.mouse.move(0, 0);
+await page.mouse.down();
+await page.mouse.move(0, 100);
+await page.mouse.move(100, 100);
+await page.mouse.move(100, 0);
+await page.mouse.move(0, 0);
+await page.mouse.up();
+```
+
 #### mouse.click(x, y, [options])
 - `x` <[number]>
 - `y` <[number]>

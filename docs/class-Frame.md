@@ -31,6 +31,14 @@ puppeteer.launch().then(async browser => {
 });
 ```
 
+一个从 iframe 元素中获取文本的例子：
+
+```js
+  const frame = page.frames().find(frame => frame.name() === 'myframe');
+  const text = await frame.$eval('.selector', element => element.textContent);
+  console.log(text);
+```
+
 #### frame.$(selector)
 
 - `selector` <[string]> Selector to query frame for
@@ -198,10 +206,32 @@ await resultHandle.dispose();
 返回解析为框架的默认执行上下文的 promise。
 
 #### frame.focus(selector)
-- `selector` <[string]> A [selector] of an element to focus. If there are multiple elements satisfying the selector, the first will be focused.
+- `selector` <[string]> 一个选择器元素。A [selector] of an element to focus. If there are multiple elements satisfying the selector, the first will be focused.
 - returns: <[Promise]> Promise which resolves when the element matching `selector` is successfully focused. The promise will be rejected if there is no element matching `selector`.
 
 这个方法选择传入的元素并且使之获得焦点。如果没有匹配到元素，会抛出异常。
+
+#### frame.goto(url, options)
+- `url` <[string]> URL to navigate frame to. The url should include scheme, e.g. `https://`.
+- `options` <[Object]> Navigation parameters which might have the following properties:
+  - `timeout` <[number]> Maximum navigation time in milliseconds, defaults to 30 seconds, pass `0` to disable timeout. The default value can be changed by using the [page.setDefaultNavigationTimeout(timeout)](#pagesetdefaultnavigationtimeouttimeout) method.
+  - `waitUntil` <[string]|[Array]<[string]>> When to consider navigation succeeded, defaults to `load`. Given an array of event strings, navigation is considered to be successful after all events have been fired. Events can be either:
+    - `load` - consider navigation to be finished when the `load` event is fired.
+    - `domcontentloaded` - consider navigation to be finished when the `DOMContentLoaded` event is fired.
+    - `networkidle0` - consider navigation to be finished when there are no more than 0 network connections for at least `500` ms.
+    - `networkidle2` - consider navigation to be finished when there are no more than 2 network connections for at least `500` ms.
+  - `referer` <[string]> Referer header value. If provided it will take preference over the referer header value set by [page.setExtraHTTPHeaders()](#pagesetextrahttpheadersheaders).
+- returns: <[Promise]<?[Response]>> Promise which resolves to the main resource response. In case of multiple redirects, the navigation will resolve with the response of the last redirect.
+
+如果存在下面的情况 `frame.goto` 将会抛出错误：
+- SSL 错误 (e.g. in case of self-signed certificates).
+- 目标 URL 不可用。
+- 导航过程中 `timeout` 被触发。
+- 主资源加载失败。
+
+> **注意** `frame.goto`抛出或返回一个主资源响应。 唯一的例外是导航到`about：blank`或导航到具有不同 hash 的相同URL，这将成功并返回`null`。
+
+> **注意** 无头模式将不支持导航到一个 PDF 文档。具体见 [upstream issue](https://bugs.chromium.org/p/chromium/issues/detail?id=761295).
 
 #### frame.hover(selector)
 - `selector` <[string]> A [selector] to search for element to hover. If there are multiple elements satisfying the selector, the first will be hovered.
@@ -339,6 +369,27 @@ const selector = '.foo';
 await page.waitForFunction(selector => !!document.querySelector(selector), {}, selector);
 ```
 
+#### frame.waitForNavigation(options)
+- `options` <[Object]> Navigation parameters which might have the following properties:
+  - `timeout` <[number]> Maximum navigation time in milliseconds, defaults to 30 seconds, pass `0` to disable timeout. The default value can be changed by using the [page.setDefaultNavigationTimeout(timeout)](#pagesetdefaultnavigationtimeouttimeout) method.
+  - `waitUntil` <[string]|[Array]<[string]>> When to consider navigation succeeded, defaults to `load`. Given an array of event strings, navigation is considered to be successful after all events have been fired. Events can be either:
+    - `load` - consider navigation to be finished when the `load` event is fired.
+    - `domcontentloaded` - consider navigation to be finished when the `DOMContentLoaded` event is fired.
+    - `networkidle0` - consider navigation to be finished when there are no more than 0 network connections for at least `500` ms.
+    - `networkidle2` - consider navigation to be finished when there are no more than 2 network connections for at least `500` ms.
+- returns: <[Promise]<[?Response]>> Promise which resolves to the main resource response. In case of multiple redirects, the navigation will resolve with the response of the last redirect. In case of navigation to a different anchor or navigation due to History API usage, the navigation will resolve with `null`.
+
+当框架导航到新 URL 时将被解析。它在运行代码时很有用。这将间接导致框架进行导航。看下这个例子：
+
+```js
+const [response] = await Promise.all([
+  frame.waitForNavigation(), // The navigation promise resolves after navigation has finished
+  frame.click('a.my-link'), // Clicking the link will indirectly cause a navigation
+]);
+```
+
+**注意** 使用 [History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API) 去改变 URL 将会被认为是导航。
+
 #### frame.waitForSelector(selector[, options])
 - `selector` <[string]> A [selector] of an element to wait for
 - `options` <[Object]> Optional waiting parameters
@@ -347,7 +398,7 @@ await page.waitForFunction(selector => !!document.querySelector(selector), {}, s
   - `timeout` <[number]> maximum time to wait for in milliseconds. Defaults to `30000` (30 seconds). Pass `0` to disable timeout.
 - returns: <[Promise]<[ElementHandle]>> Promise which resolves when element specified by selector string is added to DOM.
 
-等待被选择等待元素出现在页面中。如果调用时选择的元素已存在，则立即返回。如果在设定的毫秒时间之后没有出现，则抛出异常。
+等待被选择等待元素出现在页面中。如果调用时选择的元素已存在，则立即返回。如果在设定的毫秒时间之后还没有出现，则抛出异常。
 
 这个方法可以在切换导航时使用:
 
@@ -374,7 +425,7 @@ puppeteer.launch().then(async browser => {
   - `timeout` <[number]> maximum time to wait for in milliseconds. Defaults to `30000` (30 seconds). Pass `0` to disable timeout.
 - returns: <[Promise]<[ElementHandle]>> Promise which resolves when element specified by xpath string is added to DOM.
 
-等待 `xpath` 出现在页面中。如果在调用函数的时候 `xpath` 已经存在，会立即返回。如果在设定的毫秒时间之后没有出现，则抛出异常。
+等待 `xpath` 出现在页面中。如果在调用函数的时候 `xpath` 已经存在，会立即返回。如果在设定的毫秒时间之后还没有出现，则抛出异常。
 
 这个方法可以在切换导航时使用:
 

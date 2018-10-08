@@ -56,32 +56,31 @@ page.on('requestfailed', request => {
 ```
 
 #### request.frame()
-- returns: <?[Frame]> 一个相应的 [Frame] 对象，如果导航到错误页面的话，则是'null'
+- returns: <?[Frame]> 发起请求的 [Frame]，如果导航到错误页面，则为`null`。
 
 #### request.headers()
-- returns: <[Object]> 该请求的 http 头对象. 所有头都采用小写的命名方式
+- returns: <[Object]> 该请求的 http 头对象。所有头都采用小写的命名方式
 
 #### request.isNavigationRequest()
 - returns: <[boolean]>
 
-这个请求是否正在驱动框架的导航。
+这个请求是否正在驱动框架在导航。
 
 #### request.method()
 - returns: <[string]> 请求方法 ( GET，POST，等。)
 
 #### request.postData()
-- returns: <[string]> 请求提交的数据，如果有的话.
+- returns: <[string]> 请求提交的数据。
 
 #### request.redirectChain()
 - returns: <[Array]<[Request]>>
 
 `redirectChain` 是一条获取资源的请求链
 
-- 如果没有被重定向而且请求成功的话, 链将会被置空
-- 如果服务器至少响应了一次重定向, 那么这条链将会包含所有重定向请求
+- 如果没有被重定向而且请求成功的话, 链路将会被置空
+- 如果服务器至少响应了一次重定向, 那么这条链路将会包含所有重定向请求
 
-`redirectChain` 会共享相同链上的所有请求。
-
+`redirectChain` 会共享相同链路上的所有请求。
 
 举个例子，如果网站 `http://example.com` 重定向一次到
 `https://example.com`，那么这条链就会包含一个请求：
