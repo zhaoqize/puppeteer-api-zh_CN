@@ -14,7 +14,7 @@
 - returns: <[string]> 证书颁发给的主体的名称。
 
 #### securityDetails.validFrom()
-- returns: <[number]> [UnixTime] 说明证书有效期的开始。
+- returns: <[number]> [UnixTime](https://en.wikipedia.org/wiki/Unix_time) 说明证书有效期的开始。
 
 #### securityDetails.validTo()
-- returns: <[number]> [UnixTime] 说明证书的有效期结束。
+- returns: <[number]> [UnixTime](https://en.wikipedia.org/wiki/Unix_time) 说明证书的有效期结束。
