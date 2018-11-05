@@ -23,21 +23,21 @@ puppeteer.launch().then(async browser => {
 ElementHandle 实例可以在 [`page.$eval()`](#pageevalselector-pagefunction-args) 和 [`page.evaluate()`](#pageevaluatepagefunction-args) 方法中作为参数。
 
 #### elementHandle.$(selector)
-- `selector` <[string]> A [selector] to query element for
+- `selector` <[string]> 用于选取页面 DOM 元素的 [CSS Selector](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors)
 - returns: <[Promise]<?[ElementHandle]>>
 
 该方法在页面内运行 `element.querySelector`。 如果没有元素匹配选择器，则返回值为 `null`。
 
 #### elementHandle.$$(selector)
-- `selector` <[string]> A [selector] to query element for
+- `selector` <[string]> 用于选取页面 DOM 元素的 [CSS Selector](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors)
 - returns: <[Promise]<[Array]<[ElementHandle]>>>
 
 该方法在页面内运行 `element.querySelectorAll`。 如果没有元素匹配选择器，则返回值为 `[]`。
 
 #### elementHandle.$eval(selector, pageFunction, ...args)
-- `selector` <[string]> A [selector] to query page for
-- `pageFunction` <[function]> Function to be evaluated in browser context
-- `...args` <...[Serializable]|[JSHandle]> Arguments to pass to `pageFunction`
+- `selector` <[string]> 用于选取页面 DOM 元素的 [CSS Selector](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors)
+- `pageFunction` <[function]> 在浏览器上下文中执行的函数
+- `...args` <...[Serializable]|[JSHandle]> 传递给 `pageFunction` 的参数
 - returns: <[Promise]<[Serializable]>> Promise which resolves to the return value of `pageFunction`
 
 这个方法在元素中运行 `document.querySelector` 并将它作为第一个参数传递给 `pageFunction`。 如果没有与 `selector` 匹配的元素，则该方法将抛出个错误。
@@ -52,7 +52,7 @@ expect(await tweetHandle.$eval('.retweets', node => node.innerText)).toBe('10');
 ```
 
 #### elementHandle.$$eval(selector, pageFunction, ...args)
-- `selector` <[string]> A [selector] to query page for
+- `selector` <[string]> 用于选取页面 DOM 元素的 [CSS Selector](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors)
 - `pageFunction` <[function]> Function to be evaluated in browser context
 - `...args` <...[Serializable]|[JSHandle]> Arguments to pass to `pageFunction`
 - returns: <[Promise]<[Serializable]>> Promise which resolves to the return value of `pageFunction`
@@ -97,8 +97,8 @@ expect(await feedHandle.$$eval('.tweet', nodes => nodes.map(n => n.innerText)).t
   - padding <[Array]<[Object]>> Padding box, represented as an array of {x, y} points.
   - border <[Array]<[Object]>> Border box, represented as an array of {x, y} points.
   - margin <[Array]<[Object]>> Margin box, represented as an array of {x, y} points.
-  - width <[number]> Element's width.
-  - height <[number]> Element's height.
+  - width <[number]> 元素的宽度.
+  - height <[number]> 元素的高度.
 
 改方法返回元素的盒模型，如果元素不可见，则返回 `null`。 盒模型被表示为一组点；每个 Point 都是一个对象 `{x，y}`。 盒模型的点按顺时针排序。
 
