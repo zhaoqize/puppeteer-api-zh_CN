@@ -29,7 +29,7 @@ export class SearchComponent {
     this.input.setAttribute('autocapitalize', 'off');
     this.input.setAttribute('spellcheck', 'false');
     this.input.setAttribute('size', '1');
-    this.input.setAttribute('placeholder', 'start typing to search...');
+    this.input.setAttribute('placeholder', '开始搜索...');
 
     this._contentElement = document.createElement('search-results');
     this.element.appendChild(this._contentElement);
