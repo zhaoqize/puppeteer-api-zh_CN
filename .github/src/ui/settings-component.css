@@ -1,0 +1,121 @@
+/**
+ * @license Copyright 2018 Google Inc. All Rights Reserved.
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ */
+
+settings-component {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  align-items: center;
+  z-index: 1000;
+}
+
+settings-component settings-content {
+  max-width: 700px;
+  width: 70%;
+  max-height: 70%;
+  background: white;
+  overflow: hidden;
+  flex-grow: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  position: relative;
+}
+
+@media only screen and (max-width: 800px) {
+  settings-component settings-content {
+    max-width: 100%;
+    max-height: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: unset;
+    height: unset;
+  }
+}
+
+settings-component product-versions {
+  display: block;
+  border: 0.25em solid var(--divider-color);
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+settings-component settings-header {
+  border-bottom: 1px solid var(--divider-color);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1ex;
+  flex-shrink: 0;
+}
+
+settings-component settings-header h3 {
+  margin: 0;
+  font-weight: normal;
+  font-size: 24px;
+  margin-bottom: 1ex;
+}
+
+settings-component .settings-close-icon {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+settings-component .settings-close-icon:hover {
+  opacity: 1;
+}
+
+settings-component product-version {
+  display: grid;
+  grid-template-columns: 100px 100px auto;
+  grid-template-rows: auto;
+  grid-template-areas: "name date description";
+  grid-column-gap: 10px;
+  padding: 1em;
+  align-items: center;
+  border-bottom: 1px solid rgba(51,51,51,.12);
+  cursor: pointer;
+}
+
+settings-component product-version:hover {
+  background-color: var(--hover-color);
+}
+
+settings-component product-version.selected {
+  background-color: var(--selected-color);
+}
+
+settings-component product-version version-name {
+  grid-area: name;
+  font-family: var(--monospace);
+}
+
+settings-component product-version version-description {
+  grid-area: description;
+  font-size: 90%;
+  justify-self: center;
+}
+
+settings-component product-version version-date {
+  grid-area: date;
+  font-size: 90%;
+}
+
+settings-component website-version {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-size: 90%;
+  align-items: baseline;
+}

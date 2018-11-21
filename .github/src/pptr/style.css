@@ -1,0 +1,359 @@
+/**
+ * @license Copyright 2018 Google Inc. All Rights Reserved.
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ */
+
+pptr-api > h3 {
+  text-align: left;
+  margin-left: 1em;
+}
+
+pptr-api content-box {
+  display: block;
+  max-width: 890px;
+  border-radius: 2px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  margin: 16px 45px 32px 45px;
+  background-color: white;
+  padding: 0 24px 0 24px;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+@media only screen and (max-width: 800px) {
+  pptr-api content-box {
+    margin: 7px 5px;
+  }
+}
+
+pptr-api.pptr-readme img {
+  /* this is to make PPTR logo look nice with blockquote. */
+  background: white;
+}
+
+pptr-settings-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 90%;
+  margin: 1em;
+}
+
+pptr-api-padding {
+  height: 75vh;
+  max-width: 890px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 16px 45px 32px 45px;
+}
+
+pptr-api content-delimeter {
+  display: block;
+  border-bottom: double #b6b6b6a6 3px;
+  width: 200%;
+  position: relative;
+  left: -25%;
+}
+
+pptr-api api-class h3,
+pptr-api api-method h4,
+pptr-api api-event h4,
+pptr-api api-namespace h4 {
+  white-space: nowrap;
+}
+
+pptr-api .api-entry {
+  display: block;
+}
+
+pptr-api ul.pptr-table-of-contents li {
+  white-space: nowrap;
+}
+
+pptr-api li+li {
+  margin-top: .25em;
+}
+
+pptr-api h6 {
+  font-size: 0.85em;
+  color: #6a737d;
+}
+
+pptr-api api-method-classname,
+pptr-api api-ns-classname {
+  color: #ababab;
+}
+
+pptr-api api-event h4 {
+  color: #ababab;
+}
+
+pptr-api api-event-name {
+  color: var(--black);
+}
+
+pptr-api api-section img {
+  max-width: 100%;
+}
+
+pptr-api-since {
+  display: inline-block;
+  font-size: 10px;
+  color: #ababab;
+  border-radius: 2px;
+  padding: 1px 3px;
+  font-weight: normal;
+  vertical-align: super;
+  font-family: var(--monospace);
+  user-select: none;
+
+}
+
+pptr-api-since::before {
+  content: 'since ';
+}
+
+pptr-api-since.pptr-new-api {
+  background: #81c784d4;
+  color: white;
+  margin-left:4px;
+}
+
+pptr-api-since.pptr-new-api::before {
+  content: 'new in ';
+}
+
+pptr-api-until {
+  display: inline-block;
+  font-size: 10px;
+  color: white;
+  background: #EF9A9A;
+  border-radius: 2px;
+  padding: 1px 3px;
+  font-weight: normal;
+  vertical-align: super;
+  user-select: none;
+  margin-left: 4px;
+}
+
+pptr-api-until::before {
+  content: 'removed ';
+}
+
+.pptr-sidebar-item {
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  height: 48px;
+  padding: 0 16px;
+  width: 100%;
+}
+
+.pptr-sidebar-item {
+  text-decoration: none !important;
+}
+
+.pptr-slack {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pptr-slack img {
+  width: 44px;
+  opacity: 0.5;
+}
+
+.pptr-slack img:hover {
+  opacity: 1;
+}
+
+.pptr-stackoverflow {
+}
+
+.pptr-stackoverflow img {
+  width: 29px;
+  opacity: 0.5;
+}
+
+.pptr-stackoverflow img:hover {
+  opacity: 1;
+}
+
+.pptr-troubleshooting {
+  padding: 0 11px 0 3px;
+}
+
+.pptr-troubleshooting img{
+  opacity: 0.5;
+  width: 22px;
+}
+
+.pptr-troubleshooting img:hover {
+  opacity: 1;
+}
+
+.pptr-github {
+  padding: 0 3px;
+}
+
+.pptr-github img:hover {
+  opacity: 1;
+}
+
+.pptr-github img {
+  width: 22px;
+  opacity: 0.5;
+}
+
+pptr-api code:not(.language-js) {
+  font-family: var(--monospace);
+  padding: 0.2em 0.4em;
+  background-color: rgba(27,31,35,0.05);
+  border-radius: 3px;
+  font-size: 85%;
+}
+
+pptr-api code.language-js {
+  font-family: var(--monospace);
+  display: block;
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f6f8fa;
+  border-radius: 3px;
+}
+
+pptr-sidebar-divider {
+  font-size: 12px;
+  font-weight: bold;
+  padding-left: 6px;
+  text-align: left;
+  display: flex;
+  padding: 4px 2ex;
+  background-color: #fafafa;
+  border-top: 1px solid var(--divider-color);
+  border-bottom: 1px solid var(--divider-color);
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+pptr-api li.table-of-contents-entry {
+  white-space: nowrap;
+}
+
+pptr-event-icon,
+pptr-class-icon,
+pptr-ns-icon,
+pptr-method-icon {
+  display: inline-flex;
+  width: 16px;
+  font-size: 12px;
+  color: #fff;
+  border-radius: 3px;
+  user-select: none;
+  font-family: var(--monospace);
+  height: 16px;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+/* Icons inside API documentation */
+pptr-api pptr-event-icon,
+pptr-api pptr-method-icon,
+pptr-api pptr-ns-icon,
+pptr-api pptr-class-icon {
+}
+/* Icons inside search items */
+search-item pptr-event-icon,
+search-item pptr-method-icon,
+search-item pptr-ns-icon,
+search-item pptr-class-icon {
+}
+
+/* Icons inside sidebar items */
+sidebar-item pptr-event-icon,
+sidebar-item pptr-method-icon,
+sidebar-item pptr-ns-icon,
+sidebar-item pptr-class-icon {
+  margin-right: 1ex;
+}
+
+pptr-method-icon {
+  background-color: #FF9800;
+}
+
+pptr-method-icon::after {
+  content: 'M';
+}
+
+pptr-event-icon {
+  background-color: #4CAF50;
+}
+
+pptr-event-icon::after {
+  content: 'E';
+}
+
+pptr-class-icon {
+  background-color: #3F51B5;
+}
+
+pptr-class-icon::after {
+  content: 'C';
+}
+
+pptr-ns-icon {
+  background-color: #9E9E9E;
+}
+
+pptr-ns-icon::after {
+  content: 'N';
+}
+
+search-item-api-method-class {
+  color: #ababab;
+}
+
+pptr-api .cm-negative {color: #d44;}
+pptr-api .cm-positive {color: #292;}
+pptr-api .cm-header, .cm-strong {font-weight: bold;}
+pptr-api .cm-em {font-style: italic;}
+pptr-api .cm-link {text-decoration: underline;}
+pptr-api .cm-strikethrough {text-decoration: line-through;}
+
+pptr-api .cm-invalidchar {color: #f00;}
+
+pptr-api .cm-header {color: blue;}
+pptr-api .cm-quote {color: #090;}
+
+pptr-api .cm-keyword {color: #708;}
+pptr-api .cm-atom {color: #219;}
+pptr-api .cm-number {color: #164;}
+pptr-api .cm-def {color: #00f;}
+pptr-api .cm-variable-2 {color: #05a;}
+pptr-api .cm-variable-3, .cm-type {color: #085;}
+pptr-api .cm-comment {color: #a50;}
+pptr-api .cm-string {color: #a11;}
+pptr-api .cm-string-2 {color: #f50;}
+pptr-api .cm-meta {color: #555;}
+pptr-api .cm-qualifier {color: #555;}
+pptr-api .cm-builtin {color: #30a;}
+pptr-api .cm-bracket {color: #997;}
+pptr-api .cm-tag {color: #170;}
+pptr-api .cm-attribute {color: #00c;}
+pptr-api .cm-hr {color: #999;}
+pptr-api .cm-link {color: #00c;}
+
+pptr-api .cm-error {color: #f00;}
+
+

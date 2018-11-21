@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Puppeteer API</title>
+  <link rel="icon" href="_media/favicon.ico">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Description">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
+</head>
+<body>
+  <div id="app"></div>
+  <script src="//unpkg.com/docsify-edit-on-github/index.js"></script>
+  <script>
+    window.$docsify = {
+      name: 'Puppeteer API',
+      repo: 'https://github.com/zhaoqize/puppeteer-api-zh_CN',
+      auto2top: true,
+      loadSidebar: true,
+      mergeNavbar: true,
+      loadNavbar: true,
+      maxLevel: 4,
+      subMaxLevel: 4,
+      coverpage: true,
+      search: 'auto', // default
+      plugins: [
+      EditOnGithubPlugin.create(
+          'https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/docs/'
+        ),
+      ],
+      formatUpdated: '{MM}/{DD} {HH}:{mm}',
+      ga: 'UA-122080504-1'
+    }
+  </script>
+  <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+  <script src="//unpkg.com/docsify/lib/plugins/search.js"></script>
+  <script src="//unpkg.com/docsify-copy-code"></script>
+  <script src="//unpkg.com/docsify/lib/plugins/ga.js"></script>
+  <script>
+    ((window.gitter = {}).chat = {}).options = {
+      room: 'puppeteer-China/Lobby'
+    };
+    </script>
+    <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
+</body>
+</html>

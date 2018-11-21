@@ -328,8 +328,6 @@ Puppeteer API 是分层次的，反映了浏览器结构。
 
 ### puppeteer vs puppeteer-core
 
-[📚 查看原文](//github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteer-vs-puppeteer-core)
-
 自 v1.7.0 以来的每个版本我们都发布了两个包:
 - [puppeteer](https://www.npmjs.com/package/puppeteer)
 - [puppeteer-core](https://www.npmjs.com/package/puppeteer-core)
@@ -357,8 +355,6 @@ const puppeteer = require('puppeteer-core');
 
 ### Environment Variables
 
-[📚 查看原文](//github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#environment-variables)
-
 Puppeteer 寻找某些环境变量来帮助其操作。 如果 puppeteer 在环境中没有找到它们，这些变量的小写变体将从 [npm 配置](https://docs.npmjs.com/cli/config) 中使用。
 
 - `HTTP_PROXY`, `HTTPS_PROXY`, `NO_PROXY` - 定义用于下载和运行 Chromium 的 HTTP 代理设置。
@@ -370,8 +366,6 @@ Puppeteer 寻找某些环境变量来帮助其操作。 如果 puppeteer 在环�
 > **NOTE** 在使用 [`puppeteer-core`](https://www.npmjs.com/package/puppeteer-core) 时，上述环境变量中以 PUPPETEER_* 开头的会被忽略.
 
 ### Error handling
-
-[📚 查看原文](//github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#error-handling)
 
 如果 Puppeteer 方法无法执行一个请求，就会抛出一个错误。例如，[page.waitForSelector(selector[, options])](#pagewaitforselectorselector-options) 选择器如果在给定的时间范围内无法匹配节点，就会失败。
 
@@ -397,8 +391,6 @@ try {
 
 
 ### Working with Chrome Extensions
-
-[📚 查看原文](//github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#working-with-chrome-extensions)
 
 Puppeteer 可以用来测试 Chrome 扩展
 
