@@ -447,24 +447,24 @@ puppeteer.launch().then(async browser => {
   - `slowMo` <[number]> 将 Puppeteer 操作减少指定的毫秒数。这样你就可以看清发生了什么，这很有用。
 - returns: <[Promise]<[Browser]>>
 
-此方法将 Puppeteer 添加到现有的 Chromium 实例。
+此方法将 Puppeteer 添加到已有的 Chromium 实例。
 
 #### puppeteer.createBrowserFetcher([options])
 - `options` <[Object]>
-  - `host` <[string]> 要使用的下载主机. 默认是 `https://storage.googleapis.com`.
+  - `host` <[string]> 要使用的下载主机. 默认是 `https://storage.googleapis.com`。
   - `path` <[string]> 下载文件夹的路径. 默认是 `<root>/.local-chromium`, `<root>` 是 puppeteer 的包根目录。
-  - `platform` <[string]> 可能的值有: `mac`, `win32`, `win64`, `linux`. 默认是当前平台。
+  - `platform` <[string]> 可能的值有: `mac`, `win32`, `win64`, `linux`。默认是当前平台。
 - returns: <[BrowserFetcher]>
 
 #### puppeteer.defaultArgs([options])
 - `options` <[Object]>  设置浏览器可选项。有一下字段：
-  - `headless` <[boolean]> 是否在 [无头模式]((https://developers.google.com/web/updates/2017/04/headless-chrome) 下运行浏览器。默认是 `true` 除非  `devtools` 选项是 `true`。
+  - `headless` <[boolean]> 是否在 [无头模式](https://developers.google.com/web/updates/2017/04/headless-chrome) 下运行浏览器。默认是 `true` 除非  `devtools` 选项是 `true`。
   - `args` <[Array]<[string]>> 传递给浏览器实例的其他参数。可以 [在这](http://peter.sh/experiments/chromium-command-line-switches/) 找到 Chromium 标志列表。
   - `userDataDir` <[string]> [用户数据目录](https://chromium.googlesource.com/chromium/src/+/master/docs/user_data_dir.md) 的路径。
   - `devtools` <[boolean]> 是否为每个选项卡自动打开 DevTools 面板。如果这个选项是 `true` 的话, `headless` 选项将被设置为 `false`。
 - returns: <[Array]<[string]>>
 
-Chromium 启动时将使用的默认参数。
+Chromium 启动时使用的默认参数。
 
 #### puppeteer.executablePath()
 - returns: <[string]> Puppeteer 希望找到绑定的 Chromium 的路径。 如果使用 [`PUPPETEER_SKIP_CHROMIUM_DOWNLOAD`](#environment-variables) 跳过下载，则 Chromium 可能不存在。
@@ -473,7 +473,7 @@ Chromium 启动时将使用的默认参数。
 - `options` <[Object]>  在浏览器上设置的一组可配置选项。 有以下字段：
   - `ignoreHTTPSErrors` <[boolean]> 是否在导航期间忽略 HTTPS 错误. 默认是 `false`。
   - `headless` <[boolean]> 是否以 [无头模式](https://developers.google.com/web/updates/2017/04/headless-chrome) 运行浏览器。默认是 `true`，除非 `devtools` 选项是 `true`。
-  - `executablePath` <[string]> 可运行 Chromium 或 Chrome 可执行文件的路径，而不是绑定的的 Chromium。如果 `executablePath` 是一个相对路径，那么他相对于 [当前工作路径](https://nodejs.org/api/process.html#process_process_cwd) 解析。
+  - `executablePath` <[string]> 可运行 Chromium 或 Chrome 可执行文件的路径，而不是绑定的 Chromium。如果 `executablePath` 是一个相对路径，那么他相对于 [当前工作路径](https://nodejs.org/api/process.html#process_process_cwd) 解析。
   - `slowMo` <[number]> 将 Puppeteer 操作减少指定的毫秒数。这样你就可以看清发生了什么，这很有用。
   - `defaultViewport` <?[Object]> 为每个页面设置一个默认视口大小。默认是 800x600。如果为 `null` 的话就禁用视图口。
     - `width` <[number]> 页面宽度像素。
@@ -496,8 +496,11 @@ Chromium 启动时将使用的默认参数。
 - returns: <[Promise]<[Browser]>> 浏览器实例支持 Promise。
 
 这个方法结合了下面3个步骤：
+
 1、使用 `puppeteer.defaultArgs()` 作为一组默认值来启动 Chromium。
+
 2、启动浏览器并根据 `executablePath` ，`handleSIGINT`，`dumpio` 和其他选项开始管理它的进程。
+
 3、创建一个 [Browser] 类的实例，并根据 `defaultViewport`，`slowMo` 和 `ignoreHTTPSErrors` 初始化它。
 
 `ignoreDefaultArgs` 选项可用于自定义（1）步骤的行为。 例如，要从参数中过滤掉 `--mute-audio`：
@@ -521,7 +524,7 @@ BrowserFetcher 可以用来下载和管理不同版本的 Chromium。
 
 BrowserFetcher 操作一个修订版本字符串，修订版本字符串指定了一个 Chromium 的确定版本，例如 `"533271"`。修订版本字符串可以从 [omahaproxy.appspot.com](http://omahaproxy.appspot.com/) 获取。
 
-见下面这个例子，告诉你如何使用 BrowserFetcher 下载一个指定版本的 Chromium：
+看下面这个例子，他将告诉你如何使用 BrowserFetcher 下载一个指定版本的 Chromium：
 
 ```js
 const browserFetcher = puppeteer.createBrowserFetcher();
@@ -530,7 +533,6 @@ const browser = await puppeteer.launch({executablePath: revisionInfo.executableP
 ```
 
 > **注意** BrowserFetcher 不适用于与共享下载目录的其他实例同时运行。
-> instances of BrowserFetcher that share the same downloads directory.
 
 #### browserFetcher.canDownload(revision)
 - `revision` <[string]> 修订版本号, 检查其可用性

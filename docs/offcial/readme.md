@@ -19,12 +19,11 @@
 * 抓取 SPA（单页应用）并生成预渲染内容（即“SSR”（服务器端渲染））。
 * 自动提交表单，进行 UI 测试，键盘输入等。
 * 创建一个时时更新的自动化测试环境。 使用最新的 JavaScript 和浏览器功能直接在最新版本的Chrome中执行测试。
-* Capture a [timeline trace](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/reference) of your site to help diagnose performance issues.
-* 捕获网站的 [timeline trace](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/reference)，y用来帮助分析性能问题。
+* 捕获网站的 [timeline trace](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/reference)，用来帮助分析性能问题。
 * 测试浏览器扩展。
 <!-- [END usecases] -->
 
-Give it a spin: https://try-puppeteer.appspot.com/
+演示地址: https://try-puppeteer.appspot.com/
 
 <!-- [START getstarted] -->
 ## 开始使用
