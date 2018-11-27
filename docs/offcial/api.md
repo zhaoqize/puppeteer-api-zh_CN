@@ -97,36 +97,36 @@
   * [page.bringToFront()](#pagebringtofront)
   * [page.browser()](#pagebrowser)
   * [page.click(selector[, options])](#pageclickselector-options)
-  * [page.close(options)](#pagecloseoptions)
+  * [page.close([options])](#pagecloseoptions)
   * [page.content()](#pagecontent)
-  * [page.cookies(...urls)](#pagecookiesurls)
+  * [page.cookies([...urls])](#pagecookiesurls)
   * [page.coverage](#pagecoverage)
   * [page.deleteCookie(...cookies)](#pagedeletecookiecookies)
   * [page.emulate(options)](#pageemulateoptions)
   * [page.emulateMedia(mediaType)](#pageemulatemediamediatype)
-  * [page.evaluate(pageFunction, ...args)](#pageevaluatepagefunction-args)
-  * [page.evaluateHandle(pageFunction, ...args)](#pageevaluatehandlepagefunction-args)
-  * [page.evaluateOnNewDocument(pageFunction, ...args)](#pageevaluateonnewdocumentpagefunction-args)
+  * [page.evaluate(pageFunction[, ...args])](#pageevaluatepagefunction-args)
+  * [page.evaluateHandle(pageFunction[, ...args])](#pageevaluatehandlepagefunction-args)
+  * [page.evaluateOnNewDocument(pageFunction[, ...args])](#pageevaluateonnewdocumentpagefunction-args)
   * [page.exposeFunction(name, puppeteerFunction)](#pageexposefunctionname-puppeteerfunction)
   * [page.focus(selector)](#pagefocusselector)
   * [page.frames()](#pageframes)
-  * [page.goBack(options)](#pagegobackoptions)
-  * [page.goForward(options)](#pagegoforwardoptions)
-  * [page.goto(url, options)](#pagegotourl-options)
+  * [page.goBack([options])](#pagegobackoptions)
+  * [page.goForward([options])](#pagegoforwardoptions)
+  * [page.goto(url[, options])](#pagegotourl-options)
   * [page.hover(selector)](#pagehoverselector)
   * [page.isClosed()](#pageisclosed)
   * [page.keyboard](#pagekeyboard)
   * [page.mainFrame()](#pagemainframe)
   * [page.metrics()](#pagemetrics)
   * [page.mouse](#pagemouse)
-  * [page.pdf(options)](#pagepdfoptions)
+  * [page.pdf([options])](#pagepdfoptions)
   * [page.queryObjects(prototypeHandle)](#pagequeryobjectsprototypehandle)
-  * [page.reload(options)](#pagereloadoptions)
+  * [page.reload([options])](#pagereloadoptions)
   * [page.screenshot([options])](#pagescreenshotoptions)
   * [page.select(selector, ...values)](#pageselectselector-values)
   * [page.setBypassCSP(enabled)](#pagesetbypasscspenabled)
-  * [page.setCacheEnabled(enabled)](#pagesetcacheenabledenabled)
-  * [page.setContent(html)](#pagesetcontenthtml)
+  * [page.setCacheEnabled([enabled])](#pagesetcacheenabledenabled)
+  * [page.setContent(html[, options])](#pagesetcontenthtml-options)
   * [page.setCookie(...cookies)](#pagesetcookiecookies)
   * [page.setDefaultNavigationTimeout(timeout)](#pagesetdefaultnavigationtimeouttimeout)
   * [page.setExtraHTTPHeaders(headers)](#pagesetextrahttpheadersheaders)
@@ -146,15 +146,15 @@
   * [page.viewport()](#pageviewport)
   * [page.waitFor(selectorOrFunctionOrTimeout[, options[, ...args]])](#pagewaitforselectororfunctionortimeout-options-args)
   * [page.waitForFunction(pageFunction[, options[, ...args]])](#pagewaitforfunctionpagefunction-options-args)
-  * [page.waitForNavigation(options)](#pagewaitfornavigationoptions)
-  * [page.waitForRequest(urlOrPredicate, options)](#pagewaitforrequesturlorpredicate-options)
-  * [page.waitForResponse(urlOrPredicate, options)](#pagewaitforresponseurlorpredicate-options)
+  * [page.waitForNavigation([options])](#pagewaitfornavigationoptions)
+  * [page.waitForRequest(urlOrPredicate[, options])](#pagewaitforrequesturlorpredicate-options)
+  * [page.waitForResponse(urlOrPredicate[, options])](#pagewaitforresponseurlorpredicate-options)
   * [page.waitForSelector(selector[, options])](#pagewaitforselectorselector-options)
   * [page.waitForXPath(xpath[, options])](#pagewaitforxpathxpath-options)
   * [page.workers()](#pageworkers)
 - [class: Worker](#class-worker)
-  * [worker.evaluate(pageFunction, ...args)](#workerevaluatepagefunction-args)
-  * [worker.evaluateHandle(pageFunction, ...args)](#workerevaluatehandlepagefunction-args)
+  * [worker.evaluate(pageFunction[, ...args])](#workerevaluatepagefunction-args)
+  * [worker.evaluateHandle(pageFunction[, ...args])](#workerevaluatehandlepagefunction-args)
   * [worker.executionContext()](#workerexecutioncontext)
   * [worker.url()](#workerurl)
 - [class: Accessibility](#class-accessibility)
@@ -163,12 +163,12 @@
   * [keyboard.down(key[, options])](#keyboarddownkey-options)
   * [keyboard.press(key[, options])](#keyboardpresskey-options)
   * [keyboard.sendCharacter(char)](#keyboardsendcharacterchar)
-  * [keyboard.type(text, options)](#keyboardtypetext-options)
+  * [keyboard.type(text[, options])](#keyboardtypetext-options)
   * [keyboard.up(key)](#keyboardupkey)
 - [class: Mouse](#class-mouse)
-  * [mouse.click(x, y, [options])](#mouseclickx-y-options)
+  * [mouse.click(x, y[, options])](#mouseclickx-y-options)
   * [mouse.down([options])](#mousedownoptions)
-  * [mouse.move(x, y, [options])](#mousemovex-y-options)
+  * [mouse.move(x, y[, options])](#mousemovex-y-options)
   * [mouse.up([options])](#mouseupoptions)
 - [class: Touchscreen](#class-touchscreen)
   * [touchscreen.tap(x, y)](#touchscreentapx-y)
@@ -196,29 +196,29 @@
   * [frame.childFrames()](#framechildframes)
   * [frame.click(selector[, options])](#frameclickselector-options)
   * [frame.content()](#framecontent)
-  * [frame.evaluate(pageFunction, ...args)](#frameevaluatepagefunction-args)
-  * [frame.evaluateHandle(pageFunction, ...args)](#frameevaluatehandlepagefunction-args)
+  * [frame.evaluate(pageFunction[, ...args])](#frameevaluatepagefunction-args)
+  * [frame.evaluateHandle(pageFunction[, ...args])](#frameevaluatehandlepagefunction-args)
   * [frame.executionContext()](#frameexecutioncontext)
   * [frame.focus(selector)](#framefocusselector)
-  * [frame.goto(url, options)](#framegotourl-options)
+  * [frame.goto(url[, options])](#framegotourl-options)
   * [frame.hover(selector)](#framehoverselector)
   * [frame.isDetached()](#frameisdetached)
   * [frame.name()](#framename)
   * [frame.parentFrame()](#frameparentframe)
   * [frame.select(selector, ...values)](#frameselectselector-values)
-  * [frame.setContent(html)](#framesetcontenthtml)
+  * [frame.setContent(html[, options])](#framesetcontenthtml-options)
   * [frame.tap(selector)](#frametapselector)
   * [frame.title()](#frametitle)
   * [frame.type(selector, text[, options])](#frametypeselector-text-options)
   * [frame.url()](#frameurl)
   * [frame.waitFor(selectorOrFunctionOrTimeout[, options[, ...args]])](#framewaitforselectororfunctionortimeout-options-args)
   * [frame.waitForFunction(pageFunction[, options[, ...args]])](#framewaitforfunctionpagefunction-options-args)
-  * [frame.waitForNavigation(options)](#framewaitfornavigationoptions)
+  * [frame.waitForNavigation([options])](#framewaitfornavigationoptions)
   * [frame.waitForSelector(selector[, options])](#framewaitforselectorselector-options)
   * [frame.waitForXPath(xpath[, options])](#framewaitforxpathxpath-options)
 - [class: ExecutionContext](#class-executioncontext)
-  * [executionContext.evaluate(pageFunction, ...args)](#executioncontextevaluatepagefunction-args)
-  * [executionContext.evaluateHandle(pageFunction, ...args)](#executioncontextevaluatehandlepagefunction-args)
+  * [executionContext.evaluate(pageFunction[, ...args])](#executioncontextevaluatepagefunction-args)
+  * [executionContext.evaluateHandle(pageFunction[, ...args])](#executioncontextevaluatehandlepagefunction-args)
   * [executionContext.frame()](#executioncontextframe)
   * [executionContext.queryObjects(prototypeHandle)](#executioncontextqueryobjectsprototypehandle)
 - [class: JSHandle](#class-jshandle)
@@ -231,8 +231,8 @@
 - [class: ElementHandle](#class-elementhandle)
   * [elementHandle.$(selector)](#elementhandleselector)
   * [elementHandle.$$(selector)](#elementhandleselector-1)
-  * [elementHandle.$$eval(selector, pageFunction, ...args)](#elementhandleevalselector-pagefunction-args)
-  * [elementHandle.$eval(selector, pageFunction, ...args)](#elementhandleevalselector-pagefunction-args-1)
+  * [elementHandle.$$eval(selector, pageFunction[, ...args])](#elementhandleevalselector-pagefunction-args)
+  * [elementHandle.$eval(selector, pageFunction[, ...args])](#elementhandleevalselector-pagefunction-args-1)
   * [elementHandle.$x(expression)](#elementhandlexexpression)
   * [elementHandle.asElement()](#elementhandleaselement)
   * [elementHandle.boundingBox()](#elementhandleboundingbox)
@@ -300,8 +300,8 @@
   * [cdpSession.detach()](#cdpsessiondetach)
   * [cdpSession.send(method[, params])](#cdpsessionsendmethod-params)
 - [class: Coverage](#class-coverage)
-  * [coverage.startCSSCoverage(options)](#coveragestartcsscoverageoptions)
-  * [coverage.startJSCoverage(options)](#coveragestartjscoverageoptions)
+  * [coverage.startCSSCoverage([options])](#coveragestartcsscoverageoptions)
+  * [coverage.startJSCoverage([options])](#coveragestartjscoverageoptions)
   * [coverage.stopCSSCoverage()](#coveragestopcsscoverage)
   * [coverage.stopJSCoverage()](#coveragestopjscoverage)
 - [class: TimeoutError](#class-timeouterror)
@@ -352,7 +352,6 @@ Puppeteer API 是分层次的，反映了浏览器结构。
 const puppeteer = require('puppeteer-core');
 ```
 
-
 ### Environment Variables
 
 Puppeteer 寻找某些环境变量来帮助其操作。 如果 puppeteer 在环境中没有找到它们，这些变量的小写变体将从 [npm 配置](https://docs.npmjs.com/cli/config) 中使用。
@@ -388,7 +387,6 @@ try {
   }
 }
 ```
-
 
 ### Working with Chrome Extensions
 
@@ -532,6 +530,7 @@ const browser = await puppeteer.launch({executablePath: revisionInfo.executableP
 ```
 
 > **注意** BrowserFetcher 不适用于与共享下载目录的其他实例同时运行。
+> instances of BrowserFetcher that share the same downloads directory.
 
 #### browserFetcher.canDownload(revision)
 - `revision` <[string]> 修订版本号, 检查其可用性
@@ -540,13 +539,13 @@ const browser = await puppeteer.launch({executablePath: revisionInfo.executableP
 该方法将会发起一个 HEAD 请求来检查该修订版本是否有效。
 
 #### browserFetcher.download(revision[, progressCallback])
-- `revision` <[string]> 下载的修订版本
-  - `progressCallback` <[function]([number], [number])> 一个函数, 调用时将会传入两个参数：
+- `revision` <[string]> 下载的修订版本。
+- `progressCallback` <[function]([number], [number])> 一个函数, 调用时将会传入两个参数：
   - `downloadedBytes` <[number]> 多少字节已经被下载
-  - `totalBytes` <number> 下载全部的字节数(译者注: 也就是需要下载的文件大小)
-- returns: <[Promise]<Object>> Resolves with revision information when the revision is downloaded and extracted
+  - `totalBytes` <[number]> 下载全部的字节数(译者注: 也就是需要下载的文件大小)
+- returns: <[Promise]<[Object]>> Resolves with revision information when the revision is downloaded and extracted
   - `revision` <[string]> 该修订版本被创建时的信息
-  - `folderPath` <[string]> 解压该修订版本的路径
+  - `folderPath` <[string]>  解压该修订版本的路径
   - `executablePath` <[string]> 该修订版本的可执行文件的路径
   - `url` <[string]> URL 该修订版本的下载路径
   - `local` <[boolean]> 该修订版本是否是在本地的磁盘上是可用的
@@ -574,7 +573,7 @@ const browser = await puppeteer.launch({executablePath: revisionInfo.executableP
 
 ### class: Browser
 
-* extends: [`EventEmitter`](https://nodejs.org/api/events.html#events_class_eventemitter)
+<!-- * extends: [`EventEmitter`](https://nodejs.org/api/events.html#events_class_eventemitter)
 
 A Browser is created when Puppeteer connects to a Chromium instance, either through [`puppeteer.launch`](#puppeteerlaunchoptions) or [`puppeteer.connect`](#puppeteerconnectoptions).
 
@@ -726,82 +725,85 @@ You can find the `webSocketDebuggerUrl` from `http://${host}:${port}/json/versio
 
 ### class: BrowserContext
 
-* 继承自: [`EventEmitter`](https://nodejs.org/api/events.html#events_class_eventemitter)
+* extends: [`EventEmitter`](https://nodejs.org/api/events.html#events_class_eventemitter)
 
-BrowserContexts 提供了一种操作多个独立浏览器会话的方法。 当浏览器启动时，它已经默认使用一个 BrowserContext。 `browser.newPage()` 方法在默认的浏览器上下文中创建一个页面。
+BrowserContexts provide a way to operate multiple independent browser sessions. When a browser is launched, it has
+a single BrowserContext used by default. The method `browser.newPage()` creates a page in the default browser context.
 
-如果一个页面打开另一个页面，例如通过 `window.open` 调用，弹出的窗口将属于父页面的浏览器上下文。
+If a page opens another page, e.g. with a `window.open` call, the popup will belong to the parent page's browser
+context.
 
-Puppeteer 允许使用 `browser.createIncognitoBrowserContext()` 方法创建"隐身"浏览器上下文。
-"隐身"浏览器上下文不会将任何浏览数据写入磁盘。
+Puppeteer allows creation of "incognito" browser contexts with `browser.createIncognitoBrowserContext()` method.
+"Incognito" browser contexts don't write any browsing data to disk.
 
 ```js
-// 创建一个新的隐身浏览器上下文
+// Create a new incognito browser context
 const context = await browser.createIncognitoBrowserContext();
-// 在上下文中创建一个新页面
+// Create a new page inside context.
 const page = await context.newPage();
-// ... 在页面上做一些操作 ...
+// ... do stuff with page ...
 await page.goto('https://example.com');
-// 不再需要时处理上下文
+// Dispose context once it's no longer needed.
 await context.close();
 ```
 
 #### event: 'targetchanged'
 - <[Target]>
 
-浏览器上下文中目标的 url 更改时触发。
+Emitted when the url of a target inside the browser context changes.
 
 #### event: 'targetcreated'
 - <[Target]>
 
-在浏览器上下文中创建新目标时触发，例如打开了一个新页面 [`window.open`](https://developer.mozilla.org/en-US/docs/Web/API/Window/open) 或 [`browserContext.newPage`](#browsercontextnewpage)。
+Emitted when a new target is created inside the browser context, for example when a new page is opened by [`window.open`](https://developer.mozilla.org/en-US/docs/Web/API/Window/open) or [`browserContext.newPage`](#browsercontextnewpage).
 
 #### event: 'targetdestroyed'
 - <[Target]>
 
-当浏览器上下文中的目标被销毁时，例如关闭页面时触发。
+Emitted when a target inside the browser context is destroyed, for example when a page is closed.
 
 #### browserContext.browser()
 - returns: <[Browser]>
 
-此浏览器上下文所属的浏览器。
+The browser this browser context belongs to.
 
 #### browserContext.clearPermissionOverrides()
 - returns: <[Promise]>
 
-清除浏览器上下文的所有权限覆盖。
+Clears all permission overrides for the browser context.
 
 ```js
 const context = browser.defaultBrowserContext();
 context.overridePermissions('https://example.com', ['clipboard-read']);
-// 做些事 ..
+// do stuff ..
 context.clearPermissionOverrides();
 ```
 
 #### browserContext.close()
 - returns: <[Promise]>
 
-关闭浏览器上下文。 所有属于浏览器上下文的目标将被关闭。
+Closes the browser context. All the targets that belong to the browser context
+will be closed.
 
-> **注意** 只有隐身浏览器上下文才能关闭。
+> **NOTE** only incognito browser contexts can be closed.
 
 #### browserContext.isIncognito()
 - returns: <[boolean]>
 
-返回 BrowserContext 是否隐身。
-默认浏览器上下文是唯一的非隐身浏览器上下文。
+Returns whether BrowserContext is incognito.
+The default browser context is the only non-incognito browser context.
 
-> **注意** 默认浏览器上下文无法关闭。
+> **NOTE** the default browser context cannot be closed.
 
 #### browserContext.newPage()
 - returns: <[Promise]<[Page]>>
 
-在浏览器上下文中创建一个新页面。
+Creates a new page in the browser context.
 
 
 #### browserContext.overridePermissions(origin, permissions)
 - `origin` <[string]> The [origin] to grant permissions to, e.g. "https://example.com".
-- `permissions` <[Array]<[string]>> 授予的一组权限。未在这里列出的权限都将会被自动拒绝。权限可以是以下值之一:
+- `permissions` <[Array]<[string]>> An array of permissions to grant. All permissions that are not listed here will be automatically denied. Permissions can be one of the following values:
     - `'geolocation'`
     - `'midi'`
     - `'midi-sysex'` (system-exclusive midi)
@@ -830,10 +832,12 @@ await context.overridePermissions('https://html5demos.com', ['geolocation']);
 #### browserContext.pages()
 - returns: <[Promise]<[Array]<[Page]>>> Promise which resolves to an array of all open pages. Non visible pages, such as `"background_page"`, will not be listed here. You can find them using [target.page()](#targetpage).
 
+An array of all pages inside the browser context.
+
 #### browserContext.targets()
 - returns: <[Array]<[Target]>>
 
-浏览器上下文中所有活动目标的数组。
+An array of all active targets inside the browser context.
 
 #### browserContext.waitForTarget(predicate[, options])
 - `predicate` <[function]\([Target]\):[boolean]> A function to be run for every target
@@ -847,7 +851,142 @@ An example of finding a target for a page opened via `window.open`:
 ```js
 await page.evaluate(() => window.open('https://www.example.com/'));
 const newWindowTarget = await browserContext.waitForTarget(target => target.url() === 'https://www.example.com/');
+``` -->
+* extends: [`EventEmitter`](https://nodejs.org/api/events.html#events_class_eventemitter)
+
+当 Puppeteer 连接到一个 Chromium 实例的时候会通过 [`puppeteer.launch`](#puppeteerlaunchoptions) 或 [`puppeteer.connect`](#puppeteerconnectoptions) 创建一个 Browser 对象。
+
+下面是使用 ```Browser``` 创建 ```Page``` 的例子
+
+```js
+const puppeteer = require('puppeteer');
+
+puppeteer.launch().then(async browser => {
+  const page = await browser.newPage();
+  await page.goto('https://example.com');
+  await browser.close();
+});
 ```
+
+一个断开连接和重连到 [Browser] 的例子：
+
+```js
+const puppeteer = require('puppeteer');
+
+puppeteer.launch().then(async browser => {
+  // 存储节点以便能重新连接到 Chromium
+  const browserWSEndpoint = browser.wsEndpoint();
+  // 从 Chromium 断开和 puppeteer 的连接
+  browser.disconnect();
+
+  // 使用节点来重新建立连接
+  const browser2 = await puppeteer.connect({browserWSEndpoint});
+  // 关闭 Chromium
+  await browser2.close();
+});
+```
+#### event: 'disconnected'
+当 Puppeteer 从 Chromium 实例断开连接时被触发。原因可能如下：
+
+- Chromium 关闭或崩溃
+- 调用[`browser.disconnect`](#browserdisconnect) 方法
+
+#### event: 'targetchanged'
+- <[Target]>
+
+当目标的 url 改变时被触发
+
+> **注意** 这包括匿名浏览器上下文中的目标更改。
+
+
+#### event: 'targetcreated'
+- <[Target]>
+
+当目标被创建时被触发，例如当通过 [`window.open`](https://developer.mozilla.org/en-US/docs/Web/API/Window/open) 或 [`browser.newPage`](#browsernewpage) 打开一个新的页面。
+
+> **注意** 这包括匿名浏览器上下文中的目标创建。
+
+#### event: 'targetdestroyed'
+- <[Target]>
+
+当目标被销毁时被触发，例如当一个页面被关闭时。
+
+> **注意** 这包括匿名浏览器上下文中的目标销毁。
+
+#### browser.browserContexts()
+- returns: <[Array]<[BrowserContext]>>
+
+返回一个包含所有打开的浏览器上下文的数组。在新创建的浏览器中，这将返回 [BrowserContext] 的单一实例。
+
+#### browser.close()
+- returns: <[Promise]>
+
+关闭 Chromium 及其所有页面(如果页面被打开的话)。[Browser] 对象本身被认为是处理过的并不能再被使用。
+
+#### browser.createIncognitoBrowserContext()
+- returns: <[Promise]<[BrowserContext]>>
+
+创建一个匿名的浏览器上下文。这将不会与其他浏览器上下文分享 cookies/cache。
+
+```js
+const browser = await puppeteer.launch();
+// 创建一个匿名的浏览器上下文
+const context = await browser.createIncognitoBrowserContext();
+// 在一个原生的上下文中创建一个新页面
+const page = await context.newPage();
+// 做一些事情
+await page.goto('https://example.com');
+```
+
+#### browser.defaultBrowserContext()
+- returns: <[BrowserContext]>
+
+返回一个默认的浏览器上下文。这个上下文不能被关闭。
+
+#### browser.disconnect()
+
+断开 Puppeteer 和浏览器的连接，但 Chromium 进程仍然在运行。在调用 ```disconnect``` 之后，[Browser] 对象本身被认为是处理过的并不能再被使用。
+
+#### browser.newPage()
+- returns: <[Promise]<[Page]>>
+
+返回一个新的 [Page] 对象。[Page] 在一个默认的浏览器上下文中被创建。
+
+#### browser.pages()
+- returns: <[Promise]<[Array]<[Page]>>> 返回一个包含所有打开的页面的数组。页面不可见的，比如 `"background_page"` 将不会列在这。不过你可以通过 [target.page()](#targetpage) 找到它们。
+
+返回一个浏览器中所有页面的数组。 在多个浏览器上下文的情况下，
+该方法将返回一个包含所有浏览器上下文中所有页面的数组。
+
+#### browser.process()
+- returns: <?[ChildProcess]> 产生浏览器的进程。如果浏览器实例是由 [`puppeteer.connect`](#puppeteerconnectoptions) 方法创建的则返回null。
+
+#### browser.target()
+- returns: <[Target]>
+
+返回浏览器相关的目标对象。
+
+#### browser.targets()
+- returns: <[Array]<[Target]>>
+
+浏览器内所有活动目标组成的数组。在多个浏览器上下文的情况下，该方法将返回一个包含所有浏览器上下文中的所有目标的数组。
+
+#### browser.userAgent()
+- returns: <[Promise]<[string]>> 返回浏览器原始的 user-agent
+
+> **注意** 页面可以使用 [page.setUserAgent](#pagesetuseragentuseragent) 覆盖浏览器的 user-agent
+
+#### browser.version()
+- returns: <[Promise]<[string]>> 对于无头的 Chromium，这类似于 `HeadlessChrome/61.0.3153.0`. 对于非无头的Chromium, 这类似于 `Chrome/61.0.3153.0。`
+
+> **注意** browser.version() 的格式可能在未来版本的 Chromium 中发生变化。
+
+#### browser.wsEndpoint()
+- returns: <[string]> 返回浏览器 websocket 的地址
+
+[puppeteer.connect](#puppeteerconnectoptions) 可以将浏览器 websocket 端作为一个参数。其格式为 `ws://${host}:${port}/devtools/browser/<id>`。
+
+你可以从 `http://${host}:${port}/json/version` 找到 `webSocketDebuggerUrl` 。了解更多有关 [devtools protocol](https://chromedevtools.github.io/devtools-protocol) 和 [browser endpoint](https://chromedevtools.github.io/devtools-protocol/#how-do-i-access-the-browser-target) 的信息。
 
 ### class: Page
 
@@ -908,6 +1047,7 @@ page.evaluate(() => console.log('hello', 5, {foo: 'bar'})); // 这个代码表�
 - <[Dialog]>
 
 当js对话框出现的时候触发，比如`alert`, `prompt`, `confirm` 或者 `beforeunload`。Puppeteer可以通过[Dialog]'s [accept](#dialogacceptprompttext) 或者 [dismiss](#dialogdismiss)来响应弹窗。
+
 
 #### event: 'domcontentloaded'
 
@@ -991,7 +1131,7 @@ page.evaluate(() => console.log('hello', 5, {foo: 'bar'})); // 这个代码表�
 [page.mainFrame().$(selector)](#frameselector) 的简写。
 
 #### page.$$(selector)
--- `selector` <[string]> 选择器
+- `selector` <[string]> 选择器
 - 返回: <[Promise]<[Array]<[ElementHandle]>>>
 
 此方法在页面内执行 `document.querySelectorAll`。如果没有元素匹配指定选择器，返回值是 `[]`。
@@ -1112,7 +1252,7 @@ const [response] = await Promise.all([
 
 [page.mainFrame().click(selector[, options])](#frameclickselector-options) 的简写。
 
-#### page.close(options)
+#### page.close([options])
 - `options` <[Object]>
   - `runBeforeUnload` <[boolean]> 默认 `false`. 是否执行 [before unload](https://developer.mozilla.org/en-US/docs/Web/Events/beforeunload)
 - 返回: <[Promise]>
@@ -1127,7 +1267,7 @@ const [response] = await Promise.all([
 
 返回页面的完整 html 代码，包括 doctype。
 
-#### page.cookies(...urls)
+#### page.cookies([...urls])
 - `...urls` <...[string]>
 - returns: <[Promise]<[Array]<[Object]>>>
   - `name` <[string]>
@@ -1194,7 +1334,7 @@ puppeteer.launch().then(async browser => {
 - `mediaType` <?[string]> 改变页面的css媒体类型。支持的值仅包括 `'screen'`, `'print'` 和 `null`。传 `null` 禁用媒体模拟
 - 返回: <[Promise]>
 
-#### page.evaluate(pageFunction, ...args)
+#### page.evaluate(pageFunction[, ...args])
 - `pageFunction` <[function]|[string]> 要在页面实例上下文中执行的方法
 - `...args` <...[Serializable]|[JSHandle]> 要传给 `pageFunction` 的参数
 - 返回: <[Promise]<[Serializable]>> `pageFunction`执行的结果
@@ -1227,7 +1367,7 @@ await bodyHandle.dispose();
 
 [page.mainFrame().evaluate(pageFunction, ...args)](#frameevaluatepagefunction-args) 的简写。
 
-#### page.evaluateHandle(pageFunction, ...args)
+#### page.evaluateHandle(pageFunction[, ...args])
 - `pageFunction` <[function]|[string]> 要在页面实例上下文中执行的方法
 - `...args` <...[Serializable]|[JSHandle]> 要传给 `pageFunction` 的参数
 - 返回: <[Promise]<[JSHandle]>> `pageFunction` 执行的结果 页内类型(JSHandle)
@@ -1251,7 +1391,7 @@ await resultHandle.dispose();
 
 [page.mainFrame().executionContext().evaluateHandle(pageFunction, ...args)](#executioncontextevaluatehandlepagefunction-args) 的简写。
 
-#### page.evaluateOnNewDocument(pageFunction, ...args)
+#### page.evaluateOnNewDocument(pageFunction[, ...args])
 - `pageFunction` <[function]|[string]> 要在页面实例上下文中执行的方法
 - `...args` <...[Serializable]> 要传给 `pageFunction` 的参数
 - 返回: <[Promise]>
@@ -1354,7 +1494,7 @@ puppeteer.launch().then(async browser => {
 #### page.frames()
 - 返回: <[Array]<[Frame]>> 加载到页面中的所有iframe标签
 
-#### page.goBack(options)
+#### page.goBack([options])
 - `options` <[Object]> 导航配置，可选值：
   - `timeout` <[number]> 跳转等待时间，单位是毫秒, 默认是30秒, 传 `0` 表示无限等待。可以通过[page.setDefaultNavigationTimeout(timeout)](#pagesetdefaultnavigationtimeouttimeout)方法修改默认值
   - `waitUntil` <[string]|[Array]<[string]>> 满足什么条件认为页面跳转完成，默认是`load`事件触发时。指定事件数组，那么所有事件触发后才认为是跳转完成。事件包括：
@@ -1366,7 +1506,7 @@ puppeteer.launch().then(async browser => {
 
 导航到页面历史的前一个页面。
 
-#### page.goForward(options)
+#### page.goForward([options])
 - `options` <[Object]> 导航配置，可选值：
   - `timeout` <[number]> 跳转等待时间，单位是毫秒, 默认是30秒, 传 `0` 表示无限等待。可以通过[page.setDefaultNavigationTimeout(timeout)](#pagesetdefaultnavigationtimeouttimeout)方法修改默认值
   - `waitUntil` <[string]|[Array]<[string]>> 满足什么条件认为页面跳转完成，默认是 `load` 事件触发时。指定事件数组，那么所有事件触发后才认为是跳转完成。事件包括：
@@ -1378,7 +1518,7 @@ puppeteer.launch().then(async browser => {
 
 导航到页面历史的后一个页面。
 
-#### page.goto(url, options)
+#### page.goto(url[, options])
 - `url` <[string]> 导航到的地址. 地址应该带有http协议, 比如 `https://`.
 - `options` <[Object]> 导航配置，可选值：
   - `timeout` <[number]> 跳转等待时间，单位是毫秒, 默认是30秒, 传 `0` 表示无限等待。可以通过[page.setDefaultNavigationTimeout(timeout)](#pagesetdefaultnavigationtimeouttimeout)方法修改默认值
@@ -1449,7 +1589,7 @@ puppeteer.launch().then(async browser => {
 
 - returns: <[Mouse]>
 
-#### page.pdf(options)
+#### page.pdf([options])
 - `options` <[Object]> 可以有以下配置项：
   - `path` <[string]> pdf文件保存的路径。如果是相对路径，则相对[当前路径](https://nodejs.org/api/process.html#process_process_cwd)。如果不指定路径，将不保存到硬盘。
   - `scale` <[number]> 页面渲染的缩放。默认是1。缩放值必须介于0.1到2之间。
@@ -1538,7 +1678,7 @@ await mapPrototype.dispose();
 
 [page.mainFrame().executionContext().queryObjects(prototypeHandle)](#executioncontextqueryobjectsprototypehandle) 的简写
 
-#### page.reload(options)
+#### page.reload([options])
 - `options` <[Object]> 导航配置，可选值：
   - `timeout` <[number]> 跳转等待时间，单位是毫秒, 默认是30秒, 传 `0` 表示无限等待。可以通过[page.setDefaultNavigationTimeout(timeout)](#pagesetdefaultnavigationtimeouttimeout)方法修改默认值
   - `waitUntil` <[string]|[Array]<[string]>> 满足什么条件认为页面跳转完成，默认是 `load` 事件触发时。指定事件数组，那么所有事件触发后才认为是跳转完成。事件包括：
@@ -1563,7 +1703,7 @@ await mapPrototype.dispose();
   - `encoding` <[string]> 图像的编码可以是 `base64` 或 `binary`。 默认为“二进制”。
 - 返回: <[Promise]<[Buffer|String]>> Promise对象，resolve后是截图的buffer
 
-> **备注** 在OS X上 截图需要至少1/6秒。查看讨论：https://crbug.com/741689.
+> **备注** 在OS X上 截图需要至少1/6秒。查看讨论：https://crbug.com/741689。
 
 #### page.select(selector, ...values)
 - `selector` <[string]> 要查找的选择器
@@ -1588,15 +1728,28 @@ page.select('select#colors', 'red', 'green', 'blue'); // 多选择器
 
 > **注意** CSP 发生在 CSP 初始化而不是评估阶段。也就是说应该在导航到这个域名前设置
 
-#### page.setCacheEnabled(enabled)
-- `enabled` <[boolean]> 设置缓存的 `enabled` 状态
+#### page.setCacheEnabled([enabled])
+-- `enabled` <[boolean]> 设置缓存的 `enabled` 状态
 - 返回: <[Promise]>
 
 设置每个请求忽略缓存。默认是启用缓存的。
 
-#### page.setContent(html)
-- `html` <[string]> 设置页面源码
-- returns: <[Promise]>
+#### page.setContent(html[, options])
+- `...cookies` <...[Object]>
+  - `name` <[string]> **required**
+  - `value` <[string]> **required**
+  - `url` <[string]>
+  - `domain` <[string]>
+  - `path` <[string]>
+  - `expires` <[number]> Unix time in seconds.
+  - `httpOnly` <[boolean]>
+  - `secure` <[boolean]>
+  - `sameSite` <[string]> `"Strict"` 或 `"Lax"`。
+- 返回: <[Promise]>
+
+```js
+await page.setCookie(cookieObject1, cookieObject2);
+```
 
 #### page.setCookie(...cookies)
 - `...cookies` <...[Object]>
@@ -1616,7 +1769,7 @@ await page.setCookie(cookieObject1, cookieObject2);
 ```
 
 #### page.setDefaultNavigationTimeout(timeout)
--- `timeout` <[number]> 最多等待时间，单位是毫秒
+- `timeout` <[number]> 最多等待时间，单位是毫秒
 
 此方法会改变下面几个方法的默认30秒等待时间：
 - [page.goto(url, options)](#pagegotourl-options)
@@ -1716,9 +1869,9 @@ puppeteer.launch().then(async browser => {
 - returns: <[Target]> a target this page was created from.
 
 #### page.title()
-- returns: <[Promise]<[string]>> 页面标题.
+- returns: <[Promise]<[string]>> 返回页面标题.
 
-[page.mainFrame().tap(selector)](#frametapselector) 的简写
+[page.mainFrame().title()](#frametitle)的简写
 
 #### page.touchscreen
 - returns: <[Touchscreen]>
@@ -1821,7 +1974,7 @@ await page.waitForFunction(selector => !!document.querySelector(selector), {}, s
 
 [page.mainFrame().waitForFunction(pageFunction[, options[, ...args]])](#framewaitforfunctionpagefunction-options-args) 的简写
 
-#### page.waitForNavigation(options)
+#### page.waitForNavigation([options])
 - `options` <[Object]> 导航配置，可选值：
   - `timeout` <[number]> 跳转等待时间，单位是毫秒, 默认是30秒, 传 `0` 表示无限等待. 可以通过[page.setDefaultNavigationTimeout(timeout)](#pagesetdefaultnavigationtimeouttimeout)方法修改默认值
   - `waitUntil` <[string]|[Array]<[string]>> 满足什么条件认为页面跳转完成，默认是 `load` 事件触发时。指定事件数组，那么所有事件触发后才认为是跳转完成。事件包括：
@@ -1845,7 +1998,7 @@ const [response] = await Promise.all([
 
 快捷方式 [page.mainFrame().waitForNavigation(options)](#framewaitfornavigationoptions)。
 
-#### page.waitForRequest(urlOrPredicate, options)
+#### page.waitForRequest(urlOrPredicate[, options])
 - `urlOrPredicate` <[string]|[Function]> A URL or predicate to wait for.
 - `options` <[Object]> Optional waiting parameters
   - `timeout` <[number]> Maximum wait time in milliseconds, defaults to 30 seconds, pass `0` to disable the timeout.
@@ -1857,7 +2010,7 @@ const finalRequest = await page.waitForRequest(request => request.url() === 'htt
 return firstRequest.url();
 ```
 
-#### page.waitForResponse(urlOrPredicate, options)
+#### page.waitForResponse(urlOrPredicate[, options])
 - `urlOrPredicate` <[string]|[Function]> A URL or predicate to wait for.
 - `options` <[Object]> Optional waiting parameters
   - `timeout` <[number]> Maximum wait time in milliseconds, defaults to 30 seconds, pass `0` to disable the timeout.
@@ -2046,6 +2199,96 @@ function findFocusedNode(node) {
 
 ### class: Keyboard
 
+<!-- Keyboard provides an api for managing a virtual keyboard. The high level api is [`keyboard.type`](#keyboardtypetext-options), which takes raw characters and generates proper keydown, keypress/input, and keyup events on your page.
+
+For finer control, you can use [`keyboard.down`](#keyboarddownkey-options), [`keyboard.up`](#keyboardupkey), and [`keyboard.sendCharacter`](#keyboardsendcharacterchar) to manually fire events as if they were generated from a real keyboard.
+
+An example of holding down `Shift` in order to select and delete some text:
+```js
+await page.keyboard.type('Hello World!');
+await page.keyboard.press('ArrowLeft');
+
+await page.keyboard.down('Shift');
+for (let i = 0; i < ' World'.length; i++)
+  await page.keyboard.press('ArrowLeft');
+await page.keyboard.up('Shift');
+
+await page.keyboard.press('Backspace');
+// Result text will end up saying 'Hello!'
+```
+
+An example of pressing `A`
+```js
+await page.keyboard.down('Shift');
+await page.keyboard.press('KeyA');
+await page.keyboard.up('Shift');
+```
+
+> **NOTE** On MacOS, keyboard shortcuts like `⌘ A` -> Select All do not work. See [#1313](https://github.com/GoogleChrome/puppeteer/issues/1313)
+
+#### keyboard.down(key[, options])
+- `key` <[string]> Name of key to press, such as `ArrowLeft`. See [USKeyboardLayout] for a list of all key names.
+- `options` <[Object]>
+  - `text` <[string]> If specified, generates an input event with this text.
+- returns: <[Promise]>
+
+Dispatches a `keydown` event.
+
+If `key` is a single character and no modifier keys besides `Shift` are being held down, a `keypress`/`input` event will also generated. The `text` option can be specified to force an input event to be generated.
+
+If `key` is a modifier key, `Shift`, `Meta`, `Control`, or `Alt`, subsequent key presses will be sent with that modifier active. To release the modifier key, use [`keyboard.up`](#keyboardupkey).
+
+After the key is pressed once, subsequent calls to [`keyboard.down`](#keyboarddownkey-options) will have [repeat](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/repeat) set to true. To release the key, use [`keyboard.up`](#keyboardupkey).
+
+> **NOTE** Modifier keys DO influence `keyboard.down`. Holding down `Shift` will type the text in upper case.
+
+#### keyboard.press(key[, options])
+- `key` <[string]> Name of key to press, such as `ArrowLeft`. See [USKeyboardLayout] for a list of all key names.
+- `options` <[Object]>
+  - `text` <[string]> If specified, generates an input event with this text.
+  - `delay` <[number]> Time to wait between `keydown` and `keyup` in milliseconds. Defaults to 0.
+- returns: <[Promise]>
+
+If `key` is a single character and no modifier keys besides `Shift` are being held down, a `keypress`/`input` event will also generated. The `text` option can be specified to force an input event to be generated.
+
+> **NOTE** Modifier keys DO effect `keyboard.press`. Holding down `Shift` will type the text in upper case.
+
+Shortcut for [`keyboard.down`](#keyboarddownkey-options) and [`keyboard.up`](#keyboardupkey).
+
+#### keyboard.sendCharacter(char)
+- `char` <[string]> Character to send into the page.
+- returns: <[Promise]>
+
+Dispatches a `keypress` and `input` event. This does not send a `keydown` or `keyup` event.
+
+```js
+page.keyboard.sendCharacter('嗨');
+```
+
+> **NOTE** Modifier keys DO NOT effect `keyboard.sendCharacter`. Holding down `Shift` will not type the text in upper case.
+
+#### keyboard.type(text[, options])
+- `text` <[string]> A text to type into a focused element.
+- `options` <[Object]>
+  - `delay` <[number]> Time to wait between key presses in milliseconds. Defaults to 0.
+- returns: <[Promise]>
+
+Sends a `keydown`, `keypress`/`input`, and `keyup` event for each character in the text.
+
+To press a special key, like `Control` or `ArrowDown`, use [`keyboard.press`](#keyboardpresskey-options).
+
+```js
+page.keyboard.type('Hello'); // Types instantly
+page.keyboard.type('World', {delay: 100}); // Types slower, like a user
+```
+
+> **NOTE** Modifier keys DO NOT effect `keyboard.type`. Holding down `Shift` will not type the text in upper case.
+
+#### keyboard.up(key)
+- `key` <[string]> Name of key to release, such as `ArrowLeft`. See [USKeyboardLayout] for a list of all key names.
+- returns: <[Promise]>
+
+Dispatches a `keyup` event. -->
 Keyboard 提供一个接口来管理虚拟键盘. 高级接口为 [`keyboard.type`](#keyboardtypetext-options), 其接收原始字符, 然后在你的页面上生成对应的 keydown, keypress/input, 和  keyup 事件.
 
 为了更精细的控制(虚拟键盘), 你可以使用 [`keyboard.down`](#keyboarddownkey-options), [`keyboard.up`](#keyboardupkey) 和 [`keyboard.sendCharacter`](#keyboardsendcharacterchar) 来手动触发事件, 就好像这些事件是由真实的键盘生成的.
@@ -2197,7 +2440,7 @@ await page.mouse.up();
 - `y` <[number]>
 - returns: <[Promise]>
 
-触发 `touchstart` 和 `touchend` 事件。
+触发 touchstart 和 touchend 事件。
 
 ### class: Tracing
 
@@ -2311,13 +2554,15 @@ puppeteer.launch().then(async browser => {
 ```
 
 #### frame.$(selector)
-- `selector` <[string]> A [selector] to query frame for
+
+- `selector` <[string]> Selector to query frame for
+
 - returns: <[Promise]<?[ElementHandle]>> Promise which resolves to ElementHandle pointing to the frame element.
 
 这个方法在框架中查询指定的选择器。如果在框架中没有匹配的元素会返回 `null`
 
 #### frame.$$(selector)
-- `selector` <[string]> A [selector] to query frame for
+- `selector` <[string]> Selector to query frame for
 - returns: <[Promise]<[Array]<[ElementHandle]>>> Promise which resolves to ElementHandles pointing to the frame elements.
 
 这个方法会在框架中执行 `document.querySelectorAll` 方法。如果没有元素匹配会返回 `[]`
@@ -2372,6 +2617,7 @@ const html = await frame.$eval('.main-container', e => e.outerHTML);
 
 将 url 或脚本内容添加到 `<script>` 标签中。
 
+
 #### frame.addStyleTag(options)
 - `options` <[Object]>
   - `url` <[string]> URL of the `<link>` tag.
@@ -2404,7 +2650,7 @@ const [response] = await Promise.all([
 ```
 
 #### frame.content()
-- returns: <[Promise]<[string]>>
+- returns: <[Promise]<[String]>>
 
 获取框架完整的HTML内容，包括 doctype。
 
@@ -2431,6 +2677,7 @@ console.log(await frame.evaluate('1 + 2')); // 输出 "3"
 ```
 
 [ElementHandle] 实例也可以作为 `frame.evaluate` 的参数：
+
 ```js
 const bodyHandle = await frame.$('body');
 const html = await frame.evaluate(body => body.innerHTML, bodyHandle);
@@ -2500,7 +2747,6 @@ await resultHandle.dispose();
 
 > **注意** 无头模式将不支持导航到一个 PDF 文档。具体见 [upstream issue](https://bugs.chromium.org/p/chromium/issues/detail?id=761295).
 
-
 #### frame.hover(selector)
 - `selector` <[string]> A [selector] to search for element to hover. If there are multiple elements satisfying the selector, the first will be hovered.
 - returns: <[Promise]> Promise which resolves when the element matching `selector` is successfully hovered. Promise gets rejected if there's no element matching `selector`.
@@ -2513,6 +2759,7 @@ await resultHandle.dispose();
 - returns: <[boolean]>
 
 如果框架不被加载了返回 `true`，否则返回 `false`。
+
 
 #### frame.name()
 - returns: <[string]>
@@ -2656,7 +2903,6 @@ const [response] = await Promise.all([
 ```
 
 **注意** 使用 [History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API) 去改变 URL 将会被认为是导航。
-
 
 #### frame.waitForSelector(selector[, options])
 - `selector` <[string]> A [selector] of an element to wait for
@@ -3300,6 +3546,7 @@ page.on('request', request => {
 #### securityDetails.validTo()
 - returns: <[number]> [UnixTime](https://en.wikipedia.org/wiki/Unix_time) 说明证书的有效期结束。
 
+
 ### class: Target
 
 #### target.browser()
@@ -3440,6 +3687,7 @@ _使用 [Istanbul](https://github.com/istanbuljs) 输出一个覆盖率表格，
 * extends: [Error]
 
 每当某些操作因超时而终止时，就会触发 TimeoutError。例如 [page.waitForSelector(selector[, options])](#pagewaitforselectorselector-options) 或者 [puppeteer.launch([options])](#puppeteerlaunchoptions)。
+
 
 
 [Array]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array "Array"
