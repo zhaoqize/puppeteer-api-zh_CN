@@ -93,6 +93,10 @@ workbox.precaching.precacheAndRoute([
     "revision": "924f28bd0281fb8e45b19f1364cfaf8e"
   },
   {
+    "url": "images/qq.svg",
+    "revision": "7fc6a33b01e924b07fadb9143c1d4cb5"
+  },
+  {
     "url": "images/search.svg",
     "revision": "69536ad6f996355f6c73270a0c018ac8"
   },
@@ -105,16 +109,20 @@ workbox.precaching.precacheAndRoute([
     "revision": "4f62b6320d08038f64406b39f3943108"
   },
   {
+    "url": "images/wechat.svg",
+    "revision": "6dab9ffe9a573d6e474af023bdf0b025"
+  },
+  {
     "url": "images/wrench.svg",
     "revision": "dba7613975ea6b812b22d6a6c8f74db7"
   },
   {
     "url": "index.html",
-    "revision": "3fb42cad16a7265ef2af4e97f8c7a576"
+    "revision": "338b53906f5c7067fca83efa5f189f20"
   },
   {
     "url": "index.js",
-    "revision": "b0e17364ac2326b69395c0b08d912072"
+    "revision": "cfe4e7448c2053fdbd5252646b13ac2d"
   },
   {
     "url": "offcial/api.md",

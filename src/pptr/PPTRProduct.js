@@ -127,6 +127,8 @@ export class PPTRProduct extends App.Product {
 
   toolbarElements() {
     const toolbarElements = [];
+    toolbarElements.push(iconButton('https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/img/wechat.jpeg', './images/wechat.svg', 'pptr-wechat'));
+    toolbarElements.push(iconButton('https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/img/qq.jpeg', './images/qq.svg', 'pptr-qq'));
     toolbarElements.push(iconButton('https://stackoverflow.com/questions/tagged/puppeteer', './images/stackoverflow.svg', 'pptr-stackoverflow'));
     toolbarElements.push(iconButton('https://join.slack.com/t/puppeteer/shared_invite/enQtMzU4MjIyMDA5NTM4LTM1OTdkNDhlM2Y4ZGUzZDdjYjM5ZWZlZGFiZjc4MTkyYTVlYzIzYjU5NDIyNzgyMmFiNDFjN2UzNWU0N2ZhZDc', './images/slack.svg', 'pptr-slack'));
     toolbarElements.push(iconButton('https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md', './images/wrench.svg', 'pptr-troubleshooting'));
