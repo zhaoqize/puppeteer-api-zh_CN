@@ -756,7 +756,15 @@ page.select('select#colors', 'red', 'green', 'blue'); // 多选择器
   - `httpOnly` <[boolean]> 默认为false
   - `secure` <[boolean]> 默认为false
   - `sameSite` <[string]> `"Strict"` 或 `"Lax"`。
+
 - 返回: <[Promise]>
+
+
+```js
+await page.setCookie(cookieObject1, cookieObject2);
+```
+
+译者注:
 
 ```js
 await page.setCookie({ //设定单个cookie
