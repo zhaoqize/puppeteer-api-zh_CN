@@ -27,7 +27,7 @@ export class PPTRProduct extends App.Product {
     const fetchTimestamp = Date.now();
     const [releasesText, readmeText] = await Promise.all([
       fetch('https://api.github.com/repos/GoogleChrome/puppeteer/releases').then(r => r.text()),
-      fetch('https://raw.githubusercontent.com/zhaoqize/puppeteer-api-zh_CN/master/official/readme.md').then(r => r.text()),
+      fetch('./offcial/readme.md').then(r => r.text()),
     ]);
     const releases = JSON.parse(releasesText).map(release => ({
       name: release.tag_name,
@@ -94,7 +94,7 @@ export class PPTRProduct extends App.Product {
     // Forcefully re-download it for "master" release.
     await Promise.all(releases.map(async release => {
       if (release.name === 'master' || !release.apiText)
-        release.apiText = await fetch(`https://raw.githubusercontent.com/zhaoqize/puppeteer-api-zh_CN/master/official/api.md`).then(r => r.text())
+        release.apiText = await fetch('./offcial/api.md').then((r) => r.text())
     }));
     return {fetchTimestamp, readmeText, releases};
   }
@@ -127,6 +127,8 @@ export class PPTRProduct extends App.Product {
 
   toolbarElements() {
     const toolbarElements = [];
+    toolbarElements.push(iconButton('https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/img/wechat.jpeg', './images/wechat.svg', 'pptr-wechat'));
+    toolbarElements.push(iconButton('https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/img/qq.jpeg', './images/qq.svg', 'pptr-qq'));
     toolbarElements.push(iconButton('https://stackoverflow.com/questions/tagged/puppeteer', './images/stackoverflow.svg', 'pptr-stackoverflow'));
     toolbarElements.push(iconButton('https://join.slack.com/t/puppeteer/shared_invite/enQtMzU4MjIyMDA5NTM4LTM1OTdkNDhlM2Y4ZGUzZDdjYjM5ZWZlZGFiZjc4MTkyYTVlYzIzYjU5NDIyNzgyMmFiNDFjN2UzNWU0N2ZhZDc', './images/slack.svg', 'pptr-slack'));
     toolbarElements.push(iconButton('https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md', './images/wrench.svg', 'pptr-troubleshooting'));
