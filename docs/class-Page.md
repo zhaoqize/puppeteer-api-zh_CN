@@ -141,7 +141,7 @@ page.evaluate(() => console.log('hello', 5, {foo: 'bar'})); // 这个代码表�
 
 [page.mainFrame().$(selector)](#frameselector) 的简写。
 
-#### page.$(selector)
+#### page.$$(selector)
 - `selector` <[string]> 选择器
 - 返回: <[Promise]<[Array]<[ElementHandle]>>>
 
@@ -149,7 +149,7 @@ page.evaluate(() => console.log('hello', 5, {foo: 'bar'})); // 这个代码表�
 
 [page.mainFrame().$$(selector)](#frameselector-1) 的简写。
 
-#### page.$eval(selector, pageFunction[, ...args])
+#### page.$$eval(selector, pageFunction[, ...args])
 - `selector` <[string]> 一个框架选择器
 - `pageFunction` <[function]> 在浏览器实例上下文中要执行的方法
 - `...args` <...[Serializable]|[JSHandle]> 要传给 `pageFunction` 的参数。（比如你的代码里生成了一个变量，在页面中执行方法时需要用到，可以通过这个 `args` 传进去）
@@ -747,50 +747,22 @@ page.select('select#colors', 'red', 'green', 'blue'); // 多选择器
 
 #### page.setCookie(...cookies)
 - `...cookies` <...[Object]>
-  - `name` <[string]> **必要的参数**
-  - `value` <[string]> **必要的参数**
-  - `url` <[string]> 
-  - `domain` <[string]> 默认为当前打开的页面
-  - `path` <[string]> 默认为 "/"
-  - `expires` <[number]>  秒级unix时间戳. 不填写默认为会话级cookie
-  - `httpOnly` <[boolean]> 默认为false
-  - `secure` <[boolean]> 默认为false
+  - `name` <[string]> **required**
+  - `value` <[string]> **required**
+  - `url` <[string]>
+  - `domain` <[string]>
+  - `path` <[string]>
+  - `expires` <[number]> Unix time in seconds.
+  - `httpOnly` <[boolean]>
+  - `secure` <[boolean]>
   - `sameSite` <[string]> `"Strict"` 或 `"Lax"`。
-
 - 返回: <[Promise]>
-
 
 ```js
 await page.setCookie(cookieObject1, cookieObject2);
 ```
 
-译者注:
-
-```js
-await page.setCookie({ //设定单个cookie
-	name: 'cookiename', //设定cookie名称
-	value: 'cookievalue', // 设定cookie内容
-	domain: 'github.com', //设定cookie域名
-	httpOnly: true, 
-	expires: new Date().getTime()/1000 + 24 * 60 * 60, //设定cookie生命周期24小时.
-});
-
-```
-
-如果需要设定多个cookie:
-
-```js
-const url = 'github.com' ;
-		var cookie_str = 'key1=value1; key2=value2; key3=value3';
-		var cookie_arr = cookie_str.split('; ').map(function(cookie){
-			let arr = cookie.split('=');
-			return { name: arr[0] , value: arr[1] , domain: url ,expires: new Date().getTime()/1000 + 1000} //设定cookie
-		});
-await page.setCookie(...cookie_arr); // 设置cookie
-```
-
 #### page.setDefaultNavigationTimeout(timeout)
-
 - `timeout` <[number]> 最多等待时间，单位是毫秒
 
 此方法会改变下面几个方法的默认30秒等待时间：
@@ -808,14 +780,7 @@ await page.setCookie(...cookie_arr); // 设置cookie
 
 > **注意** 此方法不保证请求头的顺序
 
-通过 `setExtraHTTPHeaders`  函数添加http头
-
-```js
-await page.setExtraHTTPHeaders({'isPuppeteer': '1'}); //添加http头 名称为 isPuppeteer 内容为 1
-```
-
 #### page.setGeolocation(options)
-
 - `options`
   - `latitude` <[number]> Latitude between -90 and 90.
   - `longitude` <[number]> Longitude between -180 and 180.
@@ -884,8 +849,6 @@ puppeteer.launch().then(async browser => {
 > **注意** 在大部分情况下，改变 viewport 会重新加载页面以设置 `isMobile` 或者 `hasTouch`
 
 如果是一个浏览器多个页面的情况，每个页面都可以有单独的viewport
-
-> **注意** 截图的结果可能因无头浏览器的headless模式的不同而不同.
 
 #### page.tap(selector)
 - `selector` <[string]> 要点击的元素的选择器。如果有多个匹配的元素，点击第一个
