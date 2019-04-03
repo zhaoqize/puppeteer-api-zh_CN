@@ -741,9 +741,16 @@ page.select('select#colors', 'red', 'green', 'blue'); // 多选择器
 
 设置每个请求忽略缓存。默认是启用缓存的。
 
-#### page.setContent(html)
-- `html` <[string]> 设置页面源码
-- returns: <[Promise]>
+#### page.setContent(html[, options])
+- `html` <[string]> 分派给页面的HTML。
+- `options` <[Object]> 参数可能具有如下属性：
+  - `timeout` <[number]> 加载资源的超时时间，默认值为`30`秒，传入`0`禁用超时. 可以使用 [page.setDefaultNavigationTimeout(timeout)](#pagesetdefaultnavigationtimeouttimeout) 或者 [page.setDefaultTimeout(timeout)](#pagesetdefaulttimeouttimeout) 方法修改默认值
+  - `waitUntil` <[string]|[Array]<[string]>> HTML设置成功的标志事件, 默认为 `load`。 如果给定的是一个事件数组，那么当所有事件之后，给定的内容才被认为设置成功。 事件可以是：
+    - `load` - `load`事件触发后，设置HTML内容完成。
+    - `domcontentloaded` - `DOMContentLoaded` 事件触发后，设置HTML内容完成。
+    - `networkidle0` - 不再有网络连接时（至少500毫秒之后），设置HTML内容完成
+    - `networkidle2` - 只剩2个网络连接时（至少500毫秒之后），设置HTML内容完成
+- 返回: <[Promise]>
 
 #### page.setCookie(...cookies)
 - `...cookies` <...[Object]>
