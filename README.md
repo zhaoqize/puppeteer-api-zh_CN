@@ -17,8 +17,10 @@
 - [QQ](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/img/qq.jpeg)
 
 ### 贡献
-[如何贡献](./CONTRIBUTING.md)
-> [译文排版规则指北](https://github.com/xitu/gold-miner/wiki/%E8%AF%91%E6%96%87%E6%8E%92%E7%89%88%E8%A7%84%E5%88%99%E6%8C%87%E5%8C%97)
+
+哪个文件：修改 `src/offcial/api.md` 文件，提 PR，完成！
+
+如何翻译：[译文排版规则指北](https://github.com/xitu/gold-miner/wiki/%E8%AF%91%E6%96%87%E6%8E%92%E7%89%88%E8%A7%84%E5%88%99%E6%8C%87%E5%8C%97)
 
 
 <h2 align="center">贡献者</h2>
