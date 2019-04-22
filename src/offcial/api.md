@@ -484,9 +484,9 @@ Chromium 启动时使用的默认参数。
     - `isLandscape` <[boolean]> 指定视口是否处于横向模式。默认是 `false`。
   - `args` <[Array]<[string]>> 传递给浏览器实例的其他参数。 这些参数可以参考 [这里](http://peter.sh/experiments/chromium-command-line-switches/)。
   - `ignoreDefaultArgs` <([boolean]|<[Array]<[string]>>)> 如果是 `true`，那就不要使用 [`puppeteer.defaultArgs()`](#puppeteerdefaultargs-options)。 如果给出了数组，则过滤掉给定的默认参数。这个选项请谨慎使用。默认为 `false`。
-  - `handleSIGINT` <[boolean]> Ctrl-C 关闭浏览器进程。默认是 `true`。
-  - `handleSIGTERM` <[boolean]> 关闭 SIGTERM 上的浏览器进程。默认是 `true`。
-  - `handleSIGHUP` <[boolean]> 关闭 SIGHUP 上的浏览器进程。默认是 `true`.
+  - `handleSIGINT` <[boolean]> 关闭浏览器进程监听 Ctrl-C。默认是 `true`。
+  - `handleSIGTERM` <[boolean]> 关闭浏览器进程监听 SIGTERM。默认是 `true`。
+  - `handleSIGHUP` <[boolean]> 关闭浏览器进程监听 SIGHUP。默认是 `true`.
   - `timeout` <[number]> 等待浏览器实例启动的最长时间（以毫秒为单位）。默认是 `30000` (30 秒). 通过 `0` 来禁用超时。
   - `dumpio` <[boolean]> 是否将浏览器进程标准输出和标准错误输入到 `process.stdout` 和 `process.stderr` 中。默认是 `false`。
   - `userDataDir` <[string]> [用户数据目录](https://chromium.googlesource.com/chromium/src/+/master/docs/user_data_dir.md) 路径。
