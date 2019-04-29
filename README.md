@@ -111,14 +111,14 @@
       </td>
       <td align="center">
         <a href="https://github.com/Aaron-Bird">
-          <img width="150" height="150" src="https://github.com/yzpeninsula.png?v=3&s=150">
+          <img width="150" height="150" src="https://github.com/Aaron-Bird.png?v=3&s=150">
           </br>
           Aaron-Bird
         </a>
       </td>
       <td align="center">
         <a href="https://github.com/BlackHole1">
-          <img width="150" height="150" src="https://github.com/yzpeninsula.png?v=3&s=150">
+          <img width="150" height="150" src="https://github.com/BlackHole1.png?v=3&s=150">
           </br>
           BlackHole1
         </a>
