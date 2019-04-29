@@ -1549,8 +1549,7 @@ puppeteer.launch().then(async browser => {
 - `selector` <[string]> 要hover的元素的选择器。如果有多个匹配的元素，hover第一个。
 - 返回: <[Promise]> Promise对象，当匹配的元素成功被hover后resolve。如果没有匹配的元素，将会rejected。
 
-此方法找到一个匹配的元素，如果需要会把此元素滚动到可视，然后通过 [page.mouse](#pagemouse) 来hover到元素的中间。
-如果没有匹配的元素，此方法将会报错。
+此方法使用 selector 匹配元素。如有必要，会将匹配到的元素滚动至可视区域内，然后使用 [page.mouse](#pagemouse) 将鼠标悬停在元素的中心位置。如果 selector 没有匹配到元素，则抛出一个错误。
 
 [page.mainFrame().hover(selector)](#framehoverselector) 的简写。
 
