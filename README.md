@@ -77,28 +77,28 @@
         <a href="https://github.com/leftstyle">
           <img width="150" height="150" src="https://github.com/leftstyle.png?v=3&s=150">
           </br>
-          jiangyx3915
+          leftstyle
         </a>
       </td>
       <td align="center">
         <a href="https://github.com/ImgBotApp">
           <img width="150" height="150" src="https://github.com/ImgBotApp.png?v=3&s=150">
           </br>
-          jiangyx3915
+          ImgBotApp
         </a>
       </td>
       <td align="center">
         <a href="https://github.com/HardT0Name">
           <img width="150" height="150" src="https://github.com/HardT0Name.png?v=3&s=150">
           </br>
-          jiangyx3915
+          HardT0Name
         </a>
       </td>
       <td align="center">
         <a href="https://github.com/MinimalistYing">
           <img width="150" height="150" src="https://github.com/MinimalistYing.png?v=3&s=150">
           </br>
-          jiangyx3915
+          MinimalistYing
         </a>
       </td>
     <tr>
@@ -107,7 +107,7 @@
         <a href="https://github.com/yzpeninsula">
           <img width="150" height="150" src="https://github.com/yzpeninsula.png?v=3&s=150">
           </br>
-          jiangyx3915
+          yzpeninsula
         </a>
       </td>
     </tr>
