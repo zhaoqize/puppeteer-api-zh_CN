@@ -10,7 +10,7 @@
 
 ### 技术交流
 
-<img src="https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/img/qq.jpeg" height="300"/> (一群已满，请加二群)
+<img src="https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/img/qq.jpeg" height="300"/>(一群已满) <img src="https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/img/qq2.jpeg" height="300"/>（加二群）
 
 
 
