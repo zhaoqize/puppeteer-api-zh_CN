@@ -13,7 +13,7 @@
 - [中文社区](https://github.com/orgs/puppeteer-china/teams/forum) (前提：先加入组织puppeteer-china)
 - [Gitter](https://gitter.im/puppeteer-China/Lobby)
 - [微信](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/img/wechat.jpeg)
-- [QQ](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/img/qq.jpeg)
+- ![QQ](https://github.com/zhaoqize/puppeteer-api-zh_CN/blob/master/img/qq.jpeg) (一群已满，请加二群)
 
 ### 贡献
 
