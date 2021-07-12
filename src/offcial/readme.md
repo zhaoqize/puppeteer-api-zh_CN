@@ -107,7 +107,7 @@ const puppeteer = require('puppeteer');
 node hn.js
 ```
 
-查看 [`Page.pdf()`](https://github.com/GoogleChrome/puppeteer/blob/v1.10.0/docs/api.md#pagepdfoptions) 了解跟多内容。
+查看 [`Page.pdf()`](https://github.com/GoogleChrome/puppeteer/blob/v1.10.0/docs/api.md#pagepdfoptions) 了解更多内容。
 
 **Example** - 在页面中执行脚本
 
