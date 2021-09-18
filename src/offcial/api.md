@@ -3729,7 +3729,7 @@ _使用 [Istanbul](https://github.com/istanbuljs) 输出一个覆盖率表格，
 [Serializable]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#Description "Serializable"
 [Touchscreen]: #class-touchscreen "Touchscreen"
 [Target]: #class-target "Target"
-[USKeyboardLayout]: ../lib/USKeyboardLayout.js "USKeyboardLayout"
+[USKeyboardLayout]: ../src/common/USKeyboardLayout.ts "USKeyboardLayout"
 [xpath]: https://developer.mozilla.org/en-US/docs/Web/XPath "xpath"
 [UnixTime]: https://en.wikipedia.org/wiki/Unix_time "Unix Time"
 [SecurityDetails]: #class-securitydetails "SecurityDetails"
