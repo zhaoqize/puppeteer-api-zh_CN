@@ -994,27 +994,28 @@ await page.goto('https://example.com');
 
 * 继承: [`EventEmitter`](https://nodejs.org/api/events.html#events_class_eventemitter)
 
-Page 提供操作一个 tab 页或者 [extension background page](https://developer.chrome.com/extensions/background_pages) 的方法。一个 [Browser] 实例可以有多个 [Page] 实例。
+Page 提供了一些与 tab 页或者 [extension background page](https://developer.chrome.com/extensions/background_pages) 交互的方法。一个 [Browser] 实例可以有多个 [Page] 实例。
 
 下面的例子创建一个 Page 实例，导航到一个 url ，然后保存截图：
 ```js
 const puppeteer = require('puppeteer');
 
-puppeteer.launch().then(async browser => {
+(async () => {
+  const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.goto('https://example.com');
-  await page.screenshot({path: 'screenshot.png'});
+  await page.screenshot({ path: 'screenshot.png' });
   await browser.close();
-});
+})();
 ```
-Page会触发多种事件（下面描述的），可以用 `node` [原生的方法](https://nodejs.org/api/events.html#events_class_eventemitter) 来捕获处理，比如 `on`,`once` 或者 `removeListener`。
+Page 类会触发多种事件（下面描述的），可以用 `[EventEmitter]`(https://github.com/puppeteer/puppeteer/blob/main/docs/api.md#class-eventemitter) 的任何方法来处理，比如 `on`,`once` 或者 `off`。
 
-下面的例子捕获了一个 `page` 实例的 `load` 事件，打印了一句话：
+下面的例子在一个 `page` 实例的 `load` 事件触发时，打印了一条日志：
 ```js
 page.once('load', () => console.log('Page loaded!'));
 ```
 
-可以用 `removeListener` 取消对事件的监听：
+可以使用 `off` 方法取消订阅事件：
 
 ```js
 function logRequest(interceptedRequest) {
@@ -1022,7 +1023,7 @@ function logRequest(interceptedRequest) {
 }
 page.on('request', logRequest);
 // 一段时间后...
-page.removeListener('request', logRequest);
+page.off('request', logRequest);
 ```
 
 #### event: 'close'
@@ -1032,11 +1033,11 @@ page.removeListener('request', logRequest);
 #### event: 'console'
 - <[ConsoleMessage]>
 
-当页面js代码调用了 `console` 的某个方法，比如 `console.log`，或者 `console.dir` 的时候触发。（如果不监听这个事件，js源码的console语句不会输出）。当页面抛出一个错误或者经过的时候也会触发。
+当页面js代码调用了 `console` 的某个方法，比如 `console.log`，或者 `console.dir` 的时候触发。当页面抛出一个错误或者警告时也会触发。
 
-js源码中传给 `console.log` 的参数，会传给 `console` 事件的监听器。
+传入 `console.log` 的参数，也会作为参数出现在事件处理程序中。
 
-一个监听 `console` 事件的例子：
+一个处理 `console` 事件的例子：
 ```js
 page.on('console', msg => {
   for (let i = 0; i < msg.args().length; ++i)
