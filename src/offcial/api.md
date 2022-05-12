@@ -1008,7 +1008,7 @@ const puppeteer = require('puppeteer');
   await browser.close();
 })();
 ```
-Page 类会触发多种事件（下面描述的），可以用 `[EventEmitter]`(https://github.com/puppeteer/puppeteer/blob/main/docs/api.md#class-eventemitter) 的任何方法来处理，比如 `on`,`once` 或者 `off`。
+Page 类会触发多种事件（下面描述的），可以用 [`EventEmitter`](https://github.com/puppeteer/puppeteer/blob/main/docs/api.md#class-eventemitter) 的任何方法来处理，比如 `on`,`once` 或者 `off`。
 
 下面的例子在一个 `page` 实例的 `load` 事件触发时，打印了一条日志：
 ```js
