@@ -1008,7 +1008,7 @@ const puppeteer = require('puppeteer');
   await browser.close();
 })();
 ```
-Page 类会触发多种事件（下面描述的），可以用 [`EventEmitter`](https://github.com/puppeteer/puppeteer/blob/main/docs/api.md#class-eventemitter) 的任何方法来处理，比如 `on`,`once` 或者 `off`。
+Page 类会触发多种事件（下面描述的），可以用 [`EventEmitter`](https://github.com/puppeteer/puppeteer/blob/main/docs/api.md#class-eventemitter) 的任何方法来处理，比如 `on`，`once` 或者 `off`。
 
 下面的例子在一个 `page` 实例的 `load` 事件触发时，打印了一条日志：
 ```js
@@ -1043,13 +1043,13 @@ page.on('console', msg => {
   for (let i = 0; i < msg.args().length; ++i)
     console.log(`${i}: ${msg.args()[i]}`); // 译者注：这句话的效果是打印到你的代码的控制台
 });
-page.evaluate(() => console.log('hello', 5, {foo: 'bar'})); // 这个代码表示在页面实例中执行了console.log。如果没有监听console事件，这里的输出不会出现在你的控制台
+page.evaluate(() => console.log('hello', 5, { foo: 'bar' })); // 这个代码表示在页面实例中执行了console.log。如果没有监听console事件，这里的输出不会出现在你的控制台
 ```
 
 #### event: 'dialog'
 - <[Dialog]>
 
-当js对话框出现的时候触发，比如`alert`, `prompt`, `confirm` 或者 `beforeunload`。Puppeteer可以通过[Dialog]'s [accept](#dialogacceptprompttext) 或者 [dismiss](#dialogdismiss)来响应弹窗。
+当 js 对话框出现的时候触发，比如`alert`, `prompt`, `confirm` 或者 `beforeunload`。Puppeteer 可以通过[Dialog]'s [accept](#dialogacceptprompttext) 或者 [dismiss](#dialogdismiss)来响应弹窗。
 
 
 #### event: 'domcontentloaded'
@@ -1066,17 +1066,17 @@ page.evaluate(() => console.log('hello', 5, {foo: 'bar'})); // 这个代码表�
 #### event: 'frameattached'
 - <[Frame]>
 
-当 `iframe` 加载的时候触发。
+当一个 frame 加载的时候触发。
 
 #### event: 'framedetached'
 - <[Frame]>
 
-当 `iframe` 从页面移除的时候触发。
+当一个 frame 移除的时候触发。
 
 #### event: 'framenavigated'
 - <[Frame]>
 
-当 `iframe` 导航到新的 url 时触发。
+当一个 frame 导航到新的 url 时触发。
 
 #### event: 'load'
 
@@ -1084,46 +1084,67 @@ page.evaluate(() => console.log('hello', 5, {foo: 'bar'})); // 这个代码表�
 
 #### event: 'metrics'
 - <[Object]>
-  - `title` <[string]> 传给 `console.timeStamp` 方法的title参数。
+  - `title` <[string]> 传给 `console.timeStamp` 方法的参数。
   - `metrics` <[Object]> 包含度量对象的键值对，值是<[number]>类型
 
-当页面js代码调用了 `console.timeStamp` 方法时触发。`page.metrics` 章节有描述所有的 metrics。
+当 js 代码调用了 `console.timeStamp` 方法时触发。有关 metrics 列表请参考 `page.metrics` 章节 。
 
 #### event: 'pageerror'
 - <[Error]> 异常信息
 
-当发生页面js代码没有捕获的异常时触发。
+当页面发生未捕获的异常时触发。
+
+#### event: 'popup'
+- <[Page]> 页面对应“弹出”窗口
+
+当页面打开了一个新的标签页或窗口时触发。
+
+```js
+const [popup] = await Promise.all([
+  new Promise((resolve) => page.once('popup', resolve)),
+  page.click('a[target=_blank]')
+]);
+```
+
+```js
+const [popup] = await Promise.all([
+  new Promise((resolve) => page.once('popup', resolve)),
+  page.evaluate(() => window.open('https://example.com'))
+]);
+```
 
 #### event: 'request'
-- <[Request]>
+- <[HTTPRequest]>
 
-当页面发送一个请求时触发。参数 [request] 对象是只读的。
-如果需要拦截并且改变请求，参考 `page.setRequestInterception` 章节。
+当页面发送一个请求时触发。 [HTTPRequest] 对象是只读的。
+如果需要拦截和改变请求，参考 `page.setRequestInterception` 章节。
 
 #### event: 'requestfailed'
-- <[Request]>
+- <[HTTPRequest]>
 
 当页面的请求失败时触发。比如某个请求超时了。
 
+> **注意** 例如 404 或 503，这样的 HTTP 错误响应，从 HTTP 的角度来看仍然是成功的响应。因此请求将以 [`'requestfinished'`] 事件完成而不是 [`'requestfailed'`]事件。
+
 #### event: 'requestfinished'
-- <[Request]>
+- <[HTTPRequest]>
 
 当页面的某个请求成功完成时触发。
 
 #### event: 'response'
-- <[Response]>
+- <[HTTPResponse]>
 
-当页面的某个请求接收到对应的 [response] 时触发。
+当页面接收到 [HTTPResponse] 时触发。
 
 #### event: 'workercreated'
-- <[Worker]>
+- <[WebWorker]>
 
-当页面生成相应的 [WebWorker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API) 时触发。
+当页面生成专用的 [WebWorker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API) 时触发。
 
 #### event: 'workerdestroyed'
-- <[Worker]>
+- <[WebWorker]>
 
-当页面终止相应的 [WebWorker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API) 时触发。
+当页面终止专用的 [WebWorker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API) 时触发。
 
 #### page.$(selector)
 - `selector` <[string]> 选择器
@@ -1142,10 +1163,10 @@ page.evaluate(() => console.log('hello', 5, {foo: 'bar'})); // 这个代码表�
 [page.mainFrame().$$(selector)](#frameselector-1) 的简写。
 
 #### page.$$eval(selector, pageFunction[, ...args])
-- `selector` <[string]> 一个框架选择器
+- `selector` <[string]> 选择器
 - `pageFunction` <[function]> 在浏览器实例上下文中要执行的方法
 - `...args` <...[Serializable]|[JSHandle]> 要传给 `pageFunction` 的参数。（比如你的代码里生成了一个变量，在页面中执行方法时需要用到，可以通过这个 `args` 传进去）
-- 返回: <[Promise]<[Serializable]>> Promise对象，完成后是 `pageFunction` 的返回值
+- 返回: <[Promise]<[Serializable]>> `pageFunction` 的返回值经过 resolve 后的 Promise 对象。
 
 此方法在页面内执行 `Array.from(document.querySelectorAll(selector))`，然后把匹配到的元素数组作为第一个参数传给 `pageFunction`。
 
@@ -1156,11 +1177,17 @@ page.evaluate(() => console.log('hello', 5, {foo: 'bar'})); // 这个代码表�
 const divsCounts = await page.$$eval('div', divs => divs.length);
 ```
 
+```js
+const options = await page.$$eval('div > span.options', (options) =>
+  options.map((option) => option.textContent)
+);
+```
+
 #### page.$eval(selector, pageFunction[, ...args])
 - `selector` <[string]> 选择器
 - `pageFunction` <[function]> 在浏览器实例上下文中要执行的方法
 - `...args` <...[Serializable]|[JSHandle]> 要传给 `pageFunction` 的参数。（比如你的代码里生成了一个变量，在页面中执行方法时需要用到，可以通过这个 `args` 传进去）
-- 返回: <[Promise]<[Serializable]>> Promise对象，完成后是 `pageFunction` 的返回值
+- 返回: <[Promise]<[Serializable]>> `pageFunction` 的返回值经过 resolve 后的 Promise 对象。
 
 此方法在页面内执行 `document.querySelector`，然后把匹配到的元素作为第一个参数传给 `pageFunction`。
 
