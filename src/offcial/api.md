@@ -23,11 +23,19 @@
 - [Error handling](#error-handling)
 - [Working with Chrome Extensions](#working-with-chrome-extensions)
 - [class: Puppeteer](#class-puppeteer)
+  * [puppeteer.clearCustomQueryHandlers()](#puppeteerclearcustomqueryhandlers)
   * [puppeteer.connect(options)](#puppeteerconnectoptions)
-  * [puppeteer.createBrowserFetcher([options])](#puppeteercreatebrowserfetcheroptions)
+  * [puppeteer.createBrowserFetcher([options])(#puppeteercreatebrowserfetcheroptions)
+  * [puppeteer.customQueryHandlerNames()](#puppeteercustomqueryhandlernames)
   * [puppeteer.defaultArgs([options])](#puppeteerdefaultargsoptions)
+  * [puppeteer.devices](#puppeteerdevices)
+  * [puppeteer.errors](#puppeteererrors)
   * [puppeteer.executablePath()](#puppeteerexecutablepath)
   * [puppeteer.launch([options])](#puppeteerlaunchoptions)
+  * [puppeteer.networkConditions](#puppeteernetworkconditions)
+  * [puppeteer.product](#puppeteerproduct)
+  * [puppeteer.registerCustomQueryHandler(name, queryHandler)](#puppeteerregistercustomqueryhandlernamequeryhandler)
+  * [puppeteer.unregisterCustomQueryHandler(name)](#puppeteerunregistercustomqueryhandlername)
 - [class: BrowserFetcher](#class-browserfetcher)
   * [browserFetcher.canDownload(revision)](#browserfetchercandownloadrevision)
   * [browserFetcher.download(revision[, progressCallback])](#browserfetcherdownloadrevision-progresscallback)
@@ -318,9 +326,9 @@ Puppeteer API 是分层次的，反映了浏览器结构。
 ![puppeteer 概述](https://user-images.githubusercontent.com/746130/40333229-5df5480c-5d0c-11e8-83cb-c3e371de7374.png)
 
 - [`Puppeteer`](#class-puppeteer) 使用 [DevTools 协议](https://chromedevtools.github.io/devtools-protocol/) 与浏览器进行通信。
-- [`Browser`](#class-browser) 实例可以拥有浏览器上下文。
+- [`Browser`](#class-browser) 实例可以拥有多个浏览器上下文。
 - [`BrowserContext`](#class-browsercontext) 实例定义了一个浏览会话并可拥有多个页面。
-- [`Page`](#class-page) 至少有一个框架：主框架。 可能还有其他框架由 [iframe](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe) 或 [框架标签](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/frame) 创建。
+- [`Page`](#class-page) 至少有一个框架：主框架。 可能还有其他框架由 [iframe标签](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe) 或 [frame标签](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/frame) 创建。
 - [`frame`](#class-frame) 至少有一个执行上下文 - 默认的执行上下文 - 框架的 JavaScript 被执行。 一个框架可能有额外的与 [扩展](https://developer.chrome.com/extensions) 关联的执行上下文。
 - [`Worker`](#class-worker) 具有单一执行上下文，并且便于与 [WebWorkers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API) 进行交互。
 
@@ -332,19 +340,20 @@ Puppeteer API 是分层次的，反映了浏览器结构。
 - [puppeteer](https://www.npmjs.com/package/puppeteer)
 - [puppeteer-core](https://www.npmjs.com/package/puppeteer-core)
 
-`puppeteer` 是浏览器自动化的 *产品*。安装后，它会下载一个版本的 Chromium，然后使用`puppeteer-core` 驱动工作。作为最终用户产品，`puppeteer` 支持一堆方便的 `PUPPETEER_*` env 变量来调整行为。
+`puppeteer` 是浏览器自动化的 *产品*。安装后，它会下载一个版本的 Chromium，然后使用`puppeteer-core` 驱动工作。作为一个终端用户产品，`puppeteer` 支持一堆方便的 `PUPPETEER_*` 环境变量来调整行为。
 
-`puppeteer-core` 是一个 *库* 来帮助驱动任何支持 DevTools 协议的东西。`puppeteer-core` 在安装时不会下载 Chromium。作为一个库，`puppeteer-core` 是完全是通过其编程接口驱动的并忽略所有`PUPPETEER_*` env 变量。
+`puppeteer-core` 是一个 *库* 来帮助驱动任何支持 DevTools 协议的东西。`puppeteer-core` 在安装时不会下载 Chromium。作为一个库，`puppeteer-core` 是完全是通过其编程接口驱动的并忽略所有`PUPPETEER_*` 环境变量。
 
 总结一下，`puppeteer-core` 与 `puppeteer` 不同的地方：
 - `puppeteer-core` 在安装时不会自动下载 Chromium。
-- `puppeteer-core`忽略所有的 `PUPPETEER_*` env 变量.
+- `puppeteer-core`忽略所有的 `PUPPETEER_*` 环境变量.
 
 在大多数情况下，你可以使用 `puppeteer` 包。
 
 然而, 如果是下面这些情况那你需要使用 `puppeteer-core`:
 - 你正在构建 DevTools 协议顶部的另一个最终用户产品或库。例如，可以使用 `puppeteer-core` 构建 PDF 生成器并编写下载 [`headless_shell`](https://chromium.googlesource.com/chromium/src/+/lkgr/headless/README.md) 的自定义`install.js`脚本而不是 Chromium 来节省磁盘空间。
 - 你正在打包 Puppeteer 用在 Chrome 扩展应用或浏览器中以使用 DevTools 协议，因为下载额外的 Chromium 二进制文件不是必须的。
+- 你正在构建一组工具，其中 `puppeteer-core` 是其中的一个部分，并想要推迟 `install.js` 脚本的执行，直到将要使用 Chromium。
 
 当使用 `puppeteer-core` 时，使用下面这行代替原来的使用方式：
 
@@ -352,41 +361,23 @@ Puppeteer API 是分层次的，反映了浏览器结构。
 const puppeteer = require('puppeteer-core');
 ```
 
+然后需要调用 [`puppeteer.connect([options])`] 或 [`puppeteer.launch([options])`]，并带有显式的 `executablePath` 或 `channel` 选项。
+
 ### Environment Variables
 
 Puppeteer 寻找某些环境变量来帮助其操作。 如果 puppeteer 在环境中没有找到它们，这些变量的小写变体将从 [npm 配置](https://docs.npmjs.com/cli/config) 中使用。
 
 - `HTTP_PROXY`, `HTTPS_PROXY`, `NO_PROXY` - 定义用于下载和运行 Chromium 的 HTTP 代理设置。
 - `PUPPETEER_SKIP_CHROMIUM_DOWNLOAD` - 请勿在安装步骤中下载绑定的 Chromium。
-- `PUPPETEER_DOWNLOAD_HOST` - 覆盖用于下载 Chromium 的 URL 的主机部分。
-- `PUPPETEER_CHROMIUM_REVISION` - 在安装步骤中指定一个你喜欢 puppeteer 使用的特定版本的 Chromium。
-- `PUPPETEER_EXECUTABLE_PATH` - 指定一个 Chrome 或者 Chromium 的可执行路径，会被用于 `puppeteer.launch`。具体关于可执行路径参数的意义，可参考[`puppeteer.launch([options])`](#puppeteerlaunchoptions)。
+- `PUPPETEER_TMP_DIR` - 定义 Puppeteer 用来创建临时文件的目录。默认为 [`os.tmpdir()`]。
+- `PUPPETEER_DOWNLOAD_HOST` - 覆盖下载 Chromium 的 URL 前缀。注意：这包括协议，甚至可能包括路径前缀。默认为 `https://storage.googleapis.com`。
+- `PUPPETEER_DOWNLOAD_PATH` - 覆盖下载文件夹的路径。默认为 `<root>/.local-chromium`，其中 `<root>` 是 Puppeteer 的包根目录。
+- `PUPPETEER_CHROMIUM_REVISION` - 指定你想要 Puppeteer 使用的 Chromium 的某个版本。有关如何推断可执行路径，请参阅 [`puppeteer.launch([options])`]。注意：Puppeteer 只保证与捆绑的 Chromium 工作，使用风险自负。
+- `PUPPETEER_EXECUTABLE_PATH` - 指定要在 `puppeteer.launch` 中使用的可执行路径。有关如何推断可执行路径，请参阅 [`puppeteer.launch([options])`]。注意：Puppeteer 只保证与捆绑的 Chromium 工作，使用风险自负。
+- `PUPPETEER_PRODUCT` - 指定你希望 Puppeteer 使用的浏览器。必须是一个 chrome 或 firefox。这也可以在安装期间使用来获取推荐的浏览器二进制文件。在 [`puppeteer.launch([options])`]中以编程方式设置 `product` 将取代此环境变量。这个 product 变量暴露在 [`puppeteer.product`]。
+- `PUPPETEER_EXPERIMENTAL_CHROMIUM_MAC_ARM` - 指定 Puppeteer 在 Apple M1 上下载 Chromium。在 Apple M1 设备上，Puppeteer 默认下载因特尔处理器的版本，它通过 Rosetta 运行。它工作起来没有任何问题，但是，使用这个选项，你应该获得更有效的资源使用（CPU和RAM），这可能导致更快的执行时间。注意：这是一个试验性的选择，只有当你有 Apple M1 设备时才有意义，使用风险自负。
 
-> **NOTE** 在使用 [`puppeteer-core`](https://www.npmjs.com/package/puppeteer-core) 时，上述环境变量中以 PUPPETEER_* 开头的会被忽略.
-
-### Error handling
-
-如果 Puppeteer 方法无法执行一个请求，就会抛出一个错误。例如，[page.waitForSelector(selector[, options])](#pagewaitforselectorselector-options) 选择器如果在给定的时间范围内无法匹配节点，就会失败。
-
-对于某些类型的错误，Puppeteer 使用特定的错误类处理。这些类可以通过 `require('puppeteer/Errors')` 获得。
-
-支持的类列表：
-- [`TimeoutError`](#class-timeouterror)
-
-一个处理超时错误的例子：
-```js
-const {TimeoutError} = require('puppeteer/Errors');
-
-// ...
-
-try {
-  await page.waitForSelector('.foo');
-} catch (e) {
-  if (e instanceof TimeoutError) {
-    // 如果超时，做一些处理。
-  }
-}
-```
+> **NOTE** PUPPETEER_* 环境变量在 puppeteer-core 包中不被考虑。
 
 ### Working with Chrome Extensions
 
@@ -425,17 +416,19 @@ Puppeteer 模块提供了一种启动 Chromium 实例的方法。
 ```js
 const puppeteer = require('puppeteer');
 
-puppeteer.launch().then(async browser => {
+(async () => {
+  const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.goto('https://www.google.com');
   // 其他操作...
   await browser.close();
-});
+})();
 ```
 
 #### puppeteer.connect(options)
 - `options` <[Object]>
-  - `browserWSEndpoint` <[string]> 一个 [浏览器 websocket 端点链接](#browserwsendpoint)。
+  - `browserWSEndpoint` <[?string]> 一个 [浏览器 websocket 端点链接](#browserwsendpoint)。
+  - `browserURL` <?string> 要连接的浏览器 URL，格式为 `http://${host}:${port}`。可以与 `browserWSEndpoint` 互换使用，让 Puppeteer 从元数据端点获取它。 
   - `ignoreHTTPSErrors` <[boolean]> 是否在导航期间忽略 HTTPS 错误. 默认是 `false`。
   - `defaultViewport` <?[Object]> 为每个页面设置一个默认视口大小。默认是 800x600。如果为 `null` 的话就禁用视图口。
     - `width` <[number]> 页面宽度像素。
@@ -444,10 +437,14 @@ puppeteer.launch().then(async browser => {
     - `isMobile` <[boolean]> 是否在页面中设置了 `meta viewport` 标签。默认是 `false`。
     - `hasTouch`<[boolean]> 指定viewport是否支持触摸事件。默认是 `false`。
     - `isLandscape` <[boolean]> 指定视口是否处于横向模式。默认是 `false`。
-  - `slowMo` <[number]> 将 Puppeteer 操作减少指定的毫秒数。这样你就可以看清发生了什么，这很有用。
+ - `slowMo` <[number]> 将 Puppeteer 操作减少指定的毫秒数。这样你就可以看清发生了什么，这很有用。
+ - `transport` <ConnectionTransport> 实验性的 指定一个自定义传输对象供 Puppeteer 使用。
+ - `product` <string> 取值包括：`chrome`、`firefox`。默认为 `chrome`。
+ - `targetFilter` <?function([Protocol.Target.TargetInfo]):boolean> 使用这个函数来决定 Puppeteer 是否应该连接到给定的目标。如果提供了 `targetFilter`，则 Puppeteer 只连接到 `targetFilter` 返回 `true` 的目标。默认情况下，Puppeteer 连接到所有可用的目标。
+
 - returns: <[Promise]<[Browser]>>
 
-此方法将 Puppeteer 添加到已有的 Chromium 实例。
+此方法将 Puppeteer 连接到一个现有的浏览器实例。
 
 #### puppeteer.createBrowserFetcher([options])
 - `options` <[Object]>
