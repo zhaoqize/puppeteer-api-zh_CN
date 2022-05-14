@@ -533,6 +533,10 @@ const puppeteer = require('puppeteer');
 })();
 ```
 
+#### puppeteer.clearCustomQueryHandlers()
+
+清除所有已注册的处理程序。
+
 #### puppeteer.connect(options)
 - `options` <[Object]>
   - `browserWSEndpoint` <[?string]> 一个 [浏览器 websocket 端点链接](#browserwsendpoint)。
@@ -559,7 +563,12 @@ const puppeteer = require('puppeteer');
   - `host` <[string]> 要使用的下载主机. 默认是 `https://storage.googleapis.com`。
   - `path` <[string]> 下载文件夹的路径. 默认是 `<root>/.local-chromium`, `<root>` 是 puppeteer 的包根目录。
   - `platform` <[string]> 可能的值有: `mac`, `win32`, `win64`, `linux`。默认是当前平台。
+  - `poduct` <"chrome"|"firefox"> 要运行产品的字符串。取值包括：chrome、firefox。默认为 chrome。
 - returns: <[BrowserFetcher]>
+
+#### puppeteer.customQueryHandlerNames()
+
+- `returns`: <Array> 包含所有已注册的自定义查询处理程序名称的列表。
 
 #### puppeteer.defaultArgs([options])
 - `options` <[Object]>  设置浏览器可选项。有一下字段：
